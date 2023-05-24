@@ -1,8 +1,8 @@
-const GetEInvoiceRejectionReasonResponse = require('../Models/GetEInvoiceRejectionReasonResponse').fields;
-const SendEInvoiceRequest = require('../Models/SendEInvoiceRequest').fields;
-const SendEInvoiceRequestMapping = require('../Models/SendEInvoiceRequest').mapping;
-const SendEInvoiceResponse = require('../Models/SendEInvoiceResponse').fields;
-const VerifyEInvoiceXmlResponse = require('../Models/VerifyEInvoiceXmlResponse').fields;
+const GetEInvoiceRejectionReasonResponse = require('../models/GetEInvoiceRejectionReasonResponse').fields;
+const SendEInvoiceRequest = require('../models/SendEInvoiceRequest').fields;
+const SendEInvoiceRequestMapping = require('../models/SendEInvoiceRequest').mapping;
+const SendEInvoiceResponse = require('../models/SendEInvoiceResponse').fields;
+const VerifyEInvoiceXmlResponse = require('../models/VerifyEInvoiceXmlResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {

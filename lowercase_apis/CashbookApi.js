@@ -1,20 +1,20 @@
-const CreateClientRequest = require('../Models/CreateClientRequest').fields;
-const CreateClientRequestMapping = require('../Models/CreateClientRequest').mapping;
-const CreateClientResponse = require('../Models/CreateClientResponse').fields;
-const GetClientResponse = require('../Models/GetClientResponse').fields;
-const ListClientsResponse = require('../Models/ListClientsResponse').fields;
-const ModifyClientRequest = require('../Models/ModifyClientRequest').fields;
-const ModifyClientRequestMapping = require('../Models/ModifyClientRequest').mapping;
-const ModifyClientResponse = require('../Models/ModifyClientResponse').fields;
+const CreateCashbookEntryRequest = require('../models/CreateCashbookEntryRequest').fields;
+const CreateCashbookEntryRequestMapping = require('../models/CreateCashbookEntryRequest').mapping;
+const CreateCashbookEntryResponse = require('../models/CreateCashbookEntryResponse').fields;
+const GetCashbookEntryResponse = require('../models/GetCashbookEntryResponse').fields;
+const ListCashbookEntriesResponse = require('../models/ListCashbookEntriesResponse').fields;
+const ModifyCashbookEntryRequest = require('../models/ModifyCashbookEntryRequest').fields;
+const ModifyCashbookEntryRequestMapping = require('../models/ModifyCashbookEntryRequest').mapping;
+const ModifyCashbookEntryResponse = require('../models/ModifyCashbookEntryResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {
-    createClient: {
-        key: 'createClient',
-        noun: 'Create Client',
+    createCashbookEntry: {
+        key: 'createCashbookEntry',
+        noun: 'Create Cashbook Entry',
         display: {
-            label: 'createClient',
-            description: 'Creates a new client.',
+            label: 'createCashbookEntry',
+            description: 'Creates a new cashbook entry.',
             hidden: false,
         },
         operation: {
@@ -24,14 +24,14 @@ module.exports = {
                     label: 'The ID of the company.',
                     type: 'integer',
                 },
-                ...CreateClientRequest(),
+                ...CreateCashbookEntryRequest(),
             ],
             outputFields: [
-                ...CreateClientResponse(),
+                ...CreateCashbookEntryResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/cashbook'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -42,7 +42,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateClientRequestMapping(bundle),
+                        ...CreateCashbookEntryRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -53,12 +53,12 @@ module.exports = {
             }
         }
     },
-    deleteClient: {
-        key: 'deleteClient',
-        noun: 'Delete Client',
+    deleteCashbookEntry: {
+        key: 'deleteCashbookEntry',
+        noun: 'Delete Cashbook Entry',
         display: {
-            label: 'deleteClient',
-            description: 'Deletes the specified client.',
+            label: 'deleteCashbookEntry',
+            description: 'Deletes the specified cashbook entry.',
             hidden: false,
         },
         operation: {
@@ -69,16 +69,16 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'client_id',
-                    label: 'The ID of the client.',
-                    type: 'integer',
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'string',
                 },
             ],
             outputFields: [
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients/{client_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/cashbook/{document_id}'),
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -99,12 +99,12 @@ module.exports = {
             }
         }
     },
-    getClient: {
-        key: 'getClient',
-        noun: 'Get Client',
+    getCashbookEntry: {
+        key: 'getCashbookEntry',
+        noun: 'Get Cashbook Entry',
         display: {
-            label: 'getClient',
-            description: 'Gets the specified client.',
+            label: 'getCashbookEntry',
+            description: 'Gets the specified cashbook entry.',
             hidden: false,
         },
         operation: {
@@ -115,9 +115,9 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'client_id',
-                    label: 'The ID of the client.',
-                    type: 'integer',
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'string',
                 },
                 {
                     key: 'fields',
@@ -135,11 +135,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetClientResponse(),
+                ...GetCashbookEntryResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients/{client_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/cashbook/{document_id}'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -162,12 +162,12 @@ module.exports = {
             }
         }
     },
-    listClients: {
-        key: 'listClients',
-        noun: 'List Clients',
+    listCashbookEntries: {
+        key: 'listCashbookEntries',
+        noun: 'List Cashbook Entries',
         display: {
-            label: 'listClients',
-            description: 'Lists the clients.',
+            label: 'listCashbookEntries',
+            description: 'Lists the cashbook entries.',
             hidden: false,
         },
         operation: {
@@ -178,46 +178,42 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'fields',
-                    label: 'List of comma-separated fields.',
+                    key: 'date_from',
+                    label: 'Start date.',
                     type: 'string',
                 },
                 {
-                    key: 'fieldset',
-                    label: 'Name of the fieldset.',
+                    key: 'date_to',
+                    label: 'End date.',
+                    type: 'string',
+                },
+                {
+                    key: 'year',
+                    label: 'Filter cashbook by year.',
+                    type: 'integer',
+                },
+                {
+                    key: 'type',
+                    label: 'Filter cashbook by type.',
                     type: 'string',
                     choices: [
-                        'basic',
-                        'detailed',
+                        'all',
+                        'in',
+                        'out',
                     ],
                 },
                 {
-                    key: 'sort',
-                    label: 'List of comma-separated fields for result sorting (minus for desc sorting).',
-                    type: 'string',
-                },
-                {
-                    key: 'page',
-                    label: 'The page to retrieve.',
+                    key: 'payment_account_id',
+                    label: 'Filter by payment account.',
                     type: 'integer',
-                },
-                {
-                    key: 'per_page',
-                    label: 'The size of the page.',
-                    type: 'integer',
-                },
-                {
-                    key: 'q',
-                    label: 'Query for filtering the results.',
-                    type: 'string',
                 },
             ],
             outputFields: [
-                ...ListClientsResponse(),
+                ...ListCashbookEntriesResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/cashbook'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -226,12 +222,11 @@ module.exports = {
                         'Accept': 'application/json',
                     },
                     params: {
-                        'fields': bundle.inputData?.['fields'],
-                        'fieldset': bundle.inputData?.['fieldset'],
-                        'sort': bundle.inputData?.['sort'],
-                        'page': bundle.inputData?.['page'],
-                        'per_page': bundle.inputData?.['per_page'],
-                        'q': bundle.inputData?.['q'],
+                        'date_from': bundle.inputData?.['date_from'],
+                        'date_to': bundle.inputData?.['date_to'],
+                        'year': bundle.inputData?.['year'],
+                        'type': bundle.inputData?.['type'],
+                        'payment_account_id': bundle.inputData?.['payment_account_id'],
                     },
                     body: {
                     },
@@ -244,12 +239,12 @@ module.exports = {
             }
         }
     },
-    modifyClient: {
-        key: 'modifyClient',
-        noun: 'Modify Client',
+    modifyCashbookEntry: {
+        key: 'modifyCashbookEntry',
+        noun: 'Modify Cashbook Entry',
         display: {
-            label: 'modifyClient',
-            description: 'Modifies the specified client.',
+            label: 'modifyCashbookEntry',
+            description: 'Modifies the specified cashbook entry.',
             hidden: false,
         },
         operation: {
@@ -260,18 +255,18 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'client_id',
-                    label: 'The ID of the client.',
-                    type: 'integer',
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'string',
                 },
-                ...ModifyClientRequest(),
+                ...ModifyCashbookEntryRequest(),
             ],
             outputFields: [
-                ...ModifyClientResponse(),
+                ...ModifyCashbookEntryResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients/{client_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/cashbook/{document_id}'),
                     method: 'PUT',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -282,7 +277,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyClientRequestMapping(bundle),
+                        ...ModifyCashbookEntryRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

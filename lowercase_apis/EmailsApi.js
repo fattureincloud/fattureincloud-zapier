@@ -1,13 +1,13 @@
-const GetCompanyInfoResponse = require('../Models/GetCompanyInfoResponse').fields;
+const ListEmailsResponse = require('../models/ListEmailsResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {
-    getCompanyInfo: {
-        key: 'getCompanyInfo',
-        noun: 'Get Company Info',
+    listEmails: {
+        key: 'listEmails',
+        noun: 'List emails',
         display: {
-            label: 'getCompanyInfo',
-            description: 'Gets the company detailed info.',
+            label: 'listEmails',
+            description: 'List Emails.',
             hidden: false,
         },
         operation: {
@@ -19,11 +19,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetCompanyInfoResponse(),
+                ...ListEmailsResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/company/info'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/emails'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {

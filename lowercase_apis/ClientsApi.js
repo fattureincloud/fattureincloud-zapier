@@ -1,20 +1,20 @@
-const CreateSupplierRequest = require('../Models/CreateSupplierRequest').fields;
-const CreateSupplierRequestMapping = require('../Models/CreateSupplierRequest').mapping;
-const CreateSupplierResponse = require('../Models/CreateSupplierResponse').fields;
-const GetSupplierResponse = require('../Models/GetSupplierResponse').fields;
-const ListSuppliersResponse = require('../Models/ListSuppliersResponse').fields;
-const ModifySupplierRequest = require('../Models/ModifySupplierRequest').fields;
-const ModifySupplierRequestMapping = require('../Models/ModifySupplierRequest').mapping;
-const ModifySupplierResponse = require('../Models/ModifySupplierResponse').fields;
+const CreateClientRequest = require('../models/CreateClientRequest').fields;
+const CreateClientRequestMapping = require('../models/CreateClientRequest').mapping;
+const CreateClientResponse = require('../models/CreateClientResponse').fields;
+const GetClientResponse = require('../models/GetClientResponse').fields;
+const ListClientsResponse = require('../models/ListClientsResponse').fields;
+const ModifyClientRequest = require('../models/ModifyClientRequest').fields;
+const ModifyClientRequestMapping = require('../models/ModifyClientRequest').mapping;
+const ModifyClientResponse = require('../models/ModifyClientResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {
-    createSupplier: {
-        key: 'createSupplier',
-        noun: 'Create Supplier',
+    createClient: {
+        key: 'createClient',
+        noun: 'Create Client',
         display: {
-            label: 'createSupplier',
-            description: 'Creates a new supplier.',
+            label: 'createClient',
+            description: 'Creates a new client.',
             hidden: false,
         },
         operation: {
@@ -24,14 +24,14 @@ module.exports = {
                     label: 'The ID of the company.',
                     type: 'integer',
                 },
-                ...CreateSupplierRequest(),
+                ...CreateClientRequest(),
             ],
             outputFields: [
-                ...CreateSupplierResponse(),
+                ...CreateClientResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/suppliers'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -42,7 +42,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateSupplierRequestMapping(bundle),
+                        ...CreateClientRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -53,12 +53,12 @@ module.exports = {
             }
         }
     },
-    deleteSupplier: {
-        key: 'deleteSupplier',
-        noun: 'Delete Supplier',
+    deleteClient: {
+        key: 'deleteClient',
+        noun: 'Delete Client',
         display: {
-            label: 'deleteSupplier',
-            description: 'Deletes the specified supplier.',
+            label: 'deleteClient',
+            description: 'Deletes the specified client.',
             hidden: false,
         },
         operation: {
@@ -69,8 +69,8 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'supplier_id',
-                    label: 'The ID of the supplier.',
+                    key: 'client_id',
+                    label: 'The ID of the client.',
                     type: 'integer',
                 },
             ],
@@ -78,7 +78,7 @@ module.exports = {
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/suppliers/{supplier_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients/{client_id}'),
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -99,12 +99,12 @@ module.exports = {
             }
         }
     },
-    getSupplier: {
-        key: 'getSupplier',
-        noun: 'Get Supplier',
+    getClient: {
+        key: 'getClient',
+        noun: 'Get Client',
         display: {
-            label: 'getSupplier',
-            description: 'Gets the specified supplier.',
+            label: 'getClient',
+            description: 'Gets the specified client.',
             hidden: false,
         },
         operation: {
@@ -115,8 +115,8 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'supplier_id',
-                    label: 'The ID of the supplier.',
+                    key: 'client_id',
+                    label: 'The ID of the client.',
                     type: 'integer',
                 },
                 {
@@ -135,11 +135,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetSupplierResponse(),
+                ...GetClientResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/suppliers/{supplier_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients/{client_id}'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -162,12 +162,12 @@ module.exports = {
             }
         }
     },
-    listSuppliers: {
-        key: 'listSuppliers',
-        noun: 'List Suppliers',
+    listClients: {
+        key: 'listClients',
+        noun: 'List Clients',
         display: {
-            label: 'listSuppliers',
-            description: 'Lists the suppliers.',
+            label: 'listClients',
+            description: 'Lists the clients.',
             hidden: false,
         },
         operation: {
@@ -213,11 +213,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListSuppliersResponse(),
+                ...ListClientsResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/suppliers'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -244,12 +244,12 @@ module.exports = {
             }
         }
     },
-    modifySupplier: {
-        key: 'modifySupplier',
-        noun: 'Modify Supplier',
+    modifyClient: {
+        key: 'modifyClient',
+        noun: 'Modify Client',
         display: {
-            label: 'modifySupplier',
-            description: 'Modifies the specified supplier.',
+            label: 'modifyClient',
+            description: 'Modifies the specified client.',
             hidden: false,
         },
         operation: {
@@ -260,18 +260,18 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'supplier_id',
-                    label: 'The ID of the supplier.',
+                    key: 'client_id',
+                    label: 'The ID of the client.',
                     type: 'integer',
                 },
-                ...ModifySupplierRequest(),
+                ...ModifyClientRequest(),
             ],
             outputFields: [
-                ...ModifySupplierResponse(),
+                ...ModifyClientResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/suppliers/{supplier_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients/{client_id}'),
                     method: 'PUT',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -282,7 +282,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifySupplierRequestMapping(bundle),
+                        ...ModifyClientRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

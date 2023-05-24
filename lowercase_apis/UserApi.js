@@ -1,5 +1,5 @@
-const GetUserInfoResponse = require('../Models/GetUserInfoResponse').fields;
-const ListUserCompaniesResponse = require('../Models/ListUserCompaniesResponse').fields;
+const GetUserInfoResponse = require('../models/GetUserInfoResponse').fields;
+const ListUserCompaniesResponse = require('../models/ListUserCompaniesResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {

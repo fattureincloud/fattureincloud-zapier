@@ -1,22 +1,20 @@
-const CreateReceiptRequest = require('../Models/CreateReceiptRequest').fields;
-const CreateReceiptRequestMapping = require('../Models/CreateReceiptRequest').mapping;
-const CreateReceiptResponse = require('../Models/CreateReceiptResponse').fields;
-const GetReceiptResponse = require('../Models/GetReceiptResponse').fields;
-const GetReceiptPreCreateInfoResponse = require('../Models/GetReceiptPreCreateInfoResponse').fields;
-const GetReceiptsMonthlyTotalsResponse = require('../Models/GetReceiptsMonthlyTotalsResponse').fields;
-const ListReceiptsResponse = require('../Models/ListReceiptsResponse').fields;
-const ModifyReceiptRequest = require('../Models/ModifyReceiptRequest').fields;
-const ModifyReceiptRequestMapping = require('../Models/ModifyReceiptRequest').mapping;
-const ModifyReceiptResponse = require('../Models/ModifyReceiptResponse').fields;
+const CreateProductRequest = require('../models/CreateProductRequest').fields;
+const CreateProductRequestMapping = require('../models/CreateProductRequest').mapping;
+const CreateProductResponse = require('../models/CreateProductResponse').fields;
+const GetProductResponse = require('../models/GetProductResponse').fields;
+const ListProductsResponse = require('../models/ListProductsResponse').fields;
+const ModifyProductRequest = require('../models/ModifyProductRequest').fields;
+const ModifyProductRequestMapping = require('../models/ModifyProductRequest').mapping;
+const ModifyProductResponse = require('../models/ModifyProductResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {
-    createReceipt: {
-        key: 'createReceipt',
-        noun: 'Create Receipt',
+    createProduct: {
+        key: 'createProduct',
+        noun: 'Create Product',
         display: {
-            label: 'createReceipt',
-            description: 'Creates a new receipt.',
+            label: 'createProduct',
+            description: 'Creates a new product.',
             hidden: false,
         },
         operation: {
@@ -26,14 +24,14 @@ module.exports = {
                     label: 'The ID of the company.',
                     type: 'integer',
                 },
-                ...CreateReceiptRequest(),
+                ...CreateProductRequest(),
             ],
             outputFields: [
-                ...CreateReceiptResponse(),
+                ...CreateProductResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -44,7 +42,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateReceiptRequestMapping(bundle),
+                        ...CreateProductRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -55,12 +53,12 @@ module.exports = {
             }
         }
     },
-    deleteReceipt: {
-        key: 'deleteReceipt',
-        noun: 'Delete Receipt',
+    deleteProduct: {
+        key: 'deleteProduct',
+        noun: 'Delete Product',
         display: {
-            label: 'deleteReceipt',
-            description: 'Deletes the specified receipt.',
+            label: 'deleteProduct',
+            description: 'Deletes the specified product.',
             hidden: false,
         },
         operation: {
@@ -71,8 +69,8 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'document_id',
-                    label: 'The ID of the document.',
+                    key: 'product_id',
+                    label: 'The ID of the product.',
                     type: 'integer',
                 },
             ],
@@ -80,7 +78,7 @@ module.exports = {
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/{document_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products/{product_id}'),
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -101,12 +99,12 @@ module.exports = {
             }
         }
     },
-    getReceipt: {
-        key: 'getReceipt',
-        noun: 'Get Receipt',
+    getProduct: {
+        key: 'getProduct',
+        noun: 'Get Product',
         display: {
-            label: 'getReceipt',
-            description: 'Gets the specified receipt.',
+            label: 'getProduct',
+            description: 'Gets the specified product.',
             hidden: false,
         },
         operation: {
@@ -117,8 +115,8 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'document_id',
-                    label: 'The ID of the document.',
+                    key: 'product_id',
+                    label: 'The ID of the product.',
                     type: 'integer',
                 },
                 {
@@ -137,11 +135,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceiptResponse(),
+                ...GetProductResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/{document_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products/{product_id}'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -164,112 +162,12 @@ module.exports = {
             }
         }
     },
-    getReceiptPreCreateInfo: {
-        key: 'getReceiptPreCreateInfo',
-        noun: 'Get Receipt Pre-Create Info',
+    listProducts: {
+        key: 'listProducts',
+        noun: 'List Products',
         display: {
-            label: 'getReceiptPreCreateInfo',
-            description: 'Retrieves the information useful while creating a new receipt.',
-            hidden: false,
-        },
-        operation: {
-            inputFields: [
-                {
-                    key: 'company_id',
-                    label: 'The ID of the company.',
-                    type: 'integer',
-                },
-            ],
-            outputFields: [
-                ...GetReceiptPreCreateInfoResponse(),
-            ],
-            perform: async (z, bundle) => {
-                const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/info'),
-                    method: 'GET',
-                    removeMissingValuesFrom: { params: true, body: true },
-                    headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
-                        'Accept': 'application/json',
-                    },
-                    params: {
-                    },
-                    body: {
-                    },
-                }
-                return z.request(options).then((response) => {
-                    response.throwForStatus();
-                    const results = response.json;
-                    return results;
-                })
-            }
-        }
-    },
-    getReceiptsMonthlyTotals: {
-        key: 'getReceiptsMonthlyTotals',
-        noun: 'Get Receipts Monthly Totals',
-        display: {
-            label: 'getReceiptsMonthlyTotals',
-            description: 'Returns the monthly totals by year and receipt type.',
-            hidden: false,
-        },
-        operation: {
-            inputFields: [
-                {
-                    key: 'company_id',
-                    label: 'The ID of the company.',
-                    type: 'integer',
-                },
-                {
-                    key: 'type',
-                    label: 'Receipt Type',
-                    type: 'string',
-                    choices: [
-                        'sales_receipt',
-                        'till_receipt',
-                    ],
-                },
-                {
-                    key: 'year',
-                    label: 'Year for which you want monthly totals',
-                    type: 'string',
-                },
-            ],
-            outputFields: [
-                ...GetReceiptsMonthlyTotalsResponse(),
-            ],
-            perform: async (z, bundle) => {
-                const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/monthly_totals'),
-                    method: 'GET',
-                    removeMissingValuesFrom: { params: true, body: true },
-                    headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
-                        'Accept': 'application/json',
-                    },
-                    params: {
-                        'type': bundle.inputData?.['type'],
-                        'year': bundle.inputData?.['year'],
-                    },
-                    body: {
-                    },
-                }
-                return z.request(options).then((response) => {
-                    response.throwForStatus();
-                    const results = response.json;
-                    return results;
-                })
-            }
-        }
-    },
-    listReceipts: {
-        key: 'listReceipts',
-        noun: 'List Receipts',
-        display: {
-            label: 'listReceipts',
-            description: 'Lists the receipts.',
+            label: 'listProducts',
+            description: 'Lists the products.',
             hidden: false,
         },
         operation: {
@@ -292,6 +190,11 @@ module.exports = {
                         'basic',
                         'detailed',
                     ],
+                },
+                {
+                    key: 'sort',
+                    label: 'List of comma-separated fields for result sorting (minus for desc sorting).',
+                    type: 'string',
                 },
                 {
                     key: 'page',
@@ -304,22 +207,17 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'sort',
-                    label: 'List of comma-separated fields for result sorting (minus for desc sorting).',
-                    type: 'string',
-                },
-                {
                     key: 'q',
                     label: 'Query for filtering the results.',
                     type: 'string',
                 },
             ],
             outputFields: [
-                ...ListReceiptsResponse(),
+                ...ListProductsResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -330,9 +228,9 @@ module.exports = {
                     params: {
                         'fields': bundle.inputData?.['fields'],
                         'fieldset': bundle.inputData?.['fieldset'],
+                        'sort': bundle.inputData?.['sort'],
                         'page': bundle.inputData?.['page'],
                         'per_page': bundle.inputData?.['per_page'],
-                        'sort': bundle.inputData?.['sort'],
                         'q': bundle.inputData?.['q'],
                     },
                     body: {
@@ -346,12 +244,12 @@ module.exports = {
             }
         }
     },
-    modifyReceipt: {
-        key: 'modifyReceipt',
-        noun: 'Modify Receipt',
+    modifyProduct: {
+        key: 'modifyProduct',
+        noun: 'Modify Product',
         display: {
-            label: 'modifyReceipt',
-            description: 'Modifies the specified receipt.',
+            label: 'modifyProduct',
+            description: 'Modifies the specified product.',
             hidden: false,
         },
         operation: {
@@ -362,18 +260,18 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'document_id',
-                    label: 'The ID of the document.',
+                    key: 'product_id',
+                    label: 'The ID of the product.',
                     type: 'integer',
                 },
-                ...ModifyReceiptRequest(),
+                ...ModifyProductRequest(),
             ],
             outputFields: [
-                ...ModifyReceiptResponse(),
+                ...ModifyProductResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/{document_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products/{product_id}'),
                     method: 'PUT',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -384,7 +282,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyReceiptRequestMapping(bundle),
+                        ...ModifyProductRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

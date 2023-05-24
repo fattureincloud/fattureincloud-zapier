@@ -1,21 +1,22 @@
-const CreateArchiveDocumentRequest = require('../Models/CreateArchiveDocumentRequest').fields;
-const CreateArchiveDocumentRequestMapping = require('../Models/CreateArchiveDocumentRequest').mapping;
-const CreateArchiveDocumentResponse = require('../Models/CreateArchiveDocumentResponse').fields;
-const GetArchiveDocumentResponse = require('../Models/GetArchiveDocumentResponse').fields;
-const ListArchiveDocumentsResponse = require('../Models/ListArchiveDocumentsResponse').fields;
-const ModifyArchiveDocumentRequest = require('../Models/ModifyArchiveDocumentRequest').fields;
-const ModifyArchiveDocumentRequestMapping = require('../Models/ModifyArchiveDocumentRequest').mapping;
-const ModifyArchiveDocumentResponse = require('../Models/ModifyArchiveDocumentResponse').fields;
-const UploadArchiveAttachmentResponse = require('../Models/UploadArchiveAttachmentResponse').fields;
+const CreateReceiptRequest = require('../models/CreateReceiptRequest').fields;
+const CreateReceiptRequestMapping = require('../models/CreateReceiptRequest').mapping;
+const CreateReceiptResponse = require('../models/CreateReceiptResponse').fields;
+const GetReceiptResponse = require('../models/GetReceiptResponse').fields;
+const GetReceiptPreCreateInfoResponse = require('../models/GetReceiptPreCreateInfoResponse').fields;
+const GetReceiptsMonthlyTotalsResponse = require('../models/GetReceiptsMonthlyTotalsResponse').fields;
+const ListReceiptsResponse = require('../models/ListReceiptsResponse').fields;
+const ModifyReceiptRequest = require('../models/ModifyReceiptRequest').fields;
+const ModifyReceiptRequestMapping = require('../models/ModifyReceiptRequest').mapping;
+const ModifyReceiptResponse = require('../models/ModifyReceiptResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {
-    createArchiveDocument: {
-        key: 'createArchiveDocument',
-        noun: 'Create Archive Document',
+    createReceipt: {
+        key: 'createReceipt',
+        noun: 'Create Receipt',
         display: {
-            label: 'createArchiveDocument',
-            description: 'Creates a new archive document.',
+            label: 'createReceipt',
+            description: 'Creates a new receipt.',
             hidden: false,
         },
         operation: {
@@ -25,14 +26,14 @@ module.exports = {
                     label: 'The ID of the company.',
                     type: 'integer',
                 },
-                ...CreateArchiveDocumentRequest(),
+                ...CreateReceiptRequest(),
             ],
             outputFields: [
-                ...CreateArchiveDocumentResponse(),
+                ...CreateReceiptResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -43,7 +44,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateArchiveDocumentRequestMapping(bundle),
+                        ...CreateReceiptRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -54,12 +55,12 @@ module.exports = {
             }
         }
     },
-    deleteArchiveDocument: {
-        key: 'deleteArchiveDocument',
-        noun: 'Delete Archive Document',
+    deleteReceipt: {
+        key: 'deleteReceipt',
+        noun: 'Delete Receipt',
         display: {
-            label: 'deleteArchiveDocument',
-            description: 'Deletes the specified archive document.',
+            label: 'deleteReceipt',
+            description: 'Deletes the specified receipt.',
             hidden: false,
         },
         operation: {
@@ -79,7 +80,7 @@ module.exports = {
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/{document_id}'),
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -100,12 +101,12 @@ module.exports = {
             }
         }
     },
-    getArchiveDocument: {
-        key: 'getArchiveDocument',
-        noun: 'Get Archive Document',
+    getReceipt: {
+        key: 'getReceipt',
+        noun: 'Get Receipt',
         display: {
-            label: 'getArchiveDocument',
-            description: 'Gets the specified archive document.',
+            label: 'getReceipt',
+            description: 'Gets the specified receipt.',
             hidden: false,
         },
         operation: {
@@ -136,11 +137,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetArchiveDocumentResponse(),
+                ...GetReceiptResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/{document_id}'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -163,12 +164,112 @@ module.exports = {
             }
         }
     },
-    listArchiveDocuments: {
-        key: 'listArchiveDocuments',
-        noun: 'List Archive Documents',
+    getReceiptPreCreateInfo: {
+        key: 'getReceiptPreCreateInfo',
+        noun: 'Get Receipt Pre-Create Info',
         display: {
-            label: 'listArchiveDocuments',
-            description: 'Lists the archive documents.',
+            label: 'getReceiptPreCreateInfo',
+            description: 'Retrieves the information useful while creating a new receipt.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                },
+            ],
+            outputFields: [
+                ...GetReceiptPreCreateInfoResponse(),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/info'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
+                        
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(options).then((response) => {
+                    response.throwForStatus();
+                    const results = response.json;
+                    return results;
+                })
+            }
+        }
+    },
+    getReceiptsMonthlyTotals: {
+        key: 'getReceiptsMonthlyTotals',
+        noun: 'Get Receipts Monthly Totals',
+        display: {
+            label: 'getReceiptsMonthlyTotals',
+            description: 'Returns the monthly totals by year and receipt type.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                },
+                {
+                    key: 'type',
+                    label: 'Receipt Type',
+                    type: 'string',
+                    choices: [
+                        'sales_receipt',
+                        'till_receipt',
+                    ],
+                },
+                {
+                    key: 'year',
+                    label: 'Year for which you want monthly totals',
+                    type: 'string',
+                },
+            ],
+            outputFields: [
+                ...GetReceiptsMonthlyTotalsResponse(),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/monthly_totals'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
+                        
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'type': bundle.inputData?.['type'],
+                        'year': bundle.inputData?.['year'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(options).then((response) => {
+                    response.throwForStatus();
+                    const results = response.json;
+                    return results;
+                })
+            }
+        }
+    },
+    listReceipts: {
+        key: 'listReceipts',
+        noun: 'List Receipts',
+        display: {
+            label: 'listReceipts',
+            description: 'Lists the receipts.',
             hidden: false,
         },
         operation: {
@@ -193,11 +294,6 @@ module.exports = {
                     ],
                 },
                 {
-                    key: 'sort',
-                    label: 'List of comma-separated fields for result sorting (minus for desc sorting).',
-                    type: 'string',
-                },
-                {
                     key: 'page',
                     label: 'The page to retrieve.',
                     type: 'integer',
@@ -208,17 +304,22 @@ module.exports = {
                     type: 'integer',
                 },
                 {
+                    key: 'sort',
+                    label: 'List of comma-separated fields for result sorting (minus for desc sorting).',
+                    type: 'string',
+                },
+                {
                     key: 'q',
                     label: 'Query for filtering the results.',
                     type: 'string',
                 },
             ],
             outputFields: [
-                ...ListArchiveDocumentsResponse(),
+                ...ListReceiptsResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -229,9 +330,9 @@ module.exports = {
                     params: {
                         'fields': bundle.inputData?.['fields'],
                         'fieldset': bundle.inputData?.['fieldset'],
-                        'sort': bundle.inputData?.['sort'],
                         'page': bundle.inputData?.['page'],
                         'per_page': bundle.inputData?.['per_page'],
+                        'sort': bundle.inputData?.['sort'],
                         'q': bundle.inputData?.['q'],
                     },
                     body: {
@@ -245,12 +346,12 @@ module.exports = {
             }
         }
     },
-    modifyArchiveDocument: {
-        key: 'modifyArchiveDocument',
-        noun: 'Modify Archive Document',
+    modifyReceipt: {
+        key: 'modifyReceipt',
+        noun: 'Modify Receipt',
         display: {
-            label: 'modifyArchiveDocument',
-            description: 'Modifies the specified archive document.',
+            label: 'modifyReceipt',
+            description: 'Modifies the specified receipt.',
             hidden: false,
         },
         operation: {
@@ -265,14 +366,14 @@ module.exports = {
                     label: 'The ID of the document.',
                     type: 'integer',
                 },
-                ...ModifyArchiveDocumentRequest(),
+                ...ModifyReceiptRequest(),
             ],
             outputFields: [
-                ...ModifyArchiveDocumentResponse(),
+                ...ModifyReceiptResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/receipts/{document_id}'),
                     method: 'PUT',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -283,59 +384,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyArchiveDocumentRequestMapping(bundle),
-                    },
-                }
-                return z.request(options).then((response) => {
-                    response.throwForStatus();
-                    const results = response.json;
-                    return results;
-                })
-            }
-        }
-    },
-    uploadArchiveDocumentAttachment: {
-        key: 'uploadArchiveDocumentAttachment',
-        noun: 'Upload Archive Document Attachment',
-        display: {
-            label: 'uploadArchiveDocumentAttachment',
-            description: 'Uploads an attachment destined to an archive document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
-            hidden: false,
-        },
-        operation: {
-            inputFields: [
-                {
-                    key: 'company_id',
-                    label: 'The ID of the company.',
-                    type: 'integer',
-                },
-                {
-                    key: 'filename',
-                    label: 'Name of the file.',
-                    type: 'string',
-                },
-                {
-                    key: 'attachment',
-                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
-                    type: 'file',
-                },
-            ],
-            outputFields: [
-                ...UploadArchiveAttachmentResponse(),
-            ],
-            perform: async (z, bundle) => {
-                const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/attachment'),
-                    method: 'POST',
-                    removeMissingValuesFrom: { params: true, body: true },
-                    headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        'Content-Type': 'multipart/form-data',
-                        'Accept': 'application/json',
-                    },
-                    params: {
-                    },
-                    body: {
+                        ...ModifyReceiptRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

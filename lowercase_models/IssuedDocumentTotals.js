@@ -1,7 +1,5 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const VatItem = require('./VatItem').fields;
-const VatItemMapping = require('./VatItem').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
@@ -92,7 +90,11 @@ module.exports = {
                 label: labelPrefix + 'Payments sum.',
                 type: 'number',
             },
-            ...VatItem(keyPrefix + 'vat_list'),
+            {
+                key: keyPrefix + 'vat_list',
+                
+                dict: true,
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -114,7 +116,7 @@ module.exports = {
             'amount_due': bundle.inputData?.[keyPrefix + 'amount_due'],
             'is_enasarco_maximal_exceeded': bundle.inputData?.[keyPrefix + 'is_enasarco_maximal_exceeded'],
             'payments_sum': bundle.inputData?.[keyPrefix + 'payments_sum'],
-            'vat_list': utils.removeIfEmpty(VatItemMapping(bundle, keyPrefix + 'vat_list')),
+            'vat_list': bundle.inputData?.[keyPrefix + 'vat_list'],
         }
     },
 }

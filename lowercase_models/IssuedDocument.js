@@ -397,7 +397,11 @@ module.exports = {
                 label: labelPrefix + '[Write Only] Attachment token returned by POST /issued_documents/attachment. Used to attach the file already uploaded.',
                 type: 'string',
             },
-            // ...(keyPrefix + 'ei_raw'),
+            {
+                key: keyPrefix + 'ei_raw',
+                label: labelPrefix + 'Advanced raw attributes for e-invoices.',
+                dict: true,
+            },
             {
                 key: keyPrefix + 'ei_status',
                 label: labelPrefix + '[Read only] Status of the e-invoice.   * &#x60;attempt&#x60; - We are trying to send the invoice, please wait up to 2 hours   * &#x60;missing&#x60; - The invoice is missing   * &#x60;not_sent&#x60; - The invoice has yet to be sent   * &#x60;sent&#x60; - The invoice was sent   * &#x60;pending&#x60; - The checks for the digital signature and sending are in progress   * &#x60;processing&#x60; - The SDI is delivering the invoice to the customer   * &#x60;error&#x60; - An error occurred while handling the invoice, please try to resend it or contact support   * &#x60;discarded&#x60; - The invoice has been rejected by the SDI, so it must be corrected and re-sent   * &#x60;not_delivered&#x60; - The SDI was unable to deliver the invoice   * &#x60;accepted&#x60; - The customer accepted the invoice   * &#x60;rejected&#x60; - The customer rejected the invoice, so it must be corrected   * &#x60;no_response&#x60; - A response has not yet been received whithin the deadline, contact the customer to ascertain the status of the invoice   * &#x60;manual_accepted&#x60; - The customer accepted the invoice   * &#x60;manual_rejected&#x60; - The customer rejected the invoice ',
@@ -515,7 +519,7 @@ module.exports = {
             'ai_url': bundle.inputData?.[keyPrefix + 'ai_url'],
             'attachment_url': bundle.inputData?.[keyPrefix + 'attachment_url'],
             'attachment_token': bundle.inputData?.[keyPrefix + 'attachment_token'],
-            // 'ei_raw': utils.removeIfEmpty(Mapping(bundle, keyPrefix + 'ei_raw')),
+            'ei_raw': bundle.inputData?.[keyPrefix + 'ei_raw'],
             'ei_status': bundle.inputData?.[keyPrefix + 'ei_status'],
             'created_at': bundle.inputData?.[keyPrefix + 'created_at'],
             'updated_at': bundle.inputData?.[keyPrefix + 'updated_at'],

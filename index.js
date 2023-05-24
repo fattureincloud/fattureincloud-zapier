@@ -1,20 +1,20 @@
 const authentication = require('./authentication');
-const ArchiveApi = require('./Apis/ArchiveApi');
-const CashbookApi = require('./Apis/CashbookApi');
-const ClientsApi = require('./Apis/ClientsApi');
-const CompaniesApi = require('./Apis/CompaniesApi');
-const EmailsApi = require('./Apis/EmailsApi');
-const InfoApi = require('./Apis/InfoApi');
-const IssuedDocumentsApi = require('./Apis/IssuedDocumentsApi');
-const IssuedEInvoicesApi = require('./Apis/IssuedEInvoicesApi');
-const ProductsApi = require('./Apis/ProductsApi');
-const ReceiptsApi = require('./Apis/ReceiptsApi');
-const ReceivedDocumentsApi = require('./Apis/ReceivedDocumentsApi');
-const SettingsApi = require('./Apis/SettingsApi');
-const SuppliersApi = require('./Apis/SuppliersApi');
-const TaxesApi = require('./Apis/TaxesApi');
-const UserApi = require('./Apis/UserApi');
-const WebhooksApi = require('./Apis/WebhooksApi');
+const ArchiveApi = require('./apis/ArchiveApi');
+const CashbookApi = require('./apis/CashbookApi');
+const ClientsApi = require('./apis/ClientsApi');
+const CompaniesApi = require('./apis/CompaniesApi');
+const EmailsApi = require('./apis/EmailsApi');
+const InfoApi = require('./apis/InfoApi');
+const IssuedDocumentsApi = require('./apis/IssuedDocumentsApi');
+const IssuedEInvoicesApi = require('./apis/IssuedEInvoicesApi');
+const ProductsApi = require('./apis/ProductsApi');
+const ReceiptsApi = require('./apis/ReceiptsApi');
+const ReceivedDocumentsApi = require('./apis/ReceivedDocumentsApi');
+const SettingsApi = require('./apis/SettingsApi');
+const SuppliersApi = require('./apis/SuppliersApi');
+const TaxesApi = require('./apis/TaxesApi');
+const UserApi = require('./apis/UserApi');
+const WebhooksApi = require('./apis/WebhooksApi');
 
 module.exports = {
     version: require('./package.json').version,

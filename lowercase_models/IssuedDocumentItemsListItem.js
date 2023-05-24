@@ -93,7 +93,11 @@ module.exports = {
                 
                 type: 'boolean',
             },
-            // ...(keyPrefix + 'ei_raw'),
+            {
+                key: keyPrefix + 'ei_raw',
+                label: labelPrefix + 'Advanced raw attributes for e-invoices.',
+                dict: true,
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -116,7 +120,7 @@ module.exports = {
             'discount_highlight': bundle.inputData?.[keyPrefix + 'discount_highlight'],
             'in_dn': bundle.inputData?.[keyPrefix + 'in_dn'],
             'stock': bundle.inputData?.[keyPrefix + 'stock'],
-            // 'ei_raw': utils.removeIfEmpty(Mapping(bundle, keyPrefix + 'ei_raw')),
+            'ei_raw': bundle.inputData?.[keyPrefix + 'ei_raw'],
         }
     },
 }

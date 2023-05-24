@@ -1,11 +1,11 @@
-const CreateWebhooksSubscriptionRequest = require('../Models/CreateWebhooksSubscriptionRequest').fields;
-const CreateWebhooksSubscriptionRequestMapping = require('../Models/CreateWebhooksSubscriptionRequest').mapping;
-const CreateWebhooksSubscriptionResponse = require('../Models/CreateWebhooksSubscriptionResponse').fields;
-const GetWebhooksSubscriptionResponse = require('../Models/GetWebhooksSubscriptionResponse').fields;
-const ListWebhooksSubscriptionsResponse = require('../Models/ListWebhooksSubscriptionsResponse').fields;
-const ModifyWebhooksSubscriptionRequest = require('../Models/ModifyWebhooksSubscriptionRequest').fields;
-const ModifyWebhooksSubscriptionRequestMapping = require('../Models/ModifyWebhooksSubscriptionRequest').mapping;
-const ModifyWebhooksSubscriptionResponse = require('../Models/ModifyWebhooksSubscriptionResponse').fields;
+const CreateWebhooksSubscriptionRequest = require('../models/CreateWebhooksSubscriptionRequest').fields;
+const CreateWebhooksSubscriptionRequestMapping = require('../models/CreateWebhooksSubscriptionRequest').mapping;
+const CreateWebhooksSubscriptionResponse = require('../models/CreateWebhooksSubscriptionResponse').fields;
+const GetWebhooksSubscriptionResponse = require('../models/GetWebhooksSubscriptionResponse').fields;
+const ListWebhooksSubscriptionsResponse = require('../models/ListWebhooksSubscriptionsResponse').fields;
+const ModifyWebhooksSubscriptionRequest = require('../models/ModifyWebhooksSubscriptionRequest').fields;
+const ModifyWebhooksSubscriptionRequestMapping = require('../models/ModifyWebhooksSubscriptionRequest').mapping;
+const ModifyWebhooksSubscriptionResponse = require('../models/ModifyWebhooksSubscriptionResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {

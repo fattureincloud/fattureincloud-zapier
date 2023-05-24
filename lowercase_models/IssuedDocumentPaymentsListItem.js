@@ -40,7 +40,11 @@ module.exports = {
                 label: labelPrefix + 'Payment date. [Only if status is paid]',
                 type: 'datetime',
             },
-            // ...(keyPrefix + 'ei_raw'),
+            {
+                key: keyPrefix + 'ei_raw',
+                label: labelPrefix + 'Advanced raw attributes for e-invoices.',
+                dict: true,
+            },
             ...IssuedDocumentPaymentsListItem_payment_terms(keyPrefix + 'payment_terms'),
         ]
     },
@@ -53,7 +57,7 @@ module.exports = {
             'status': bundle.inputData?.[keyPrefix + 'status'],
             'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, keyPrefix + 'payment_account')),
             'paid_date': bundle.inputData?.[keyPrefix + 'paid_date'],
-            // 'ei_raw': utils.removeIfEmpty(Mapping(bundle, keyPrefix + 'ei_raw')),
+            'ei_raw': bundle.inputData?.[keyPrefix + 'ei_raw'],
             'payment_terms': utils.removeIfEmpty(IssuedDocumentPaymentsListItem_payment_termsMapping(bundle, keyPrefix + 'payment_terms')),
         }
     },

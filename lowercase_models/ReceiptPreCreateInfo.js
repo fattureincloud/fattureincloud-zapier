@@ -14,7 +14,11 @@ module.exports = {
         }
         labelPrefix = keyPrefix.replaceAll('.', ' ')
         return [
-            // ...map(keyPrefix + 'numerations'),
+            {
+                key: keyPrefix + 'numerations',
+                
+                dict: true,
+            },
             {
                 key: keyPrefix + 'numerations_list',
                 label: labelPrefix + 'List of series used in the past.',
@@ -48,7 +52,7 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            // 'numerations': utils.removeIfEmpty(mapMapping(bundle, keyPrefix + 'numerations')),
+            'numerations': bundle.inputData?.[keyPrefix + 'numerations'],
             'numerations_list': bundle.inputData?.[keyPrefix + 'numerations_list'],
             'rc_centers_list': bundle.inputData?.[keyPrefix + 'rc_centers_list'],
             'payment_accounts_list': utils.removeKeyPrefixes(bundle.inputData?.[keyPrefix + 'payment_accounts_list']),

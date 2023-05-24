@@ -28,8 +28,16 @@ module.exports = {
         }
         labelPrefix = keyPrefix.replaceAll('.', ' ')
         return [
-            // ...map(keyPrefix + 'numerations'),
-            // ...map(keyPrefix + 'dn_numerations'),
+            {
+                key: keyPrefix + 'numerations',
+                
+                dict: true,
+            },
+            {
+                key: keyPrefix + 'dn_numerations',
+                
+                dict: true,
+            },
             ...IssuedDocumentPreCreateInfo_default_values(keyPrefix + 'default_values'),
             ...IssuedDocumentPreCreateInfo_extra_data_default_values(keyPrefix + 'extra_data_default_values'),
             ...IssuedDocumentPreCreateInfo_items_default_values(keyPrefix + 'items_default_values'),
@@ -84,8 +92,8 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            // 'numerations': utils.removeIfEmpty(mapMapping(bundle, keyPrefix + 'numerations')),
-            // 'dn_numerations': utils.removeIfEmpty(mapMapping(bundle, keyPrefix + 'dn_numerations')),
+            'numerations': bundle.inputData?.[keyPrefix + 'numerations'],
+            'dn_numerations': bundle.inputData?.[keyPrefix + 'dn_numerations'],
             'default_values': utils.removeIfEmpty(IssuedDocumentPreCreateInfo_default_valuesMapping(bundle, keyPrefix + 'default_values')),
             'extra_data_default_values': utils.removeIfEmpty(IssuedDocumentPreCreateInfo_extra_data_default_valuesMapping(bundle, keyPrefix + 'extra_data_default_values')),
             'items_default_values': utils.removeIfEmpty(IssuedDocumentPreCreateInfo_items_default_valuesMapping(bundle, keyPrefix + 'items_default_values')),

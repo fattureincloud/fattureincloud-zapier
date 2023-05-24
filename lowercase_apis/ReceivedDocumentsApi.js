@@ -1,21 +1,28 @@
-const CreateF24Request = require('../Models/CreateF24Request').fields;
-const CreateF24RequestMapping = require('../Models/CreateF24Request').mapping;
-const CreateF24Response = require('../Models/CreateF24Response').fields;
-const GetF24Response = require('../Models/GetF24Response').fields;
-const ListF24Response = require('../Models/ListF24Response').fields;
-const ModifyF24Request = require('../Models/ModifyF24Request').fields;
-const ModifyF24RequestMapping = require('../Models/ModifyF24Request').mapping;
-const ModifyF24Response = require('../Models/ModifyF24Response').fields;
-const UploadF24AttachmentResponse = require('../Models/UploadF24AttachmentResponse').fields;
+const CreateReceivedDocumentRequest = require('../models/CreateReceivedDocumentRequest').fields;
+const CreateReceivedDocumentRequestMapping = require('../models/CreateReceivedDocumentRequest').mapping;
+const CreateReceivedDocumentResponse = require('../models/CreateReceivedDocumentResponse').fields;
+const GetExistingReceivedDocumentTotalsRequest = require('../models/GetExistingReceivedDocumentTotalsRequest').fields;
+const GetExistingReceivedDocumentTotalsRequestMapping = require('../models/GetExistingReceivedDocumentTotalsRequest').mapping;
+const GetExistingReceivedDocumentTotalsResponse = require('../models/GetExistingReceivedDocumentTotalsResponse').fields;
+const GetNewReceivedDocumentTotalsRequest = require('../models/GetNewReceivedDocumentTotalsRequest').fields;
+const GetNewReceivedDocumentTotalsRequestMapping = require('../models/GetNewReceivedDocumentTotalsRequest').mapping;
+const GetNewReceivedDocumentTotalsResponse = require('../models/GetNewReceivedDocumentTotalsResponse').fields;
+const GetReceivedDocumentResponse = require('../models/GetReceivedDocumentResponse').fields;
+const GetReceivedDocumentPreCreateInfoResponse = require('../models/GetReceivedDocumentPreCreateInfoResponse').fields;
+const ListReceivedDocumentsResponse = require('../models/ListReceivedDocumentsResponse').fields;
+const ModifyReceivedDocumentRequest = require('../models/ModifyReceivedDocumentRequest').fields;
+const ModifyReceivedDocumentRequestMapping = require('../models/ModifyReceivedDocumentRequest').mapping;
+const ModifyReceivedDocumentResponse = require('../models/ModifyReceivedDocumentResponse').fields;
+const UploadReceivedDocumentAttachmentResponse = require('../models/UploadReceivedDocumentAttachmentResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {
-    createF24: {
-        key: 'createF24',
-        noun: 'Create F24',
+    createReceivedDocument: {
+        key: 'createReceivedDocument',
+        noun: 'Create Received Document',
         display: {
-            label: 'createF24',
-            description: 'Creates a new F24.',
+            label: 'createReceivedDocument',
+            description: 'Creates a new document.',
             hidden: false,
         },
         operation: {
@@ -25,14 +32,14 @@ module.exports = {
                     label: 'The ID of the company.',
                     type: 'integer',
                 },
-                ...CreateF24Request(),
+                ...CreateReceivedDocumentRequest(),
             ],
             outputFields: [
-                ...CreateF24Response(),
+                ...CreateReceivedDocumentResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/taxes'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -43,7 +50,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateF24RequestMapping(bundle),
+                        ...CreateReceivedDocumentRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -54,12 +61,12 @@ module.exports = {
             }
         }
     },
-    deleteF24: {
-        key: 'deleteF24',
-        noun: 'Delete F24',
+    deleteReceivedDocument: {
+        key: 'deleteReceivedDocument',
+        noun: 'Delete Received Document',
         display: {
-            label: 'deleteF24',
-            description: 'Removes the specified F24.',
+            label: 'deleteReceivedDocument',
+            description: 'Deletes the specified document.',
             hidden: false,
         },
         operation: {
@@ -79,7 +86,7 @@ module.exports = {
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/taxes/{document_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/{document_id}'),
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -100,12 +107,12 @@ module.exports = {
             }
         }
     },
-    deleteF24Attachment: {
-        key: 'deleteF24Attachment',
-        noun: 'Delete F24 Attachment',
+    deleteReceivedDocumentAttachment: {
+        key: 'deleteReceivedDocumentAttachment',
+        noun: 'Delete Received Document Attachment',
         display: {
-            label: 'deleteF24Attachment',
-            description: 'Removes the attachment of the specified F24.',
+            label: 'deleteReceivedDocumentAttachment',
+            description: 'Removes the attachment of the specified document.',
             hidden: false,
         },
         operation: {
@@ -125,7 +132,7 @@ module.exports = {
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/taxes/{document_id}/attachment'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/{document_id}/attachment'),
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -146,12 +153,105 @@ module.exports = {
             }
         }
     },
-    getF24: {
-        key: 'getF24',
-        noun: 'Get F24',
+    getExistingReceivedDocumentTotals: {
+        key: 'getExistingReceivedDocumentTotals',
+        noun: 'Get Existing Received Document Totals',
         display: {
-            label: 'getF24',
-            description: 'Gets the specified F24.',
+            label: 'getExistingReceivedDocumentTotals',
+            description: 'Returns the totals for the specified document.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                },
+                ...GetExistingReceivedDocumentTotalsRequest(),
+            ],
+            outputFields: [
+                ...GetExistingReceivedDocumentTotalsResponse(),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/{document_id}/totals'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...GetExistingReceivedDocumentTotalsRequestMapping(bundle),
+                    },
+                }
+                return z.request(options).then((response) => {
+                    response.throwForStatus();
+                    const results = response.json;
+                    return results;
+                })
+            }
+        }
+    },
+    getNewReceivedDocumentTotals: {
+        key: 'getNewReceivedDocumentTotals',
+        noun: 'Get New Received Document Totals',
+        display: {
+            label: 'getNewReceivedDocumentTotals',
+            description: 'Returns the totals for a new document.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                },
+                ...GetNewReceivedDocumentTotalsRequest(),
+            ],
+            outputFields: [
+                ...GetNewReceivedDocumentTotalsResponse(),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/totals'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...GetNewReceivedDocumentTotalsRequestMapping(bundle),
+                    },
+                }
+                return z.request(options).then((response) => {
+                    response.throwForStatus();
+                    const results = response.json;
+                    return results;
+                })
+            }
+        }
+    },
+    getReceivedDocument: {
+        key: 'getReceivedDocument',
+        noun: 'Get Received Document',
+        display: {
+            label: 'getReceivedDocument',
+            description: 'Gets the specified document.',
             hidden: false,
         },
         operation: {
@@ -182,11 +282,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetF24Response(),
+                ...GetReceivedDocumentResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/taxes/{document_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/{document_id}'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -209,12 +309,12 @@ module.exports = {
             }
         }
     },
-    listF24: {
-        key: 'listF24',
-        noun: 'List F24',
+    getReceivedDocumentPreCreateInfo: {
+        key: 'getReceivedDocumentPreCreateInfo',
+        noun: 'Get Received Document Pre-Create Info',
         display: {
-            label: 'listF24',
-            description: 'Lists the F24s.',
+            label: 'getReceivedDocumentPreCreateInfo',
+            description: 'Retrieves the information useful while creating a new document.',
             hidden: false,
         },
         operation: {
@@ -223,6 +323,69 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                },
+                {
+                    key: 'type',
+                    label: 'The type of the received document.',
+                    type: 'string',
+                    choices: [
+                        'expense',
+                        'passive_credit_note',
+                        'passive_delivery_note',
+                    ],
+                },
+            ],
+            outputFields: [
+                ...GetReceivedDocumentPreCreateInfoResponse(),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/info'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
+                        
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'type': bundle.inputData?.['type'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(options).then((response) => {
+                    response.throwForStatus();
+                    const results = response.json;
+                    return results;
+                })
+            }
+        }
+    },
+    listReceivedDocuments: {
+        key: 'listReceivedDocuments',
+        noun: 'List Received Documents',
+        display: {
+            label: 'listReceivedDocuments',
+            description: 'Lists the received documents.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                },
+                {
+                    key: 'type',
+                    label: 'The type of the received document.',
+                    type: 'string',
+                    choices: [
+                        'expense',
+                        'passive_credit_note',
+                        'passive_delivery_note',
+                    ],
                 },
                 {
                     key: 'fields',
@@ -260,11 +423,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListF24Response(),
+                ...ListReceivedDocumentsResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/taxes'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -273,6 +436,7 @@ module.exports = {
                         'Accept': 'application/json',
                     },
                     params: {
+                        'type': bundle.inputData?.['type'],
                         'fields': bundle.inputData?.['fields'],
                         'fieldset': bundle.inputData?.['fieldset'],
                         'sort': bundle.inputData?.['sort'],
@@ -291,12 +455,12 @@ module.exports = {
             }
         }
     },
-    modifyF24: {
-        key: 'modifyF24',
-        noun: 'Modify F24',
+    modifyReceivedDocument: {
+        key: 'modifyReceivedDocument',
+        noun: 'Modify Received Document',
         display: {
-            label: 'modifyF24',
-            description: 'Modifies the specified F24.',
+            label: 'modifyReceivedDocument',
+            description: 'Modifies the specified document.',
             hidden: false,
         },
         operation: {
@@ -311,14 +475,14 @@ module.exports = {
                     label: 'The ID of the document.',
                     type: 'integer',
                 },
-                ...ModifyF24Request(),
+                ...ModifyReceivedDocumentRequest(),
             ],
             outputFields: [
-                ...ModifyF24Response(),
+                ...ModifyReceivedDocumentResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/taxes/{document_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/{document_id}'),
                     method: 'PUT',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -329,7 +493,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyF24RequestMapping(bundle),
+                        ...ModifyReceivedDocumentRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -340,12 +504,12 @@ module.exports = {
             }
         }
     },
-    uploadF24Attachment: {
-        key: 'uploadF24Attachment',
-        noun: 'Upload F24 Attachment',
+    uploadReceivedDocumentAttachment: {
+        key: 'uploadReceivedDocumentAttachment',
+        noun: 'Upload Received Document Attachment',
         display: {
-            label: 'uploadF24Attachment',
-            description: 'Uploads an attachment destined to a F24. The actual association between the document and the attachment must be implemented separately, using the returned token.',
+            label: 'uploadReceivedDocumentAttachment',
+            description: 'Uploads an attachment destined to a received document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
             hidden: false,
         },
         operation: {
@@ -367,11 +531,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...UploadF24AttachmentResponse(),
+                ...UploadReceivedDocumentAttachmentResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/taxes/attachment'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/attachment'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {

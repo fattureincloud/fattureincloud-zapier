@@ -1,20 +1,21 @@
-const CreateProductRequest = require('../Models/CreateProductRequest').fields;
-const CreateProductRequestMapping = require('../Models/CreateProductRequest').mapping;
-const CreateProductResponse = require('../Models/CreateProductResponse').fields;
-const GetProductResponse = require('../Models/GetProductResponse').fields;
-const ListProductsResponse = require('../Models/ListProductsResponse').fields;
-const ModifyProductRequest = require('../Models/ModifyProductRequest').fields;
-const ModifyProductRequestMapping = require('../Models/ModifyProductRequest').mapping;
-const ModifyProductResponse = require('../Models/ModifyProductResponse').fields;
+const CreateArchiveDocumentRequest = require('../models/CreateArchiveDocumentRequest').fields;
+const CreateArchiveDocumentRequestMapping = require('../models/CreateArchiveDocumentRequest').mapping;
+const CreateArchiveDocumentResponse = require('../models/CreateArchiveDocumentResponse').fields;
+const GetArchiveDocumentResponse = require('../models/GetArchiveDocumentResponse').fields;
+const ListArchiveDocumentsResponse = require('../models/ListArchiveDocumentsResponse').fields;
+const ModifyArchiveDocumentRequest = require('../models/ModifyArchiveDocumentRequest').fields;
+const ModifyArchiveDocumentRequestMapping = require('../models/ModifyArchiveDocumentRequest').mapping;
+const ModifyArchiveDocumentResponse = require('../models/ModifyArchiveDocumentResponse').fields;
+const UploadArchiveAttachmentResponse = require('../models/UploadArchiveAttachmentResponse').fields;
 const utils = require('../utils/utils');
 
 module.exports = {
-    createProduct: {
-        key: 'createProduct',
-        noun: 'Create Product',
+    createArchiveDocument: {
+        key: 'createArchiveDocument',
+        noun: 'Create Archive Document',
         display: {
-            label: 'createProduct',
-            description: 'Creates a new product.',
+            label: 'createArchiveDocument',
+            description: 'Creates a new archive document.',
             hidden: false,
         },
         operation: {
@@ -24,14 +25,14 @@ module.exports = {
                     label: 'The ID of the company.',
                     type: 'integer',
                 },
-                ...CreateProductRequest(),
+                ...CreateArchiveDocumentRequest(),
             ],
             outputFields: [
-                ...CreateProductResponse(),
+                ...CreateArchiveDocumentResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -42,7 +43,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateProductRequestMapping(bundle),
+                        ...CreateArchiveDocumentRequestMapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -53,12 +54,12 @@ module.exports = {
             }
         }
     },
-    deleteProduct: {
-        key: 'deleteProduct',
-        noun: 'Delete Product',
+    deleteArchiveDocument: {
+        key: 'deleteArchiveDocument',
+        noun: 'Delete Archive Document',
         display: {
-            label: 'deleteProduct',
-            description: 'Deletes the specified product.',
+            label: 'deleteArchiveDocument',
+            description: 'Deletes the specified archive document.',
             hidden: false,
         },
         operation: {
@@ -69,8 +70,8 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'product_id',
-                    label: 'The ID of the product.',
+                    key: 'document_id',
+                    label: 'The ID of the document.',
                     type: 'integer',
                 },
             ],
@@ -78,7 +79,7 @@ module.exports = {
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products/{product_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'),
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -99,12 +100,12 @@ module.exports = {
             }
         }
     },
-    getProduct: {
-        key: 'getProduct',
-        noun: 'Get Product',
+    getArchiveDocument: {
+        key: 'getArchiveDocument',
+        noun: 'Get Archive Document',
         display: {
-            label: 'getProduct',
-            description: 'Gets the specified product.',
+            label: 'getArchiveDocument',
+            description: 'Gets the specified archive document.',
             hidden: false,
         },
         operation: {
@@ -115,8 +116,8 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'product_id',
-                    label: 'The ID of the product.',
+                    key: 'document_id',
+                    label: 'The ID of the document.',
                     type: 'integer',
                 },
                 {
@@ -135,11 +136,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetProductResponse(),
+                ...GetArchiveDocumentResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products/{product_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -162,12 +163,12 @@ module.exports = {
             }
         }
     },
-    listProducts: {
-        key: 'listProducts',
-        noun: 'List Products',
+    listArchiveDocuments: {
+        key: 'listArchiveDocuments',
+        noun: 'List Archive Documents',
         display: {
-            label: 'listProducts',
-            description: 'Lists the products.',
+            label: 'listArchiveDocuments',
+            description: 'Lists the archive documents.',
             hidden: false,
         },
         operation: {
@@ -213,11 +214,11 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListProductsResponse(),
+                ...ListArchiveDocumentsResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive'),
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -244,12 +245,12 @@ module.exports = {
             }
         }
     },
-    modifyProduct: {
-        key: 'modifyProduct',
-        noun: 'Modify Product',
+    modifyArchiveDocument: {
+        key: 'modifyArchiveDocument',
+        noun: 'Modify Archive Document',
         display: {
-            label: 'modifyProduct',
-            description: 'Modifies the specified product.',
+            label: 'modifyArchiveDocument',
+            description: 'Modifies the specified archive document.',
             hidden: false,
         },
         operation: {
@@ -260,18 +261,18 @@ module.exports = {
                     type: 'integer',
                 },
                 {
-                    key: 'product_id',
-                    label: 'The ID of the product.',
+                    key: 'document_id',
+                    label: 'The ID of the document.',
                     type: 'integer',
                 },
-                ...ModifyProductRequest(),
+                ...ModifyArchiveDocumentRequest(),
             ],
             outputFields: [
-                ...ModifyProductResponse(),
+                ...ModifyArchiveDocumentResponse(),
             ],
             perform: async (z, bundle) => {
                 const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/products/{product_id}'),
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'),
                     method: 'PUT',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
@@ -282,7 +283,59 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyProductRequestMapping(bundle),
+                        ...ModifyArchiveDocumentRequestMapping(bundle),
+                    },
+                }
+                return z.request(options).then((response) => {
+                    response.throwForStatus();
+                    const results = response.json;
+                    return results;
+                })
+            }
+        }
+    },
+    uploadArchiveDocumentAttachment: {
+        key: 'uploadArchiveDocumentAttachment',
+        noun: 'Upload Archive Document Attachment',
+        display: {
+            label: 'uploadArchiveDocumentAttachment',
+            description: 'Uploads an attachment destined to an archive document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                },
+                {
+                    key: 'filename',
+                    label: 'Name of the file.',
+                    type: 'string',
+                },
+                {
+                    key: 'attachment',
+                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
+                    type: 'file',
+                },
+            ],
+            outputFields: [
+                ...UploadArchiveAttachmentResponse(),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/attachment'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
+                        'Content-Type': 'multipart/form-data',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
                     },
                 }
                 return z.request(options).then((response) => {
