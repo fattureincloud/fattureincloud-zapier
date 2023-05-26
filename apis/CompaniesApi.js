@@ -16,6 +16,8 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                    required: true,
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [

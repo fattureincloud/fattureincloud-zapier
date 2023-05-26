@@ -15,12 +15,15 @@ const SuppliersApi = require('./apis/SuppliersApi');
 const TaxesApi = require('./apis/TaxesApi');
 const UserApi = require('./apis/UserApi');
 const WebhooksApi = require('./apis/WebhooksApi');
+const listUserCompaniesTrigger = require('./triggers/listUserCompanies');
 
 module.exports = {
     version: require('./package.json').version,
     platformVersion: require('zapier-platform-core').version,
     authentication: authentication,
+    triggers: { [listUserCompaniesTrigger.key]: listUserCompaniesTrigger },
     creates: {
+        [UserApi.listUserCompanies.key]: UserApi.listUserCompanies,
         [ArchiveApi.createArchiveDocument.key]: ArchiveApi.createArchiveDocument,
         [ArchiveApi.deleteArchiveDocument.key]: ArchiveApi.deleteArchiveDocument,
         [ArchiveApi.getArchiveDocument.key]: ArchiveApi.getArchiveDocument,

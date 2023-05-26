@@ -31,6 +31,8 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                    required: true,
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -122,6 +124,8 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                    required: true,
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -349,6 +353,8 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                    required: true,
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -413,6 +419,8 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                    required: true,
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -477,11 +485,14 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                    required: true,
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'context',
                     
                     type: 'string',
+                    required: true,
                     choices: [
                         'products',
                         'issued_documents',
@@ -530,6 +541,8 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                    required: true,
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -572,6 +585,8 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                    required: true,
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -706,6 +721,8 @@ module.exports = {
                     key: 'company_id',
                     label: 'The ID of the company.',
                     type: 'integer',
+                    required: true,
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fieldset',
