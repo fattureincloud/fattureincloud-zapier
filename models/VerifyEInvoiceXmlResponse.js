@@ -5,20 +5,15 @@ const VerifyEInvoiceXmlResponse_dataMapping = require('./VerifyEInvoiceXmlRespon
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...VerifyEInvoiceXmlResponse_data(keyPrefix + 'data'),
+            ...VerifyEInvoiceXmlResponse_data(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(VerifyEInvoiceXmlResponse_dataMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(VerifyEInvoiceXmlResponse_dataMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

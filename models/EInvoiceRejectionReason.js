@@ -3,36 +3,31 @@ const utils = require('../utils/utils');
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'reason',
-                label: labelPrefix + 'Rejection reason.',
+                key: `${keyPrefix}reason`,
+                label: `Rejection reason. - [${keyPrefix}reason]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'ei_status',
-                label: labelPrefix + 'E-invoice status.',
+                key: `${keyPrefix}ei_status`,
+                label: `E-invoice status. - [${keyPrefix}ei_status]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'solution',
-                label: labelPrefix + 'Error solution.',
+                key: `${keyPrefix}solution`,
+                label: `Error solution. - [${keyPrefix}solution]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'code',
-                label: labelPrefix + 'Error code.',
+                key: `${keyPrefix}code`,
+                label: `Error code. - [${keyPrefix}code]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'date',
-                label: labelPrefix + 'Rejection date.',
+                key: `${keyPrefix}date`,
+                label: `Rejection date. - [${keyPrefix}date]`,
                 type: 'datetime',
             },
         ]
@@ -40,11 +35,11 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'reason': bundle.inputData?.[keyPrefix + 'reason'],
-            'ei_status': bundle.inputData?.[keyPrefix + 'ei_status'],
-            'solution': bundle.inputData?.[keyPrefix + 'solution'],
-            'code': bundle.inputData?.[keyPrefix + 'code'],
-            'date': bundle.inputData?.[keyPrefix + 'date'],
+            'reason': bundle.inputData?.[`${keyPrefix}reason`],
+            'ei_status': bundle.inputData?.[`${keyPrefix}ei_status`],
+            'solution': bundle.inputData?.[`${keyPrefix}solution`],
+            'code': bundle.inputData?.[`${keyPrefix}code`],
+            'date': bundle.inputData?.[`${keyPrefix}date`],
         }
     },
 }

@@ -8,103 +8,98 @@ const ReceiptItemsListItemMapping = require('./ReceiptItemsListItem').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'id',
-                label: labelPrefix + 'Receipt unique identifier.',
+                key: `${keyPrefix}id`,
+                label: `Receipt unique identifier. - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'date',
-                label: labelPrefix + 'Receipt date.',
+                key: `${keyPrefix}date`,
+                label: `Receipt date. - [${keyPrefix}date]`,
                 type: 'datetime',
             },
             {
-                key: keyPrefix + 'number',
-                label: labelPrefix + 'Receipt number.',
+                key: `${keyPrefix}number`,
+                label: `Receipt number. - [${keyPrefix}number]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'numeration',
-                label: labelPrefix + 'If it&#39;s null or empty string use the default numeration.',
+                key: `${keyPrefix}numeration`,
+                label: `If it&#39;s null or empty string use the default numeration. - [${keyPrefix}numeration]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'amount_net',
-                label: labelPrefix + 'Total net amount.',
+                key: `${keyPrefix}amount_net`,
+                label: `Total net amount. - [${keyPrefix}amount_net]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'amount_vat',
-                label: labelPrefix + 'Total vat amount.',
+                key: `${keyPrefix}amount_vat`,
+                label: `Total vat amount. - [${keyPrefix}amount_vat]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'amount_gross',
-                label: labelPrefix + 'Total gross amount.',
+                key: `${keyPrefix}amount_gross`,
+                label: `Total gross amount. - [${keyPrefix}amount_gross]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'use_gross_prices',
-                
+                key: `${keyPrefix}use_gross_prices`,
+                label: `[${keyPrefix}use_gross_prices]`,
                 type: 'boolean',
             },
             {
-                key: keyPrefix + 'type',
-                ...ReceiptType,
+                key: `${keyPrefix}type`,
+                ...ReceiptType(`${keyPrefix}type`),
             },
             {
-                key: keyPrefix + 'description',
-                label: labelPrefix + 'Receipt description.',
+                key: `${keyPrefix}description`,
+                label: `Receipt description. - [${keyPrefix}description]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'rc_center',
-                label: labelPrefix + 'Revenue center.',
+                key: `${keyPrefix}rc_center`,
+                label: `Revenue center. - [${keyPrefix}rc_center]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'created_at',
-                
+                key: `${keyPrefix}created_at`,
+                label: `[${keyPrefix}created_at]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'updated_at',
-                
+                key: `${keyPrefix}updated_at`,
+                label: `[${keyPrefix}updated_at]`,
                 type: 'string',
             },
-            ...PaymentAccount(keyPrefix + 'payment_account'),
+            ...PaymentAccount(`${keyPrefix}payment_account`),
             {
-                key: keyPrefix + 'items_list',
-                
-                children: ReceiptItemsListItem(keyPrefix + 'items_list'), 
+                key: `${keyPrefix}items_list`,
+                label: `${keyPrefix}items_list]`,
+                children: ReceiptItemsListItem(`${keyPrefix}items_list`), 
             },
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'id': bundle.inputData?.[keyPrefix + 'id'],
-            'date': bundle.inputData?.[keyPrefix + 'date'],
-            'number': bundle.inputData?.[keyPrefix + 'number'],
-            'numeration': bundle.inputData?.[keyPrefix + 'numeration'],
-            'amount_net': bundle.inputData?.[keyPrefix + 'amount_net'],
-            'amount_vat': bundle.inputData?.[keyPrefix + 'amount_vat'],
-            'amount_gross': bundle.inputData?.[keyPrefix + 'amount_gross'],
-            'use_gross_prices': bundle.inputData?.[keyPrefix + 'use_gross_prices'],
-            'type': bundle.inputData?.[keyPrefix + 'type'],
-            'description': bundle.inputData?.[keyPrefix + 'description'],
-            'rc_center': bundle.inputData?.[keyPrefix + 'rc_center'],
-            'created_at': bundle.inputData?.[keyPrefix + 'created_at'],
-            'updated_at': bundle.inputData?.[keyPrefix + 'updated_at'],
-            'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, keyPrefix + 'payment_account')),
-            'items_list': utils.removeKeyPrefixes(bundle.inputData?.[keyPrefix + 'items_list']),
+            'id': bundle.inputData?.[`${keyPrefix}id`],
+            'date': bundle.inputData?.[`${keyPrefix}date`],
+            'number': bundle.inputData?.[`${keyPrefix}number`],
+            'numeration': bundle.inputData?.[`${keyPrefix}numeration`],
+            'amount_net': bundle.inputData?.[`${keyPrefix}amount_net`],
+            'amount_vat': bundle.inputData?.[`${keyPrefix}amount_vat`],
+            'amount_gross': bundle.inputData?.[`${keyPrefix}amount_gross`],
+            'use_gross_prices': bundle.inputData?.[`${keyPrefix}use_gross_prices`],
+            'type': bundle.inputData?.[`${keyPrefix}type`],
+            'description': bundle.inputData?.[`${keyPrefix}description`],
+            'rc_center': bundle.inputData?.[`${keyPrefix}rc_center`],
+            'created_at': bundle.inputData?.[`${keyPrefix}created_at`],
+            'updated_at': bundle.inputData?.[`${keyPrefix}updated_at`],
+            'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}payment_account`)),
+            'items_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}items_list`]),
         }
     },
 }

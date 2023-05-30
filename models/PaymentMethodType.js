@@ -2,11 +2,13 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: {
-        label: 'Method type.',
-        choices: [
-            'standard',
-            'riba',
-        ],
+        fields: (key) => (
+            {
+                label: `Method type. - [${key}]`,
+                choices: [
+                    'standard',
+                    'riba',
+                ],
+            }
+        )
     }
-}

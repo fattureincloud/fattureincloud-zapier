@@ -3,66 +3,61 @@ const utils = require('../utils/utils');
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'current_page',
-                label: labelPrefix + 'Current page number.',
+                key: `${keyPrefix}current_page`,
+                label: `Current page number. - [${keyPrefix}current_page]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'first_page_url',
-                label: labelPrefix + 'First page url.',
+                key: `${keyPrefix}first_page_url`,
+                label: `First page url. - [${keyPrefix}first_page_url]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'from',
-                label: labelPrefix + 'First result of the page.',
+                key: `${keyPrefix}from`,
+                label: `First result of the page. - [${keyPrefix}from]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'last_page',
-                label: labelPrefix + 'Last page number.',
+                key: `${keyPrefix}last_page`,
+                label: `Last page number. - [${keyPrefix}last_page]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'last_page_url',
-                label: labelPrefix + 'Last page url.',
+                key: `${keyPrefix}last_page_url`,
+                label: `Last page url. - [${keyPrefix}last_page_url]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'next_page_url',
-                label: labelPrefix + 'Next page url',
+                key: `${keyPrefix}next_page_url`,
+                label: `Next page url - [${keyPrefix}next_page_url]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'path',
-                label: labelPrefix + 'Request path.',
+                key: `${keyPrefix}path`,
+                label: `Request path. - [${keyPrefix}path]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'per_page',
-                label: labelPrefix + 'Number of result per page.',
+                key: `${keyPrefix}per_page`,
+                label: `Number of result per page. - [${keyPrefix}per_page]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'prev_page_url',
-                label: labelPrefix + 'Previous page url.',
+                key: `${keyPrefix}prev_page_url`,
+                label: `Previous page url. - [${keyPrefix}prev_page_url]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'to',
-                label: labelPrefix + 'Last result of the page.',
+                key: `${keyPrefix}to`,
+                label: `Last result of the page. - [${keyPrefix}to]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'total',
-                label: labelPrefix + 'Total number of results',
+                key: `${keyPrefix}total`,
+                label: `Total number of results - [${keyPrefix}total]`,
                 type: 'integer',
             },
         ]
@@ -70,17 +65,17 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'current_page': bundle.inputData?.[keyPrefix + 'current_page'],
-            'first_page_url': bundle.inputData?.[keyPrefix + 'first_page_url'],
-            'from': bundle.inputData?.[keyPrefix + 'from'],
-            'last_page': bundle.inputData?.[keyPrefix + 'last_page'],
-            'last_page_url': bundle.inputData?.[keyPrefix + 'last_page_url'],
-            'next_page_url': bundle.inputData?.[keyPrefix + 'next_page_url'],
-            'path': bundle.inputData?.[keyPrefix + 'path'],
-            'per_page': bundle.inputData?.[keyPrefix + 'per_page'],
-            'prev_page_url': bundle.inputData?.[keyPrefix + 'prev_page_url'],
-            'to': bundle.inputData?.[keyPrefix + 'to'],
-            'total': bundle.inputData?.[keyPrefix + 'total'],
+            'current_page': bundle.inputData?.[`${keyPrefix}current_page`],
+            'first_page_url': bundle.inputData?.[`${keyPrefix}first_page_url`],
+            'from': bundle.inputData?.[`${keyPrefix}from`],
+            'last_page': bundle.inputData?.[`${keyPrefix}last_page`],
+            'last_page_url': bundle.inputData?.[`${keyPrefix}last_page_url`],
+            'next_page_url': bundle.inputData?.[`${keyPrefix}next_page_url`],
+            'path': bundle.inputData?.[`${keyPrefix}path`],
+            'per_page': bundle.inputData?.[`${keyPrefix}per_page`],
+            'prev_page_url': bundle.inputData?.[`${keyPrefix}prev_page_url`],
+            'to': bundle.inputData?.[`${keyPrefix}to`],
+            'total': bundle.inputData?.[`${keyPrefix}total`],
         }
     },
 }

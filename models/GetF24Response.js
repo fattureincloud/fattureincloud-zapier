@@ -5,20 +5,15 @@ const F24Mapping = require('./F24').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...F24(keyPrefix + 'data'),
+            ...F24(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(F24Mapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(F24Mapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

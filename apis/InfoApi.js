@@ -19,7 +19,7 @@ const utils = require('../utils/utils');
 module.exports = {
     listArchiveCategories: {
         key: 'listArchiveCategories',
-        noun: 'List Archive Categories',
+        noun: 'Info',
         display: {
             label: 'listArchiveCategories',
             description: 'Lists the archive categories.',
@@ -29,10 +29,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -63,7 +63,7 @@ module.exports = {
     },
     listCities: {
         key: 'listCities',
-        noun: 'List Cities',
+        noun: 'Info',
         display: {
             label: 'listCities',
             description: 'Lists the Italian cities.',
@@ -112,7 +112,7 @@ module.exports = {
     },
     listCostCenters: {
         key: 'listCostCenters',
-        noun: 'List Cost Centers',
+        noun: 'Info',
         display: {
             label: 'listCostCenters',
             description: 'Lists the cost centers.',
@@ -122,10 +122,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -156,7 +156,7 @@ module.exports = {
     },
     listCountries: {
         key: 'listCountries',
-        noun: 'List Countries',
+        noun: 'Info',
         display: {
             label: 'listCountries',
             description: 'Lists the supported countries.',
@@ -193,7 +193,7 @@ module.exports = {
     },
     listCurrencies: {
         key: 'listCurrencies',
-        noun: 'List Currencies',
+        noun: 'Info',
         display: {
             label: 'listCurrencies',
             description: 'Lists the supported currencies.',
@@ -230,7 +230,7 @@ module.exports = {
     },
     listDeliveryNotesDefaultCausals: {
         key: 'listDeliveryNotesDefaultCausals',
-        noun: 'List Delivery Notes Default Causals',
+        noun: 'Info',
         display: {
             label: 'listDeliveryNotesDefaultCausals',
             description: 'Lists the delivery note default causals.',
@@ -267,7 +267,7 @@ module.exports = {
     },
     listDetailedCountries: {
         key: 'listDetailedCountries',
-        noun: 'List Detailed Countries',
+        noun: 'Info',
         display: {
             label: 'listDetailedCountries',
             description: 'Lists the supported countries.',
@@ -304,7 +304,7 @@ module.exports = {
     },
     listLanguages: {
         key: 'listLanguages',
-        noun: 'List Languages',
+        noun: 'Info',
         display: {
             label: 'listLanguages',
             description: 'Lists the supported languages.',
@@ -341,7 +341,7 @@ module.exports = {
     },
     listPaymentAccounts: {
         key: 'listPaymentAccounts',
-        noun: 'List Payment Accounts',
+        noun: 'Info',
         display: {
             label: 'listPaymentAccounts',
             description: 'Lists the available payment accounts.',
@@ -351,10 +351,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -407,7 +407,7 @@ module.exports = {
     },
     listPaymentMethods: {
         key: 'listPaymentMethods',
-        noun: 'List Payment Methods',
+        noun: 'Info',
         display: {
             label: 'listPaymentMethods',
             description: 'Lists the available payment methods.',
@@ -417,10 +417,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -473,7 +473,7 @@ module.exports = {
     },
     listProductCategories: {
         key: 'listProductCategories',
-        noun: 'List Product Categories',
+        noun: 'Info',
         display: {
             label: 'listProductCategories',
             description: 'Lists the product categories.',
@@ -483,10 +483,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'context',
@@ -529,7 +529,7 @@ module.exports = {
     },
     listReceivedDocumentCategories: {
         key: 'listReceivedDocumentCategories',
-        noun: 'List Received Document Categories',
+        noun: 'Info',
         display: {
             label: 'listReceivedDocumentCategories',
             description: 'Lists the received document categories.',
@@ -539,10 +539,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -573,7 +573,7 @@ module.exports = {
     },
     listRevenueCenters: {
         key: 'listRevenueCenters',
-        noun: 'List Revenue Centers',
+        noun: 'Info',
         display: {
             label: 'listRevenueCenters',
             description: 'Lists the revenue centers.',
@@ -583,10 +583,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -617,7 +617,7 @@ module.exports = {
     },
     listTemplates: {
         key: 'listTemplates',
-        noun: 'List Templates',
+        noun: 'Info',
         display: {
             label: 'listTemplates',
             description: 'Lists the available templates.',
@@ -672,7 +672,7 @@ module.exports = {
     },
     listUnitsOfMeasure: {
         key: 'listUnitsOfMeasure',
-        noun: 'List Units of Measure',
+        noun: 'Info',
         display: {
             label: 'listUnitsOfMeasure',
             description: 'Lists the units of measure.',
@@ -709,7 +709,7 @@ module.exports = {
     },
     listVatTypes: {
         key: 'listVatTypes',
-        noun: 'List Vat Types',
+        noun: 'Info',
         display: {
             label: 'listVatTypes',
             description: 'Lists the available vat types.',
@@ -719,10 +719,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fieldset',

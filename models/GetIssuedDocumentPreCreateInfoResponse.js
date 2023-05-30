@@ -5,20 +5,15 @@ const IssuedDocumentPreCreateInfoMapping = require('./IssuedDocumentPreCreateInf
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...IssuedDocumentPreCreateInfo(keyPrefix + 'data'),
+            ...IssuedDocumentPreCreateInfo(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(IssuedDocumentPreCreateInfoMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(IssuedDocumentPreCreateInfoMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

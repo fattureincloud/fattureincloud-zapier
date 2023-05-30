@@ -5,20 +5,15 @@ const AttachmentDataMapping = require('./AttachmentData').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...AttachmentData(keyPrefix + 'data'),
+            ...AttachmentData(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(AttachmentDataMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(AttachmentDataMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

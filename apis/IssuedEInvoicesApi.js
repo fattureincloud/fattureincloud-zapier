@@ -8,7 +8,7 @@ const utils = require('../utils/utils');
 module.exports = {
     getEInvoiceRejectionReason: {
         key: 'getEInvoiceRejectionReason',
-        noun: 'Get e-invoice rejection reason',
+        noun: 'IssuedEInvoices',
         display: {
             label: 'getEInvoiceRejectionReason',
             description: 'Get e-invoice rejection reason',
@@ -18,10 +18,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -58,7 +58,7 @@ module.exports = {
     },
     getEInvoiceXml: {
         key: 'getEInvoiceXml',
-        noun: 'Get e-invoice XML',
+        noun: 'IssuedEInvoices',
         display: {
             label: 'getEInvoiceXml',
             description: 'Downloads the e-invoice in XML format.',
@@ -68,10 +68,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -113,7 +113,7 @@ module.exports = {
     },
     sendEInvoice: {
         key: 'sendEInvoice',
-        noun: 'Send the e-invoice',
+        noun: 'IssuedEInvoices',
         display: {
             label: 'sendEInvoice',
             description: 'Sends the e-invoice to SDI.',
@@ -123,10 +123,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -165,7 +165,7 @@ module.exports = {
     },
     verifyEInvoiceXml: {
         key: 'verifyEInvoiceXml',
-        noun: 'Verify e-invoice XML',
+        noun: 'IssuedEInvoices',
         display: {
             label: 'verifyEInvoiceXml',
             description: 'Verifies the e-invoice XML format. Checks if all of the mandatory fields are filled and compliant to the right format.',
@@ -175,10 +175,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',

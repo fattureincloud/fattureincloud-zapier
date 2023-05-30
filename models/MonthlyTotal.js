@@ -3,26 +3,21 @@ const utils = require('../utils/utils');
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'net',
-                label: labelPrefix + 'Monthly total net amount.',
+                key: `${keyPrefix}net`,
+                label: `Monthly total net amount. - [${keyPrefix}net]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'gross',
-                label: labelPrefix + 'Monthly total gross amount.',
+                key: `${keyPrefix}gross`,
+                label: `Monthly total gross amount. - [${keyPrefix}gross]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'count',
-                label: labelPrefix + 'Monthly total receipt number.',
+                key: `${keyPrefix}count`,
+                label: `Monthly total receipt number. - [${keyPrefix}count]`,
                 type: 'number',
             },
         ]
@@ -30,9 +25,9 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'net': bundle.inputData?.[keyPrefix + 'net'],
-            'gross': bundle.inputData?.[keyPrefix + 'gross'],
-            'count': bundle.inputData?.[keyPrefix + 'count'],
+            'net': bundle.inputData?.[`${keyPrefix}net`],
+            'gross': bundle.inputData?.[`${keyPrefix}gross`],
+            'count': bundle.inputData?.[`${keyPrefix}count`],
         }
     },
 }

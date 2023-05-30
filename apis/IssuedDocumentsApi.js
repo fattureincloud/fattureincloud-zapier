@@ -24,7 +24,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createIssuedDocument: {
         key: 'createIssuedDocument',
-        noun: 'Create Issued Document',
+        noun: 'IssuedDocuments',
         display: {
             label: 'createIssuedDocument',
             description: 'Creates a new document.',
@@ -34,10 +34,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateIssuedDocumentRequest(),
             ],
@@ -70,7 +70,7 @@ module.exports = {
     },
     deleteIssuedDocument: {
         key: 'deleteIssuedDocument',
-        noun: 'Delete Issued Document',
+        noun: 'IssuedDocuments',
         display: {
             label: 'deleteIssuedDocument',
             description: 'Deletes the specified document.',
@@ -80,10 +80,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -119,7 +119,7 @@ module.exports = {
     },
     deleteIssuedDocumentAttachment: {
         key: 'deleteIssuedDocumentAttachment',
-        noun: 'Delete Issued Document Attachment',
+        noun: 'IssuedDocuments',
         display: {
             label: 'deleteIssuedDocumentAttachment',
             description: 'Removes the attachment of the specified document.',
@@ -129,10 +129,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -168,7 +168,7 @@ module.exports = {
     },
     getEmailData: {
         key: 'getEmailData',
-        noun: 'Get Email Data',
+        noun: 'IssuedDocuments',
         display: {
             label: 'getEmailData',
             description: 'Gets the pre-compiled email details.',
@@ -178,10 +178,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -218,7 +218,7 @@ module.exports = {
     },
     getExistingIssuedDocumentTotals: {
         key: 'getExistingIssuedDocumentTotals',
-        noun: 'Get Existing Issued Document Totals',
+        noun: 'IssuedDocuments',
         display: {
             label: 'getExistingIssuedDocumentTotals',
             description: 'Returns the totals for a specified document.',
@@ -228,10 +228,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -270,7 +270,7 @@ module.exports = {
     },
     getIssuedDocument: {
         key: 'getIssuedDocument',
-        noun: 'Get Issued Document',
+        noun: 'IssuedDocuments',
         display: {
             label: 'getIssuedDocument',
             description: 'Gets the specified document. ',
@@ -280,10 +280,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -336,7 +336,7 @@ module.exports = {
     },
     getIssuedDocumentPreCreateInfo: {
         key: 'getIssuedDocumentPreCreateInfo',
-        noun: 'Get Issued Document Pre-create info',
+        noun: 'IssuedDocuments',
         display: {
             label: 'getIssuedDocumentPreCreateInfo',
             description: 'Retrieves the information useful while creating a new document.',
@@ -346,10 +346,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'type',
@@ -400,7 +400,7 @@ module.exports = {
     },
     getNewIssuedDocumentTotals: {
         key: 'getNewIssuedDocumentTotals',
-        noun: 'Get New Issued Document Totals',
+        noun: 'IssuedDocuments',
         display: {
             label: 'getNewIssuedDocumentTotals',
             description: 'Returns the totals for a new document.',
@@ -410,10 +410,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...GetNewIssuedDocumentTotalsRequest(),
             ],
@@ -446,7 +446,7 @@ module.exports = {
     },
     joinIssuedDocuments: {
         key: 'joinIssuedDocuments',
-        noun: 'Join issued documents',
+        noun: 'IssuedDocuments',
         display: {
             label: 'joinIssuedDocuments',
             description: 'Joins issued documents.',
@@ -456,10 +456,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'ids',
@@ -517,7 +517,7 @@ module.exports = {
     },
     listIssuedDocuments: {
         key: 'listIssuedDocuments',
-        noun: 'List Issued Documents',
+        noun: 'IssuedDocuments',
         display: {
             label: 'listIssuedDocuments',
             description: 'Lists the issued documents.',
@@ -527,10 +527,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'type',
@@ -631,7 +631,7 @@ module.exports = {
     },
     modifyIssuedDocument: {
         key: 'modifyIssuedDocument',
-        noun: 'Modify Issued Document',
+        noun: 'IssuedDocuments',
         display: {
             label: 'modifyIssuedDocument',
             description: 'Modifies the specified document.',
@@ -641,10 +641,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -683,7 +683,7 @@ module.exports = {
     },
     scheduleEmail: {
         key: 'scheduleEmail',
-        noun: 'Schedule Email',
+        noun: 'IssuedDocuments',
         display: {
             label: 'scheduleEmail',
             description: 'Schedules the sending of a document by email.',
@@ -693,10 +693,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -734,7 +734,7 @@ module.exports = {
     },
     transformIssuedDocument: {
         key: 'transformIssuedDocument',
-        noun: 'Transform issued document',
+        noun: 'IssuedDocuments',
         display: {
             label: 'transformIssuedDocument',
             description: 'Transforms the document.',
@@ -744,10 +744,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'original_document_id',
@@ -812,7 +812,7 @@ module.exports = {
     },
     uploadIssuedDocumentAttachment: {
         key: 'uploadIssuedDocumentAttachment',
-        noun: 'Upload Issued Document Attachment',
+        noun: 'IssuedDocuments',
         display: {
             label: 'uploadIssuedDocumentAttachment',
             description: 'Uploads an attachment destined to an issued document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
@@ -822,10 +822,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'filename',

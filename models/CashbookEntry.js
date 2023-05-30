@@ -9,70 +9,65 @@ const PaymentAccountMapping = require('./PaymentAccount').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'id',
-                label: labelPrefix + 'Cashbook unique identifier.',
+                key: `${keyPrefix}id`,
+                label: `Cashbook unique identifier. - [${keyPrefix}id]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'date',
-                label: labelPrefix + 'Cashbook date.',
+                key: `${keyPrefix}date`,
+                label: `Cashbook date. - [${keyPrefix}date]`,
                 type: 'datetime',
             },
             {
-                key: keyPrefix + 'description',
-                label: labelPrefix + 'Cashbook description.',
+                key: `${keyPrefix}description`,
+                label: `Cashbook description. - [${keyPrefix}description]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'kind',
-                ...CashbookEntryKind,
+                key: `${keyPrefix}kind`,
+                ...CashbookEntryKind(`${keyPrefix}kind`),
             },
             {
-                key: keyPrefix + 'type',
-                ...CashbookEntryType,
+                key: `${keyPrefix}type`,
+                ...CashbookEntryType(`${keyPrefix}type`),
             },
             {
-                key: keyPrefix + 'entity_name',
-                label: labelPrefix + 'Entity name.',
+                key: `${keyPrefix}entity_name`,
+                label: `Entity name. - [${keyPrefix}entity_name]`,
                 type: 'string',
             },
-            ...CashbookEntry_document(keyPrefix + 'document'),
+            ...CashbookEntry_document(`${keyPrefix}document`),
             {
-                key: keyPrefix + 'amount_in',
-                label: labelPrefix + '[Only for cashbook entry in] Total amount in.',
+                key: `${keyPrefix}amount_in`,
+                label: `[Only for cashbook entry in] Total amount in. - [${keyPrefix}amount_in]`,
                 type: 'number',
             },
-            ...PaymentAccount(keyPrefix + 'payment_account_in'),
+            ...PaymentAccount(`${keyPrefix}payment_account_in`),
             {
-                key: keyPrefix + 'amount_out',
-                label: labelPrefix + '[Only for cashbook entry out] Total amount out.',
+                key: `${keyPrefix}amount_out`,
+                label: `[Only for cashbook entry out] Total amount out. - [${keyPrefix}amount_out]`,
                 type: 'number',
             },
-            ...PaymentAccount(keyPrefix + 'payment_account_out'),
+            ...PaymentAccount(`${keyPrefix}payment_account_out`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'id': bundle.inputData?.[keyPrefix + 'id'],
-            'date': bundle.inputData?.[keyPrefix + 'date'],
-            'description': bundle.inputData?.[keyPrefix + 'description'],
-            'kind': bundle.inputData?.[keyPrefix + 'kind'],
-            'type': bundle.inputData?.[keyPrefix + 'type'],
-            'entity_name': bundle.inputData?.[keyPrefix + 'entity_name'],
-            'document': utils.removeIfEmpty(CashbookEntry_documentMapping(bundle, keyPrefix + 'document')),
-            'amount_in': bundle.inputData?.[keyPrefix + 'amount_in'],
-            'payment_account_in': utils.removeIfEmpty(PaymentAccountMapping(bundle, keyPrefix + 'payment_account_in')),
-            'amount_out': bundle.inputData?.[keyPrefix + 'amount_out'],
-            'payment_account_out': utils.removeIfEmpty(PaymentAccountMapping(bundle, keyPrefix + 'payment_account_out')),
+            'id': bundle.inputData?.[`${keyPrefix}id`],
+            'date': bundle.inputData?.[`${keyPrefix}date`],
+            'description': bundle.inputData?.[`${keyPrefix}description`],
+            'kind': bundle.inputData?.[`${keyPrefix}kind`],
+            'type': bundle.inputData?.[`${keyPrefix}type`],
+            'entity_name': bundle.inputData?.[`${keyPrefix}entity_name`],
+            'document': utils.removeIfEmpty(CashbookEntry_documentMapping(bundle, `${keyPrefix}document`)),
+            'amount_in': bundle.inputData?.[`${keyPrefix}amount_in`],
+            'payment_account_in': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}payment_account_in`)),
+            'amount_out': bundle.inputData?.[`${keyPrefix}amount_out`],
+            'payment_account_out': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}payment_account_out`)),
         }
     },
 }

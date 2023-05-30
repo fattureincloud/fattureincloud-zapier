@@ -24,7 +24,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createPaymentAccount: {
         key: 'createPaymentAccount',
-        noun: 'Create Payment Account',
+        noun: 'Settings',
         display: {
             label: 'createPaymentAccount',
             description: 'Creates a new payment account.',
@@ -34,10 +34,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreatePaymentAccountRequest(),
             ],
@@ -70,7 +70,7 @@ module.exports = {
     },
     createPaymentMethod: {
         key: 'createPaymentMethod',
-        noun: 'Create Payment Method',
+        noun: 'Settings',
         display: {
             label: 'createPaymentMethod',
             description: 'Creates a new payment method.',
@@ -80,10 +80,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreatePaymentMethodRequest(),
             ],
@@ -116,7 +116,7 @@ module.exports = {
     },
     createVatType: {
         key: 'createVatType',
-        noun: 'Create Vat Type',
+        noun: 'Settings',
         display: {
             label: 'createVatType',
             description: 'Creates a vat type.',
@@ -126,10 +126,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateVatTypeRequest(),
             ],
@@ -162,7 +162,7 @@ module.exports = {
     },
     deletePaymentAccount: {
         key: 'deletePaymentAccount',
-        noun: 'Delete Payment Account',
+        noun: 'Settings',
         display: {
             label: 'deletePaymentAccount',
             description: 'Deletes the specified payment account.',
@@ -172,10 +172,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'payment_account_id',
@@ -211,7 +211,7 @@ module.exports = {
     },
     deletePaymentMethod: {
         key: 'deletePaymentMethod',
-        noun: 'Delete Payment Method',
+        noun: 'Settings',
         display: {
             label: 'deletePaymentMethod',
             description: 'Deletes the specified payment method.',
@@ -221,10 +221,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'payment_method_id',
@@ -260,7 +260,7 @@ module.exports = {
     },
     deleteVatType: {
         key: 'deleteVatType',
-        noun: 'Delete Vat Type',
+        noun: 'Settings',
         display: {
             label: 'deleteVatType',
             description: 'Deletes the specified vat type.',
@@ -270,10 +270,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'vat_type_id',
@@ -309,7 +309,7 @@ module.exports = {
     },
     getPaymentAccount: {
         key: 'getPaymentAccount',
-        noun: 'Get Payment Account',
+        noun: 'Settings',
         display: {
             label: 'getPaymentAccount',
             description: 'Gets the specified payment account.',
@@ -319,10 +319,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'payment_account_id',
@@ -375,7 +375,7 @@ module.exports = {
     },
     getPaymentMethod: {
         key: 'getPaymentMethod',
-        noun: 'Get Payment Method',
+        noun: 'Settings',
         display: {
             label: 'getPaymentMethod',
             description: 'Gets the specified payment method.',
@@ -385,10 +385,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'payment_method_id',
@@ -441,7 +441,7 @@ module.exports = {
     },
     getVatType: {
         key: 'getVatType',
-        noun: 'Get Vat Type',
+        noun: 'Settings',
         display: {
             label: 'getVatType',
             description: 'Gets the specified vat type.',
@@ -451,10 +451,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'vat_type_id',
@@ -491,7 +491,7 @@ module.exports = {
     },
     modifyPaymentAccount: {
         key: 'modifyPaymentAccount',
-        noun: 'Modify Payment Account',
+        noun: 'Settings',
         display: {
             label: 'modifyPaymentAccount',
             description: 'Modifies the specified payment account.',
@@ -501,10 +501,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'payment_account_id',
@@ -543,7 +543,7 @@ module.exports = {
     },
     modifyPaymentMethod: {
         key: 'modifyPaymentMethod',
-        noun: 'Modify Payment Method',
+        noun: 'Settings',
         display: {
             label: 'modifyPaymentMethod',
             description: 'Modifies the specified payment method.',
@@ -553,10 +553,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'payment_method_id',
@@ -595,7 +595,7 @@ module.exports = {
     },
     modifyVatType: {
         key: 'modifyVatType',
-        noun: 'Modify Vat Type',
+        noun: 'Settings',
         display: {
             label: 'modifyVatType',
             description: 'Modifies the specified vat type.',
@@ -605,10 +605,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'vat_type_id',

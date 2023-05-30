@@ -12,7 +12,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createF24: {
         key: 'createF24',
-        noun: 'Create F24',
+        noun: 'Taxes',
         display: {
             label: 'createF24',
             description: 'Creates a new F24.',
@@ -22,10 +22,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateF24Request(),
             ],
@@ -58,7 +58,7 @@ module.exports = {
     },
     deleteF24: {
         key: 'deleteF24',
-        noun: 'Delete F24',
+        noun: 'Taxes',
         display: {
             label: 'deleteF24',
             description: 'Removes the specified F24.',
@@ -68,10 +68,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -107,7 +107,7 @@ module.exports = {
     },
     deleteF24Attachment: {
         key: 'deleteF24Attachment',
-        noun: 'Delete F24 Attachment',
+        noun: 'Taxes',
         display: {
             label: 'deleteF24Attachment',
             description: 'Removes the attachment of the specified F24.',
@@ -117,10 +117,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -156,7 +156,7 @@ module.exports = {
     },
     getF24: {
         key: 'getF24',
-        noun: 'Get F24',
+        noun: 'Taxes',
         display: {
             label: 'getF24',
             description: 'Gets the specified F24.',
@@ -166,10 +166,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -222,7 +222,7 @@ module.exports = {
     },
     listF24: {
         key: 'listF24',
-        noun: 'List F24',
+        noun: 'Taxes',
         display: {
             label: 'listF24',
             description: 'Lists the F24s.',
@@ -232,10 +232,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -306,7 +306,7 @@ module.exports = {
     },
     modifyF24: {
         key: 'modifyF24',
-        noun: 'Modify F24',
+        noun: 'Taxes',
         display: {
             label: 'modifyF24',
             description: 'Modifies the specified F24.',
@@ -316,10 +316,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -358,7 +358,7 @@ module.exports = {
     },
     uploadF24Attachment: {
         key: 'uploadF24Attachment',
-        noun: 'Upload F24 Attachment',
+        noun: 'Taxes',
         display: {
             label: 'uploadF24Attachment',
             description: 'Uploads an attachment destined to a F24. The actual association between the document and the attachment must be implemented separately, using the returned token.',
@@ -368,10 +368,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'filename',

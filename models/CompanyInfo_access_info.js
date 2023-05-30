@@ -6,21 +6,16 @@ const PermissionsMapping = require('./Permissions').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'role',
-                ...UserCompanyRole,
+                key: `${keyPrefix}role`,
+                ...UserCompanyRole(`${keyPrefix}role`),
             },
-            ...Permissions(keyPrefix + 'permissions'),
+            ...Permissions(`${keyPrefix}permissions`),
             {
-                key: keyPrefix + 'through_accountant',
-                
+                key: `${keyPrefix}through_accountant`,
+                label: `[${keyPrefix}through_accountant]`,
                 type: 'boolean',
             },
         ]
@@ -28,9 +23,9 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'role': bundle.inputData?.[keyPrefix + 'role'],
-            'permissions': utils.removeIfEmpty(PermissionsMapping(bundle, keyPrefix + 'permissions')),
-            'through_accountant': bundle.inputData?.[keyPrefix + 'through_accountant'],
+            'role': bundle.inputData?.[`${keyPrefix}role`],
+            'permissions': utils.removeIfEmpty(PermissionsMapping(bundle, `${keyPrefix}permissions`)),
+            'through_accountant': bundle.inputData?.[`${keyPrefix}through_accountant`],
         }
     },
 }

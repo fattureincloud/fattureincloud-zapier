@@ -11,7 +11,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createClient: {
         key: 'createClient',
-        noun: 'Create Client',
+        noun: 'Clients',
         display: {
             label: 'createClient',
             description: 'Creates a new client.',
@@ -21,10 +21,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateClientRequest(),
             ],
@@ -57,7 +57,7 @@ module.exports = {
     },
     deleteClient: {
         key: 'deleteClient',
-        noun: 'Delete Client',
+        noun: 'Clients',
         display: {
             label: 'deleteClient',
             description: 'Deletes the specified client.',
@@ -67,10 +67,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'client_id',
@@ -106,7 +106,7 @@ module.exports = {
     },
     getClient: {
         key: 'getClient',
-        noun: 'Get Client',
+        noun: 'Clients',
         display: {
             label: 'getClient',
             description: 'Gets the specified client.',
@@ -116,10 +116,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'client_id',
@@ -172,7 +172,7 @@ module.exports = {
     },
     listClients: {
         key: 'listClients',
-        noun: 'List Clients',
+        noun: 'Clients',
         display: {
             label: 'listClients',
             description: 'Lists the clients.',
@@ -182,10 +182,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -256,7 +256,7 @@ module.exports = {
     },
     modifyClient: {
         key: 'modifyClient',
-        noun: 'Modify Client',
+        noun: 'Clients',
         display: {
             label: 'modifyClient',
             description: 'Modifies the specified client.',
@@ -266,10 +266,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'client_id',

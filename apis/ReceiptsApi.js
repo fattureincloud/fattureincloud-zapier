@@ -13,7 +13,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createReceipt: {
         key: 'createReceipt',
-        noun: 'Create Receipt',
+        noun: 'Receipts',
         display: {
             label: 'createReceipt',
             description: 'Creates a new receipt.',
@@ -23,10 +23,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateReceiptRequest(),
             ],
@@ -59,7 +59,7 @@ module.exports = {
     },
     deleteReceipt: {
         key: 'deleteReceipt',
-        noun: 'Delete Receipt',
+        noun: 'Receipts',
         display: {
             label: 'deleteReceipt',
             description: 'Deletes the specified receipt.',
@@ -69,10 +69,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -108,7 +108,7 @@ module.exports = {
     },
     getReceipt: {
         key: 'getReceipt',
-        noun: 'Get Receipt',
+        noun: 'Receipts',
         display: {
             label: 'getReceipt',
             description: 'Gets the specified receipt.',
@@ -118,10 +118,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -174,7 +174,7 @@ module.exports = {
     },
     getReceiptPreCreateInfo: {
         key: 'getReceiptPreCreateInfo',
-        noun: 'Get Receipt Pre-Create Info',
+        noun: 'Receipts',
         display: {
             label: 'getReceiptPreCreateInfo',
             description: 'Retrieves the information useful while creating a new receipt.',
@@ -184,10 +184,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -218,7 +218,7 @@ module.exports = {
     },
     getReceiptsMonthlyTotals: {
         key: 'getReceiptsMonthlyTotals',
-        noun: 'Get Receipts Monthly Totals',
+        noun: 'Receipts',
         display: {
             label: 'getReceiptsMonthlyTotals',
             description: 'Returns the monthly totals by year and receipt type.',
@@ -228,10 +228,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'type',
@@ -280,7 +280,7 @@ module.exports = {
     },
     listReceipts: {
         key: 'listReceipts',
-        noun: 'List Receipts',
+        noun: 'Receipts',
         display: {
             label: 'listReceipts',
             description: 'Lists the receipts.',
@@ -290,10 +290,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -364,7 +364,7 @@ module.exports = {
     },
     modifyReceipt: {
         key: 'modifyReceipt',
-        noun: 'Modify Receipt',
+        noun: 'Receipts',
         display: {
             label: 'modifyReceipt',
             description: 'Modifies the specified receipt.',
@@ -374,10 +374,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',

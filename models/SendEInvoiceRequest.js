@@ -7,22 +7,17 @@ const SendEInvoiceRequest_optionsMapping = require('./SendEInvoiceRequest_option
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...SendEInvoiceRequest_data(keyPrefix + 'data'),
-            ...SendEInvoiceRequest_options(keyPrefix + 'options'),
+            ...SendEInvoiceRequest_data(`${keyPrefix}data`),
+            ...SendEInvoiceRequest_options(`${keyPrefix}options`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(SendEInvoiceRequest_dataMapping(bundle, keyPrefix + 'data')),
-            'options': utils.removeIfEmpty(SendEInvoiceRequest_optionsMapping(bundle, keyPrefix + 'options')),
+            'data': utils.removeIfEmpty(SendEInvoiceRequest_dataMapping(bundle, `${keyPrefix}data`)),
+            'options': utils.removeIfEmpty(SendEInvoiceRequest_optionsMapping(bundle, `${keyPrefix}options`)),
         }
     },
 }

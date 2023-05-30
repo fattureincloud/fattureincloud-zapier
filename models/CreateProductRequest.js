@@ -5,20 +5,15 @@ const ProductMapping = require('./Product').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...Product(keyPrefix + 'data'),
+            ...Product(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(ProductMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(ProductMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

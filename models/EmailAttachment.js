@@ -3,21 +3,16 @@ const utils = require('../utils/utils');
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'filename',
-                label: labelPrefix + 'Email attachment filename.',
+                key: `${keyPrefix}filename`,
+                label: `Email attachment filename. - [${keyPrefix}filename]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'url',
-                label: labelPrefix + 'Email attachment url.',
+                key: `${keyPrefix}url`,
+                label: `Email attachment url. - [${keyPrefix}url]`,
                 type: 'string',
             },
         ]
@@ -25,8 +20,8 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'filename': bundle.inputData?.[keyPrefix + 'filename'],
-            'url': bundle.inputData?.[keyPrefix + 'url'],
+            'filename': bundle.inputData?.[`${keyPrefix}filename`],
+            'url': bundle.inputData?.[`${keyPrefix}url`],
         }
     },
 }

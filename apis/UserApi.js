@@ -5,7 +5,7 @@ const utils = require('../utils/utils');
 module.exports = {
     getUserInfo: {
         key: 'getUserInfo',
-        noun: 'Get User Info',
+        noun: 'User',
         display: {
             label: 'getUserInfo',
             description: 'Gets the current user&#39;s info.',
@@ -42,7 +42,7 @@ module.exports = {
     },
     listUserCompanies: {
         key: 'listUserCompanies',
-        noun: 'List User Companies',
+        noun: 'User',
         display: {
             label: 'listUserCompanies',
             description: 'Lists the companies controlled by the current user.',

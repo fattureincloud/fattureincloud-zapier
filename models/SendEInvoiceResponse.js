@@ -5,20 +5,15 @@ const SendEInvoiceResponse_dataMapping = require('./SendEInvoiceResponse_data').
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...SendEInvoiceResponse_data(keyPrefix + 'data'),
+            ...SendEInvoiceResponse_data(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(SendEInvoiceResponse_dataMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(SendEInvoiceResponse_dataMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

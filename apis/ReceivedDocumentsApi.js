@@ -19,7 +19,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createReceivedDocument: {
         key: 'createReceivedDocument',
-        noun: 'Create Received Document',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'createReceivedDocument',
             description: 'Creates a new document.',
@@ -29,10 +29,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateReceivedDocumentRequest(),
             ],
@@ -65,7 +65,7 @@ module.exports = {
     },
     deleteReceivedDocument: {
         key: 'deleteReceivedDocument',
-        noun: 'Delete Received Document',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'deleteReceivedDocument',
             description: 'Deletes the specified document.',
@@ -75,10 +75,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -114,7 +114,7 @@ module.exports = {
     },
     deleteReceivedDocumentAttachment: {
         key: 'deleteReceivedDocumentAttachment',
-        noun: 'Delete Received Document Attachment',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'deleteReceivedDocumentAttachment',
             description: 'Removes the attachment of the specified document.',
@@ -124,10 +124,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -163,7 +163,7 @@ module.exports = {
     },
     getExistingReceivedDocumentTotals: {
         key: 'getExistingReceivedDocumentTotals',
-        noun: 'Get Existing Received Document Totals',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'getExistingReceivedDocumentTotals',
             description: 'Returns the totals for the specified document.',
@@ -173,10 +173,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -215,7 +215,7 @@ module.exports = {
     },
     getNewReceivedDocumentTotals: {
         key: 'getNewReceivedDocumentTotals',
-        noun: 'Get New Received Document Totals',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'getNewReceivedDocumentTotals',
             description: 'Returns the totals for a new document.',
@@ -225,10 +225,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...GetNewReceivedDocumentTotalsRequest(),
             ],
@@ -261,7 +261,7 @@ module.exports = {
     },
     getReceivedDocument: {
         key: 'getReceivedDocument',
-        noun: 'Get Received Document',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'getReceivedDocument',
             description: 'Gets the specified document.',
@@ -271,10 +271,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -327,7 +327,7 @@ module.exports = {
     },
     getReceivedDocumentPreCreateInfo: {
         key: 'getReceivedDocumentPreCreateInfo',
-        noun: 'Get Received Document Pre-Create Info',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'getReceivedDocumentPreCreateInfo',
             description: 'Retrieves the information useful while creating a new document.',
@@ -337,10 +337,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'type',
@@ -383,7 +383,7 @@ module.exports = {
     },
     listReceivedDocuments: {
         key: 'listReceivedDocuments',
-        noun: 'List Received Documents',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'listReceivedDocuments',
             description: 'Lists the received documents.',
@@ -393,10 +393,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'type',
@@ -479,7 +479,7 @@ module.exports = {
     },
     modifyReceivedDocument: {
         key: 'modifyReceivedDocument',
-        noun: 'Modify Received Document',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'modifyReceivedDocument',
             description: 'Modifies the specified document.',
@@ -489,10 +489,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -531,7 +531,7 @@ module.exports = {
     },
     uploadReceivedDocumentAttachment: {
         key: 'uploadReceivedDocumentAttachment',
-        noun: 'Upload Received Document Attachment',
+        noun: 'ReceivedDocuments',
         display: {
             label: 'uploadReceivedDocumentAttachment',
             description: 'Uploads an attachment destined to a received document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
@@ -541,10 +541,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'filename',

@@ -5,24 +5,19 @@ const PaymentMethodMapping = require('./PaymentMethod').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'data',
-                
-                children: PaymentMethod(keyPrefix + 'data'), 
+                key: `${keyPrefix}data`,
+                label: `${keyPrefix}data]`,
+                children: PaymentMethod(`${keyPrefix}data`), 
             },
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeKeyPrefixes(bundle.inputData?.[keyPrefix + 'data']),
+            'data': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}data`]),
         }
     },
 }

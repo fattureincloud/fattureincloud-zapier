@@ -2,13 +2,15 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: {
-        label: 'Client type.',
-        choices: [
-            'company',
-            'person',
-            'pa',
-            'condo',
-        ],
+        fields: (key) => (
+            {
+                label: `Client type. - [${key}]`,
+                choices: [
+                    'company',
+                    'person',
+                    'pa',
+                    'condo',
+                ],
+            }
+        )
     }
-}

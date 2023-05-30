@@ -8,57 +8,52 @@ const IssuedDocumentPaymentsListItem_payment_termsMapping = require('./IssuedDoc
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'id',
-                label: labelPrefix + 'Unique identifier.',
+                key: `${keyPrefix}id`,
+                label: `Unique identifier. - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'due_date',
-                label: labelPrefix + 'Due date.',
+                key: `${keyPrefix}due_date`,
+                label: `Due date. - [${keyPrefix}due_date]`,
                 type: 'datetime',
             },
             {
-                key: keyPrefix + 'amount',
-                label: labelPrefix + 'Payment amount.',
+                key: `${keyPrefix}amount`,
+                label: `Payment amount. - [${keyPrefix}amount]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'status',
-                ...IssuedDocumentStatus,
+                key: `${keyPrefix}status`,
+                ...IssuedDocumentStatus(`${keyPrefix}status`),
             },
-            ...PaymentAccount(keyPrefix + 'payment_account'),
+            ...PaymentAccount(`${keyPrefix}payment_account`),
             {
-                key: keyPrefix + 'paid_date',
-                label: labelPrefix + 'Payment date. [Only if status is paid]',
+                key: `${keyPrefix}paid_date`,
+                label: `Payment date. [Only if status is paid] - [${keyPrefix}paid_date]`,
                 type: 'datetime',
             },
             {
-                key: keyPrefix + 'ei_raw',
-                label: labelPrefix + 'Advanced raw attributes for e-invoices.',
+                key: `${keyPrefix}ei_raw`,
+                label: `Advanced raw attributes for e-invoices. - [${keyPrefix}ei_raw]`,
                 dict: true,
             },
-            ...IssuedDocumentPaymentsListItem_payment_terms(keyPrefix + 'payment_terms'),
+            ...IssuedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'id': bundle.inputData?.[keyPrefix + 'id'],
-            'due_date': bundle.inputData?.[keyPrefix + 'due_date'],
-            'amount': bundle.inputData?.[keyPrefix + 'amount'],
-            'status': bundle.inputData?.[keyPrefix + 'status'],
-            'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, keyPrefix + 'payment_account')),
-            'paid_date': bundle.inputData?.[keyPrefix + 'paid_date'],
-            'ei_raw': bundle.inputData?.[keyPrefix + 'ei_raw'],
-            'payment_terms': utils.removeIfEmpty(IssuedDocumentPaymentsListItem_payment_termsMapping(bundle, keyPrefix + 'payment_terms')),
+            'id': bundle.inputData?.[`${keyPrefix}id`],
+            'due_date': bundle.inputData?.[`${keyPrefix}due_date`],
+            'amount': bundle.inputData?.[`${keyPrefix}amount`],
+            'status': bundle.inputData?.[`${keyPrefix}status`],
+            'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}payment_account`)),
+            'paid_date': bundle.inputData?.[`${keyPrefix}paid_date`],
+            'ei_raw': bundle.inputData?.[`${keyPrefix}ei_raw`],
+            'payment_terms': utils.removeIfEmpty(IssuedDocumentPaymentsListItem_payment_termsMapping(bundle, `${keyPrefix}payment_terms`)),
         }
     },
 }

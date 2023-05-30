@@ -3,26 +3,21 @@ const utils = require('../utils/utils');
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'postal_code',
-                label: labelPrefix + 'City postal code.',
+                key: `${keyPrefix}postal_code`,
+                label: `City postal code. - [${keyPrefix}postal_code]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'city',
-                label: labelPrefix + 'City name.',
+                key: `${keyPrefix}city`,
+                label: `City name. - [${keyPrefix}city]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'province',
-                label: labelPrefix + 'Province.',
+                key: `${keyPrefix}province`,
+                label: `Province. - [${keyPrefix}province]`,
                 type: 'string',
             },
         ]
@@ -30,9 +25,9 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'postal_code': bundle.inputData?.[keyPrefix + 'postal_code'],
-            'city': bundle.inputData?.[keyPrefix + 'city'],
-            'province': bundle.inputData?.[keyPrefix + 'province'],
+            'postal_code': bundle.inputData?.[`${keyPrefix}postal_code`],
+            'city': bundle.inputData?.[`${keyPrefix}city`],
+            'province': bundle.inputData?.[`${keyPrefix}province`],
         }
     },
 }

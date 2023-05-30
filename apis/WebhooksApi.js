@@ -11,7 +11,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createWebhooksSubscription: {
         key: 'createWebhooksSubscription',
-        noun: 'Create a Webhook Subscription',
+        noun: 'Webhooks',
         display: {
             label: 'createWebhooksSubscription',
             description: 'Register some webhooks Subscriptions.',
@@ -21,10 +21,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateWebhooksSubscriptionRequest(),
             ],
@@ -57,7 +57,7 @@ module.exports = {
     },
     deleteWebhooksSubscription: {
         key: 'deleteWebhooksSubscription',
-        noun: 'Delete Webhooks Subscription',
+        noun: 'Webhooks',
         display: {
             label: 'deleteWebhooksSubscription',
             description: 'Delete a webhooks subscription.',
@@ -67,10 +67,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'subscription_id',
@@ -106,7 +106,7 @@ module.exports = {
     },
     getWebhooksSubscription: {
         key: 'getWebhooksSubscription',
-        noun: 'Get Webhooks Subscription',
+        noun: 'Webhooks',
         display: {
             label: 'getWebhooksSubscription',
             description: 'Get a webhooks subscription.',
@@ -116,10 +116,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'subscription_id',
@@ -156,7 +156,7 @@ module.exports = {
     },
     listWebhooksSubscriptions: {
         key: 'listWebhooksSubscriptions',
-        noun: 'List Webhooks Subscriptions',
+        noun: 'Webhooks',
         display: {
             label: 'listWebhooksSubscriptions',
             description: 'List active webhooks subscriptions.',
@@ -166,10 +166,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [
@@ -200,7 +200,7 @@ module.exports = {
     },
     modifyWebhooksSubscription: {
         key: 'modifyWebhooksSubscription',
-        noun: 'Modify Webhooks Subscription',
+        noun: 'Webhooks',
         display: {
             label: 'modifyWebhooksSubscription',
             description: 'Edit a webhooks subscription.',
@@ -210,10 +210,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'subscription_id',

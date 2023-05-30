@@ -5,20 +5,15 @@ const ReceiptMapping = require('./Receipt').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...Receipt(keyPrefix + 'data'),
+            ...Receipt(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(ReceiptMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(ReceiptMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

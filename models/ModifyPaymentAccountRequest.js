@@ -5,20 +5,15 @@ const PaymentAccountMapping = require('./PaymentAccount').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...PaymentAccount(keyPrefix + 'data'),
+            ...PaymentAccount(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(PaymentAccountMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

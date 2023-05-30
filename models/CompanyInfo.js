@@ -8,42 +8,37 @@ const CompanyInfo_plan_infoMapping = require('./CompanyInfo_plan_info').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'id',
-                label: labelPrefix + 'Company unique identifier.',
+                key: `${keyPrefix}id`,
+                label: `Company unique identifier. - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'name',
-                label: labelPrefix + 'Company name.',
+                key: `${keyPrefix}name`,
+                label: `Company name. - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'email',
-                label: labelPrefix + 'Company email.',
+                key: `${keyPrefix}email`,
+                label: `Company email. - [${keyPrefix}email]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'type',
-                ...CompanyType,
+                key: `${keyPrefix}type`,
+                ...CompanyType(`${keyPrefix}type`),
             },
-            ...CompanyInfo_access_info(keyPrefix + 'access_info'),
-            ...CompanyInfo_plan_info(keyPrefix + 'plan_info'),
+            ...CompanyInfo_access_info(`${keyPrefix}access_info`),
+            ...CompanyInfo_plan_info(`${keyPrefix}plan_info`),
             {
-                key: keyPrefix + 'accountant_id',
-                label: labelPrefix + 'Accountant unique identifier.',
+                key: `${keyPrefix}accountant_id`,
+                label: `Accountant unique identifier. - [${keyPrefix}accountant_id]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'is_accountant',
-                label: labelPrefix + 'Determine if the logged account is an accountant.',
+                key: `${keyPrefix}is_accountant`,
+                label: `Determine if the logged account is an accountant. - [${keyPrefix}is_accountant]`,
                 type: 'boolean',
             },
         ]
@@ -51,14 +46,14 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'id': bundle.inputData?.[keyPrefix + 'id'],
-            'name': bundle.inputData?.[keyPrefix + 'name'],
-            'email': bundle.inputData?.[keyPrefix + 'email'],
-            'type': bundle.inputData?.[keyPrefix + 'type'],
-            'access_info': utils.removeIfEmpty(CompanyInfo_access_infoMapping(bundle, keyPrefix + 'access_info')),
-            'plan_info': utils.removeIfEmpty(CompanyInfo_plan_infoMapping(bundle, keyPrefix + 'plan_info')),
-            'accountant_id': bundle.inputData?.[keyPrefix + 'accountant_id'],
-            'is_accountant': bundle.inputData?.[keyPrefix + 'is_accountant'],
+            'id': bundle.inputData?.[`${keyPrefix}id`],
+            'name': bundle.inputData?.[`${keyPrefix}name`],
+            'email': bundle.inputData?.[`${keyPrefix}email`],
+            'type': bundle.inputData?.[`${keyPrefix}type`],
+            'access_info': utils.removeIfEmpty(CompanyInfo_access_infoMapping(bundle, `${keyPrefix}access_info`)),
+            'plan_info': utils.removeIfEmpty(CompanyInfo_plan_infoMapping(bundle, `${keyPrefix}plan_info`)),
+            'accountant_id': bundle.inputData?.[`${keyPrefix}accountant_id`],
+            'is_accountant': bundle.inputData?.[`${keyPrefix}is_accountant`],
         }
     },
 }

@@ -5,20 +5,15 @@ const ListF24ResponseAggregatedDataMapping = require('./ListF24ResponseAggregate
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...ListF24ResponseAggregatedData(keyPrefix + 'aggregated_data'),
+            ...ListF24ResponseAggregatedData(`${keyPrefix}aggregated_data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'aggregated_data': utils.removeIfEmpty(ListF24ResponseAggregatedDataMapping(bundle, keyPrefix + 'aggregated_data')),
+            'aggregated_data': utils.removeIfEmpty(ListF24ResponseAggregatedDataMapping(bundle, `${keyPrefix}aggregated_data`)),
         }
     },
 }

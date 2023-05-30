@@ -3,16 +3,11 @@ const utils = require('../utils/utils');
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'success',
-                label: labelPrefix + 'Determine if the invoice XML is valid.',
+                key: `${keyPrefix}success`,
+                label: `Determine if the invoice XML is valid. - [${keyPrefix}success]`,
                 type: 'boolean',
             },
         ]
@@ -20,7 +15,7 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'success': bundle.inputData?.[keyPrefix + 'success'],
+            'success': bundle.inputData?.[`${keyPrefix}success`],
         }
     },
 }

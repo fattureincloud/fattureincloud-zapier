@@ -11,7 +11,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createCashbookEntry: {
         key: 'createCashbookEntry',
-        noun: 'Create Cashbook Entry',
+        noun: 'Cashbook',
         display: {
             label: 'createCashbookEntry',
             description: 'Creates a new cashbook entry.',
@@ -21,10 +21,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateCashbookEntryRequest(),
             ],
@@ -57,7 +57,7 @@ module.exports = {
     },
     deleteCashbookEntry: {
         key: 'deleteCashbookEntry',
-        noun: 'Delete Cashbook Entry',
+        noun: 'Cashbook',
         display: {
             label: 'deleteCashbookEntry',
             description: 'Deletes the specified cashbook entry.',
@@ -67,10 +67,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -106,7 +106,7 @@ module.exports = {
     },
     getCashbookEntry: {
         key: 'getCashbookEntry',
-        noun: 'Get Cashbook Entry',
+        noun: 'Cashbook',
         display: {
             label: 'getCashbookEntry',
             description: 'Gets the specified cashbook entry.',
@@ -116,10 +116,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -172,7 +172,7 @@ module.exports = {
     },
     listCashbookEntries: {
         key: 'listCashbookEntries',
-        noun: 'List Cashbook Entries',
+        noun: 'Cashbook',
         display: {
             label: 'listCashbookEntries',
             description: 'Lists the cashbook entries.',
@@ -182,10 +182,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'date_from',
@@ -253,7 +253,7 @@ module.exports = {
     },
     modifyCashbookEntry: {
         key: 'modifyCashbookEntry',
-        noun: 'Modify Cashbook Entry',
+        noun: 'Cashbook',
         display: {
             label: 'modifyCashbookEntry',
             description: 'Modifies the specified cashbook entry.',
@@ -263,10 +263,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',

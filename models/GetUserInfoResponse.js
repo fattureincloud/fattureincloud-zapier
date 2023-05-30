@@ -9,24 +9,19 @@ const GetUserInfoResponse_email_confirmation_stateMapping = require('./GetUserIn
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...User(keyPrefix + 'data'),
-            ...GetUserInfoResponse_info(keyPrefix + 'info'),
-            ...GetUserInfoResponse_email_confirmation_state(keyPrefix + 'email_confirmation_state'),
+            ...User(`${keyPrefix}data`),
+            ...GetUserInfoResponse_info(`${keyPrefix}info`),
+            ...GetUserInfoResponse_email_confirmation_state(`${keyPrefix}email_confirmation_state`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(UserMapping(bundle, keyPrefix + 'data')),
-            'info': utils.removeIfEmpty(GetUserInfoResponse_infoMapping(bundle, keyPrefix + 'info')),
-            'email_confirmation_state': utils.removeIfEmpty(GetUserInfoResponse_email_confirmation_stateMapping(bundle, keyPrefix + 'email_confirmation_state')),
+            'data': utils.removeIfEmpty(UserMapping(bundle, `${keyPrefix}data`)),
+            'info': utils.removeIfEmpty(GetUserInfoResponse_infoMapping(bundle, `${keyPrefix}info`)),
+            'email_confirmation_state': utils.removeIfEmpty(GetUserInfoResponse_email_confirmation_stateMapping(bundle, `${keyPrefix}email_confirmation_state`)),
         }
     },
 }

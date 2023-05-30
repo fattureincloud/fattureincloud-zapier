@@ -5,24 +5,19 @@ const CompanyMapping = require('./Company').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'companies',
-                
-                children: Company(keyPrefix + 'companies'), 
+                key: `${keyPrefix}companies`,
+                label: `${keyPrefix}companies]`,
+                children: Company(`${keyPrefix}companies`), 
             },
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'companies': utils.removeKeyPrefixes(bundle.inputData?.[keyPrefix + 'companies']),
+            'companies': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}companies`]),
         }
     },
 }

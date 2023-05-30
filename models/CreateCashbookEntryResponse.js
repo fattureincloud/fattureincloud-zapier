@@ -5,20 +5,15 @@ const CashbookEntryMapping = require('./CashbookEntry').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...CashbookEntry(keyPrefix + 'data'),
+            ...CashbookEntry(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(CashbookEntryMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(CashbookEntryMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

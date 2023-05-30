@@ -11,7 +11,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createProduct: {
         key: 'createProduct',
-        noun: 'Create Product',
+        noun: 'Products',
         display: {
             label: 'createProduct',
             description: 'Creates a new product.',
@@ -21,10 +21,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateProductRequest(),
             ],
@@ -57,7 +57,7 @@ module.exports = {
     },
     deleteProduct: {
         key: 'deleteProduct',
-        noun: 'Delete Product',
+        noun: 'Products',
         display: {
             label: 'deleteProduct',
             description: 'Deletes the specified product.',
@@ -67,10 +67,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'product_id',
@@ -106,7 +106,7 @@ module.exports = {
     },
     getProduct: {
         key: 'getProduct',
-        noun: 'Get Product',
+        noun: 'Products',
         display: {
             label: 'getProduct',
             description: 'Gets the specified product.',
@@ -116,10 +116,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'product_id',
@@ -172,7 +172,7 @@ module.exports = {
     },
     listProducts: {
         key: 'listProducts',
-        noun: 'List Products',
+        noun: 'Products',
         display: {
             label: 'listProducts',
             description: 'Lists the products.',
@@ -182,10 +182,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -256,7 +256,7 @@ module.exports = {
     },
     modifyProduct: {
         key: 'modifyProduct',
-        noun: 'Modify Product',
+        noun: 'Products',
         display: {
             label: 'modifyProduct',
             description: 'Modifies the specified product.',
@@ -266,10 +266,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'product_id',

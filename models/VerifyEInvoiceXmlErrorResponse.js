@@ -7,22 +7,17 @@ const VerifyEInvoiceXmlErrorResponse_extraMapping = require('./VerifyEInvoiceXml
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...VerifyEInvoiceXmlErrorResponse_error(keyPrefix + 'error'),
-            ...VerifyEInvoiceXmlErrorResponse_extra(keyPrefix + 'extra'),
+            ...VerifyEInvoiceXmlErrorResponse_error(`${keyPrefix}error`),
+            ...VerifyEInvoiceXmlErrorResponse_extra(`${keyPrefix}extra`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'error': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_errorMapping(bundle, keyPrefix + 'error')),
-            'extra': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_extraMapping(bundle, keyPrefix + 'extra')),
+            'error': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_errorMapping(bundle, `${keyPrefix}error`)),
+            'extra': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_extraMapping(bundle, `${keyPrefix}extra`)),
         }
     },
 }

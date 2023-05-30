@@ -12,7 +12,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createArchiveDocument: {
         key: 'createArchiveDocument',
-        noun: 'Create Archive Document',
+        noun: 'Archive',
         display: {
             label: 'createArchiveDocument',
             description: 'Creates a new archive document.',
@@ -22,10 +22,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateArchiveDocumentRequest(),
             ],
@@ -58,7 +58,7 @@ module.exports = {
     },
     deleteArchiveDocument: {
         key: 'deleteArchiveDocument',
-        noun: 'Delete Archive Document',
+        noun: 'Archive',
         display: {
             label: 'deleteArchiveDocument',
             description: 'Deletes the specified archive document.',
@@ -68,10 +68,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -107,7 +107,7 @@ module.exports = {
     },
     getArchiveDocument: {
         key: 'getArchiveDocument',
-        noun: 'Get Archive Document',
+        noun: 'Archive',
         display: {
             label: 'getArchiveDocument',
             description: 'Gets the specified archive document.',
@@ -117,10 +117,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -173,7 +173,7 @@ module.exports = {
     },
     listArchiveDocuments: {
         key: 'listArchiveDocuments',
-        noun: 'List Archive Documents',
+        noun: 'Archive',
         display: {
             label: 'listArchiveDocuments',
             description: 'Lists the archive documents.',
@@ -183,10 +183,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -257,7 +257,7 @@ module.exports = {
     },
     modifyArchiveDocument: {
         key: 'modifyArchiveDocument',
-        noun: 'Modify Archive Document',
+        noun: 'Archive',
         display: {
             label: 'modifyArchiveDocument',
             description: 'Modifies the specified archive document.',
@@ -267,10 +267,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'document_id',
@@ -309,7 +309,7 @@ module.exports = {
     },
     uploadArchiveDocumentAttachment: {
         key: 'uploadArchiveDocumentAttachment',
-        noun: 'Upload Archive Document Attachment',
+        noun: 'Archive',
         display: {
             label: 'uploadArchiveDocumentAttachment',
             description: 'Uploads an attachment destined to an archive document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
@@ -319,10 +319,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'filename',

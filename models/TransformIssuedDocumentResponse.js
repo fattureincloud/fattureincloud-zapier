@@ -7,22 +7,17 @@ const IssuedDocumentOptionsMapping = require('./IssuedDocumentOptions').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...IssuedDocument(keyPrefix + 'data'),
-            ...IssuedDocumentOptions(keyPrefix + 'options'),
+            ...IssuedDocument(`${keyPrefix}data`),
+            ...IssuedDocumentOptions(`${keyPrefix}options`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(IssuedDocumentMapping(bundle, keyPrefix + 'data')),
-            'options': utils.removeIfEmpty(IssuedDocumentOptionsMapping(bundle, keyPrefix + 'options')),
+            'data': utils.removeIfEmpty(IssuedDocumentMapping(bundle, `${keyPrefix}data`)),
+            'options': utils.removeIfEmpty(IssuedDocumentOptionsMapping(bundle, `${keyPrefix}options`)),
         }
     },
 }

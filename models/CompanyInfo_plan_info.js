@@ -9,24 +9,19 @@ const CompanyInfo_plan_info_functions_statusMapping = require('./CompanyInfo_pla
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...CompanyInfo_plan_info_limits(keyPrefix + 'limits'),
-            ...CompanyInfo_plan_info_functions(keyPrefix + 'functions'),
-            ...CompanyInfo_plan_info_functions_status(keyPrefix + 'functions_status'),
+            ...CompanyInfo_plan_info_limits(`${keyPrefix}limits`),
+            ...CompanyInfo_plan_info_functions(`${keyPrefix}functions`),
+            ...CompanyInfo_plan_info_functions_status(`${keyPrefix}functions_status`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'limits': utils.removeIfEmpty(CompanyInfo_plan_info_limitsMapping(bundle, keyPrefix + 'limits')),
-            'functions': utils.removeIfEmpty(CompanyInfo_plan_info_functionsMapping(bundle, keyPrefix + 'functions')),
-            'functions_status': utils.removeIfEmpty(CompanyInfo_plan_info_functions_statusMapping(bundle, keyPrefix + 'functions_status')),
+            'limits': utils.removeIfEmpty(CompanyInfo_plan_info_limitsMapping(bundle, `${keyPrefix}limits`)),
+            'functions': utils.removeIfEmpty(CompanyInfo_plan_info_functionsMapping(bundle, `${keyPrefix}functions`)),
+            'functions_status': utils.removeIfEmpty(CompanyInfo_plan_info_functions_statusMapping(bundle, `${keyPrefix}functions_status`)),
         }
     },
 }

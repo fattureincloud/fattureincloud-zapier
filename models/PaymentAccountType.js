@@ -2,11 +2,13 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: {
-        label: 'Payment account type.',
-        choices: [
-            'standard',
-            'bank',
-        ],
+        fields: (key) => (
+            {
+                label: `Payment account type. - [${key}]`,
+                choices: [
+                    'standard',
+                    'bank',
+                ],
+            }
+        )
     }
-}

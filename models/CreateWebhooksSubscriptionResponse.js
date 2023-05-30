@@ -5,17 +5,12 @@ const WebhooksSubscriptionMapping = require('./WebhooksSubscription').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...WebhooksSubscription(keyPrefix + 'data'),
+            ...WebhooksSubscription(`${keyPrefix}data`),
             {
-                key: keyPrefix + 'warnings',
-                label: labelPrefix + 'Webhooks registration warnings',
+                key: `${keyPrefix}warnings`,
+                label: `Webhooks registration warnings - [${keyPrefix}warnings]`,
                 list: true,
                 type: 'string',
             },
@@ -24,8 +19,8 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(WebhooksSubscriptionMapping(bundle, keyPrefix + 'data')),
-            'warnings': bundle.inputData?.[keyPrefix + 'warnings'],
+            'data': utils.removeIfEmpty(WebhooksSubscriptionMapping(bundle, `${keyPrefix}data`)),
+            'warnings': bundle.inputData?.[`${keyPrefix}warnings`],
         }
     },
 }

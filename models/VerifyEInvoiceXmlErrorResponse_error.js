@@ -5,26 +5,21 @@ const VerifyEInvoiceXmlErrorResponse_error_validation_resultMapping = require('.
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'message',
-                
+                key: `${keyPrefix}message`,
+                label: `[${keyPrefix}message]`,
                 type: 'string',
             },
-            ...VerifyEInvoiceXmlErrorResponse_error_validation_result(keyPrefix + 'validation_result'),
+            ...VerifyEInvoiceXmlErrorResponse_error_validation_result(`${keyPrefix}validation_result`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'message': bundle.inputData?.[keyPrefix + 'message'],
-            'validation_result': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_error_validation_resultMapping(bundle, keyPrefix + 'validation_result')),
+            'message': bundle.inputData?.[`${keyPrefix}message`],
+            'validation_result': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_error_validation_resultMapping(bundle, `${keyPrefix}validation_result`)),
         }
     },
 }

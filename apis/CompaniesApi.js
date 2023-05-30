@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
     getCompanyInfo: {
         key: 'getCompanyInfo',
-        noun: 'Get Company Info',
+        noun: 'Companies',
         display: {
             label: 'getCompanyInfo',
             description: 'Gets the company detailed info.',
@@ -14,10 +14,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
             ],
             outputFields: [

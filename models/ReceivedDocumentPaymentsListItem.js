@@ -7,52 +7,47 @@ const PaymentAccountMapping = require('./PaymentAccount').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'id',
-                label: labelPrefix + 'Unique identifier.',
+                key: `${keyPrefix}id`,
+                label: `Unique identifier. - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'amount',
-                label: labelPrefix + 'Amount of items.',
+                key: `${keyPrefix}amount`,
+                label: `Amount of items. - [${keyPrefix}amount]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'due_date',
-                label: labelPrefix + 'Due date',
+                key: `${keyPrefix}due_date`,
+                label: `Due date - [${keyPrefix}due_date]`,
                 type: 'datetime',
             },
             {
-                key: keyPrefix + 'paid_date',
-                label: labelPrefix + 'Paid date',
+                key: `${keyPrefix}paid_date`,
+                label: `Paid date - [${keyPrefix}paid_date]`,
                 type: 'datetime',
             },
-            ...ReceivedDocumentPaymentsListItem_payment_terms(keyPrefix + 'payment_terms'),
+            ...ReceivedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`),
             {
-                key: keyPrefix + 'status',
-                label: labelPrefix + 'Payment status.',
+                key: `${keyPrefix}status`,
+                label: `Payment status. - [${keyPrefix}status]`,
                 type: 'string',
             },
-            ...PaymentAccount(keyPrefix + 'payment_account'),
+            ...PaymentAccount(`${keyPrefix}payment_account`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'id': bundle.inputData?.[keyPrefix + 'id'],
-            'amount': bundle.inputData?.[keyPrefix + 'amount'],
-            'due_date': bundle.inputData?.[keyPrefix + 'due_date'],
-            'paid_date': bundle.inputData?.[keyPrefix + 'paid_date'],
-            'payment_terms': utils.removeIfEmpty(ReceivedDocumentPaymentsListItem_payment_termsMapping(bundle, keyPrefix + 'payment_terms')),
-            'status': bundle.inputData?.[keyPrefix + 'status'],
-            'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, keyPrefix + 'payment_account')),
+            'id': bundle.inputData?.[`${keyPrefix}id`],
+            'amount': bundle.inputData?.[`${keyPrefix}amount`],
+            'due_date': bundle.inputData?.[`${keyPrefix}due_date`],
+            'paid_date': bundle.inputData?.[`${keyPrefix}paid_date`],
+            'payment_terms': utils.removeIfEmpty(ReceivedDocumentPaymentsListItem_payment_termsMapping(bundle, `${keyPrefix}payment_terms`)),
+            'status': bundle.inputData?.[`${keyPrefix}status`],
+            'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}payment_account`)),
         }
     },
 }

@@ -3,26 +3,21 @@ const utils = require('../utils/utils');
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'id',
-                label: labelPrefix + 'Unique identifier.',
+                key: `${keyPrefix}id`,
+                label: `Unique identifier. - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'name',
-                label: labelPrefix + 'Template name.',
+                key: `${keyPrefix}name`,
+                label: `Template name. - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'type',
-                label: labelPrefix + 'Template type.',
+                key: `${keyPrefix}type`,
+                label: `Template type. - [${keyPrefix}type]`,
                 type: 'string',
             },
         ]
@@ -30,9 +25,9 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'id': bundle.inputData?.[keyPrefix + 'id'],
-            'name': bundle.inputData?.[keyPrefix + 'name'],
-            'type': bundle.inputData?.[keyPrefix + 'type'],
+            'id': bundle.inputData?.[`${keyPrefix}id`],
+            'name': bundle.inputData?.[`${keyPrefix}name`],
+            'type': bundle.inputData?.[`${keyPrefix}type`],
         }
     },
 }

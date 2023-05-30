@@ -11,7 +11,7 @@ const utils = require('../utils/utils');
 module.exports = {
     createSupplier: {
         key: 'createSupplier',
-        noun: 'Create Supplier',
+        noun: 'Suppliers',
         display: {
             label: 'createSupplier',
             description: 'Creates a new supplier.',
@@ -21,10 +21,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 ...CreateSupplierRequest(),
             ],
@@ -57,7 +57,7 @@ module.exports = {
     },
     deleteSupplier: {
         key: 'deleteSupplier',
-        noun: 'Delete Supplier',
+        noun: 'Suppliers',
         display: {
             label: 'deleteSupplier',
             description: 'Deletes the specified supplier.',
@@ -67,10 +67,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'supplier_id',
@@ -106,7 +106,7 @@ module.exports = {
     },
     getSupplier: {
         key: 'getSupplier',
-        noun: 'Get Supplier',
+        noun: 'Suppliers',
         display: {
             label: 'getSupplier',
             description: 'Gets the specified supplier.',
@@ -116,10 +116,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'supplier_id',
@@ -172,7 +172,7 @@ module.exports = {
     },
     listSuppliers: {
         key: 'listSuppliers',
-        noun: 'List Suppliers',
+        noun: 'Suppliers',
         display: {
             label: 'listSuppliers',
             description: 'Lists the suppliers.',
@@ -182,10 +182,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'fields',
@@ -256,7 +256,7 @@ module.exports = {
     },
     modifySupplier: {
         key: 'modifySupplier',
-        noun: 'Modify Supplier',
+        noun: 'Suppliers',
         display: {
             label: 'modifySupplier',
             description: 'Modifies the specified supplier.',
@@ -266,10 +266,10 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                 },
                 {
                     key: 'supplier_id',

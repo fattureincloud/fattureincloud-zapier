@@ -3,31 +3,26 @@ const utils = require('../utils/utils');
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'id',
-                label: labelPrefix + 'Currency code.',
+                key: `${keyPrefix}id`,
+                label: `Currency code. - [${keyPrefix}id]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'symbol',
-                label: labelPrefix + 'Currency symbol.',
+                key: `${keyPrefix}symbol`,
+                label: `Currency symbol. - [${keyPrefix}symbol]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'exchange_rate',
-                label: labelPrefix + 'Currency exchange rate (EUR to this).',
+                key: `${keyPrefix}exchange_rate`,
+                label: `Currency exchange rate (EUR to this). - [${keyPrefix}exchange_rate]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'html_symbol',
-                label: labelPrefix + 'Currency html code.',
+                key: `${keyPrefix}html_symbol`,
+                label: `Currency html code. - [${keyPrefix}html_symbol]`,
                 type: 'string',
             },
         ]
@@ -35,10 +30,10 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'id': bundle.inputData?.[keyPrefix + 'id'],
-            'symbol': bundle.inputData?.[keyPrefix + 'symbol'],
-            'exchange_rate': bundle.inputData?.[keyPrefix + 'exchange_rate'],
-            'html_symbol': bundle.inputData?.[keyPrefix + 'html_symbol'],
+            'id': bundle.inputData?.[`${keyPrefix}id`],
+            'symbol': bundle.inputData?.[`${keyPrefix}symbol`],
+            'exchange_rate': bundle.inputData?.[`${keyPrefix}exchange_rate`],
+            'html_symbol': bundle.inputData?.[`${keyPrefix}html_symbol`],
         }
     },
 }

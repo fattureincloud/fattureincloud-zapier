@@ -5,20 +5,15 @@ const ListUserCompaniesResponse_dataMapping = require('./ListUserCompaniesRespon
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...ListUserCompaniesResponse_data(keyPrefix + 'data'),
+            ...ListUserCompaniesResponse_data(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(ListUserCompaniesResponse_dataMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(ListUserCompaniesResponse_dataMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

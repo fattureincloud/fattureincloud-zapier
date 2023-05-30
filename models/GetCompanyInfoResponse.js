@@ -5,20 +5,15 @@ const CompanyInfoMapping = require('./CompanyInfo').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...CompanyInfo(keyPrefix + 'data'),
+            ...CompanyInfo(`${keyPrefix}data`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(CompanyInfoMapping(bundle, keyPrefix + 'data')),
+            'data': utils.removeIfEmpty(CompanyInfoMapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

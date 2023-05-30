@@ -4,45 +4,40 @@ const PaymentAccountType = require('./PaymentAccountType').fields;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'id',
-                label: labelPrefix + 'Unique identifier',
+                key: `${keyPrefix}id`,
+                label: `Unique identifier - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'name',
-                label: labelPrefix + 'Payment account name.',
+                key: `${keyPrefix}name`,
+                label: `Payment account name. - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'type',
-                ...PaymentAccountType,
+                key: `${keyPrefix}type`,
+                ...PaymentAccountType(`${keyPrefix}type`),
             },
             {
-                key: keyPrefix + 'iban',
-                label: labelPrefix + 'Payment account iban.',
+                key: `${keyPrefix}iban`,
+                label: `Payment account iban. - [${keyPrefix}iban]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'sia',
-                label: labelPrefix + 'Payment account sia.',
+                key: `${keyPrefix}sia`,
+                label: `Payment account sia. - [${keyPrefix}sia]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'cuc',
-                label: labelPrefix + 'Payment account cuc.',
+                key: `${keyPrefix}cuc`,
+                label: `Payment account cuc. - [${keyPrefix}cuc]`,
                 type: 'string',
             },
             {
-                key: keyPrefix + 'virtual',
-                label: labelPrefix + 'Determine if the payment method is virtual.',
+                key: `${keyPrefix}virtual`,
+                label: `Determine if the payment method is virtual. - [${keyPrefix}virtual]`,
                 type: 'boolean',
             },
         ]
@@ -50,13 +45,13 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'id': bundle.inputData?.[keyPrefix + 'id'],
-            'name': bundle.inputData?.[keyPrefix + 'name'],
-            'type': bundle.inputData?.[keyPrefix + 'type'],
-            'iban': bundle.inputData?.[keyPrefix + 'iban'],
-            'sia': bundle.inputData?.[keyPrefix + 'sia'],
-            'cuc': bundle.inputData?.[keyPrefix + 'cuc'],
-            'virtual': bundle.inputData?.[keyPrefix + 'virtual'],
+            'id': bundle.inputData?.[`${keyPrefix}id`],
+            'name': bundle.inputData?.[`${keyPrefix}name`],
+            'type': bundle.inputData?.[`${keyPrefix}type`],
+            'iban': bundle.inputData?.[`${keyPrefix}iban`],
+            'sia': bundle.inputData?.[`${keyPrefix}sia`],
+            'cuc': bundle.inputData?.[`${keyPrefix}cuc`],
+            'virtual': bundle.inputData?.[`${keyPrefix}virtual`],
         }
     },
 }

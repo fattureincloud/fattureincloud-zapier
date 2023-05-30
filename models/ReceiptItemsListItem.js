@@ -5,44 +5,39 @@ const VatTypeMapping = require('./VatType').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
             {
-                key: keyPrefix + 'id',
-                label: labelPrefix + 'Item unique identifier.',
+                key: `${keyPrefix}id`,
+                label: `Item unique identifier. - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
-                key: keyPrefix + 'amount_net',
-                label: labelPrefix + 'Item total net amount.',
+                key: `${keyPrefix}amount_net`,
+                label: `Item total net amount. - [${keyPrefix}amount_net]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'amount_gross',
-                label: labelPrefix + 'Item total gross amount.',
+                key: `${keyPrefix}amount_gross`,
+                label: `Item total gross amount. - [${keyPrefix}amount_gross]`,
                 type: 'number',
             },
             {
-                key: keyPrefix + 'category',
-                label: labelPrefix + 'Item category.',
+                key: `${keyPrefix}category`,
+                label: `Item category. - [${keyPrefix}category]`,
                 type: 'string',
             },
-            ...VatType(keyPrefix + 'vat'),
+            ...VatType(`${keyPrefix}vat`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'id': bundle.inputData?.[keyPrefix + 'id'],
-            'amount_net': bundle.inputData?.[keyPrefix + 'amount_net'],
-            'amount_gross': bundle.inputData?.[keyPrefix + 'amount_gross'],
-            'category': bundle.inputData?.[keyPrefix + 'category'],
-            'vat': utils.removeIfEmpty(VatTypeMapping(bundle, keyPrefix + 'vat')),
+            'id': bundle.inputData?.[`${keyPrefix}id`],
+            'amount_net': bundle.inputData?.[`${keyPrefix}amount_net`],
+            'amount_gross': bundle.inputData?.[`${keyPrefix}amount_gross`],
+            'category': bundle.inputData?.[`${keyPrefix}category`],
+            'vat': utils.removeIfEmpty(VatTypeMapping(bundle, `${keyPrefix}vat`)),
         }
     },
 }

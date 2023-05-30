@@ -5,20 +5,15 @@ const VatTypeMapping = require('./VatType').mapping;
 
 module.exports = {
     fields: (prefix = '') => {
-        let keyPrefix = ''
-        let labelPrefix = ''
-        if(prefix) {
-            keyPrefix = prefix + '.'
-        }
-        labelPrefix = keyPrefix.replaceAll('.', ' ')
+        let keyPrefix = prefix && `${prefix}.`
         return [
-            ...VatType(keyPrefix + 'vat'),
+            ...VatType(`${keyPrefix}vat`),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'vat': utils.removeIfEmpty(VatTypeMapping(bundle, keyPrefix + 'vat')),
+            'vat': utils.removeIfEmpty(VatTypeMapping(bundle, `${keyPrefix}vat`)),
         }
     },
 }
