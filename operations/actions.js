@@ -115,7 +115,7 @@ const actions = {
     [TaxesApi.listF24.key]: TaxesApi.listF24,
     [TaxesApi.modifyF24.key]: TaxesApi.modifyF24,
     [TaxesApi.uploadF24Attachment.key]: TaxesApi.uploadF24Attachment,
-    [UserApi.getUserInfo.key]: UserApi.getUserInfo, // unused
+    [UserApi.getUserInfo.key]: UserApi.getUserInfo,
     [UserApi.listUserCompanies.key]: UserApi.listUserCompanies, // unused
     [WebhooksApi.createWebhooksSubscription.key]: WebhooksApi.createWebhooksSubscription,
     [WebhooksApi.deleteWebhooksSubscription.key]: WebhooksApi.deleteWebhooksSubscription,
@@ -124,7 +124,7 @@ const actions = {
     [WebhooksApi.modifyWebhooksSubscription.key]: WebhooksApi.modifyWebhooksSubscription,
 }
 
-const isSearchAction = key => key.startsWith('get') || key.startsWith('list')
+const isSearchAction = key => key.startsWith('list')
 const hasASearchField = action => action.operation.inputFields.length > 0
 
 module.exports = {
