@@ -11,7 +11,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}numerations`,
-                label: ` - [${keyPrefix}numerations]`,
+                label: `[${keyPrefix}numerations]`,
                 dict: true,
             },
             {

@@ -25,12 +25,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}numerations`,
-                label: ` - [${keyPrefix}numerations]`,
+                label: `[${keyPrefix}numerations]`,
                 dict: true,
             },
             {
                 key: `${keyPrefix}dn_numerations`,
-                label: ` - [${keyPrefix}dn_numerations]`,
+                label: `[${keyPrefix}dn_numerations]`,
                 dict: true,
             },
             ...IssuedDocumentPreCreateInfo_default_values(`${keyPrefix}default_values`),

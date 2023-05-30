@@ -87,7 +87,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}vat_list`,
-                label: ` - [${keyPrefix}vat_list]`,
+                label: `[${keyPrefix}vat_list]`,
                 dict: true,
             },
         ]
