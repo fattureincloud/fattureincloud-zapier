@@ -1,3 +1,4 @@
+const baseWebhook = require('../triggers/baseWebhook');
 const listUserCompaniesTrigger = require('../triggers/listUserCompanies');
 
 const dropdownTriggers = {
@@ -5,7 +6,7 @@ const dropdownTriggers = {
 }
 
 const webhooksTriggers = {
-
+    [baseWebhook.key]: baseWebhook
 }
 
 module.exports = {

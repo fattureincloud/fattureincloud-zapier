@@ -60,7 +60,7 @@ module.exports = {
       method: 'POST',
       url: 'https://api-v2.fattureincloud.it/oauth/token',
     },
-    scope: 'situation:r entity.clients:a issued_documents.invoices:a',
+    scope: 'situation:r entity.clients:a entity.suppliers:a products:a issued_documents.invoices:a',
     autoRefresh: true,
   },
 };
