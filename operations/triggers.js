@@ -1,12 +1,14 @@
-const baseWebhook = require('../triggers/baseWebhook');
+const genericWebhook = require('../triggers/genericWebhook');
 const listUserCompaniesTrigger = require('../triggers/listUserCompanies');
+const listWebhooksResourceOperations = require('../triggers/listWebhooksResourceOperations');
 
 const dropdownTriggers = {
-    [listUserCompaniesTrigger.key]: listUserCompaniesTrigger
+    [listUserCompaniesTrigger.key]: listUserCompaniesTrigger,
+    [listWebhooksResourceOperations.key]: listWebhooksResourceOperations,
 }
 
 const webhooksTriggers = {
-    [baseWebhook.key]: baseWebhook
+    [genericWebhook.key]: genericWebhook
 }
 
 module.exports = {
