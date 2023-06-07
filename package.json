@@ -1,7 +1,7 @@
 {
   "name": "faattureincloud",
-  "version": "1.0.1",
-  "description": "faattureincloud integration",
+  "version": "1.0.0",
+  "description": "Fatture in Cloud integration",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive -t 10000"
