@@ -12,17 +12,17 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Company unique identifier. - [${keyPrefix}id]`,
+                label: `Company id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Company name. - [${keyPrefix}name]`,
+                label: `Company name - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}email`,
-                label: `Company email. - [${keyPrefix}email]`,
+                label: `Company email - [${keyPrefix}email]`,
                 type: 'string',
             },
             {
@@ -33,12 +33,12 @@ module.exports = {
             ...CompanyInfo_plan_info(`${keyPrefix}plan_info`),
             {
                 key: `${keyPrefix}accountant_id`,
-                label: `Accountant unique identifier. - [${keyPrefix}accountant_id]`,
+                label: `Company accountant id - [${keyPrefix}accountant_id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}is_accountant`,
-                label: `Determine if the logged account is an accountant. - [${keyPrefix}is_accountant]`,
+                label: `Is the logged account an accountant. - [${keyPrefix}is_accountant]`,
                 type: 'boolean',
             },
         ]

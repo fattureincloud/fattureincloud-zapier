@@ -17,52 +17,52 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}od_number`,
-                label: `Original document number. - [${keyPrefix}od_number]`,
+                label: `E-invoice original document number - [${keyPrefix}od_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}od_date`,
-                label: `Original document date. - [${keyPrefix}od_date]`,
+                label: `E-invoice original document date - [${keyPrefix}od_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}cig`,
-                label: `CIG. - [${keyPrefix}cig]`,
+                label: `E-invoice CIG - [${keyPrefix}cig]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}cup`,
-                label: `CUP. - [${keyPrefix}cup]`,
+                label: `E-invoice CUP - [${keyPrefix}cup]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}payment_method`,
-                label: `Payment method (see https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.1/Rappresentazione-tabellare-fattura-ordinaria.pdf for the accepted values of ModalitaPagamento). - [${keyPrefix}payment_method]`,
+                label: `E-invoice payment method [required for e-invoices](see https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.2/Rappresentazione_Tabellare_FattOrdinaria_V1.2.2.pdf for the accepted values of ModalitaPagamento) - [${keyPrefix}payment_method]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_name`,
-                label: `Bank name. - [${keyPrefix}bank_name]`,
+                label: `E-invoice bank name - [${keyPrefix}bank_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_iban`,
-                label: `IBAN. - [${keyPrefix}bank_iban]`,
+                label: `E-invoice bank IBAN - [${keyPrefix}bank_iban]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_beneficiary`,
-                label: `Bank beneficiary. - [${keyPrefix}bank_beneficiary]`,
+                label: `E-invoice bank beneficiary - [${keyPrefix}bank_beneficiary]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}invoice_number`,
-                label: `Invoice number. - [${keyPrefix}invoice_number]`,
+                label: `E-invoice invoice number - [${keyPrefix}invoice_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}invoice_date`,
-                label: `Invoice date. - [${keyPrefix}invoice_date]`,
+                label: `E-invoice invoice date - [${keyPrefix}invoice_date]`,
                 type: 'datetime',
             },
         ]

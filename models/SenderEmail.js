@@ -7,12 +7,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Id - [${keyPrefix}id]`,
+                label: `Sender email id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}email`,
-                label: `Email address - [${keyPrefix}email]`,
+                label: `Sender email address - [${keyPrefix}email]`,
                 type: 'string',
             },
         ]

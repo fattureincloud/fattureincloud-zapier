@@ -1,5 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
+const PaymentTermsType = require('./PaymentTermsType').fields;
 
 module.exports = {
     fields: (prefix = '') => {
@@ -7,13 +8,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}days`,
-                label: `Number of days. - [${keyPrefix}days]`,
+                label: `Received document payment number of days by which the payment must be made - [${keyPrefix}days]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}type`,
-                label: `[${keyPrefix}type]`,
-                type: 'string',
+                ...PaymentTermsType(`${keyPrefix}type`),
             },
         ]
     },

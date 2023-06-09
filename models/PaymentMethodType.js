@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
         fields: (key) => (
             {
-                label: `Method type. - [${key}]`,
+                label: `Payment method type - [${key}]`,
                 choices: [
                     'standard',
                     'riba',

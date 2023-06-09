@@ -11,12 +11,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Unique identifier. - [${keyPrefix}id]`,
+                label: `Received document payment id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}amount`,
-                label: `Amount of items. - [${keyPrefix}amount]`,
+                label: `Received document payment total amount - [${keyPrefix}amount]`,
                 type: 'number',
             },
             {
@@ -26,13 +26,13 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}paid_date`,
-                label: `Paid date - [${keyPrefix}paid_date]`,
+                label: `Received document payment paid date - [${keyPrefix}paid_date]`,
                 type: 'datetime',
             },
             ...ReceivedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`),
             {
                 key: `${keyPrefix}status`,
-                label: `Payment status. - [${keyPrefix}status]`,
+                label: `Received document payment status - [${keyPrefix}status]`,
                 type: 'string',
             },
             ...PaymentAccount(`${keyPrefix}payment_account`),

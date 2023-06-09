@@ -7,17 +7,17 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Document unique identifier. - [${keyPrefix}id]`,
+                label: `Cashbook related document id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}type`,
-                label: `Document type. - [${keyPrefix}type]`,
+                label: `Cashbook related document type - [${keyPrefix}type]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}path`,
-                label: `Document path. - [${keyPrefix}path]`,
+                label: `Cashbook related document path - [${keyPrefix}path]`,
                 type: 'string',
             },
         ]

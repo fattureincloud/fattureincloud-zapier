@@ -7,37 +7,37 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `User identifier. - [${keyPrefix}id]`,
+                label: `User id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Full name of the user. - [${keyPrefix}name]`,
+                label: `User full name - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}first_name`,
-                label: `First name of the user. - [${keyPrefix}first_name]`,
+                label: `User first name - [${keyPrefix}first_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}last_name`,
-                label: `Last name of the user. - [${keyPrefix}last_name]`,
+                label: `User last name - [${keyPrefix}last_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}email`,
-                label: `Email of the user. - [${keyPrefix}email]`,
+                label: `User email address - [${keyPrefix}email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}hash`,
-                label: `[${keyPrefix}hash]`,
+                label: `User hash - [${keyPrefix}hash]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}picture`,
-                label: `Picture of the user. - [${keyPrefix}picture]`,
+                label: `User picture - [${keyPrefix}picture]`,
                 type: 'string',
             },
         ]

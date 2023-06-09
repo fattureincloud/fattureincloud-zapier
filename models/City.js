@@ -7,17 +7,17 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}postal_code`,
-                label: `City postal code. - [${keyPrefix}postal_code]`,
+                label: `City postal code - [${keyPrefix}postal_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}city`,
-                label: `City name. - [${keyPrefix}city]`,
+                label: `City name - [${keyPrefix}city]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}province`,
-                label: `Province. - [${keyPrefix}province]`,
+                label: `City province - [${keyPrefix}province]`,
                 type: 'string',
             },
         ]

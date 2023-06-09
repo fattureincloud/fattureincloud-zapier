@@ -12,12 +12,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Unique identifier - [${keyPrefix}id]`,
+                label: `Payment method id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Name of the payment method - [${keyPrefix}name]`,
+                label: `Payment method name - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
@@ -26,7 +26,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}is_default`,
-                label: `Determines if this is the default payment method. - [${keyPrefix}is_default]`,
+                label: `Payment method is default - [${keyPrefix}is_default]`,
                 type: 'boolean',
             },
             ...PaymentAccount(`${keyPrefix}default_payment_account`),
@@ -37,17 +37,17 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}bank_iban`,
-                label: `Bank iban - [${keyPrefix}bank_iban]`,
+                label: `Payment method bank iban - [${keyPrefix}bank_iban]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_name`,
-                label: `Bank name - [${keyPrefix}bank_name]`,
+                label: `Payment method bank name - [${keyPrefix}bank_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_beneficiary`,
-                label: `Bank beneficiary - [${keyPrefix}bank_beneficiary]`,
+                label: `Payment method bank beneficiary - [${keyPrefix}bank_beneficiary]`,
                 type: 'string',
             },
             {

@@ -9,22 +9,22 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Item unique identifier. - [${keyPrefix}id]`,
+                label: `Receipt item id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Item total net amount. - [${keyPrefix}amount_net]`,
+                label: `Receipt item total net amount - [${keyPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_gross`,
-                label: `Item total gross amount. - [${keyPrefix}amount_gross]`,
+                label: `Receipt item total gross amount - [${keyPrefix}amount_gross]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}category`,
-                label: `Item category. - [${keyPrefix}category]`,
+                label: `Receipt item category - [${keyPrefix}category]`,
                 type: 'string',
             },
             ...VatType(`${keyPrefix}vat`),

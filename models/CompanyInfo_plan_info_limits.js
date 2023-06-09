@@ -7,22 +7,22 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}clients`,
-                label: `[${keyPrefix}clients]`,
+                label: `Company plan clients limits - [${keyPrefix}clients]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}suppliers`,
-                label: `[${keyPrefix}suppliers]`,
+                label: `Company plan suppliers limits - [${keyPrefix}suppliers]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}products`,
-                label: `[${keyPrefix}products]`,
+                label: `Company plan products limits - [${keyPrefix}products]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}documents`,
-                label: `[${keyPrefix}documents]`,
+                label: `Company plan documents limits - [${keyPrefix}documents]`,
                 type: 'integer',
             },
         ]

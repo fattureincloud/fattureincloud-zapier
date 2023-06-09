@@ -38,7 +38,7 @@ module.exports = {
             ...IssuedDocumentPreCreateInfo_items_default_values(`${keyPrefix}items_default_values`),
             {
                 key: `${keyPrefix}countries_list`,
-                label: `Countries list. - [${keyPrefix}countries_list]`,
+                label: `Countries list - [${keyPrefix}countries_list]`,
                 list: true,
                 type: 'string',
             },

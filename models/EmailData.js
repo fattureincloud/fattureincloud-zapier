@@ -11,7 +11,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}recipient_email`,
-                label: `Recipient&#39;s email - [${keyPrefix}recipient_email]`,
+                label: `Email recipient - [${keyPrefix}recipient_email]`,
                 type: 'string',
             },
             ...EmailData_default_sender_email(`${keyPrefix}default_sender_email`),
@@ -22,7 +22,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}cc_email`,
-                label: `By default is the logged company email. This is the email address to which a copy will be sent. - [${keyPrefix}cc_email]`,
+                label: `Email cc [by default is the logged company email] - [${keyPrefix}cc_email]`,
                 type: 'string',
             },
             {
@@ -37,27 +37,27 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}document_exists`,
-                label: `If the document is not a delivery note, this flag will be set to true - [${keyPrefix}document_exists]`,
+                label: `Document exists if it is not a delivery note - [${keyPrefix}document_exists]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}delivery_note_exists`,
-                label: `If the document is a delivery note, this flag will be set to true - [${keyPrefix}delivery_note_exists]`,
+                label: `Document is a delivery note - [${keyPrefix}delivery_note_exists]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}attachment_exists`,
-                label: `If the document has one or more attachments, this flag will be set to true - [${keyPrefix}attachment_exists]`,
+                label: `Document has attachment - [${keyPrefix}attachment_exists]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}accompanying_invoice_exists`,
-                label: `If an accompanying invoice exists, this flag will be set to true - [${keyPrefix}accompanying_invoice_exists]`,
+                label: `Document has accompanying invoice - [${keyPrefix}accompanying_invoice_exists]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}default_attach_pdf`,
-                label: `If a pdf is attached, this flag will be set to true - [${keyPrefix}default_attach_pdf]`,
+                label: `Attach document pdf - [${keyPrefix}default_attach_pdf]`,
                 type: 'boolean',
             },
         ]

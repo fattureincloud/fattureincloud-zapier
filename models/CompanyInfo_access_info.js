@@ -15,7 +15,7 @@ module.exports = {
             ...Permissions(`${keyPrefix}permissions`),
             {
                 key: `${keyPrefix}through_accountant`,
-                label: `[${keyPrefix}through_accountant]`,
+                label: `Company activated through accountant - [${keyPrefix}through_accountant]`,
                 type: 'boolean',
             },
         ]

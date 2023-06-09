@@ -7,22 +7,22 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}document`,
-                label: `If set to true, the email will have a button to view the document - [${keyPrefix}document]`,
+                label: `Include a button to view the document - [${keyPrefix}document]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}delivery_note`,
-                label: `If set to true, the email will have a button to view the delivery note - [${keyPrefix}delivery_note]`,
+                label: `Include a button to view the delivery note - [${keyPrefix}delivery_note]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}attachment`,
-                label: `If set to true, the email will have a button to view the attachment - [${keyPrefix}attachment]`,
+                label: `Include a button to view the attachment - [${keyPrefix}attachment]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}accompanying_invoice`,
-                label: `If set to true, the email will have a button to view the accompanying invoice - [${keyPrefix}accompanying_invoice]`,
+                label: `Include a button to view the accompanying invoice - [${keyPrefix}accompanying_invoice]`,
                 type: 'boolean',
             },
         ]

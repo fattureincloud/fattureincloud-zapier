@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
         fields: (key) => (
             {
-                label: `Client type. - [${key}]`,
+                label: `Client type - [${key}]`,
                 choices: [
                     'company',
                     'person',

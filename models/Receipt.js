@@ -12,42 +12,42 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Receipt unique identifier. - [${keyPrefix}id]`,
+                label: `Receipt id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}date`,
-                label: `Receipt date. - [${keyPrefix}date]`,
+                label: `Receipt date - [${keyPrefix}date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}number`,
-                label: `Receipt number. - [${keyPrefix}number]`,
+                label: `Receipt number - [${keyPrefix}number]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}numeration`,
-                label: `If it&#39;s null or empty string use the default numeration. - [${keyPrefix}numeration]`,
+                label: `Receipt numeration - [${keyPrefix}numeration]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Total net amount. - [${keyPrefix}amount_net]`,
+                label: `Receipt total net amount - [${keyPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_vat`,
-                label: `Total vat amount. - [${keyPrefix}amount_vat]`,
+                label: `Receipt total vat amount - [${keyPrefix}amount_vat]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_gross`,
-                label: `Total gross amount. - [${keyPrefix}amount_gross]`,
+                label: `Receipt total gross amount - [${keyPrefix}amount_gross]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}use_gross_prices`,
-                label: `[${keyPrefix}use_gross_prices]`,
+                label: `Receipt uses gross prices - [${keyPrefix}use_gross_prices]`,
                 type: 'boolean',
             },
             {
@@ -56,22 +56,22 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Receipt description. - [${keyPrefix}description]`,
+                label: `Receipt description - [${keyPrefix}description]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}rc_center`,
-                label: `Revenue center. - [${keyPrefix}rc_center]`,
+                label: `Receipt revenue center - [${keyPrefix}rc_center]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}created_at`,
-                label: `[${keyPrefix}created_at]`,
+                label: `Receipt creation date - [${keyPrefix}created_at]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}updated_at`,
-                label: `[${keyPrefix}updated_at]`,
+                label: `Receipt last update date - [${keyPrefix}updated_at]`,
                 type: 'string',
             },
             ...PaymentAccount(`${keyPrefix}payment_account`),

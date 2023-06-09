@@ -9,7 +9,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Unique identifier - [${keyPrefix}id]`,
+                label: `Webhooks subscription id - [${keyPrefix}id]`,
                 type: 'string',
             },
             {

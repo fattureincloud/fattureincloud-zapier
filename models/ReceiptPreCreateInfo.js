@@ -16,13 +16,13 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}numerations_list`,
-                label: `List of series used in the past. - [${keyPrefix}numerations_list]`,
+                label: `Receipt used numerations list - [${keyPrefix}numerations_list]`,
                 list: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}rc_centers_list`,
-                label: `List of revenue centers used in the past. - [${keyPrefix}rc_centers_list]`,
+                label: `Receipt used revenue centers list - [${keyPrefix}rc_centers_list]`,
                 list: true,
                 type: 'string',
             },
@@ -33,7 +33,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}categories_list`,
-                label: `List of categories used in the past. - [${keyPrefix}categories_list]`,
+                label: `Receipt categories list - [${keyPrefix}categories_list]`,
                 list: true,
                 type: 'string',
             },

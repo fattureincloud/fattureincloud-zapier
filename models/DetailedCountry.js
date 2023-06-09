@@ -7,27 +7,27 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}name`,
-                label: `Country name. - [${keyPrefix}name]`,
+                label: `Country name - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}settings_name`,
-                label: `[${keyPrefix}settings_name]`,
+                label: `Country settings name - [${keyPrefix}settings_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}iso`,
-                label: `Country iso. - [${keyPrefix}iso]`,
+                label: `Country iso code - [${keyPrefix}iso]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}fiscal_iso`,
-                label: `[${keyPrefix}fiscal_iso]`,
+                label: `Country fiscal iso code - [${keyPrefix}fiscal_iso]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}uic`,
-                label: `Country uic. - [${keyPrefix}uic]`,
+                label: `Country uic - [${keyPrefix}uic]`,
                 type: 'string',
             },
         ]

@@ -10,12 +10,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Unique F24 identifier. - [${keyPrefix}id]`,
+                label: `F24 id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}due_date`,
-                label: `Due date. - [${keyPrefix}due_date]`,
+                label: `F24 due date - [${keyPrefix}due_date]`,
                 type: 'datetime',
             },
             {
@@ -25,22 +25,22 @@ module.exports = {
             ...PaymentAccount(`${keyPrefix}payment_account`),
             {
                 key: `${keyPrefix}amount`,
-                label: `Taxes amount. - [${keyPrefix}amount]`,
+                label: `F24 amount - [${keyPrefix}amount]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}attachment_url`,
-                label: `[Temporary] [Read Only] Absolute url of the attached file. Authomatically set if a valid attachment token is passed via POST /taxes or PUT /taxes/{documentId}. - [${keyPrefix}attachment_url]`,
+                label: `[Temporary] [Read Only] F24 url of the attached file - [${keyPrefix}attachment_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}attachment_token`,
-                label: `[Write Only] Attachment token returned by POST /taxes/attachment. Used to attach the file already uploaded. - [${keyPrefix}attachment_token]`,
+                label: `[Write Only]  F24 attachment token returned by POST /taxes/attachment - [${keyPrefix}attachment_token]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Name or brief description. - [${keyPrefix}description]`,
+                label: `F24 description - [${keyPrefix}description]`,
                 type: 'string',
             },
         ]

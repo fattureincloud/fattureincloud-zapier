@@ -7,82 +7,82 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Total net amount. - [${keyPrefix}amount_net]`,
+                label: `Issued document total net amount - [${keyPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_rivalsa`,
-                label: `Rivalsa amount. - [${keyPrefix}amount_rivalsa]`,
+                label: `Issued document rivalsa amount - [${keyPrefix}amount_rivalsa]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_net_with_rivalsa`,
-                label: `Net amount with rivalsa. - [${keyPrefix}amount_net_with_rivalsa]`,
+                label: `Issued document net amount with rivalsa - [${keyPrefix}amount_net_with_rivalsa]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_cassa`,
-                label: `Cassa amount. - [${keyPrefix}amount_cassa]`,
+                label: `Issued document cassa amount - [${keyPrefix}amount_cassa]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}taxable_amount`,
-                label: `Taxable amount. - [${keyPrefix}taxable_amount]`,
+                label: `Issued document taxable amount - [${keyPrefix}taxable_amount]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}not_taxable_amount`,
-                label: `Not taxable amount. - [${keyPrefix}not_taxable_amount]`,
+                label: `Issued document not taxable amount - [${keyPrefix}not_taxable_amount]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_vat`,
-                label: `Total vat amount. - [${keyPrefix}amount_vat]`,
+                label: `Issued document total vat amount - [${keyPrefix}amount_vat]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_gross`,
-                label: `Total grosas amount. - [${keyPrefix}amount_gross]`,
+                label: `Issued document total gross amount - [${keyPrefix}amount_gross]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}taxable_amount_withholding_tax`,
-                label: `Taxable withholding tax amount. - [${keyPrefix}taxable_amount_withholding_tax]`,
+                label: `Issued document Taxable withholding tax amount - [${keyPrefix}taxable_amount_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_withholding_tax`,
-                label: `Withholding tax amount. - [${keyPrefix}amount_withholding_tax]`,
+                label: `Issued document withholding tax amount - [${keyPrefix}amount_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}taxable_amount_other_withholding_tax`,
-                label: `Other withholding tax taxable amount. - [${keyPrefix}taxable_amount_other_withholding_tax]`,
+                label: `Issued document other withholding tax taxable amount - [${keyPrefix}taxable_amount_other_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_other_withholding_tax`,
-                label: `Other withholding tax amount. - [${keyPrefix}amount_other_withholding_tax]`,
+                label: `Issued document other withholding tax amount - [${keyPrefix}amount_other_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}stamp_duty`,
-                label: `Stamp duty value [0 if not present]. - [${keyPrefix}stamp_duty]`,
+                label: `Issued document stamp duty value [0 if not present]. - [${keyPrefix}stamp_duty]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_due`,
-                label: `Total amount due. - [${keyPrefix}amount_due]`,
+                label: `Issued document total amount due - [${keyPrefix}amount_due]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}is_enasarco_maximal_exceeded`,
-                label: `[${keyPrefix}is_enasarco_maximal_exceeded]`,
+                label: `Is enasarco maximal excedeed - [${keyPrefix}is_enasarco_maximal_exceeded]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}payments_sum`,
-                label: `Payments sum. - [${keyPrefix}payments_sum]`,
+                label: `Issued document payments sum - [${keyPrefix}payments_sum]`,
                 type: 'number',
             },
             {

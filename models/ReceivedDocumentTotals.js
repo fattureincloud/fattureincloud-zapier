@@ -7,37 +7,37 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Total net amount. - [${keyPrefix}amount_net]`,
+                label: `Received document total net amount - [${keyPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_vat`,
-                label: `Total vat amount. - [${keyPrefix}amount_vat]`,
+                label: `Received document total vat amount - [${keyPrefix}amount_vat]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_gross`,
-                label: `Total gross amount. - [${keyPrefix}amount_gross]`,
+                label: `Received document total gross amount - [${keyPrefix}amount_gross]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_withholding_tax`,
-                label: `Total withholding tax amount. - [${keyPrefix}amount_withholding_tax]`,
+                label: `Received document withholding tax amount - [${keyPrefix}amount_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_other_withholding_tax`,
-                label: `Total other withholding tax amount. - [${keyPrefix}amount_other_withholding_tax]`,
+                label: `Received document other withholding tax amount - [${keyPrefix}amount_other_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_due`,
-                label: `Total amount due. - [${keyPrefix}amount_due]`,
+                label: `Received document total amount due - [${keyPrefix}amount_due]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}payments_sum`,
-                label: `Payments sum. - [${keyPrefix}payments_sum]`,
+                label: `Received document payments sum - [${keyPrefix}payments_sum]`,
                 type: 'number',
             },
         ]

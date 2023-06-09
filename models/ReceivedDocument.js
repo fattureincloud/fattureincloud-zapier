@@ -16,7 +16,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Unique identifier of the document. - [${keyPrefix}id]`,
+                label: `Received document id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
@@ -26,88 +26,88 @@ module.exports = {
             ...Entity(`${keyPrefix}entity`),
             {
                 key: `${keyPrefix}date`,
-                label: `Date of the document [If not specified, today date is used]. - [${keyPrefix}date]`,
+                label: `Received document date [defaults to today's date] - [${keyPrefix}date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}category`,
-                label: `Document category. - [${keyPrefix}category]`,
+                label: `Received document category - [${keyPrefix}category]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Document description. - [${keyPrefix}description]`,
+                label: `Received document description - [${keyPrefix}description]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Total net amount. - [${keyPrefix}amount_net]`,
+                label: `Received document total net amount - [${keyPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_vat`,
-                label: `Total vat amount. - [${keyPrefix}amount_vat]`,
+                label: `Received document total vat amount - [${keyPrefix}amount_vat]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_withholding_tax`,
-                label: `Withholding tax amount. - [${keyPrefix}amount_withholding_tax]`,
+                label: `Received document withholding tax amount - [${keyPrefix}amount_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_other_withholding_tax`,
-                label: `Other withholding tax amount. - [${keyPrefix}amount_other_withholding_tax]`,
+                label: `Received document other withholding tax amount - [${keyPrefix}amount_other_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_gross`,
-                label: `[Read Only] Total gross amount. - [${keyPrefix}amount_gross]`,
+                label: `[Read Only] Received document total gross amount - [${keyPrefix}amount_gross]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amortization`,
-                label: `Amortization value - [${keyPrefix}amortization]`,
+                label: `Received document amortization value - [${keyPrefix}amortization]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}rc_center`,
-                label: `Revenue center. - [${keyPrefix}rc_center]`,
+                label: `Received document revenue center - [${keyPrefix}rc_center]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}invoice_number`,
-                label: `Invoice number - [${keyPrefix}invoice_number]`,
+                label: `Received document invoice number - [${keyPrefix}invoice_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}is_marked`,
-                label: `[${keyPrefix}is_marked]`,
+                label: `Received document is marked - [${keyPrefix}is_marked]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}is_detailed`,
-                label: `[${keyPrefix}is_detailed]`,
+                label: `Received document has items - [${keyPrefix}is_detailed]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}e_invoice`,
-                label: `[Read Only] Indicates if this is an e-invoice. - [${keyPrefix}e_invoice]`,
+                label: `[Read Only] Received document is an e-invoice - [${keyPrefix}e_invoice]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}next_due_date`,
-                label: `[Read Only] Next due date. - [${keyPrefix}next_due_date]`,
+                label: `[Read Only] Received document date of the next not paid payment - [${keyPrefix}next_due_date]`,
                 type: 'datetime',
             },
             ...Currency(`${keyPrefix}currency`),
             {
                 key: `${keyPrefix}tax_deductibility`,
-                label: `Tax deducibility percentage. - [${keyPrefix}tax_deductibility]`,
+                label: `Received document tax deducibility percentage - [${keyPrefix}tax_deductibility]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}vat_deductibility`,
-                label: `Vat deducibility percentage. - [${keyPrefix}vat_deductibility]`,
+                label: `Received document vat deducibility percentage - [${keyPrefix}vat_deductibility]`,
                 type: 'number',
             },
             {
@@ -122,32 +122,32 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}attachment_url`,
-                label: `[Temporary] [Read Only]  Public url of the attached file. Authomatically set if a valid attachment token is passed via POST /received_documents or PUT /received_documents/{documentId}. - [${keyPrefix}attachment_url]`,
+                label: `[Temporary] [Read Only] Received document url of the attached file - [${keyPrefix}attachment_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}attachment_preview_url`,
-                label: `[Temporary] [Read Only]  Attachment preview url. - [${keyPrefix}attachment_preview_url]`,
+                label: `[Temporary] [Read Only] Received document url of the attachment preview - [${keyPrefix}attachment_preview_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}auto_calculate`,
-                label: `If set to false total items amount and total payments amount can be different. - [${keyPrefix}auto_calculate]`,
+                label: `Received document total items amount and total payments amount can differ if this field is set to false - [${keyPrefix}auto_calculate]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}attachment_token`,
-                label: `Uploaded attachement token. - [${keyPrefix}attachment_token]`,
+                label: `[Write Only] Received document attachment token returned by POST /received_documents/attachment - [${keyPrefix}attachment_token]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}created_at`,
-                label: `[${keyPrefix}created_at]`,
+                label: `Received document creation date - [${keyPrefix}created_at]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}updated_at`,
-                label: `[${keyPrefix}updated_at]`,
+                label: `Received document last update date - [${keyPrefix}updated_at]`,
                 type: 'string',
             },
         ]

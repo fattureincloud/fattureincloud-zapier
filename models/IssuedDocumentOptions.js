@@ -18,7 +18,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}transform`,
-                label: `Tranform a document. [only for transform] - [${keyPrefix}transform]`,
+                label: `Tranform a document [only for transform] - [${keyPrefix}transform]`,
                 type: 'boolean',
             },
             {

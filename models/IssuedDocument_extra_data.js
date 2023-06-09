@@ -17,58 +17,53 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}ts_communication`,
-                label: `[${keyPrefix}ts_communication]`,
+                label: `Send issued document to \"Sistema Tessera Sanitaria\" - [${keyPrefix}ts_communication]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_flag_tipo_spesa`,
-                label: `1 &#x3D;&gt; TK (Ticket di pronto soccorso); 2 &#x3D;&gt; SR (Visita in intramoenia) - [${keyPrefix}ts_flag_tipo_spesa]`,
+                label: `Issued document ts \"tipo spesa\" [TK, FC, FV, SV,SP, AD, AS, ECG, SR] - [${keyPrefix}ts_flag_tipo_spesa]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}ts_pagamento_tracciato`,
-                label: `[${keyPrefix}ts_pagamento_tracciato]`,
+                label: `Issued document ts traced payment - [${keyPrefix}ts_pagamento_tracciato]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_tipo_spesa`,
-                label: `Can be [ &#39;TK&#39;, &#39;FC&#39;, &#39;FV&#39;, &#39;SV&#39;, &#39;SP&#39;, &#39;AD&#39;, &#39;AS&#39;, &#39;SR&#39;, &#39;CT&#39;, &#39;PI&#39;, &#39;IC&#39;, &#39;AA&#39; ]. Refer to the technical specifications to learn more. - [${keyPrefix}ts_tipo_spesa]`,
+                label: `Can be [ 'TK', 'FC', 'FV', 'SV', 'SP', 'AD', 'AS', 'SR', 'CT', 'PI', 'IC', 'AA' ]. Refer to the technical specifications to learn more. - [${keyPrefix}ts_tipo_spesa]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}ts_opposizione`,
-                label: `[${keyPrefix}ts_opposizione]`,
+                label: `Issued document ts \"opposizione\" - [${keyPrefix}ts_opposizione]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_status`,
-                label: `[${keyPrefix}ts_status]`,
+                label: `Issued document ts status - [${keyPrefix}ts_status]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}ts_file_id`,
-                label: `[${keyPrefix}ts_file_id]`,
+                label: `Issued document ts file id - [${keyPrefix}ts_file_id]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}ts_sent_date`,
-                label: `[${keyPrefix}ts_sent_date]`,
+                label: `Issued document ts sent date - [${keyPrefix}ts_sent_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}ts_full_amount`,
-                label: `[${keyPrefix}ts_full_amount]`,
+                label: `Issued document ts total amount - [${keyPrefix}ts_full_amount]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}imported_by`,
-                label: `[${keyPrefix}imported_by]`,
+                label: `Issued document imported by software - [${keyPrefix}imported_by]`,
                 type: 'string',
-            },
-            {
-                key: `${keyPrefix}ts_single_sending`,
-                label: `[${keyPrefix}ts_single_sending]`,
-                type: 'boolean',
             },
         ]
     },
@@ -87,7 +82,6 @@ module.exports = {
             'ts_sent_date': bundle.inputData?.[`${keyPrefix}ts_sent_date`],
             'ts_full_amount': bundle.inputData?.[`${keyPrefix}ts_full_amount`],
             'imported_by': bundle.inputData?.[`${keyPrefix}imported_by`],
-            'ts_single_sending': bundle.inputData?.[`${keyPrefix}ts_single_sending`],
         }
     },
 }

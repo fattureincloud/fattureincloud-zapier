@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
         fields: (key) => (
             {
-                label: `Issued document type. - [${key}]`,
+                label: `Issued document type - [${key}]`,
                 choices: [
                     'invoice',
                     'quote',

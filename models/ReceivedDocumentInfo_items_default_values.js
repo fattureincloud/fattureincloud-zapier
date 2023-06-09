@@ -7,7 +7,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}vat`,
-                label: `Default vat value. - [${keyPrefix}vat]`,
+                label: `Vat default value - [${keyPrefix}vat]`,
                 type: 'number',
             },
         ]

@@ -8,7 +8,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}days`,
-                label: `The number of days by which the payment must be made. - [${keyPrefix}days]`,
+                label: `Issued document payment number of days by which the payment must be made - [${keyPrefix}days]`,
                 type: 'integer',
             },
             {

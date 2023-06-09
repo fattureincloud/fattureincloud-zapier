@@ -7,12 +7,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}reason`,
-                label: `Rejection reason. - [${keyPrefix}reason]`,
+                label: `E-invoice rejection reason - [${keyPrefix}reason]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}ei_status`,
-                label: `E-invoice status. - [${keyPrefix}ei_status]`,
+                label: `E-invoice status - [${keyPrefix}ei_status]`,
                 type: 'string',
             },
             {
@@ -22,12 +22,12 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}code`,
-                label: `Error code. - [${keyPrefix}code]`,
+                label: `E-invoice rejection error code - [${keyPrefix}code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}date`,
-                label: `Rejection date. - [${keyPrefix}date]`,
+                label: `E-invoice rejection date - [${keyPrefix}date]`,
                 type: 'datetime',
             },
         ]

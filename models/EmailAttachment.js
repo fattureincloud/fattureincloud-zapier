@@ -7,12 +7,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}filename`,
-                label: `Email attachment filename. - [${keyPrefix}filename]`,
+                label: `Email attachment filename - [${keyPrefix}filename]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}url`,
-                label: `Email attachment url. - [${keyPrefix}url]`,
+                label: `Email attachment url - [${keyPrefix}url]`,
                 type: 'string',
             },
         ]

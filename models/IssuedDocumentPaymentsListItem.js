@@ -12,17 +12,17 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Unique identifier. - [${keyPrefix}id]`,
+                label: `Issued document payment item id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}due_date`,
-                label: `Due date. - [${keyPrefix}due_date]`,
+                label: `Issued document payment due date - [${keyPrefix}due_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}amount`,
-                label: `Payment amount. - [${keyPrefix}amount]`,
+                label: `Issued document payment amount - [${keyPrefix}amount]`,
                 type: 'number',
             },
             {
@@ -32,12 +32,12 @@ module.exports = {
             ...PaymentAccount(`${keyPrefix}payment_account`),
             {
                 key: `${keyPrefix}paid_date`,
-                label: `Payment date. [Only if status is paid] - [${keyPrefix}paid_date]`,
+                label: `Issued document payment date [Only if status is paid] - [${keyPrefix}paid_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}ei_raw`,
-                label: `Advanced raw attributes for e-invoices. - [${keyPrefix}ei_raw]`,
+                label: `Issued document payment advanced raw attributes for e-invoices - [${keyPrefix}ei_raw]`,
                 dict: true,
             },
             ...IssuedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`),

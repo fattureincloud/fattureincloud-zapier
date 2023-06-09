@@ -10,12 +10,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Company unique identifier. - [${keyPrefix}id]`,
+                label: `Company id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Company name. - [${keyPrefix}name]`,
+                label: `Company name - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
@@ -24,7 +24,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}access_token`,
-                label: `CompanyAuthentication token for this company. [Only if type&#x3D;company] - [${keyPrefix}access_token]`,
+                label: `Company authentication token for this company. [Only if type=company] - [${keyPrefix}access_token]`,
                 type: 'string',
             },
             {
@@ -34,12 +34,12 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}connection_id`,
-                label: `Company connection id. - [${keyPrefix}connection_id]`,
+                label: `Company connection id - [${keyPrefix}connection_id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}tax_code`,
-                label: `Tax code. - [${keyPrefix}tax_code]`,
+                label: `Company tax code - [${keyPrefix}tax_code]`,
                 type: 'string',
             },
         ]

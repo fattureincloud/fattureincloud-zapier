@@ -490,7 +490,7 @@ module.exports = {
                 },
                 {
                     key: 'context',
-                    label: 'context',
+                    label: 'Categories resource type.',
                     type: 'string',
                     required: true,
                     choices: [

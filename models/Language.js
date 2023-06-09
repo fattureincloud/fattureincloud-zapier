@@ -7,12 +7,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}code`,
-                label: `Language code. - [${keyPrefix}code]`,
+                label: `Language code - [${keyPrefix}code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Language extended name. - [${keyPrefix}name]`,
+                label: `Language extended name - [${keyPrefix}name]`,
                 type: 'string',
             },
         ]

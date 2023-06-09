@@ -19,7 +19,7 @@ module.exports = {
             ...ReceivedDocumentInfo_items_default_values(`${keyPrefix}items_default_values`),
             {
                 key: `${keyPrefix}countries_list`,
-                label: `[${keyPrefix}countries_list]`,
+                label: `Countries list - [${keyPrefix}countries_list]`,
                 list: true,
                 type: 'string',
             },
@@ -30,7 +30,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}categories_list`,
-                label: `[${keyPrefix}categories_list]`,
+                label: `Categories list - [${keyPrefix}categories_list]`,
                 list: true,
                 type: 'string',
             },

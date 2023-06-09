@@ -13,17 +13,17 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Cashbook unique identifier. - [${keyPrefix}id]`,
+                label: `Cashbook id - [${keyPrefix}id]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}date`,
-                label: `Cashbook date. - [${keyPrefix}date]`,
+                label: `Cashbook date - [${keyPrefix}date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Cashbook description. - [${keyPrefix}description]`,
+                label: `Cashbook description - [${keyPrefix}description]`,
                 type: 'string',
             },
             {
@@ -36,19 +36,19 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}entity_name`,
-                label: `Entity name. - [${keyPrefix}entity_name]`,
+                label: `Cashbook entity name - [${keyPrefix}entity_name]`,
                 type: 'string',
             },
             ...CashbookEntry_document(`${keyPrefix}document`),
             {
                 key: `${keyPrefix}amount_in`,
-                label: `[Only for cashbook entry in] Total amount in. - [${keyPrefix}amount_in]`,
+                label: `[Only for cashbook entry in] Cashbook total amount in - [${keyPrefix}amount_in]`,
                 type: 'number',
             },
             ...PaymentAccount(`${keyPrefix}payment_account_in`),
             {
                 key: `${keyPrefix}amount_out`,
-                label: `[Only for cashbook entry out] Total amount out. - [${keyPrefix}amount_out]`,
+                label: `[Only for cashbook entry out] Cashbook total amount out - [${keyPrefix}amount_out]`,
                 type: 'number',
             },
             ...PaymentAccount(`${keyPrefix}payment_account_out`),

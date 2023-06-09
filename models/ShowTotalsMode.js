@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
         fields: (key) => (
             {
-                label: `Totals mode. - [${key}]`,
+                label: `Show totals mode - [${key}]`,
                 choices: [
                     'none',
                     'nets',

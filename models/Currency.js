@@ -7,22 +7,22 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Currency code. - [${keyPrefix}id]`,
+                label: `Currency code - [${keyPrefix}id]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}symbol`,
-                label: `Currency symbol. - [${keyPrefix}symbol]`,
+                label: `Currency symbol - [${keyPrefix}symbol]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}exchange_rate`,
-                label: `Currency exchange rate (EUR to this). - [${keyPrefix}exchange_rate]`,
+                label: `Currency exchange rate (EUR to this) - [${keyPrefix}exchange_rate]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}html_symbol`,
-                label: `Currency html code. - [${keyPrefix}html_symbol]`,
+                label: `Currency html code - [${keyPrefix}html_symbol]`,
                 type: 'string',
             },
         ]

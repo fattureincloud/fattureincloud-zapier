@@ -7,12 +7,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}amount_net`,
-                label: `[${keyPrefix}amount_net]`,
+                label: `Vat item net amount - [${keyPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_vat`,
-                label: `[${keyPrefix}amount_vat]`,
+                label: `Vat item vat amount - [${keyPrefix}amount_vat]`,
                 type: 'number',
             },
         ]

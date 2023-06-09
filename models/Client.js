@@ -13,12 +13,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Unique identifier - [${keyPrefix}id]`,
+                label: `Client id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}code`,
-                label: `Client code. - [${keyPrefix}code]`,
+                label: `Client code - [${keyPrefix}code]`,
                 type: 'string',
             },
             {
@@ -32,17 +32,17 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}first_name`,
-                label: `Client first name. - [${keyPrefix}first_name]`,
+                label: `Client first name - [${keyPrefix}first_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}last_name`,
-                label: `Client last name. - [${keyPrefix}last_name]`,
+                label: `Client last name - [${keyPrefix}last_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}contact_person`,
-                label: `[${keyPrefix}contact_person]`,
+                label: `Client contact person - [${keyPrefix}contact_person]`,
                 type: 'string',
             },
             {
@@ -52,32 +52,32 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}tax_code`,
-                label: `Client tax code. - [${keyPrefix}tax_code]`,
+                label: `Client tax code - [${keyPrefix}tax_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_street`,
-                label: `Client street address. - [${keyPrefix}address_street]`,
+                label: `Client address street - [${keyPrefix}address_street]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_postal_code`,
-                label: `Client postal code. - [${keyPrefix}address_postal_code]`,
+                label: `Client address postal code - [${keyPrefix}address_postal_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_city`,
-                label: `Client city. - [${keyPrefix}address_city]`,
+                label: `Client address city - [${keyPrefix}address_city]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_province`,
-                label: `Client province. - [${keyPrefix}address_province]`,
+                label: `Client address province - [${keyPrefix}address_province]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_extra`,
-                label: `Client address extra info. - [${keyPrefix}address_extra]`,
+                label: `Client address extra info - [${keyPrefix}address_extra]`,
                 type: 'string',
             },
             {
@@ -87,33 +87,33 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}email`,
-                label: `Client email. - [${keyPrefix}email]`,
+                label: `Client email - [${keyPrefix}email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}certified_email`,
-                label: `Client certified email. - [${keyPrefix}certified_email]`,
+                label: `Client certified email - [${keyPrefix}certified_email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}phone`,
-                label: `Client phone. - [${keyPrefix}phone]`,
+                label: `Client phone - [${keyPrefix}phone]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}fax`,
-                label: `Client fax. - [${keyPrefix}fax]`,
+                label: `Client fax - [${keyPrefix}fax]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}notes`,
-                label: `Extra notes. - [${keyPrefix}notes]`,
+                label: `Client extra - [${keyPrefix}notes]`,
                 type: 'string',
             },
             ...VatType(`${keyPrefix}default_vat`),
             {
                 key: `${keyPrefix}default_payment_terms`,
-                label: `[${keyPrefix}default_payment_terms]`,
+                label: `Client default payment terms - [${keyPrefix}default_payment_terms]`,
                 type: 'integer',
             },
             {
@@ -123,22 +123,22 @@ module.exports = {
             ...PaymentMethod(`${keyPrefix}default_payment_method`),
             {
                 key: `${keyPrefix}bank_name`,
-                label: `Client bank name. - [${keyPrefix}bank_name]`,
+                label: `Client bank name - [${keyPrefix}bank_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_iban`,
-                label: `Client iban. - [${keyPrefix}bank_iban]`,
+                label: `Client bank iban - [${keyPrefix}bank_iban]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_swift_code`,
-                label: `Client bank swift code. - [${keyPrefix}bank_swift_code]`,
+                label: `Client bank swift code - [${keyPrefix}bank_swift_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}shipping_address`,
-                label: `Client shipping address. - [${keyPrefix}shipping_address]`,
+                label: `Client shipping address - [${keyPrefix}shipping_address]`,
                 type: 'string',
             },
             {
@@ -148,42 +148,42 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}ei_code`,
-                label: `E-invoice code - [${keyPrefix}ei_code]`,
+                label: `Client e-invoice code  - [${keyPrefix}ei_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}discount_highlight`,
-                label: `Discount Highlight. - [${keyPrefix}discount_highlight]`,
+                label: `Highlight Discount - [${keyPrefix}discount_highlight]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}default_discount`,
-                label: `Default discount. - [${keyPrefix}default_discount]`,
+                label: `Client default discount - [${keyPrefix}default_discount]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}has_intent_declaration`,
-                label: `Has intent declaration. - [${keyPrefix}has_intent_declaration]`,
+                label: `Client has intent declaration - [${keyPrefix}has_intent_declaration]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}intent_declaration_protocol_number`,
-                label: `Intent declaration protocol number. - [${keyPrefix}intent_declaration_protocol_number]`,
+                label: `Client intent declaration protocol number - [${keyPrefix}intent_declaration_protocol_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}intent_declaration_protocol_date`,
-                label: `Intent declaration protocol date. - [${keyPrefix}intent_declaration_protocol_date]`,
+                label: `Client intent declaration protocol date - [${keyPrefix}intent_declaration_protocol_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}created_at`,
-                label: `[${keyPrefix}created_at]`,
+                label: `Client creation date - [${keyPrefix}created_at]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}updated_at`,
-                label: `[${keyPrefix}updated_at]`,
+                label: `Client last update date - [${keyPrefix}updated_at]`,
                 type: 'string',
             },
         ]

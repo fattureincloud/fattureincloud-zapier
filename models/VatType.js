@@ -7,47 +7,47 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Unique identifier - [${keyPrefix}id]`,
+                label: `Vat type id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}value`,
-                label: `[Read Only] Percentual value. - [${keyPrefix}value]`,
+                label: `[Read Only] Vat type percentual value - [${keyPrefix}value]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Short description. - [${keyPrefix}description]`,
+                label: `Vat type short description - [${keyPrefix}description]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}notes`,
-                label: `Long description and notes shown in documents. - [${keyPrefix}notes]`,
+                label: `Vat type notes shown in documents - [${keyPrefix}notes]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}e_invoice`,
-                label: `Usable for e-invoices. - [${keyPrefix}e_invoice]`,
+                label: `Vat type is usable for e-invoices - [${keyPrefix}e_invoice]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ei_type`,
-                label: `E-invoice type (natura). - [${keyPrefix}ei_type]`,
+                label: `Vat type e-invoice type (natura) - [${keyPrefix}ei_type]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}ei_description`,
-                label: `E-invoice description. - [${keyPrefix}ei_description]`,
+                label: `Vat type e-invoice description - [${keyPrefix}ei_description]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}editable`,
-                label: `[Read Only] Determine if this vat type is editable. - [${keyPrefix}editable]`,
+                label: `[Read Only] Is the vat type is editable. - [${keyPrefix}editable]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}is_disabled`,
-                label: `Determine if the vat type is disabled. - [${keyPrefix}is_disabled]`,
+                label: `Is the vat type disabled - [${keyPrefix}is_disabled]`,
                 type: 'boolean',
             },
         ]

@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
         fields: (key) => (
             {
-                label: `Role of the user in this company. - [${key}]`,
+                label: `User company role - [${key}]`,
                 choices: [
                     'master',
                     'subaccount',

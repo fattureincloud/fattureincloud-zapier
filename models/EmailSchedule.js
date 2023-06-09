@@ -9,17 +9,17 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}sender_id`,
-                label: `Sender id. Required if &#x60;sender_email&#x60; is not specified - [${keyPrefix}sender_id]`,
+                label: `Email sender id [required if **sender_email** is not specified] - [${keyPrefix}sender_id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}sender_email`,
-                label: `Sender email. Required if &#x60;sender_id&#x60; is not specified - [${keyPrefix}sender_email]`,
+                label: `Email sender address [required if **sender_id** is not specified] - [${keyPrefix}sender_email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}recipient_email`,
-                label: `One or more comma separated recipient emails - [${keyPrefix}recipient_email]`,
+                label: `Email recipient emails [comma separated] - [${keyPrefix}recipient_email]`,
                 type: 'string',
             },
             {
@@ -35,12 +35,12 @@ module.exports = {
             ...EmailSchedule_include(`${keyPrefix}include`),
             {
                 key: `${keyPrefix}attach_pdf`,
-                label: `If set to true, documents will be sent as PDF attachments too - [${keyPrefix}attach_pdf]`,
+                label: `Attach the pdf of the document - [${keyPrefix}attach_pdf]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}send_copy`,
-                label: `If set to true, a copy of the email will be sent to the &#x60;cc_email&#x60; specified by &#x60;Get email data&#x60; - [${keyPrefix}send_copy]`,
+                label: `Send a copy of the email to the **cc_email** specified by **Get email data** - [${keyPrefix}send_copy]`,
                 type: 'boolean',
             },
         ]

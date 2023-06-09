@@ -7,12 +7,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}title`,
-                label: `Details title. - [${keyPrefix}title]`,
+                label: `Payment method details title - [${keyPrefix}title]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Details description. - [${keyPrefix}description]`,
+                label: `Payment method details description - [${keyPrefix}description]`,
                 type: 'string',
             },
         ]

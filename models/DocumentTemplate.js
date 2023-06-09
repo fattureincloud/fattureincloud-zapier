@@ -7,17 +7,17 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Unique identifier. - [${keyPrefix}id]`,
+                label: `Template id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Template name. - [${keyPrefix}name]`,
+                label: `Template name - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}type`,
-                label: `Template type. - [${keyPrefix}type]`,
+                label: `Template type - [${keyPrefix}type]`,
                 type: 'string',
             },
         ]

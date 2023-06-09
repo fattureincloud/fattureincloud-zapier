@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
         fields: (key) => (
             {
-                label: `Level of the permission. - [${key}]`,
+                label: `Permission level - [${key}]`,
                 choices: [
                     'none',
                     'read',

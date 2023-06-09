@@ -8,12 +8,12 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Company unique identifier. - [${keyPrefix}id]`,
+                label: `Controlled company id - [${keyPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Company name. - [${keyPrefix}name]`,
+                label: `Controlled company id - [${keyPrefix}name]`,
                 type: 'string',
             },
             {
@@ -22,17 +22,17 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}access_token`,
-                label: `CompanyAuthentication token for this company. [Only if type&#x3D;company] - [${keyPrefix}access_token]`,
+                label: `Controlled company access token Only if type=company] - [${keyPrefix}access_token]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}connection_id`,
-                label: `Company connection id. - [${keyPrefix}connection_id]`,
+                label: `Controlled company connection id - [${keyPrefix}connection_id]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}tax_code`,
-                label: `Tax code. - [${keyPrefix}tax_code]`,
+                label: `Controlled company tax code - [${keyPrefix}tax_code]`,
                 type: 'string',
             },
         ]

@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
         fields: (key) => (
             {
-                label: `Payment status. - [${key}]`,
+                label: `Issued document status - [${key}]`,
                 choices: [
                     'not_paid',
                     'paid',
