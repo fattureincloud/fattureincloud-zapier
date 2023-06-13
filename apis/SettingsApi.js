@@ -211,7 +211,7 @@ module.exports = {
                     return results;
                 })
             },
-            
+            sample: {}
         }
     },
     deletePaymentMethod: {
@@ -261,7 +261,7 @@ module.exports = {
                     return results;
                 })
             },
-            
+            sample: {}
         }
     },
     deleteVatType: {
@@ -311,7 +311,7 @@ module.exports = {
                     return results;
                 })
             },
-            
+            sample: {}
         }
     },
     getPaymentAccount: {

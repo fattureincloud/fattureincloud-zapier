@@ -105,7 +105,7 @@ module.exports = {
                     return results;
                 })
             },
-            
+            sample: {}
         }
     },
     deleteF24Attachment: {
@@ -155,7 +155,7 @@ module.exports = {
                     return results;
                 })
             },
-            
+            sample: {}
         }
     },
     getF24: {

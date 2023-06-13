@@ -106,7 +106,7 @@ module.exports = {
                     return results;
                 })
             },
-            
+            sample: {}
         }
     },
     getReceipt: {

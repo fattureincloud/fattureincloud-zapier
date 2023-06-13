@@ -111,7 +111,7 @@ module.exports = {
                     return results;
                 })
             },
-            
+            sample: 
         }
     },
     sendEInvoice: {
