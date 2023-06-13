@@ -1,3 +1,4 @@
+const samples = require('../samples/ReceiptsApi.json');
 const CreateReceiptRequest = require('../models/CreateReceiptRequest').fields;
 const CreateReceiptRequestMapping = require('../models/CreateReceiptRequest').mapping;
 const CreateReceiptResponse = require('../models/CreateReceiptResponse').fields;
@@ -54,7 +55,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateReceiptResponseSample']
         }
     },
     deleteReceipt: {
@@ -103,7 +105,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getReceipt: {
@@ -169,7 +172,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetReceiptResponseSample']
         }
     },
     getReceiptPreCreateInfo: {
@@ -213,7 +217,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetReceiptPreCreateInfoResponseSample']
         }
     },
     getReceiptsMonthlyTotals: {
@@ -275,7 +280,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetReceiptsMonthlyTotalsResponseSample']
         }
     },
     listReceipts: {
@@ -359,7 +365,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListReceiptsResponseSample']
         }
     },
     modifyReceipt: {
@@ -411,7 +418,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyReceiptResponseSample']
         }
     },
 }

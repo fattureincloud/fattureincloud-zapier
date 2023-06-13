@@ -1,3 +1,4 @@
+const samples = require('../samples/ReceivedDocumentsApi.json');
 const CreateReceivedDocumentRequest = require('../models/CreateReceivedDocumentRequest').fields;
 const CreateReceivedDocumentRequestMapping = require('../models/CreateReceivedDocumentRequest').mapping;
 const CreateReceivedDocumentResponse = require('../models/CreateReceivedDocumentResponse').fields;
@@ -60,7 +61,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateReceivedDocumentResponseSample']
         }
     },
     deleteReceivedDocument: {
@@ -109,7 +111,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     deleteReceivedDocumentAttachment: {
@@ -158,7 +161,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getExistingReceivedDocumentTotals: {
@@ -210,7 +214,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetExistingReceivedDocumentTotalsResponseSample']
         }
     },
     getNewReceivedDocumentTotals: {
@@ -256,7 +261,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetNewReceivedDocumentTotalsResponseSample']
         }
     },
     getReceivedDocument: {
@@ -322,7 +328,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetReceivedDocumentResponseSample']
         }
     },
     getReceivedDocumentPreCreateInfo: {
@@ -378,7 +385,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetReceivedDocumentPreCreateInfoResponseSample']
         }
     },
     listReceivedDocuments: {
@@ -474,7 +482,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListReceivedDocumentsResponseSample']
         }
     },
     modifyReceivedDocument: {
@@ -526,7 +535,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyReceivedDocumentResponseSample']
         }
     },
     uploadReceivedDocumentAttachment: {
@@ -548,12 +558,12 @@ module.exports = {
                 },
                 {
                     key: 'filename',
-                    label: 'Attachment file name',
+                    label: 'Name of the file.',
                     type: 'string',
                 },
                 {
                     key: 'attachment',
-                    label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
+                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
                     type: 'file',
                 },
             ],
@@ -580,7 +590,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['UploadReceivedDocumentAttachmentResponseSample']
         }
     },
 }

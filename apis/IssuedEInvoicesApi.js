@@ -1,3 +1,4 @@
+const samples = require('../samples/IssuedEInvoicesApi.json');
 const GetEInvoiceRejectionReasonResponse = require('../models/GetEInvoiceRejectionReasonResponse').fields;
 const SendEInvoiceRequest = require('../models/SendEInvoiceRequest').fields;
 const SendEInvoiceRequestMapping = require('../models/SendEInvoiceRequest').mapping;
@@ -53,7 +54,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetEInvoiceRejectionReasonResponseSample']
         }
     },
     getEInvoiceXml: {
@@ -108,7 +110,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     sendEInvoice: {
@@ -160,7 +163,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['SendEInvoiceResponseSample']
         }
     },
     verifyEInvoiceXml: {
@@ -210,7 +214,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['VerifyEInvoiceXmlResponseSample']
         }
     },
 }

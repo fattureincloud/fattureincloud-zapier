@@ -1,3 +1,4 @@
+const samples = require('../samples/UserApi.json');
 const GetUserInfoResponse = require('../models/GetUserInfoResponse').fields;
 const ListUserCompaniesResponse = require('../models/ListUserCompaniesResponse').fields;
 const utils = require('../utils/utils');
@@ -37,7 +38,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetUserInfoResponseSample']
         }
     },
     listUserCompanies: {
@@ -74,7 +76,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListUserCompaniesResponseSample']
         }
     },
 }

@@ -109,12 +109,15 @@ module.exports = {
         type: 'hook',
         performUnsubscribe: performUnsubscribe,
         performSubscribe: performSubscribe,
+        sample: {
+            id: 12345
+        }
     },
     key: 'genericWebhook',
     noun: 'Generic Event',
     display: {
         label: 'Receive Generic Event',
-        description: 'Receive an event from webhooks',
+        description: 'Triggers when a webhooks arrives from Fatture in Cloud.',
         hidden: false,
     },
 };

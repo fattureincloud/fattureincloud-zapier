@@ -1,3 +1,4 @@
+const samples = require('../samples/ProductsApi.json');
 const CreateProductRequest = require('../models/CreateProductRequest').fields;
 const CreateProductRequestMapping = require('../models/CreateProductRequest').mapping;
 const CreateProductResponse = require('../models/CreateProductResponse').fields;
@@ -52,7 +53,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateProductResponseSample']
         }
     },
     deleteProduct: {
@@ -101,7 +103,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getProduct: {
@@ -167,7 +170,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetProductResponseSample']
         }
     },
     listProducts: {
@@ -251,7 +255,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListProductsResponseSample']
         }
     },
     modifyProduct: {
@@ -303,7 +308,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyProductResponseSample']
         }
     },
 }

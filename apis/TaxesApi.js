@@ -1,3 +1,4 @@
+const samples = require('../samples/TaxesApi.json');
 const CreateF24Request = require('../models/CreateF24Request').fields;
 const CreateF24RequestMapping = require('../models/CreateF24Request').mapping;
 const CreateF24Response = require('../models/CreateF24Response').fields;
@@ -53,7 +54,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateF24ResponseSample']
         }
     },
     deleteF24: {
@@ -102,7 +104,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     deleteF24Attachment: {
@@ -151,7 +154,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getF24: {
@@ -217,7 +221,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetF24ResponseSample']
         }
     },
     listF24: {
@@ -301,7 +306,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListF24ResponseSample']
         }
     },
     modifyF24: {
@@ -353,7 +359,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyF24ResponseSample']
         }
     },
     uploadF24Attachment: {
@@ -375,12 +382,12 @@ module.exports = {
                 },
                 {
                     key: 'filename',
-                    label: 'Attachment file name',
+                    label: 'Name of the file.',
                     type: 'string',
                 },
                 {
                     key: 'attachment',
-                    label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
+                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
                     type: 'file',
                 },
             ],
@@ -407,7 +414,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['UploadF24AttachmentResponseSample']
         }
     },
 }

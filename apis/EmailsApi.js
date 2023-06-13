@@ -1,3 +1,4 @@
+const samples = require('../samples/EmailsApi.json');
 const ListEmailsResponse = require('../models/ListEmailsResponse').fields;
 const utils = require('../utils/utils');
 
@@ -43,7 +44,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListEmailsResponseSample']
         }
     },
 }

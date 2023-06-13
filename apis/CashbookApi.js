@@ -1,3 +1,4 @@
+const samples = require('../samples/CashbookApi.json');
 const CreateCashbookEntryRequest = require('../models/CreateCashbookEntryRequest').fields;
 const CreateCashbookEntryRequestMapping = require('../models/CreateCashbookEntryRequest').mapping;
 const CreateCashbookEntryResponse = require('../models/CreateCashbookEntryResponse').fields;
@@ -52,7 +53,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateCashbookEntryResponseSample']
         }
     },
     deleteCashbookEntry: {
@@ -101,7 +103,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getCashbookEntry: {
@@ -167,7 +170,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetCashbookEntryResponseSample']
         }
     },
     listCashbookEntries: {
@@ -248,7 +252,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListCashbookEntriesResponseSample']
         }
     },
     modifyCashbookEntry: {
@@ -300,7 +305,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyCashbookEntryResponseSample']
         }
     },
 }

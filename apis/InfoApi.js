@@ -1,3 +1,4 @@
+const samples = require('../samples/InfoApi.json');
 const ListArchiveCategoriesResponse = require('../models/ListArchiveCategoriesResponse').fields;
 const ListCitiesResponse = require('../models/ListCitiesResponse').fields;
 const ListCostCentersResponse = require('../models/ListCostCentersResponse').fields;
@@ -58,7 +59,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListArchiveCategoriesResponseSample']
         }
     },
     listCities: {
@@ -107,7 +109,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListCitiesResponseSample']
         }
     },
     listCostCenters: {
@@ -151,7 +154,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListCostCentersResponseSample']
         }
     },
     listCountries: {
@@ -188,7 +192,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListCountriesResponseSample']
         }
     },
     listCurrencies: {
@@ -225,7 +230,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListCurrenciesResponseSample']
         }
     },
     listDeliveryNotesDefaultCausals: {
@@ -262,7 +268,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListDeliveryNotesDefaultCausalsResponseSample']
         }
     },
     listDetailedCountries: {
@@ -299,7 +306,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListDetailedCountriesResponseSample']
         }
     },
     listLanguages: {
@@ -336,7 +344,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListLanguagesResponseSample']
         }
     },
     listPaymentAccounts: {
@@ -402,7 +411,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListPaymentAccountsResponseSample']
         }
     },
     listPaymentMethods: {
@@ -468,7 +478,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListPaymentMethodsResponseSample']
         }
     },
     listProductCategories: {
@@ -524,7 +535,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListProductCategoriesResponseSample']
         }
     },
     listReceivedDocumentCategories: {
@@ -568,7 +580,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListReceivedDocumentCategoriesResponseSample']
         }
     },
     listRevenueCenters: {
@@ -612,7 +625,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListRevenueCentersResponseSample']
         }
     },
     listTemplates: {
@@ -667,7 +681,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListTemplatesResponseSample']
         }
     },
     listUnitsOfMeasure: {
@@ -704,7 +719,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListUnitsOfMeasureResponseSample']
         }
     },
     listVatTypes: {
@@ -758,7 +774,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListVatTypesResponseSample']
         }
     },
 }

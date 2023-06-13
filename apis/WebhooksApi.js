@@ -1,3 +1,4 @@
+const samples = require('../samples/WebhooksApi.json');
 const CreateWebhooksSubscriptionRequest = require('../models/CreateWebhooksSubscriptionRequest').fields;
 const CreateWebhooksSubscriptionRequestMapping = require('../models/CreateWebhooksSubscriptionRequest').mapping;
 const CreateWebhooksSubscriptionResponse = require('../models/CreateWebhooksSubscriptionResponse').fields;
@@ -52,7 +53,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateWebhooksSubscriptionResponseSample']
         }
     },
     deleteWebhooksSubscription: {
@@ -101,7 +103,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getWebhooksSubscription: {
@@ -151,7 +154,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetWebhooksSubscriptionResponseSample']
         }
     },
     listWebhooksSubscriptions: {
@@ -195,7 +199,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListWebhooksSubscriptionsResponseSample']
         }
     },
     modifyWebhooksSubscription: {
@@ -247,7 +252,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyWebhooksSubscriptionResponseSample']
         }
     },
 }

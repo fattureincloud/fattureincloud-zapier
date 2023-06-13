@@ -1,3 +1,4 @@
+const samples = require('../samples/SuppliersApi.json');
 const CreateSupplierRequest = require('../models/CreateSupplierRequest').fields;
 const CreateSupplierRequestMapping = require('../models/CreateSupplierRequest').mapping;
 const CreateSupplierResponse = require('../models/CreateSupplierResponse').fields;
@@ -52,7 +53,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateSupplierResponseSample']
         }
     },
     deleteSupplier: {
@@ -101,7 +103,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getSupplier: {
@@ -167,7 +170,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetSupplierResponseSample']
         }
     },
     listSuppliers: {
@@ -251,7 +255,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListSuppliersResponseSample']
         }
     },
     modifySupplier: {
@@ -303,7 +308,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifySupplierResponseSample']
         }
     },
 }

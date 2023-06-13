@@ -1,3 +1,4 @@
+const samples = require('../samples/ArchiveApi.json');
 const CreateArchiveDocumentRequest = require('../models/CreateArchiveDocumentRequest').fields;
 const CreateArchiveDocumentRequestMapping = require('../models/CreateArchiveDocumentRequest').mapping;
 const CreateArchiveDocumentResponse = require('../models/CreateArchiveDocumentResponse').fields;
@@ -53,7 +54,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateArchiveDocumentResponseSample']
         }
     },
     deleteArchiveDocument: {
@@ -102,7 +104,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getArchiveDocument: {
@@ -168,7 +171,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetArchiveDocumentResponseSample']
         }
     },
     listArchiveDocuments: {
@@ -252,7 +256,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListArchiveDocumentsResponseSample']
         }
     },
     modifyArchiveDocument: {
@@ -304,7 +309,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyArchiveDocumentResponseSample']
         }
     },
     uploadArchiveDocumentAttachment: {
@@ -326,12 +332,12 @@ module.exports = {
                 },
                 {
                     key: 'filename',
-                    label: 'Attachment file name',
+                    label: 'Name of the file.',
                     type: 'string',
                 },
                 {
                     key: 'attachment',
-                    label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
+                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
                     type: 'file',
                 },
             ],
@@ -358,7 +364,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['UploadArchiveAttachmentResponseSample']
         }
     },
 }

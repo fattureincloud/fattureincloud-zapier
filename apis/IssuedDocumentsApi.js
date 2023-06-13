@@ -1,3 +1,4 @@
+const samples = require('../samples/IssuedDocumentsApi.json');
 const CreateIssuedDocumentRequest = require('../models/CreateIssuedDocumentRequest').fields;
 const CreateIssuedDocumentRequestMapping = require('../models/CreateIssuedDocumentRequest').mapping;
 const CreateIssuedDocumentResponse = require('../models/CreateIssuedDocumentResponse').fields;
@@ -65,7 +66,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateIssuedDocumentResponseSample']
         }
     },
     deleteIssuedDocument: {
@@ -114,7 +116,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     deleteIssuedDocumentAttachment: {
@@ -163,7 +166,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getEmailData: {
@@ -213,7 +217,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetEmailDataResponseSample']
         }
     },
     getExistingIssuedDocumentTotals: {
@@ -265,7 +270,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetExistingIssuedDocumentTotalsResponseSample']
         }
     },
     getIssuedDocument: {
@@ -331,7 +337,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetIssuedDocumentResponseSample']
         }
     },
     getIssuedDocumentPreCreateInfo: {
@@ -395,7 +402,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetIssuedDocumentPreCreateInfoResponseSample']
         }
     },
     getNewIssuedDocumentTotals: {
@@ -441,7 +449,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetNewIssuedDocumentTotalsResponseSample']
         }
     },
     joinIssuedDocuments: {
@@ -512,7 +521,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['JoinIssuedDocumentsResponseSample']
         }
     },
     listIssuedDocuments: {
@@ -626,7 +636,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListIssuedDocumentsResponseSample']
         }
     },
     modifyIssuedDocument: {
@@ -678,7 +689,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyIssuedDocumentResponseSample']
         }
     },
     scheduleEmail: {
@@ -729,7 +741,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     transformIssuedDocument: {
@@ -807,7 +820,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['TransformIssuedDocumentResponseSample']
         }
     },
     uploadIssuedDocumentAttachment: {
@@ -829,12 +843,12 @@ module.exports = {
                 },
                 {
                     key: 'filename',
-                    label: 'Attachment file name',
+                    label: 'Name of the file.',
                     type: 'string',
                 },
                 {
                     key: 'attachment',
-                    label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
+                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
                     type: 'file',
                 },
             ],
@@ -861,7 +875,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['UploadIssuedDocumentAttachmentResponseSample']
         }
     },
 }

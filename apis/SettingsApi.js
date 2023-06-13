@@ -1,3 +1,4 @@
+const samples = require('../samples/SettingsApi.json');
 const CreatePaymentAccountRequest = require('../models/CreatePaymentAccountRequest').fields;
 const CreatePaymentAccountRequestMapping = require('../models/CreatePaymentAccountRequest').mapping;
 const CreatePaymentAccountResponse = require('../models/CreatePaymentAccountResponse').fields;
@@ -65,7 +66,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreatePaymentAccountResponseSample']
         }
     },
     createPaymentMethod: {
@@ -111,7 +113,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreatePaymentMethodResponseSample']
         }
     },
     createVatType: {
@@ -157,7 +160,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateVatTypeResponseSample']
         }
     },
     deletePaymentAccount: {
@@ -206,7 +210,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     deletePaymentMethod: {
@@ -255,7 +260,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     deleteVatType: {
@@ -304,7 +310,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getPaymentAccount: {
@@ -370,7 +377,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetPaymentAccountResponseSample']
         }
     },
     getPaymentMethod: {
@@ -436,7 +444,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetPaymentMethodResponseSample']
         }
     },
     getVatType: {
@@ -486,7 +495,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetVatTypeResponseSample']
         }
     },
     modifyPaymentAccount: {
@@ -538,7 +548,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyPaymentAccountResponseSample']
         }
     },
     modifyPaymentMethod: {
@@ -590,7 +601,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyPaymentMethodResponseSample']
         }
     },
     modifyVatType: {
@@ -642,7 +654,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyVatTypeResponseSample']
         }
     },
 }

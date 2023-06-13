@@ -1,3 +1,4 @@
+const samples = require('../samples/ClientsApi.json');
 const CreateClientRequest = require('../models/CreateClientRequest').fields;
 const CreateClientRequestMapping = require('../models/CreateClientRequest').mapping;
 const CreateClientResponse = require('../models/CreateClientResponse').fields;
@@ -52,7 +53,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['CreateClientResponseSample']
         }
     },
     deleteClient: {
@@ -101,7 +103,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            
         }
     },
     getClient: {
@@ -167,7 +170,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetClientResponseSample']
         }
     },
     listClients: {
@@ -251,7 +255,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ListClientsResponseSample']
         }
     },
     modifyClient: {
@@ -303,7 +308,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['ModifyClientResponseSample']
         }
     },
 }

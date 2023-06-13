@@ -1,3 +1,4 @@
+const samples = require('../samples/CompaniesApi.json');
 const GetCompanyInfoResponse = require('../models/GetCompanyInfoResponse').fields;
 const utils = require('../utils/utils');
 
@@ -43,7 +44,8 @@ module.exports = {
                     const results = response.json;
                     return results;
                 })
-            }
+            },
+            sample: samples['GetCompanyInfoResponseSample']
         }
     },
 }
