@@ -117,7 +117,7 @@ module.exports = {
                     return results;
                 })
             },
-            sample: {}
+            sample: { data: {} }
         }
     },
     deleteIssuedDocumentAttachment: {
@@ -167,7 +167,7 @@ module.exports = {
                     return results;
                 })
             },
-            sample: {}
+            sample: { data: {} }
         }
     },
     getEmailData: {
@@ -742,7 +742,7 @@ module.exports = {
                     return results;
                 })
             },
-            sample: {}
+            sample: { data: {} }
         }
     },
     transformIssuedDocument: {

@@ -112,7 +112,7 @@ module.exports = {
                     return results;
                 })
             },
-            sample: {}
+            sample: { data: {} }
         }
     },
     deleteReceivedDocumentAttachment: {
@@ -162,7 +162,7 @@ module.exports = {
                     return results;
                 })
             },
-            sample: {}
+            sample: { data: {} }
         }
     },
     getExistingReceivedDocumentTotals: {

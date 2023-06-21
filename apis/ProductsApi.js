@@ -104,7 +104,7 @@ module.exports = {
                     return results;
                 })
             },
-            sample: {}
+            sample: { data: {} }
         }
     },
     getProduct: {
