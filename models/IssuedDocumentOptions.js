@@ -2,33 +2,34 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}fix_payments`,
-                label: `Fixes your last payment amount to match your document total - [${keyPrefix}fix_payments]`,
+                label: `Fixes your last payment amount to match your document total - [${labelPrefix}fix_payments]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}create_from`,
-                label: `Original documents ids [only for join/transform] - [${keyPrefix}create_from]`,
+                label: `Original documents ids [only for join/transform] - [${labelPrefix}create_from]`,
                 list: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}transform`,
-                label: `Tranform a document [only for transform] - [${keyPrefix}transform]`,
+                label: `Tranform a document [only for transform] - [${labelPrefix}transform]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}keep_copy`,
-                label: `Keep original document [only for transform] - [${keyPrefix}keep_copy]`,
+                label: `Keep original document [only for transform] - [${labelPrefix}keep_copy]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}join_type`,
-                label: `Join type [only for join] - [${keyPrefix}join_type]`,
+                label: `Join type [only for join] - [${labelPrefix}join_type]`,
                 type: 'string',
             },
         ]

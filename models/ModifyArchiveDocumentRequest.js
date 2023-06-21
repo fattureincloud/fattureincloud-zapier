@@ -4,10 +4,11 @@ const ArchiveDocument = require('./ArchiveDocument').fields;
 const ArchiveDocumentMapping = require('./ArchiveDocument').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...ArchiveDocument(`${keyPrefix}data`),
+            ...ArchiveDocument(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

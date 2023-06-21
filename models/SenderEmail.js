@@ -2,17 +2,18 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Sender email id - [${keyPrefix}id]`,
+                label: `Sender email id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}email`,
-                label: `Sender email address - [${keyPrefix}email]`,
+                label: `Sender email address - [${labelPrefix}email]`,
                 type: 'string',
             },
         ]

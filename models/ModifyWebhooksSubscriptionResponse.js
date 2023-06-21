@@ -4,13 +4,14 @@ const WebhooksSubscription = require('./WebhooksSubscription').fields;
 const WebhooksSubscriptionMapping = require('./WebhooksSubscription').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...WebhooksSubscription(`${keyPrefix}data`),
+            ...WebhooksSubscription(`${keyPrefix}data`, isInput),
             {
                 key: `${keyPrefix}warnings`,
-                label: `Webhooks registration warnings - [${keyPrefix}warnings]`,
+                label: `Webhooks registration warnings - [${labelPrefix}warnings]`,
                 list: true,
                 type: 'string',
             },

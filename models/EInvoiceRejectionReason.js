@@ -2,32 +2,33 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}reason`,
-                label: `E-invoice rejection reason - [${keyPrefix}reason]`,
+                label: `E-invoice rejection reason - [${labelPrefix}reason]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}ei_status`,
-                label: `E-invoice status - [${keyPrefix}ei_status]`,
+                label: `E-invoice status - [${labelPrefix}ei_status]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}solution`,
-                label: `Error solution. - [${keyPrefix}solution]`,
+                label: `Error solution. - [${labelPrefix}solution]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}code`,
-                label: `E-invoice rejection error code - [${keyPrefix}code]`,
+                label: `E-invoice rejection error code - [${labelPrefix}code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}date`,
-                label: `E-invoice rejection date - [${keyPrefix}date]`,
+                label: `E-invoice rejection date - [${labelPrefix}date]`,
                 type: 'datetime',
             },
         ]

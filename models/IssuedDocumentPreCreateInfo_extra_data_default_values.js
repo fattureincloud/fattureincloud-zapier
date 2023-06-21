@@ -2,27 +2,28 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}ts_communication`,
-                label: `[${keyPrefix}ts_communication]`,
+                label: `[${labelPrefix}ts_communication]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_tipo_spesa`,
-                label: `[${keyPrefix}ts_tipo_spesa]`,
+                label: `[${labelPrefix}ts_tipo_spesa]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}ts_flag_tipo_spesa`,
-                label: `[${keyPrefix}ts_flag_tipo_spesa]`,
+                label: `[${labelPrefix}ts_flag_tipo_spesa]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}ts_pagamento_tracciato`,
-                label: `[${keyPrefix}ts_pagamento_tracciato]`,
+                label: `[${labelPrefix}ts_pagamento_tracciato]`,
                 type: 'boolean',
             },
         ]

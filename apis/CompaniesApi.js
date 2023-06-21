@@ -22,7 +22,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetCompanyInfoResponse(),
+                ...GetCompanyInfoResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

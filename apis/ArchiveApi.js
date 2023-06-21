@@ -31,7 +31,7 @@ module.exports = {
                 ...CreateArchiveDocumentRequest(),
             ],
             outputFields: [
-                ...CreateArchiveDocumentResponse(),
+                ...CreateArchiveDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -147,7 +147,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetArchiveDocumentResponse(),
+                ...GetArchiveDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -228,7 +228,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListArchiveDocumentsResponse(),
+                ...ListArchiveDocumentsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -286,7 +286,7 @@ module.exports = {
                 ...ModifyArchiveDocumentRequest(),
             ],
             outputFields: [
-                ...ModifyArchiveDocumentResponse(),
+                ...ModifyArchiveDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -332,17 +332,17 @@ module.exports = {
                 },
                 {
                     key: 'filename',
-                    label: 'Name of the file.',
+                    label: 'Attachment file name',
                     type: 'string',
                 },
                 {
                     key: 'attachment',
-                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
+                    label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
                     type: 'file',
                 },
             ],
             outputFields: [
-                ...UploadArchiveAttachmentResponse(),
+                ...UploadArchiveAttachmentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

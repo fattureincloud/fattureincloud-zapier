@@ -5,106 +5,107 @@ const Permissions_fic_issued_documents_detailed = require('./Permissions_fic_iss
 const Permissions_fic_issued_documents_detailedMapping = require('./Permissions_fic_issued_documents_detailed').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}fic_situation`,
-                ...PermissionLevel(`${keyPrefix}fic_situation`),
+                ...PermissionLevel(`${keyPrefix}fic_situation`, isInput),
             },
             {
                 key: `${keyPrefix}fic_clients`,
-                ...PermissionLevel(`${keyPrefix}fic_clients`),
+                ...PermissionLevel(`${keyPrefix}fic_clients`, isInput),
             },
             {
                 key: `${keyPrefix}fic_suppliers`,
-                ...PermissionLevel(`${keyPrefix}fic_suppliers`),
+                ...PermissionLevel(`${keyPrefix}fic_suppliers`, isInput),
             },
             {
                 key: `${keyPrefix}fic_products`,
-                ...PermissionLevel(`${keyPrefix}fic_products`),
+                ...PermissionLevel(`${keyPrefix}fic_products`, isInput),
             },
             {
                 key: `${keyPrefix}fic_issued_documents`,
-                ...PermissionLevel(`${keyPrefix}fic_issued_documents`),
+                ...PermissionLevel(`${keyPrefix}fic_issued_documents`, isInput),
             },
             {
                 key: `${keyPrefix}fic_received_documents`,
-                ...PermissionLevel(`${keyPrefix}fic_received_documents`),
+                ...PermissionLevel(`${keyPrefix}fic_received_documents`, isInput),
             },
             {
                 key: `${keyPrefix}fic_receipts`,
-                ...PermissionLevel(`${keyPrefix}fic_receipts`),
+                ...PermissionLevel(`${keyPrefix}fic_receipts`, isInput),
             },
             {
                 key: `${keyPrefix}fic_calendar`,
-                ...PermissionLevel(`${keyPrefix}fic_calendar`),
+                ...PermissionLevel(`${keyPrefix}fic_calendar`, isInput),
             },
             {
                 key: `${keyPrefix}fic_archive`,
-                ...PermissionLevel(`${keyPrefix}fic_archive`),
+                ...PermissionLevel(`${keyPrefix}fic_archive`, isInput),
             },
             {
                 key: `${keyPrefix}fic_taxes`,
-                ...PermissionLevel(`${keyPrefix}fic_taxes`),
+                ...PermissionLevel(`${keyPrefix}fic_taxes`, isInput),
             },
             {
                 key: `${keyPrefix}fic_stock`,
-                ...PermissionLevel(`${keyPrefix}fic_stock`),
+                ...PermissionLevel(`${keyPrefix}fic_stock`, isInput),
             },
             {
                 key: `${keyPrefix}fic_cashbook`,
-                ...PermissionLevel(`${keyPrefix}fic_cashbook`),
+                ...PermissionLevel(`${keyPrefix}fic_cashbook`, isInput),
             },
             {
                 key: `${keyPrefix}fic_settings`,
-                ...PermissionLevel(`${keyPrefix}fic_settings`),
+                ...PermissionLevel(`${keyPrefix}fic_settings`, isInput),
             },
             {
                 key: `${keyPrefix}fic_emails`,
-                ...PermissionLevel(`${keyPrefix}fic_emails`),
+                ...PermissionLevel(`${keyPrefix}fic_emails`, isInput),
             },
             {
                 key: `${keyPrefix}fic_export`,
-                ...PermissionLevel(`${keyPrefix}fic_export`),
+                ...PermissionLevel(`${keyPrefix}fic_export`, isInput),
             },
             {
                 key: `${keyPrefix}fic_import_bankstatements`,
-                ...PermissionLevel(`${keyPrefix}fic_import_bankstatements`),
+                ...PermissionLevel(`${keyPrefix}fic_import_bankstatements`, isInput),
             },
             {
                 key: `${keyPrefix}fic_import_clients_suppliers`,
-                ...PermissionLevel(`${keyPrefix}fic_import_clients_suppliers`),
+                ...PermissionLevel(`${keyPrefix}fic_import_clients_suppliers`, isInput),
             },
             {
                 key: `${keyPrefix}fic_import_issued_documents`,
-                ...PermissionLevel(`${keyPrefix}fic_import_issued_documents`),
+                ...PermissionLevel(`${keyPrefix}fic_import_issued_documents`, isInput),
             },
             {
                 key: `${keyPrefix}fic_import_products`,
-                ...PermissionLevel(`${keyPrefix}fic_import_products`),
+                ...PermissionLevel(`${keyPrefix}fic_import_products`, isInput),
             },
             {
                 key: `${keyPrefix}fic_recurring`,
-                ...PermissionLevel(`${keyPrefix}fic_recurring`),
+                ...PermissionLevel(`${keyPrefix}fic_recurring`, isInput),
             },
             {
                 key: `${keyPrefix}fic_riba`,
-                ...PermissionLevel(`${keyPrefix}fic_riba`),
+                ...PermissionLevel(`${keyPrefix}fic_riba`, isInput),
             },
             {
                 key: `${keyPrefix}dic_employees`,
-                ...PermissionLevel(`${keyPrefix}dic_employees`),
+                ...PermissionLevel(`${keyPrefix}dic_employees`, isInput),
             },
             {
                 key: `${keyPrefix}dic_settings`,
-                ...PermissionLevel(`${keyPrefix}dic_settings`),
+                ...PermissionLevel(`${keyPrefix}dic_settings`, isInput),
             },
             {
                 key: `${keyPrefix}dic_timesheet`,
-                ...PermissionLevel(`${keyPrefix}dic_timesheet`),
+                ...PermissionLevel(`${keyPrefix}dic_timesheet`, isInput),
             },
-            ...Permissions_fic_issued_documents_detailed(`${keyPrefix}fic_issued_documents_detailed`),
+            ...Permissions_fic_issued_documents_detailed(`${keyPrefix}fic_issued_documents_detailed`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

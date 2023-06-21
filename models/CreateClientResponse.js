@@ -4,10 +4,11 @@ const Client = require('./Client').fields;
 const ClientMapping = require('./Client').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...Client(`${keyPrefix}data`),
+            ...Client(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

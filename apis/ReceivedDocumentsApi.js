@@ -38,7 +38,7 @@ module.exports = {
                 ...CreateReceivedDocumentRequest(),
             ],
             outputFields: [
-                ...CreateReceivedDocumentResponse(),
+                ...CreateReceivedDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -191,7 +191,7 @@ module.exports = {
                 ...GetExistingReceivedDocumentTotalsRequest(),
             ],
             outputFields: [
-                ...GetExistingReceivedDocumentTotalsResponse(),
+                ...GetExistingReceivedDocumentTotalsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -238,7 +238,7 @@ module.exports = {
                 ...GetNewReceivedDocumentTotalsRequest(),
             ],
             outputFields: [
-                ...GetNewReceivedDocumentTotalsResponse(),
+                ...GetNewReceivedDocumentTotalsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -304,7 +304,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceivedDocumentResponse(),
+                ...GetReceivedDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -362,7 +362,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceivedDocumentPreCreateInfoResponse(),
+                ...GetReceivedDocumentPreCreateInfoResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -453,7 +453,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListReceivedDocumentsResponse(),
+                ...ListReceivedDocumentsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -512,7 +512,7 @@ module.exports = {
                 ...ModifyReceivedDocumentRequest(),
             ],
             outputFields: [
-                ...ModifyReceivedDocumentResponse(),
+                ...ModifyReceivedDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -558,17 +558,17 @@ module.exports = {
                 },
                 {
                     key: 'filename',
-                    label: 'Name of the file.',
+                    label: 'Attachment file name',
                     type: 'string',
                 },
                 {
                     key: 'attachment',
-                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
+                    label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
                     type: 'file',
                 },
             ],
             outputFields: [
-                ...UploadReceivedDocumentAttachmentResponse(),
+                ...UploadReceivedDocumentAttachmentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

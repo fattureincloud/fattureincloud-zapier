@@ -4,10 +4,11 @@ const Product = require('./Product').fields;
 const ProductMapping = require('./Product').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...Product(`${keyPrefix}data`),
+            ...Product(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

@@ -30,7 +30,7 @@ module.exports = {
                 ...CreateCashbookEntryRequest(),
             ],
             outputFields: [
-                ...CreateCashbookEntryResponse(),
+                ...CreateCashbookEntryResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -146,7 +146,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetCashbookEntryResponse(),
+                ...GetCashbookEntryResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -225,7 +225,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListCashbookEntriesResponse(),
+                ...ListCashbookEntriesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -282,7 +282,7 @@ module.exports = {
                 ...ModifyCashbookEntryRequest(),
             ],
             outputFields: [
-                ...ModifyCashbookEntryResponse(),
+                ...ModifyCashbookEntryResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

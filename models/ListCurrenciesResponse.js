@@ -4,13 +4,14 @@ const Currency = require('./Currency').fields;
 const CurrencyMapping = require('./Currency').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${keyPrefix}data]`,
-                children: Currency(`${keyPrefix}data`), 
+                label: `${labelPrefix}data]`,
+                children: Currency(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

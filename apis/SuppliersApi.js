@@ -30,7 +30,7 @@ module.exports = {
                 ...CreateSupplierRequest(),
             ],
             outputFields: [
-                ...CreateSupplierResponse(),
+                ...CreateSupplierResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -146,7 +146,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetSupplierResponse(),
+                ...GetSupplierResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -227,7 +227,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListSuppliersResponse(),
+                ...ListSuppliersResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -285,7 +285,7 @@ module.exports = {
                 ...ModifySupplierRequest(),
             ],
             outputFields: [
-                ...ModifySupplierResponse(),
+                ...ModifySupplierResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

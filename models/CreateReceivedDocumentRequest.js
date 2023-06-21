@@ -4,15 +4,16 @@ const ReceivedDocument = require('./ReceivedDocument').fields;
 const ReceivedDocumentMapping = require('./ReceivedDocument').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}pending_id`,
-                label: `Pending received document id of the document from which the new document is created. - [${keyPrefix}pending_id]`,
+                label: `Pending received document id of the document from which the new document is created. - [${labelPrefix}pending_id]`,
                 type: 'integer',
             },
-            ...ReceivedDocument(`${keyPrefix}data`),
+            ...ReceivedDocument(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

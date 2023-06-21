@@ -2,97 +2,98 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}archive`,
-                label: `[${keyPrefix}archive]`,
+                label: `[${labelPrefix}archive]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}cerved`,
-                label: `[${keyPrefix}cerved]`,
+                label: `[${labelPrefix}cerved]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}document_attachments`,
-                label: `[${keyPrefix}document_attachments]`,
+                label: `[${labelPrefix}document_attachments]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}e_invoice`,
-                label: `[${keyPrefix}e_invoice]`,
+                label: `[${labelPrefix}e_invoice]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}genius`,
-                label: `[${keyPrefix}genius]`,
+                label: `[${labelPrefix}genius]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}mail_tracking`,
-                label: `[${keyPrefix}mail_tracking]`,
+                label: `[${labelPrefix}mail_tracking]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}payment_notifications`,
-                label: `[${keyPrefix}payment_notifications]`,
+                label: `[${labelPrefix}payment_notifications]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}paypal`,
-                label: `[${keyPrefix}paypal]`,
+                label: `[${labelPrefix}paypal]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}receipts`,
-                label: `[${keyPrefix}receipts]`,
+                label: `[${labelPrefix}receipts]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}recurring`,
-                label: `[${keyPrefix}recurring]`,
+                label: `[${labelPrefix}recurring]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}smtp`,
-                label: `[${keyPrefix}smtp]`,
+                label: `[${labelPrefix}smtp]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}sofort`,
-                label: `[${keyPrefix}sofort]`,
+                label: `[${labelPrefix}sofort]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}stock`,
-                label: `[${keyPrefix}stock]`,
+                label: `[${labelPrefix}stock]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}subaccounts`,
-                label: `[${keyPrefix}subaccounts]`,
+                label: `[${labelPrefix}subaccounts]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}tessera_sanitaria`,
-                label: `[${keyPrefix}tessera_sanitaria]`,
+                label: `[${labelPrefix}tessera_sanitaria]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_digital`,
-                label: `[${keyPrefix}ts_digital]`,
+                label: `[${labelPrefix}ts_digital]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_invoice_trading`,
-                label: `[${keyPrefix}ts_invoice_trading]`,
+                label: `[${labelPrefix}ts_invoice_trading]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_pay`,
-                label: `[${keyPrefix}ts_pay]`,
+                label: `[${labelPrefix}ts_pay]`,
                 type: 'boolean',
             },
         ]

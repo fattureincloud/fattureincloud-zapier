@@ -7,38 +7,39 @@ const CompanyInfo_plan_info = require('./CompanyInfo_plan_info').fields;
 const CompanyInfo_plan_infoMapping = require('./CompanyInfo_plan_info').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Company id - [${keyPrefix}id]`,
+                label: `Company id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Company name - [${keyPrefix}name]`,
+                label: `Company name - [${labelPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}email`,
-                label: `Company email - [${keyPrefix}email]`,
+                label: `Company email - [${labelPrefix}email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}type`,
-                ...CompanyType(`${keyPrefix}type`),
+                ...CompanyType(`${keyPrefix}type`, isInput),
             },
-            ...CompanyInfo_access_info(`${keyPrefix}access_info`),
-            ...CompanyInfo_plan_info(`${keyPrefix}plan_info`),
+            ...CompanyInfo_access_info(`${keyPrefix}access_info`, isInput),
+            ...CompanyInfo_plan_info(`${keyPrefix}plan_info`, isInput),
             {
                 key: `${keyPrefix}accountant_id`,
-                label: `Company accountant id - [${keyPrefix}accountant_id]`,
+                label: `Company accountant id - [${labelPrefix}accountant_id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}is_accountant`,
-                label: `Is the logged account an accountant. - [${keyPrefix}is_accountant]`,
+                label: `Is the logged account an accountant. - [${labelPrefix}is_accountant]`,
                 type: 'boolean',
             },
         ]

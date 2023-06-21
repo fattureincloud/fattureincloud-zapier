@@ -8,12 +8,13 @@ const GetUserInfoResponse_email_confirmation_state = require('./GetUserInfoRespo
 const GetUserInfoResponse_email_confirmation_stateMapping = require('./GetUserInfoResponse_email_confirmation_state').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...User(`${keyPrefix}data`),
-            ...GetUserInfoResponse_info(`${keyPrefix}info`),
-            ...GetUserInfoResponse_email_confirmation_state(`${keyPrefix}email_confirmation_state`),
+            ...User(`${keyPrefix}data`, isInput),
+            ...GetUserInfoResponse_info(`${keyPrefix}info`, isInput),
+            ...GetUserInfoResponse_email_confirmation_state(`${keyPrefix}email_confirmation_state`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

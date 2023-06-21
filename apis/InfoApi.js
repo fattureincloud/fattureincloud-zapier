@@ -37,7 +37,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListArchiveCategoriesResponse(),
+                ...ListArchiveCategoriesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -85,7 +85,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListCitiesResponse(),
+                ...ListCitiesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -132,7 +132,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListCostCentersResponse(),
+                ...ListCostCentersResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -170,7 +170,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListCountriesResponse(),
+                ...ListCountriesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -208,7 +208,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListCurrenciesResponse(),
+                ...ListCurrenciesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -246,7 +246,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListDeliveryNotesDefaultCausalsResponse(),
+                ...ListDeliveryNotesDefaultCausalsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -284,7 +284,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListDetailedCountriesResponse(),
+                ...ListDetailedCountriesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -322,7 +322,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListLanguagesResponse(),
+                ...ListLanguagesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -386,7 +386,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListPaymentAccountsResponse(),
+                ...ListPaymentAccountsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -453,7 +453,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListPaymentMethodsResponse(),
+                ...ListPaymentMethodsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -512,7 +512,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListProductCategoriesResponse(),
+                ...ListProductCategoriesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -558,7 +558,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListReceivedDocumentCategoriesResponse(),
+                ...ListReceivedDocumentCategoriesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -603,7 +603,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListRevenueCentersResponse(),
+                ...ListRevenueCentersResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -657,7 +657,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListTemplatesResponse(),
+                ...ListTemplatesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -697,7 +697,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListUnitsOfMeasureResponse(),
+                ...ListUnitsOfMeasureResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -751,7 +751,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListVatTypesResponse(),
+                ...ListVatTypesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

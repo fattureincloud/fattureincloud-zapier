@@ -30,7 +30,7 @@ module.exports = {
                 ...CreateWebhooksSubscriptionRequest(),
             ],
             outputFields: [
-                ...CreateWebhooksSubscriptionResponse(),
+                ...CreateWebhooksSubscriptionResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -132,7 +132,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetWebhooksSubscriptionResponse(),
+                ...GetWebhooksSubscriptionResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -177,7 +177,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListWebhooksSubscriptionsResponse(),
+                ...ListWebhooksSubscriptionsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -229,7 +229,7 @@ module.exports = {
                 ...ModifyWebhooksSubscriptionRequest(),
             ],
             outputFields: [
-                ...ModifyWebhooksSubscriptionResponse(),
+                ...ModifyWebhooksSubscriptionResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

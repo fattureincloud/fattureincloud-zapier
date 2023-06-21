@@ -6,58 +6,59 @@ const SenderEmail = require('./SenderEmail').fields;
 const SenderEmailMapping = require('./SenderEmail').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}recipient_email`,
-                label: `Email recipient - [${keyPrefix}recipient_email]`,
+                label: `Email recipient - [${labelPrefix}recipient_email]`,
                 type: 'string',
             },
-            ...EmailData_default_sender_email(`${keyPrefix}default_sender_email`),
+            ...EmailData_default_sender_email(`${keyPrefix}default_sender_email`, isInput),
             {
                 key: `${keyPrefix}sender_emails_list`,
-                label: `${keyPrefix}sender_emails_list]`,
-                children: SenderEmail(`${keyPrefix}sender_emails_list`), 
+                label: `${labelPrefix}sender_emails_list]`,
+                children: SenderEmail(`${keyPrefix}sender_emails_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}cc_email`,
-                label: `Email cc [by default is the logged company email] - [${keyPrefix}cc_email]`,
+                label: `Email cc [by default is the logged company email] - [${labelPrefix}cc_email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}subject`,
-                label: `Email subject - [${keyPrefix}subject]`,
+                label: `Email subject - [${labelPrefix}subject]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}body`,
-                label: `Email body - [${keyPrefix}body]`,
+                label: `Email body - [${labelPrefix}body]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}document_exists`,
-                label: `Document exists if it is not a delivery note - [${keyPrefix}document_exists]`,
+                label: `Document exists if it is not a delivery note - [${labelPrefix}document_exists]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}delivery_note_exists`,
-                label: `Document is a delivery note - [${keyPrefix}delivery_note_exists]`,
+                label: `Document is a delivery note - [${labelPrefix}delivery_note_exists]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}attachment_exists`,
-                label: `Document has attachment - [${keyPrefix}attachment_exists]`,
+                label: `Document has attachment - [${labelPrefix}attachment_exists]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}accompanying_invoice_exists`,
-                label: `Document has accompanying invoice - [${keyPrefix}accompanying_invoice_exists]`,
+                label: `Document has accompanying invoice - [${labelPrefix}accompanying_invoice_exists]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}default_attach_pdf`,
-                label: `Attach document pdf - [${keyPrefix}default_attach_pdf]`,
+                label: `Attach document pdf - [${labelPrefix}default_attach_pdf]`,
                 type: 'boolean',
             },
         ]

@@ -22,7 +22,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListEmailsResponse(),
+                ...ListEmailsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

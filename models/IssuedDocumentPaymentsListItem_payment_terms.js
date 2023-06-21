@@ -3,17 +3,18 @@ const utils = require('../utils/utils');
 const PaymentTermsType = require('./PaymentTermsType').fields;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}days`,
-                label: `Issued document payment number of days by which the payment must be made - [${keyPrefix}days]`,
+                label: `Issued document payment number of days by which the payment must be made - [${labelPrefix}days]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}type`,
-                ...PaymentTermsType(`${keyPrefix}type`),
+                ...PaymentTermsType(`${keyPrefix}type`, isInput),
             },
         ]
     },

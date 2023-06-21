@@ -2,17 +2,18 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}cassa_type`,
-                label: `Value of TipoCassa used (optional, override the company default value). - [${keyPrefix}cassa_type]`,
+                label: `Value of TipoCassa used (optional, override the company default value). - [${labelPrefix}cassa_type]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}withholding_tax_causal`,
-                label: `Value of CausalePagamento used (optional, override the company default value). - [${keyPrefix}withholding_tax_causal]`,
+                label: `Value of CausalePagamento used (optional, override the company default value). - [${labelPrefix}withholding_tax_causal]`,
                 type: 'string',
             },
         ]

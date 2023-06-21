@@ -31,7 +31,7 @@ module.exports = {
                 ...CreateF24Request(),
             ],
             outputFields: [
-                ...CreateF24Response(),
+                ...CreateF24Response('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -197,7 +197,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetF24Response(),
+                ...GetF24Response('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -278,7 +278,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListF24Response(),
+                ...ListF24Response('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -336,7 +336,7 @@ module.exports = {
                 ...ModifyF24Request(),
             ],
             outputFields: [
-                ...ModifyF24Response(),
+                ...ModifyF24Response('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -382,17 +382,17 @@ module.exports = {
                 },
                 {
                     key: 'filename',
-                    label: 'Name of the file.',
+                    label: 'Attachment file name',
                     type: 'string',
                 },
                 {
                     key: 'attachment',
-                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
+                    label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
                     type: 'file',
                 },
             ],
             outputFields: [
-                ...UploadF24AttachmentResponse(),
+                ...UploadF24AttachmentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

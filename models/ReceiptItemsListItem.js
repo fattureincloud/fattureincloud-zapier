@@ -4,30 +4,31 @@ const VatType = require('./VatType').fields;
 const VatTypeMapping = require('./VatType').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Receipt item id - [${keyPrefix}id]`,
+                label: `Receipt item id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Receipt item total net amount - [${keyPrefix}amount_net]`,
+                label: `Receipt item total net amount - [${labelPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_gross`,
-                label: `Receipt item total gross amount - [${keyPrefix}amount_gross]`,
+                label: `Receipt item total gross amount - [${labelPrefix}amount_gross]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}category`,
-                label: `Receipt item category - [${keyPrefix}category]`,
+                label: `Receipt item category - [${labelPrefix}category]`,
                 type: 'string',
             },
-            ...VatType(`${keyPrefix}vat`),
+            ...VatType(`${keyPrefix}vat`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

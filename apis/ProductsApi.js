@@ -30,7 +30,7 @@ module.exports = {
                 ...CreateProductRequest(),
             ],
             outputFields: [
-                ...CreateProductResponse(),
+                ...CreateProductResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -146,7 +146,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetProductResponse(),
+                ...GetProductResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -227,7 +227,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListProductsResponse(),
+                ...ListProductsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -285,7 +285,7 @@ module.exports = {
                 ...ModifyProductRequest(),
             ],
             outputFields: [
-                ...ModifyProductResponse(),
+                ...ModifyProductResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

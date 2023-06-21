@@ -2,32 +2,33 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}name`,
-                label: `Country name - [${keyPrefix}name]`,
+                label: `Country name - [${labelPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}settings_name`,
-                label: `Country settings name - [${keyPrefix}settings_name]`,
+                label: `Country settings name - [${labelPrefix}settings_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}iso`,
-                label: `Country iso code - [${keyPrefix}iso]`,
+                label: `Country iso code - [${labelPrefix}iso]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}fiscal_iso`,
-                label: `Country fiscal iso code - [${keyPrefix}fiscal_iso]`,
+                label: `Country fiscal iso code - [${labelPrefix}fiscal_iso]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}uic`,
-                label: `Country uic - [${keyPrefix}uic]`,
+                label: `Country uic - [${labelPrefix}uic]`,
                 type: 'string',
             },
         ]

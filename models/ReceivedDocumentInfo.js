@@ -12,37 +12,38 @@ const VatType = require('./VatType').fields;
 const VatTypeMapping = require('./VatType').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...ReceivedDocumentInfo_default_values(`${keyPrefix}default_values`),
-            ...ReceivedDocumentInfo_items_default_values(`${keyPrefix}items_default_values`),
+            ...ReceivedDocumentInfo_default_values(`${keyPrefix}default_values`, isInput),
+            ...ReceivedDocumentInfo_items_default_values(`${keyPrefix}items_default_values`, isInput),
             {
                 key: `${keyPrefix}countries_list`,
-                label: `Countries list - [${keyPrefix}countries_list]`,
+                label: `Countries list - [${labelPrefix}countries_list]`,
                 list: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}currencies_list`,
-                label: `${keyPrefix}currencies_list]`,
-                children: Currency(`${keyPrefix}currencies_list`), 
+                label: `${labelPrefix}currencies_list]`,
+                children: Currency(`${keyPrefix}currencies_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}categories_list`,
-                label: `Categories list - [${keyPrefix}categories_list]`,
+                label: `Categories list - [${labelPrefix}categories_list]`,
                 list: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}payment_accounts_list`,
-                label: `${keyPrefix}payment_accounts_list]`,
-                children: PaymentAccount(`${keyPrefix}payment_accounts_list`), 
+                label: `${labelPrefix}payment_accounts_list]`,
+                children: PaymentAccount(`${keyPrefix}payment_accounts_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}vat_types_list`,
-                label: `${keyPrefix}vat_types_list]`,
-                children: VatType(`${keyPrefix}vat_types_list`), 
+                label: `${labelPrefix}vat_types_list]`,
+                children: VatType(`${keyPrefix}vat_types_list${!isInput && '[]'}`), 
             },
         ]
     },

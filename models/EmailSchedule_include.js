@@ -2,27 +2,28 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}document`,
-                label: `Include a button to view the document - [${keyPrefix}document]`,
+                label: `Include a button to view the document - [${labelPrefix}document]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}delivery_note`,
-                label: `Include a button to view the delivery note - [${keyPrefix}delivery_note]`,
+                label: `Include a button to view the delivery note - [${labelPrefix}delivery_note]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}attachment`,
-                label: `Include a button to view the attachment - [${keyPrefix}attachment]`,
+                label: `Include a button to view the attachment - [${labelPrefix}attachment]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}accompanying_invoice`,
-                label: `Include a button to view the accompanying invoice - [${keyPrefix}accompanying_invoice]`,
+                label: `Include a button to view the accompanying invoice - [${labelPrefix}accompanying_invoice]`,
                 type: 'boolean',
             },
         ]

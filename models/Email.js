@@ -6,86 +6,87 @@ const EmailAttachment = require('./EmailAttachment').fields;
 const EmailAttachmentMapping = require('./EmailAttachment').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Email id - [${keyPrefix}id]`,
+                label: `Email id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}status`,
-                ...EmailStatus(`${keyPrefix}status`),
+                ...EmailStatus(`${keyPrefix}status`, isInput),
             },
             {
                 key: `${keyPrefix}sent_date`,
-                label: `Email sent date - [${keyPrefix}sent_date]`,
+                label: `Email sent date - [${labelPrefix}sent_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}errors_count`,
-                label: `Email errors count - [${keyPrefix}errors_count]`,
+                label: `Email errors count - [${labelPrefix}errors_count]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}error_log`,
-                label: `Email errors log - [${keyPrefix}error_log]`,
+                label: `Email errors log - [${labelPrefix}error_log]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}from_email`,
-                label: `Email sender email - [${keyPrefix}from_email]`,
+                label: `Email sender email - [${labelPrefix}from_email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}from_name`,
-                label: `Email sender name - [${keyPrefix}from_name]`,
+                label: `Email sender name - [${labelPrefix}from_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}to_email`,
-                label: `Email recipient email - [${keyPrefix}to_email]`,
+                label: `Email recipient email - [${labelPrefix}to_email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}to_name`,
-                label: `Email receipient name - [${keyPrefix}to_name]`,
+                label: `Email receipient name - [${labelPrefix}to_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}subject`,
-                label: `Email subject - [${keyPrefix}subject]`,
+                label: `Email subject - [${labelPrefix}subject]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}content`,
-                label: `Email content - [${keyPrefix}content]`,
+                label: `Email content - [${labelPrefix}content]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}copy_to`,
-                label: `Email cc - [${keyPrefix}copy_to]`,
+                label: `Email cc - [${labelPrefix}copy_to]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}recipient_status`,
-                ...EmailRecipientStatus(`${keyPrefix}recipient_status`),
+                ...EmailRecipientStatus(`${keyPrefix}recipient_status`, isInput),
             },
             {
                 key: `${keyPrefix}recipient_date`,
-                label: `Email recipient date - [${keyPrefix}recipient_date]`,
+                label: `Email recipient date - [${labelPrefix}recipient_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}kind`,
-                label: `Email kind - [${keyPrefix}kind]`,
+                label: `Email kind - [${labelPrefix}kind]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}attachments`,
-                label: `${keyPrefix}attachments]`,
-                children: EmailAttachment(`${keyPrefix}attachments`), 
+                label: `${labelPrefix}attachments]`,
+                children: EmailAttachment(`${keyPrefix}attachments${!isInput && '[]'}`), 
             },
         ]
     },

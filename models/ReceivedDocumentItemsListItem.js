@@ -4,53 +4,54 @@ const VatType = require('./VatType').fields;
 const VatTypeMapping = require('./VatType').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Received document item id - [${keyPrefix}id]`,
+                label: `Received document item id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}product_id`,
-                label: `Received document product id - [${keyPrefix}product_id]`,
+                label: `Received document product id - [${labelPrefix}product_id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}code`,
-                label: `Received document item product code - [${keyPrefix}code]`,
+                label: `Received document item product code - [${labelPrefix}code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Received document item product name - [${keyPrefix}name]`,
+                label: `Received document item product name - [${labelPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}measure`,
-                label: `Received document item measure - [${keyPrefix}measure]`,
+                label: `Received document item measure - [${labelPrefix}measure]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}net_price`,
-                label: `Received document item product net price - [${keyPrefix}net_price]`,
+                label: `Received document item product net price - [${labelPrefix}net_price]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}category`,
-                label: `Received document item product category - [${keyPrefix}category]`,
+                label: `Received document item product category - [${labelPrefix}category]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}qty`,
-                label: `Received document item quantity - [${keyPrefix}qty]`,
+                label: `Received document item quantity - [${labelPrefix}qty]`,
                 type: 'number',
             },
-            ...VatType(`${keyPrefix}vat`),
+            ...VatType(`${keyPrefix}vat`, isInput),
             {
                 key: `${keyPrefix}stock`,
-                label: `Received document item product number of items in stock - [${keyPrefix}stock]`,
+                label: `Received document item product number of items in stock - [${labelPrefix}stock]`,
                 type: 'number',
             },
         ]

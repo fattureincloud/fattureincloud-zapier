@@ -2,42 +2,43 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Received document total net amount - [${keyPrefix}amount_net]`,
+                label: `Received document total net amount - [${labelPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_vat`,
-                label: `Received document total vat amount - [${keyPrefix}amount_vat]`,
+                label: `Received document total vat amount - [${labelPrefix}amount_vat]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_gross`,
-                label: `Received document total gross amount - [${keyPrefix}amount_gross]`,
+                label: `Received document total gross amount - [${labelPrefix}amount_gross]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_withholding_tax`,
-                label: `Received document withholding tax amount - [${keyPrefix}amount_withholding_tax]`,
+                label: `Received document withholding tax amount - [${labelPrefix}amount_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_other_withholding_tax`,
-                label: `Received document other withholding tax amount - [${keyPrefix}amount_other_withholding_tax]`,
+                label: `Received document other withholding tax amount - [${labelPrefix}amount_other_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_due`,
-                label: `Received document total amount due - [${keyPrefix}amount_due]`,
+                label: `Received document total amount due - [${labelPrefix}amount_due]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}payments_sum`,
-                label: `Received document payments sum - [${keyPrefix}payments_sum]`,
+                label: `Received document payments sum - [${labelPrefix}payments_sum]`,
                 type: 'number',
             },
         ]

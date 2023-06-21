@@ -6,11 +6,12 @@ const VerifyEInvoiceXmlErrorResponse_extra = require('./VerifyEInvoiceXmlErrorRe
 const VerifyEInvoiceXmlErrorResponse_extraMapping = require('./VerifyEInvoiceXmlErrorResponse_extra').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...VerifyEInvoiceXmlErrorResponse_error(`${keyPrefix}error`),
-            ...VerifyEInvoiceXmlErrorResponse_extra(`${keyPrefix}extra`),
+            ...VerifyEInvoiceXmlErrorResponse_error(`${keyPrefix}error`, isInput),
+            ...VerifyEInvoiceXmlErrorResponse_extra(`${keyPrefix}extra`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

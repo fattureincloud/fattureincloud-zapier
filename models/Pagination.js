@@ -2,62 +2,63 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}current_page`,
-                label: `Current page number. - [${keyPrefix}current_page]`,
+                label: `Current page number. - [${labelPrefix}current_page]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}first_page_url`,
-                label: `First page url. - [${keyPrefix}first_page_url]`,
+                label: `First page url. - [${labelPrefix}first_page_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}from`,
-                label: `First result of the page. - [${keyPrefix}from]`,
+                label: `First result of the page. - [${labelPrefix}from]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}last_page`,
-                label: `Last page number. - [${keyPrefix}last_page]`,
+                label: `Last page number. - [${labelPrefix}last_page]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}last_page_url`,
-                label: `Last page url. - [${keyPrefix}last_page_url]`,
+                label: `Last page url. - [${labelPrefix}last_page_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}next_page_url`,
-                label: `Next page url - [${keyPrefix}next_page_url]`,
+                label: `Next page url - [${labelPrefix}next_page_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}path`,
-                label: `Request path. - [${keyPrefix}path]`,
+                label: `Request path. - [${labelPrefix}path]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}per_page`,
-                label: `Number of result per page. - [${keyPrefix}per_page]`,
+                label: `Number of result per page. - [${labelPrefix}per_page]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}prev_page_url`,
-                label: `Previous page url. - [${keyPrefix}prev_page_url]`,
+                label: `Previous page url. - [${labelPrefix}prev_page_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}to`,
-                label: `Last result of the page. - [${keyPrefix}to]`,
+                label: `Last result of the page. - [${labelPrefix}to]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}total`,
-                label: `Total number of results - [${keyPrefix}total]`,
+                label: `Total number of results - [${labelPrefix}total]`,
                 type: 'integer',
             },
         ]

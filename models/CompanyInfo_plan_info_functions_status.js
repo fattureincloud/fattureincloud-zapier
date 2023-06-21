@@ -4,11 +4,12 @@ const FunctionStatus = require('./FunctionStatus').fields;
 const FunctionStatusMapping = require('./FunctionStatus').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...FunctionStatus(`${keyPrefix}ts_digital`),
-            ...FunctionStatus(`${keyPrefix}ts_pay`),
+            ...FunctionStatus(`${keyPrefix}ts_digital`, isInput),
+            ...FunctionStatus(`${keyPrefix}ts_pay`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

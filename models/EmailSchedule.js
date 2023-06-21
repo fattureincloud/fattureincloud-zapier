@@ -4,43 +4,44 @@ const EmailSchedule_include = require('./EmailSchedule_include').fields;
 const EmailSchedule_includeMapping = require('./EmailSchedule_include').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}sender_id`,
-                label: `Email sender id [required if **sender_email** is not specified] - [${keyPrefix}sender_id]`,
+                label: `Email sender id [required if **sender_email** is not specified] - [${labelPrefix}sender_id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}sender_email`,
-                label: `Email sender address [required if **sender_id** is not specified] - [${keyPrefix}sender_email]`,
+                label: `Email sender address [required if **sender_id** is not specified] - [${labelPrefix}sender_email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}recipient_email`,
-                label: `Email recipient emails [comma separated] - [${keyPrefix}recipient_email]`,
+                label: `Email recipient emails [comma separated] - [${labelPrefix}recipient_email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}subject`,
-                label: `Email subject - [${keyPrefix}subject]`,
+                label: `Email subject - [${labelPrefix}subject]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}body`,
-                label: `Email body [HTML Escaped] [max size 50KiB] - [${keyPrefix}body]`,
+                label: `Email body [HTML Escaped] [max size 50KiB] - [${labelPrefix}body]`,
                 type: 'string',
             },
-            ...EmailSchedule_include(`${keyPrefix}include`),
+            ...EmailSchedule_include(`${keyPrefix}include`, isInput),
             {
                 key: `${keyPrefix}attach_pdf`,
-                label: `Attach the pdf of the document - [${keyPrefix}attach_pdf]`,
+                label: `Attach the pdf of the document - [${labelPrefix}attach_pdf]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}send_copy`,
-                label: `Send a copy of the email to the **cc_email** specified by **Get email data** - [${keyPrefix}send_copy]`,
+                label: `Send a copy of the email to the **cc_email** specified by **Get email data** - [${labelPrefix}send_copy]`,
                 type: 'boolean',
             },
         ]

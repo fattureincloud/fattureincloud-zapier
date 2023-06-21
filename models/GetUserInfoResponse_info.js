@@ -2,22 +2,23 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}need_marketing_consents_confirmation`,
-                label: `[${keyPrefix}need_marketing_consents_confirmation]`,
+                label: `[${labelPrefix}need_marketing_consents_confirmation]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}need_password_change`,
-                label: `[${keyPrefix}need_password_change]`,
+                label: `[${labelPrefix}need_password_change]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}need_terms_of_service_confirmation`,
-                label: `[${keyPrefix}need_terms_of_service_confirmation]`,
+                label: `[${labelPrefix}need_terms_of_service_confirmation]`,
                 type: 'boolean',
             },
         ]

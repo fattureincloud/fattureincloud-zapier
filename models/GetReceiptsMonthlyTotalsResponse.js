@@ -4,13 +4,14 @@ const MonthlyTotal = require('./MonthlyTotal').fields;
 const MonthlyTotalMapping = require('./MonthlyTotal').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${keyPrefix}data]`,
-                children: MonthlyTotal(`${keyPrefix}data`), 
+                label: `${labelPrefix}data]`,
+                children: MonthlyTotal(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

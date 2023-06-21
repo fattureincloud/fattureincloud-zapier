@@ -8,12 +8,13 @@ const CompanyInfo_plan_info_functions_status = require('./CompanyInfo_plan_info_
 const CompanyInfo_plan_info_functions_statusMapping = require('./CompanyInfo_plan_info_functions_status').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...CompanyInfo_plan_info_limits(`${keyPrefix}limits`),
-            ...CompanyInfo_plan_info_functions(`${keyPrefix}functions`),
-            ...CompanyInfo_plan_info_functions_status(`${keyPrefix}functions_status`),
+            ...CompanyInfo_plan_info_limits(`${keyPrefix}limits`, isInput),
+            ...CompanyInfo_plan_info_functions(`${keyPrefix}functions`, isInput),
+            ...CompanyInfo_plan_info_functions_status(`${keyPrefix}functions_status`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

@@ -2,12 +2,13 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}xml_errors`,
-                label: `[${keyPrefix}xml_errors]`,
+                label: `[${labelPrefix}xml_errors]`,
                 list: true,
                 type: 'string',
             },

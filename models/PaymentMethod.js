@@ -7,52 +7,53 @@ const PaymentMethodDetails = require('./PaymentMethodDetails').fields;
 const PaymentMethodDetailsMapping = require('./PaymentMethodDetails').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Payment method id - [${keyPrefix}id]`,
+                label: `Payment method id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Payment method name - [${keyPrefix}name]`,
+                label: `Payment method name - [${labelPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}type`,
-                ...PaymentMethodType(`${keyPrefix}type`),
+                ...PaymentMethodType(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}is_default`,
-                label: `Payment method is default - [${keyPrefix}is_default]`,
+                label: `Payment method is default - [${labelPrefix}is_default]`,
                 type: 'boolean',
             },
-            ...PaymentAccount(`${keyPrefix}default_payment_account`),
+            ...PaymentAccount(`${keyPrefix}default_payment_account`, isInput),
             {
                 key: `${keyPrefix}details`,
-                label: `${keyPrefix}details]`,
-                children: PaymentMethodDetails(`${keyPrefix}details`), 
+                label: `${labelPrefix}details]`,
+                children: PaymentMethodDetails(`${keyPrefix}details${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}bank_iban`,
-                label: `Payment method bank iban - [${keyPrefix}bank_iban]`,
+                label: `Payment method bank iban - [${labelPrefix}bank_iban]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_name`,
-                label: `Payment method bank name - [${keyPrefix}bank_name]`,
+                label: `Payment method bank name - [${labelPrefix}bank_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_beneficiary`,
-                label: `Payment method bank beneficiary - [${keyPrefix}bank_beneficiary]`,
+                label: `Payment method bank beneficiary - [${labelPrefix}bank_beneficiary]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}ei_payment_method`,
-                label: `E-invoice payment method - [${keyPrefix}ei_payment_method]`,
+                label: `E-invoice payment method - [${labelPrefix}ei_payment_method]`,
                 type: 'string',
             },
         ]

@@ -8,177 +8,178 @@ const PaymentMethod = require('./PaymentMethod').fields;
 const PaymentMethodMapping = require('./PaymentMethod').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Entity id - [${keyPrefix}id]`,
+                label: `Entity id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}code`,
-                label: `Entity code - [${keyPrefix}code]`,
+                label: `Entity code - [${labelPrefix}code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Entity name - [${keyPrefix}name]`,
+                label: `Entity name - [${labelPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}type`,
-                ...EntityType(`${keyPrefix}type`),
+                ...EntityType(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}first_name`,
-                label: `Entity first name - [${keyPrefix}first_name]`,
+                label: `Entity first name - [${labelPrefix}first_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}last_name`,
-                label: `Entity last name - [${keyPrefix}last_name]`,
+                label: `Entity last name - [${labelPrefix}last_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}contact_person`,
-                label: `Entity contact person - [${keyPrefix}contact_person]`,
+                label: `Entity contact person - [${labelPrefix}contact_person]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}vat_number`,
-                label: `Entity vat number - [${keyPrefix}vat_number]`,
+                label: `Entity vat number - [${labelPrefix}vat_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}tax_code`,
-                label: `Entity tax code - [${keyPrefix}tax_code]`,
+                label: `Entity tax code - [${labelPrefix}tax_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_street`,
-                label: `Entitity address street - [${keyPrefix}address_street]`,
+                label: `Entitity address street - [${labelPrefix}address_street]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_postal_code`,
-                label: `Entity address postal code - [${keyPrefix}address_postal_code]`,
+                label: `Entity address postal code - [${labelPrefix}address_postal_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_city`,
-                label: `Entity address city - [${keyPrefix}address_city]`,
+                label: `Entity address city - [${labelPrefix}address_city]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_province`,
-                label: `Entity address province - [${keyPrefix}address_province]`,
+                label: `Entity address province - [${labelPrefix}address_province]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_extra`,
-                label: `Entity address extra info - [${keyPrefix}address_extra]`,
+                label: `Entity address extra info - [${labelPrefix}address_extra]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}country`,
-                label: `Entity country - [${keyPrefix}country]`,
+                label: `Entity country - [${labelPrefix}country]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}country_iso`,
-                label: `Entity country iso code - [${keyPrefix}country_iso]`,
+                label: `Entity country iso code - [${labelPrefix}country_iso]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}email`,
-                label: `Entity email - [${keyPrefix}email]`,
+                label: `Entity email - [${labelPrefix}email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}certified_email`,
-                label: `Entity certified email - [${keyPrefix}certified_email]`,
+                label: `Entity certified email - [${labelPrefix}certified_email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}phone`,
-                label: `Entity phone - [${keyPrefix}phone]`,
+                label: `Entity phone - [${labelPrefix}phone]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}fax`,
-                label: `Entity fax - [${keyPrefix}fax]`,
+                label: `Entity fax - [${labelPrefix}fax]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}notes`,
-                label: `Entity extra - [${keyPrefix}notes]`,
+                label: `Entity extra - [${labelPrefix}notes]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}default_payment_terms`,
-                label: `[Only for client] Client default payment terms - [${keyPrefix}default_payment_terms]`,
+                label: `[Only for client] Client default payment terms - [${labelPrefix}default_payment_terms]`,
                 type: 'integer',
             },
-            ...VatType(`${keyPrefix}default_vat`),
+            ...VatType(`${keyPrefix}default_vat`, isInput),
             {
                 key: `${keyPrefix}default_payment_terms_type`,
-                ...PaymentTermsType(`${keyPrefix}default_payment_terms_type`),
+                ...PaymentTermsType(`${keyPrefix}default_payment_terms_type`, isInput),
             },
-            ...PaymentMethod(`${keyPrefix}default_payment_method`),
+            ...PaymentMethod(`${keyPrefix}default_payment_method`, isInput),
             {
                 key: `${keyPrefix}bank_name`,
-                label: `[Only for client] Bank name. - [${keyPrefix}bank_name]`,
+                label: `[Only for client] Client bank name - [${labelPrefix}bank_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_iban`,
-                label: `[Only for client] Iban. - [${keyPrefix}bank_iban]`,
+                label: `[Only for client] Client bank iban - [${labelPrefix}bank_iban]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_swift_code`,
-                label: `[Only for client] Bank swift code. - [${keyPrefix}bank_swift_code]`,
+                label: `[Only for client] Client bank swift code - [${labelPrefix}bank_swift_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}shipping_address`,
-                label: `[Only for client] Shipping address. - [${keyPrefix}shipping_address]`,
+                label: `[Only for client] Client Shipping address - [${labelPrefix}shipping_address]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}e_invoice`,
-                label: `[Only for client] Use e-invoices. - [${keyPrefix}e_invoice]`,
+                label: `[Only for client] Use e-invoices. - [${labelPrefix}e_invoice]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ei_code`,
-                label: `[Only for client] E-invoices code. - [${keyPrefix}ei_code]`,
+                label: `[Only for client] E-invoices code. - [${labelPrefix}ei_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}has_intent_declaration`,
-                label: `[Only for client] Has intent declaration. - [${keyPrefix}has_intent_declaration]`,
+                label: `[Only for client] Has intent declaration. - [${labelPrefix}has_intent_declaration]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}intent_declaration_protocol_number`,
-                label: `[Only for client] Intent declaration protocol number. - [${keyPrefix}intent_declaration_protocol_number]`,
+                label: `[Only for client] Client intent declaration protocol number - [${labelPrefix}intent_declaration_protocol_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}intent_declaration_protocol_date`,
-                label: `[Only for client] Intent declaration protocol date. - [${keyPrefix}intent_declaration_protocol_date]`,
+                label: `[Only for client] Client intent declaration protocol date - [${labelPrefix}intent_declaration_protocol_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}created_at`,
-                label: `Entity creation date - [${keyPrefix}created_at]`,
+                label: `Entity creation date - [${labelPrefix}created_at]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}updated_at`,
-                label: `Entity last update date - [${keyPrefix}updated_at]`,
+                label: `Entity last update date - [${labelPrefix}updated_at]`,
                 type: 'string',
             },
         ]

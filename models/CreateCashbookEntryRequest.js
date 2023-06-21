@@ -4,10 +4,11 @@ const CashbookEntry = require('./CashbookEntry').fields;
 const CashbookEntryMapping = require('./CashbookEntry').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...CashbookEntry(`${keyPrefix}data`),
+            ...CashbookEntry(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

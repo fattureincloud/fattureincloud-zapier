@@ -3,36 +3,37 @@ const utils = require('../utils/utils');
 const CompanyType = require('./CompanyType').fields;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Controlled company id - [${keyPrefix}id]`,
+                label: `Controlled company id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Controlled company id - [${keyPrefix}name]`,
+                label: `Controlled company id - [${labelPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}type`,
-                ...CompanyType(`${keyPrefix}type`),
+                ...CompanyType(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}access_token`,
-                label: `Controlled company access token Only if type=company] - [${keyPrefix}access_token]`,
+                label: `Controlled company access token Only if type=company] - [${labelPrefix}access_token]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}connection_id`,
-                label: `Controlled company connection id - [${keyPrefix}connection_id]`,
+                label: `Controlled company connection id - [${labelPrefix}connection_id]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}tax_code`,
-                label: `Controlled company tax code - [${keyPrefix}tax_code]`,
+                label: `Controlled company tax code - [${labelPrefix}tax_code]`,
                 type: 'string',
             },
         ]

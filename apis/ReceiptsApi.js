@@ -32,7 +32,7 @@ module.exports = {
                 ...CreateReceiptRequest(),
             ],
             outputFields: [
-                ...CreateReceiptResponse(),
+                ...CreateReceiptResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -148,7 +148,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceiptResponse(),
+                ...GetReceiptResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -195,7 +195,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceiptPreCreateInfoResponse(),
+                ...GetReceiptPreCreateInfoResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -256,7 +256,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceiptsMonthlyTotalsResponse(),
+                ...GetReceiptsMonthlyTotalsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -337,7 +337,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListReceiptsResponse(),
+                ...ListReceiptsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -395,7 +395,7 @@ module.exports = {
                 ...ModifyReceiptRequest(),
             ],
             outputFields: [
-                ...ModifyReceiptResponse(),
+                ...ModifyReceiptResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

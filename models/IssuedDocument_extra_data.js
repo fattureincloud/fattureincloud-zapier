@@ -2,67 +2,68 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}show_sofort_button`,
-                label: `[${keyPrefix}show_sofort_button]`,
+                label: `[${labelPrefix}show_sofort_button]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}multifatture_sent`,
-                label: `[${keyPrefix}multifatture_sent]`,
+                label: `[${labelPrefix}multifatture_sent]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}ts_communication`,
-                label: `Send issued document to \"Sistema Tessera Sanitaria\" - [${keyPrefix}ts_communication]`,
+                label: `Send issued document to \"Sistema Tessera Sanitaria\" - [${labelPrefix}ts_communication]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_flag_tipo_spesa`,
-                label: `Issued document ts \"tipo spesa\" [TK, FC, FV, SV,SP, AD, AS, ECG, SR] - [${keyPrefix}ts_flag_tipo_spesa]`,
+                label: `Issued document ts \"tipo spesa\" [TK, FC, FV, SV,SP, AD, AS, ECG, SR] - [${labelPrefix}ts_flag_tipo_spesa]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}ts_pagamento_tracciato`,
-                label: `Issued document ts traced payment - [${keyPrefix}ts_pagamento_tracciato]`,
+                label: `Issued document ts traced payment - [${labelPrefix}ts_pagamento_tracciato]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_tipo_spesa`,
-                label: `Can be [ 'TK', 'FC', 'FV', 'SV', 'SP', 'AD', 'AS', 'SR', 'CT', 'PI', 'IC', 'AA' ]. Refer to the technical specifications to learn more. - [${keyPrefix}ts_tipo_spesa]`,
+                label: `Can be [ 'TK', 'FC', 'FV', 'SV', 'SP', 'AD', 'AS', 'SR', 'CT', 'PI', 'IC', 'AA' ]. Refer to the technical specifications to learn more. - [${labelPrefix}ts_tipo_spesa]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}ts_opposizione`,
-                label: `Issued document ts \"opposizione\" - [${keyPrefix}ts_opposizione]`,
+                label: `Issued document ts \"opposizione\" - [${labelPrefix}ts_opposizione]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}ts_status`,
-                label: `Issued document ts status - [${keyPrefix}ts_status]`,
+                label: `Issued document ts status - [${labelPrefix}ts_status]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}ts_file_id`,
-                label: `Issued document ts file id - [${keyPrefix}ts_file_id]`,
+                label: `Issued document ts file id - [${labelPrefix}ts_file_id]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}ts_sent_date`,
-                label: `Issued document ts sent date - [${keyPrefix}ts_sent_date]`,
+                label: `Issued document ts sent date - [${labelPrefix}ts_sent_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}ts_full_amount`,
-                label: `Issued document ts total amount - [${keyPrefix}ts_full_amount]`,
+                label: `Issued document ts total amount - [${labelPrefix}ts_full_amount]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}imported_by`,
-                label: `Issued document imported by software - [${keyPrefix}imported_by]`,
+                label: `Issued document imported by software - [${labelPrefix}imported_by]`,
                 type: 'string',
             },
         ]

@@ -4,10 +4,11 @@ const IssuedDocumentPreCreateInfo = require('./IssuedDocumentPreCreateInfo').fie
 const IssuedDocumentPreCreateInfoMapping = require('./IssuedDocumentPreCreateInfo').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...IssuedDocumentPreCreateInfo(`${keyPrefix}data`),
+            ...IssuedDocumentPreCreateInfo(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

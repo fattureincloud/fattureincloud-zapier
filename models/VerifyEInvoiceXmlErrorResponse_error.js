@@ -4,15 +4,16 @@ const VerifyEInvoiceXmlErrorResponse_error_validation_result = require('./Verify
 const VerifyEInvoiceXmlErrorResponse_error_validation_resultMapping = require('./VerifyEInvoiceXmlErrorResponse_error_validation_result').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}message`,
-                label: `[${keyPrefix}message]`,
+                label: `[${labelPrefix}message]`,
                 type: 'string',
             },
-            ...VerifyEInvoiceXmlErrorResponse_error_validation_result(`${keyPrefix}validation_result`),
+            ...VerifyEInvoiceXmlErrorResponse_error_validation_result(`${keyPrefix}validation_result`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

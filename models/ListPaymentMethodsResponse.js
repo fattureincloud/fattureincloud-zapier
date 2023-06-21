@@ -4,13 +4,14 @@ const PaymentMethod = require('./PaymentMethod').fields;
 const PaymentMethodMapping = require('./PaymentMethod').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${keyPrefix}data]`,
-                children: PaymentMethod(`${keyPrefix}data`), 
+                label: `${labelPrefix}data]`,
+                children: PaymentMethod(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

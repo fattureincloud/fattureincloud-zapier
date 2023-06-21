@@ -32,7 +32,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetEInvoiceRejectionReasonResponse(),
+                ...GetEInvoiceRejectionReasonResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -140,7 +140,7 @@ module.exports = {
                 ...SendEInvoiceRequest(),
             ],
             outputFields: [
-                ...SendEInvoiceResponse(),
+                ...SendEInvoiceResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -192,7 +192,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...VerifyEInvoiceXmlResponse(),
+                ...VerifyEInvoiceXmlResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

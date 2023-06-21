@@ -2,27 +2,28 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Currency code - [${keyPrefix}id]`,
+                label: `Currency code - [${labelPrefix}id]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}symbol`,
-                label: `Currency symbol - [${keyPrefix}symbol]`,
+                label: `Currency symbol - [${labelPrefix}symbol]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}exchange_rate`,
-                label: `Currency exchange rate (EUR to this) - [${keyPrefix}exchange_rate]`,
+                label: `Currency exchange rate (EUR to this) - [${labelPrefix}exchange_rate]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}html_symbol`,
-                label: `Currency html code - [${keyPrefix}html_symbol]`,
+                label: `Currency html code - [${labelPrefix}html_symbol]`,
                 type: 'string',
             },
         ]

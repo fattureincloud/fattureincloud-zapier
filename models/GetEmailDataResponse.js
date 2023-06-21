@@ -4,10 +4,11 @@ const EmailData = require('./EmailData').fields;
 const EmailDataMapping = require('./EmailData').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...EmailData(`${keyPrefix}data`),
+            ...EmailData(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

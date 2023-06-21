@@ -16,7 +16,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...GetUserInfoResponse(),
+                ...GetUserInfoResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -54,7 +54,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListUserCompaniesResponse(),
+                ...ListUserCompaniesResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

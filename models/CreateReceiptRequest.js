@@ -4,13 +4,14 @@ const Receipt = require('./Receipt').fields;
 const ReceiptMapping = require('./Receipt').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...Receipt(`${keyPrefix}data`),
+            ...Receipt(`${keyPrefix}data`, isInput),
             {
                 key: `${keyPrefix}autocomplete_number`,
-                label: `If true, the number is autocompleted progressively. - [${keyPrefix}autocomplete_number]`,
+                label: `If true, the number is autocompleted progressively. - [${labelPrefix}autocomplete_number]`,
                 type: 'boolean',
             },
         ]

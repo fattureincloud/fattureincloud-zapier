@@ -4,10 +4,11 @@ const ReceiptPreCreateInfo = require('./ReceiptPreCreateInfo').fields;
 const ReceiptPreCreateInfoMapping = require('./ReceiptPreCreateInfo').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...ReceiptPreCreateInfo(`${keyPrefix}data`),
+            ...ReceiptPreCreateInfo(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

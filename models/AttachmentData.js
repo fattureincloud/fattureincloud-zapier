@@ -2,12 +2,13 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}attachment_token`,
-                label: `Uploaded attachment token. - [${keyPrefix}attachment_token]`,
+                label: `Uploaded attachment token. - [${labelPrefix}attachment_token]`,
                 type: 'string',
             },
         ]

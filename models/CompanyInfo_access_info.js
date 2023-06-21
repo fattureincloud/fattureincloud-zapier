@@ -5,17 +5,18 @@ const Permissions = require('./Permissions').fields;
 const PermissionsMapping = require('./Permissions').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}role`,
-                ...UserCompanyRole(`${keyPrefix}role`),
+                ...UserCompanyRole(`${keyPrefix}role`, isInput),
             },
-            ...Permissions(`${keyPrefix}permissions`),
+            ...Permissions(`${keyPrefix}permissions`, isInput),
             {
                 key: `${keyPrefix}through_accountant`,
-                label: `Company activated through accountant - [${keyPrefix}through_accountant]`,
+                label: `Company activated through accountant - [${labelPrefix}through_accountant]`,
                 type: 'boolean',
             },
         ]

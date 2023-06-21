@@ -11,143 +11,144 @@ const ReceivedDocumentPaymentsListItem = require('./ReceivedDocumentPaymentsList
 const ReceivedDocumentPaymentsListItemMapping = require('./ReceivedDocumentPaymentsListItem').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Received document id - [${keyPrefix}id]`,
+                label: `Received document id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}type`,
-                ...ReceivedDocumentType(`${keyPrefix}type`),
+                ...ReceivedDocumentType(`${keyPrefix}type`, isInput),
             },
-            ...Entity(`${keyPrefix}entity`),
+            ...Entity(`${keyPrefix}entity`, isInput),
             {
                 key: `${keyPrefix}date`,
-                label: `Received document date [defaults to today's date] - [${keyPrefix}date]`,
+                label: `Received document date [defaults to today's date] - [${labelPrefix}date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}category`,
-                label: `Received document category - [${keyPrefix}category]`,
+                label: `Received document category - [${labelPrefix}category]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Received document description - [${keyPrefix}description]`,
+                label: `Received document description - [${labelPrefix}description]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Received document total net amount - [${keyPrefix}amount_net]`,
+                label: `Received document total net amount - [${labelPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_vat`,
-                label: `Received document total vat amount - [${keyPrefix}amount_vat]`,
+                label: `Received document total vat amount - [${labelPrefix}amount_vat]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_withholding_tax`,
-                label: `Received document withholding tax amount - [${keyPrefix}amount_withholding_tax]`,
+                label: `Received document withholding tax amount - [${labelPrefix}amount_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_other_withholding_tax`,
-                label: `Received document other withholding tax amount - [${keyPrefix}amount_other_withholding_tax]`,
+                label: `Received document other withholding tax amount - [${labelPrefix}amount_other_withholding_tax]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_gross`,
-                label: `[Read Only] Received document total gross amount - [${keyPrefix}amount_gross]`,
+                label: `[Read Only] Received document total gross amount - [${labelPrefix}amount_gross]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amortization`,
-                label: `Received document amortization value - [${keyPrefix}amortization]`,
+                label: `Received document amortization value - [${labelPrefix}amortization]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}rc_center`,
-                label: `Received document revenue center - [${keyPrefix}rc_center]`,
+                label: `Received document revenue center - [${labelPrefix}rc_center]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}invoice_number`,
-                label: `Received document invoice number - [${keyPrefix}invoice_number]`,
+                label: `Received document invoice number - [${labelPrefix}invoice_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}is_marked`,
-                label: `Received document is marked - [${keyPrefix}is_marked]`,
+                label: `Received document is marked - [${labelPrefix}is_marked]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}is_detailed`,
-                label: `Received document has items - [${keyPrefix}is_detailed]`,
+                label: `Received document has items - [${labelPrefix}is_detailed]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}e_invoice`,
-                label: `[Read Only] Received document is an e-invoice - [${keyPrefix}e_invoice]`,
+                label: `[Read Only] Received document is an e-invoice - [${labelPrefix}e_invoice]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}next_due_date`,
-                label: `[Read Only] Received document date of the next not paid payment - [${keyPrefix}next_due_date]`,
+                label: `[Read Only] Received document date of the next not paid payment - [${labelPrefix}next_due_date]`,
                 type: 'datetime',
             },
-            ...Currency(`${keyPrefix}currency`),
+            ...Currency(`${keyPrefix}currency`, isInput),
             {
                 key: `${keyPrefix}tax_deductibility`,
-                label: `Received document tax deducibility percentage - [${keyPrefix}tax_deductibility]`,
+                label: `Received document tax deducibility percentage - [${labelPrefix}tax_deductibility]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}vat_deductibility`,
-                label: `Received document vat deducibility percentage - [${keyPrefix}vat_deductibility]`,
+                label: `Received document vat deducibility percentage - [${labelPrefix}vat_deductibility]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}items_list`,
-                label: `${keyPrefix}items_list]`,
-                children: ReceivedDocumentItemsListItem(`${keyPrefix}items_list`), 
+                label: `${labelPrefix}items_list]`,
+                children: ReceivedDocumentItemsListItem(`${keyPrefix}items_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}payments_list`,
-                label: `${keyPrefix}payments_list]`,
-                children: ReceivedDocumentPaymentsListItem(`${keyPrefix}payments_list`), 
+                label: `${labelPrefix}payments_list]`,
+                children: ReceivedDocumentPaymentsListItem(`${keyPrefix}payments_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}attachment_url`,
-                label: `[Temporary] [Read Only] Received document url of the attached file - [${keyPrefix}attachment_url]`,
+                label: `[Temporary] [Read Only] Received document url of the attached file - [${labelPrefix}attachment_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}attachment_preview_url`,
-                label: `[Temporary] [Read Only] Received document url of the attachment preview - [${keyPrefix}attachment_preview_url]`,
+                label: `[Temporary] [Read Only] Received document url of the attachment preview - [${labelPrefix}attachment_preview_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}auto_calculate`,
-                label: `Received document total items amount and total payments amount can differ if this field is set to false - [${keyPrefix}auto_calculate]`,
+                label: `Received document total items amount and total payments amount can differ if this field is set to false - [${labelPrefix}auto_calculate]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}attachment_token`,
-                label: `[Write Only] Received document attachment token returned by POST /received_documents/attachment - [${keyPrefix}attachment_token]`,
+                label: `[Write Only] Received document attachment token returned by POST /received_documents/attachment - [${labelPrefix}attachment_token]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}created_at`,
-                label: `Received document creation date - [${keyPrefix}created_at]`,
+                label: `Received document creation date - [${labelPrefix}created_at]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}updated_at`,
-                label: `Received document last update date - [${keyPrefix}updated_at]`,
+                label: `Received document last update date - [${labelPrefix}updated_at]`,
                 type: 'string',
             },
         ]

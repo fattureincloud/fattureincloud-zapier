@@ -4,98 +4,99 @@ const VatType = require('./VatType').fields;
 const VatTypeMapping = require('./VatType').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Product id - [${keyPrefix}id]`,
+                label: `Product id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Product name - [${keyPrefix}name]`,
+                label: `Product name - [${labelPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}code`,
-                label: `Product code - [${keyPrefix}code]`,
+                label: `Product code - [${labelPrefix}code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}net_price`,
-                label: `Product net price - [${keyPrefix}net_price]`,
+                label: `Product net price - [${labelPrefix}net_price]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}gross_price`,
-                label: `Product gross price - [${keyPrefix}gross_price]`,
+                label: `Product gross price - [${labelPrefix}gross_price]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}use_gross_price`,
-                label: `Product uses gross prices - [${keyPrefix}use_gross_price]`,
+                label: `Product uses gross prices - [${labelPrefix}use_gross_price]`,
                 type: 'boolean',
             },
-            ...VatType(`${keyPrefix}default_vat`),
+            ...VatType(`${keyPrefix}default_vat`, isInput),
             {
                 key: `${keyPrefix}net_cost`,
-                label: `Product net cost - [${keyPrefix}net_cost]`,
+                label: `Product net cost - [${labelPrefix}net_cost]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}measure`,
-                label: `Product measure - [${keyPrefix}measure]`,
+                label: `Product measure - [${labelPrefix}measure]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Product description - [${keyPrefix}description]`,
+                label: `Product description - [${labelPrefix}description]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}category`,
-                label: `Product category - [${keyPrefix}category]`,
+                label: `Product category - [${labelPrefix}category]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}notes`,
-                label: `Product extra notes - [${keyPrefix}notes]`,
+                label: `Product extra notes - [${labelPrefix}notes]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}in_stock`,
-                label: `Product has stock - [${keyPrefix}in_stock]`,
+                label: `Product has stock - [${labelPrefix}in_stock]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}stock_initial`,
-                label: `Product initial stock - [${keyPrefix}stock_initial]`,
+                label: `Product initial stock - [${labelPrefix}stock_initial]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}stock_current`,
-                label: `[Read Only] Product current stock - [${keyPrefix}stock_current]`,
+                label: `[Read Only] Product current stock - [${labelPrefix}stock_current]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}average_cost`,
-                label: `Product average cost - [${keyPrefix}average_cost]`,
+                label: `Product average cost - [${labelPrefix}average_cost]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}average_price`,
-                label: `Product average price - [${keyPrefix}average_price]`,
+                label: `Product average price - [${labelPrefix}average_price]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}created_at`,
-                label: `Product creation date - [${keyPrefix}created_at]`,
+                label: `Product creation date - [${labelPrefix}created_at]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}updated_at`,
-                label: `Product last update date - [${keyPrefix}updated_at]`,
+                label: `Product last update date - [${labelPrefix}updated_at]`,
                 type: 'string',
             },
         ]

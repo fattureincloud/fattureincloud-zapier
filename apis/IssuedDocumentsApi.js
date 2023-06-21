@@ -43,7 +43,7 @@ module.exports = {
                 ...CreateIssuedDocumentRequest(),
             ],
             outputFields: [
-                ...CreateIssuedDocumentResponse(),
+                ...CreateIssuedDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -195,7 +195,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetEmailDataResponse(),
+                ...GetEmailDataResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -247,7 +247,7 @@ module.exports = {
                 ...GetExistingIssuedDocumentTotalsRequest(),
             ],
             outputFields: [
-                ...GetExistingIssuedDocumentTotalsResponse(),
+                ...GetExistingIssuedDocumentTotalsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -313,7 +313,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetIssuedDocumentResponse(),
+                ...GetIssuedDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -379,7 +379,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetIssuedDocumentPreCreateInfoResponse(),
+                ...GetIssuedDocumentPreCreateInfoResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -426,7 +426,7 @@ module.exports = {
                 ...GetNewIssuedDocumentTotalsRequest(),
             ],
             outputFields: [
-                ...GetNewIssuedDocumentTotalsResponse(),
+                ...GetNewIssuedDocumentTotalsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -496,7 +496,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...JoinIssuedDocumentsResponse(),
+                ...JoinIssuedDocumentsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -606,7 +606,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListIssuedDocumentsResponse(),
+                ...ListIssuedDocumentsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -666,7 +666,7 @@ module.exports = {
                 ...ModifyIssuedDocumentRequest(),
             ],
             outputFields: [
-                ...ModifyIssuedDocumentResponse(),
+                ...ModifyIssuedDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -794,7 +794,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...TransformIssuedDocumentResponse(),
+                ...TransformIssuedDocumentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -843,17 +843,17 @@ module.exports = {
                 },
                 {
                     key: 'filename',
-                    label: 'Name of the file.',
+                    label: 'Attachment file name',
                     type: 'string',
                 },
                 {
                     key: 'attachment',
-                    label: 'Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx',
+                    label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
                     type: 'file',
                 },
             ],
             outputFields: [
-                ...UploadIssuedDocumentAttachmentResponse(),
+                ...UploadIssuedDocumentAttachmentResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

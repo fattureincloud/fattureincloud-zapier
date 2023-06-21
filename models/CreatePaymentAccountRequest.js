@@ -4,10 +4,11 @@ const PaymentAccount = require('./PaymentAccount').fields;
 const PaymentAccountMapping = require('./PaymentAccount').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...PaymentAccount(`${keyPrefix}data`),
+            ...PaymentAccount(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

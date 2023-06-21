@@ -6,11 +6,12 @@ const IssuedDocumentOptions = require('./IssuedDocumentOptions').fields;
 const IssuedDocumentOptionsMapping = require('./IssuedDocumentOptions').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...IssuedDocument(`${keyPrefix}data`),
-            ...IssuedDocumentOptions(`${keyPrefix}options`),
+            ...IssuedDocument(`${keyPrefix}data`, isInput),
+            ...IssuedDocumentOptions(`${keyPrefix}options`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

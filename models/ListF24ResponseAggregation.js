@@ -4,10 +4,11 @@ const ListF24ResponseAggregatedData = require('./ListF24ResponseAggregatedData')
 const ListF24ResponseAggregatedDataMapping = require('./ListF24ResponseAggregatedData').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...ListF24ResponseAggregatedData(`${keyPrefix}aggregated_data`),
+            ...ListF24ResponseAggregatedData(`${keyPrefix}aggregated_data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

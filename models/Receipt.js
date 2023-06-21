@@ -7,78 +7,79 @@ const ReceiptItemsListItem = require('./ReceiptItemsListItem').fields;
 const ReceiptItemsListItemMapping = require('./ReceiptItemsListItem').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Receipt id - [${keyPrefix}id]`,
+                label: `Receipt id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}date`,
-                label: `Receipt date - [${keyPrefix}date]`,
+                label: `Receipt date - [${labelPrefix}date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}number`,
-                label: `Receipt number - [${keyPrefix}number]`,
+                label: `Receipt number - [${labelPrefix}number]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}numeration`,
-                label: `Receipt numeration - [${keyPrefix}numeration]`,
+                label: `Receipt numeration - [${labelPrefix}numeration]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Receipt total net amount - [${keyPrefix}amount_net]`,
+                label: `Receipt total net amount - [${labelPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_vat`,
-                label: `Receipt total vat amount - [${keyPrefix}amount_vat]`,
+                label: `Receipt total vat amount - [${labelPrefix}amount_vat]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_gross`,
-                label: `Receipt total gross amount - [${keyPrefix}amount_gross]`,
+                label: `Receipt total gross amount - [${labelPrefix}amount_gross]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}use_gross_prices`,
-                label: `Receipt uses gross prices - [${keyPrefix}use_gross_prices]`,
+                label: `Receipt uses gross prices - [${labelPrefix}use_gross_prices]`,
                 type: 'boolean',
             },
             {
                 key: `${keyPrefix}type`,
-                ...ReceiptType(`${keyPrefix}type`),
+                ...ReceiptType(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Receipt description - [${keyPrefix}description]`,
+                label: `Receipt description - [${labelPrefix}description]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}rc_center`,
-                label: `Receipt revenue center - [${keyPrefix}rc_center]`,
+                label: `Receipt revenue center - [${labelPrefix}rc_center]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}created_at`,
-                label: `Receipt creation date - [${keyPrefix}created_at]`,
+                label: `Receipt creation date - [${labelPrefix}created_at]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}updated_at`,
-                label: `Receipt last update date - [${keyPrefix}updated_at]`,
+                label: `Receipt last update date - [${labelPrefix}updated_at]`,
                 type: 'string',
             },
-            ...PaymentAccount(`${keyPrefix}payment_account`),
+            ...PaymentAccount(`${keyPrefix}payment_account`, isInput),
             {
                 key: `${keyPrefix}items_list`,
-                label: `${keyPrefix}items_list]`,
-                children: ReceiptItemsListItem(`${keyPrefix}items_list`), 
+                label: `${labelPrefix}items_list]`,
+                children: ReceiptItemsListItem(`${keyPrefix}items_list${!isInput && '[]'}`), 
             },
         ]
     },

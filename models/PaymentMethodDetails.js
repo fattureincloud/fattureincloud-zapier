@@ -2,17 +2,18 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}title`,
-                label: `Payment method details title - [${keyPrefix}title]`,
+                label: `Payment method details title - [${labelPrefix}title]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Payment method details description - [${keyPrefix}description]`,
+                label: `Payment method details description - [${labelPrefix}description]`,
                 type: 'string',
             },
         ]

@@ -4,10 +4,11 @@ const SendEInvoiceResponse_data = require('./SendEInvoiceResponse_data').fields;
 const SendEInvoiceResponse_dataMapping = require('./SendEInvoiceResponse_data').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...SendEInvoiceResponse_data(`${keyPrefix}data`),
+            ...SendEInvoiceResponse_data(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

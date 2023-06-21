@@ -4,10 +4,11 @@ const VatType = require('./VatType').fields;
 const VatTypeMapping = require('./VatType').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...VatType(`${keyPrefix}vat`),
+            ...VatType(`${keyPrefix}vat`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

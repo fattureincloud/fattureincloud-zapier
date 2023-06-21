@@ -4,13 +4,14 @@ const PaymentAccount = require('./PaymentAccount').fields;
 const PaymentAccountMapping = require('./PaymentAccount').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${keyPrefix}data]`,
-                children: PaymentAccount(`${keyPrefix}data`), 
+                label: `${labelPrefix}data]`,
+                children: PaymentAccount(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

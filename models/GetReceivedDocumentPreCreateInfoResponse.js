@@ -4,10 +4,11 @@ const ReceivedDocumentInfo = require('./ReceivedDocumentInfo').fields;
 const ReceivedDocumentInfoMapping = require('./ReceivedDocumentInfo').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...ReceivedDocumentInfo(`${keyPrefix}data`),
+            ...ReceivedDocumentInfo(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

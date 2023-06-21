@@ -6,36 +6,37 @@ const PaymentAccount = require('./PaymentAccount').fields;
 const PaymentAccountMapping = require('./PaymentAccount').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Received document payment id - [${keyPrefix}id]`,
+                label: `Received document payment id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}amount`,
-                label: `Received document payment total amount - [${keyPrefix}amount]`,
+                label: `Received document payment total amount - [${labelPrefix}amount]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}due_date`,
-                label: `Due date - [${keyPrefix}due_date]`,
+                label: `Due date - [${labelPrefix}due_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}paid_date`,
-                label: `Received document payment paid date - [${keyPrefix}paid_date]`,
+                label: `Received document payment paid date - [${labelPrefix}paid_date]`,
                 type: 'datetime',
             },
-            ...ReceivedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`),
+            ...ReceivedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`, isInput),
             {
                 key: `${keyPrefix}status`,
-                label: `Received document payment status - [${keyPrefix}status]`,
+                label: `Received document payment status - [${labelPrefix}status]`,
                 type: 'string',
             },
-            ...PaymentAccount(`${keyPrefix}payment_account`),
+            ...PaymentAccount(`${keyPrefix}payment_account`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

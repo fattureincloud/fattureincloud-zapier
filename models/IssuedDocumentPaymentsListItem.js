@@ -7,40 +7,41 @@ const IssuedDocumentPaymentsListItem_payment_terms = require('./IssuedDocumentPa
 const IssuedDocumentPaymentsListItem_payment_termsMapping = require('./IssuedDocumentPaymentsListItem_payment_terms').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Issued document payment item id - [${keyPrefix}id]`,
+                label: `Issued document payment item id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}due_date`,
-                label: `Issued document payment due date - [${keyPrefix}due_date]`,
+                label: `Issued document payment due date - [${labelPrefix}due_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}amount`,
-                label: `Issued document payment amount - [${keyPrefix}amount]`,
+                label: `Issued document payment amount - [${labelPrefix}amount]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}status`,
-                ...IssuedDocumentStatus(`${keyPrefix}status`),
+                ...IssuedDocumentStatus(`${keyPrefix}status`, isInput),
             },
-            ...PaymentAccount(`${keyPrefix}payment_account`),
+            ...PaymentAccount(`${keyPrefix}payment_account`, isInput),
             {
                 key: `${keyPrefix}paid_date`,
-                label: `Issued document payment date [Only if status is paid] - [${keyPrefix}paid_date]`,
+                label: `Issued document payment date [Only if status is paid] - [${labelPrefix}paid_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}ei_raw`,
-                label: `Issued document payment advanced raw attributes for e-invoices - [${keyPrefix}ei_raw]`,
+                label: `Issued document payment advanced raw attributes for e-invoices - [${labelPrefix}ei_raw]`,
                 dict: true,
             },
-            ...IssuedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`),
+            ...IssuedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

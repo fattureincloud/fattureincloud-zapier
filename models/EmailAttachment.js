@@ -2,17 +2,18 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}filename`,
-                label: `Email attachment filename - [${keyPrefix}filename]`,
+                label: `Email attachment filename - [${labelPrefix}filename]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}url`,
-                label: `Email attachment url - [${keyPrefix}url]`,
+                label: `Email attachment url - [${labelPrefix}url]`,
                 type: 'string',
             },
         ]

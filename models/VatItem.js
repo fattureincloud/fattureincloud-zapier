@@ -2,17 +2,18 @@ const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}amount_net`,
-                label: `Vat item net amount - [${keyPrefix}amount_net]`,
+                label: `Vat item net amount - [${labelPrefix}amount_net]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}amount_vat`,
-                label: `Vat item vat amount - [${keyPrefix}amount_vat]`,
+                label: `Vat item vat amount - [${labelPrefix}amount_vat]`,
                 type: 'number',
             },
         ]

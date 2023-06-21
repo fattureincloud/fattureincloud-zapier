@@ -4,13 +4,14 @@ const Company = require('./Company').fields;
 const CompanyMapping = require('./Company').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}companies`,
-                label: `${keyPrefix}companies]`,
-                children: Company(`${keyPrefix}companies`), 
+                label: `${labelPrefix}companies]`,
+                children: Company(`${keyPrefix}companies${!isInput && '[]'}`), 
             },
         ]
     },

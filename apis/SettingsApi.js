@@ -43,7 +43,7 @@ module.exports = {
                 ...CreatePaymentAccountRequest(),
             ],
             outputFields: [
-                ...CreatePaymentAccountResponse(),
+                ...CreatePaymentAccountResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -90,7 +90,7 @@ module.exports = {
                 ...CreatePaymentMethodRequest(),
             ],
             outputFields: [
-                ...CreatePaymentMethodResponse(),
+                ...CreatePaymentMethodResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -137,7 +137,7 @@ module.exports = {
                 ...CreateVatTypeRequest(),
             ],
             outputFields: [
-                ...CreateVatTypeResponse(),
+                ...CreateVatTypeResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -353,7 +353,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetPaymentAccountResponse(),
+                ...GetPaymentAccountResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -420,7 +420,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetPaymentMethodResponse(),
+                ...GetPaymentMethodResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -473,7 +473,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetVatTypeResponse(),
+                ...GetVatTypeResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -525,7 +525,7 @@ module.exports = {
                 ...ModifyPaymentAccountRequest(),
             ],
             outputFields: [
-                ...ModifyPaymentAccountResponse(),
+                ...ModifyPaymentAccountResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -578,7 +578,7 @@ module.exports = {
                 ...ModifyPaymentMethodRequest(),
             ],
             outputFields: [
-                ...ModifyPaymentMethodResponse(),
+                ...ModifyPaymentMethodResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -631,7 +631,7 @@ module.exports = {
                 ...ModifyVatTypeRequest(),
             ],
             outputFields: [
-                ...ModifyVatTypeResponse(),
+                ...ModifyVatTypeResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

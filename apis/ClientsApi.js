@@ -30,7 +30,7 @@ module.exports = {
                 ...CreateClientRequest(),
             ],
             outputFields: [
-                ...CreateClientResponse(),
+                ...CreateClientResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -146,7 +146,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetClientResponse(),
+                ...GetClientResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -227,7 +227,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListClientsResponse(),
+                ...ListClientsResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -285,7 +285,7 @@ module.exports = {
                 ...ModifyClientRequest(),
             ],
             outputFields: [
-                ...ModifyClientResponse(),
+                ...ModifyClientResponse('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {

@@ -4,10 +4,11 @@ const F24 = require('./F24').fields;
 const F24Mapping = require('./F24').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...F24(`${keyPrefix}data`),
+            ...F24(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

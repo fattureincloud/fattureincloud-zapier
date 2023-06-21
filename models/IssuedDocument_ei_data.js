@@ -4,65 +4,66 @@ const VatKind = require('./VatKind').fields;
 const OriginalDocumentType = require('./OriginalDocumentType').fields;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}vat_kind`,
-                ...VatKind(`${keyPrefix}vat_kind`),
+                ...VatKind(`${keyPrefix}vat_kind`, isInput),
             },
             {
                 key: `${keyPrefix}original_document_type`,
-                ...OriginalDocumentType(`${keyPrefix}original_document_type`),
+                ...OriginalDocumentType(`${keyPrefix}original_document_type`, isInput),
             },
             {
                 key: `${keyPrefix}od_number`,
-                label: `E-invoice original document number - [${keyPrefix}od_number]`,
+                label: `E-invoice original document number - [${labelPrefix}od_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}od_date`,
-                label: `E-invoice original document date - [${keyPrefix}od_date]`,
+                label: `E-invoice original document date - [${labelPrefix}od_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}cig`,
-                label: `E-invoice CIG - [${keyPrefix}cig]`,
+                label: `E-invoice CIG - [${labelPrefix}cig]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}cup`,
-                label: `E-invoice CUP - [${keyPrefix}cup]`,
+                label: `E-invoice CUP - [${labelPrefix}cup]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}payment_method`,
-                label: `E-invoice payment method [required for e-invoices](see https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.2/Rappresentazione_Tabellare_FattOrdinaria_V1.2.2.pdf for the accepted values of ModalitaPagamento) - [${keyPrefix}payment_method]`,
+                label: `E-invoice payment method [required for e-invoices](see https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.2/Rappresentazione_Tabellare_FattOrdinaria_V1.2.2.pdf for the accepted values of ModalitaPagamento) - [${labelPrefix}payment_method]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_name`,
-                label: `E-invoice bank name - [${keyPrefix}bank_name]`,
+                label: `E-invoice bank name - [${labelPrefix}bank_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_iban`,
-                label: `E-invoice bank IBAN - [${keyPrefix}bank_iban]`,
+                label: `E-invoice bank IBAN - [${labelPrefix}bank_iban]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_beneficiary`,
-                label: `E-invoice bank beneficiary - [${keyPrefix}bank_beneficiary]`,
+                label: `E-invoice bank beneficiary - [${labelPrefix}bank_beneficiary]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}invoice_number`,
-                label: `E-invoice invoice number - [${keyPrefix}invoice_number]`,
+                label: `E-invoice invoice number - [${labelPrefix}invoice_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}invoice_date`,
-                label: `E-invoice invoice date - [${keyPrefix}invoice_date]`,
+                label: `E-invoice invoice date - [${labelPrefix}invoice_date]`,
                 type: 'datetime',
             },
         ]

@@ -4,10 +4,11 @@ const EInvoiceRejectionReason = require('./EInvoiceRejectionReason').fields;
 const EInvoiceRejectionReasonMapping = require('./EInvoiceRejectionReason').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...EInvoiceRejectionReason(`${keyPrefix}data`),
+            ...EInvoiceRejectionReason(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

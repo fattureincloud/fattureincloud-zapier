@@ -8,50 +8,51 @@ const PaymentAccount = require('./PaymentAccount').fields;
 const PaymentAccountMapping = require('./PaymentAccount').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Cashbook id - [${keyPrefix}id]`,
+                label: `Cashbook id - [${labelPrefix}id]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}date`,
-                label: `Cashbook date - [${keyPrefix}date]`,
+                label: `Cashbook date - [${labelPrefix}date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `Cashbook description - [${keyPrefix}description]`,
+                label: `Cashbook description - [${labelPrefix}description]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}kind`,
-                ...CashbookEntryKind(`${keyPrefix}kind`),
+                ...CashbookEntryKind(`${keyPrefix}kind`, isInput),
             },
             {
                 key: `${keyPrefix}type`,
-                ...CashbookEntryType(`${keyPrefix}type`),
+                ...CashbookEntryType(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}entity_name`,
-                label: `Cashbook entity name - [${keyPrefix}entity_name]`,
+                label: `Cashbook entity name - [${labelPrefix}entity_name]`,
                 type: 'string',
             },
-            ...CashbookEntry_document(`${keyPrefix}document`),
+            ...CashbookEntry_document(`${keyPrefix}document`, isInput),
             {
                 key: `${keyPrefix}amount_in`,
-                label: `[Only for cashbook entry in] Cashbook total amount in - [${keyPrefix}amount_in]`,
+                label: `[Only for cashbook entry in] Cashbook total amount in - [${labelPrefix}amount_in]`,
                 type: 'number',
             },
-            ...PaymentAccount(`${keyPrefix}payment_account_in`),
+            ...PaymentAccount(`${keyPrefix}payment_account_in`, isInput),
             {
                 key: `${keyPrefix}amount_out`,
-                label: `[Only for cashbook entry out] Cashbook total amount out - [${keyPrefix}amount_out]`,
+                label: `[Only for cashbook entry out] Cashbook total amount out - [${labelPrefix}amount_out]`,
                 type: 'number',
             },
-            ...PaymentAccount(`${keyPrefix}payment_account_out`),
+            ...PaymentAccount(`${keyPrefix}payment_account_out`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {

@@ -3,121 +3,122 @@ const utils = require('../utils/utils');
 const SupplierType = require('./SupplierType').fields;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `Supplier id - [${keyPrefix}id]`,
+                label: `Supplier id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}code`,
-                label: `Supplier code - [${keyPrefix}code]`,
+                label: `Supplier code - [${labelPrefix}code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Supplier name - [${keyPrefix}name]`,
+                label: `Supplier name - [${labelPrefix}name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}type`,
-                ...SupplierType(`${keyPrefix}type`),
+                ...SupplierType(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}first_name`,
-                label: `Supplier first name - [${keyPrefix}first_name]`,
+                label: `Supplier first name - [${labelPrefix}first_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}last_name`,
-                label: `Supplier last name - [${keyPrefix}last_name]`,
+                label: `Supplier last name - [${labelPrefix}last_name]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}contact_person`,
-                label: `Supplier contact person - [${keyPrefix}contact_person]`,
+                label: `Supplier contact person - [${labelPrefix}contact_person]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}vat_number`,
-                label: `Supplier vat number - [${keyPrefix}vat_number]`,
+                label: `Supplier vat number - [${labelPrefix}vat_number]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}tax_code`,
-                label: `Supplier tax code - [${keyPrefix}tax_code]`,
+                label: `Supplier tax code - [${labelPrefix}tax_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_street`,
-                label: `Supplier street address - [${keyPrefix}address_street]`,
+                label: `Supplier street address - [${labelPrefix}address_street]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_postal_code`,
-                label: `Supplier postal code - [${keyPrefix}address_postal_code]`,
+                label: `Supplier postal code - [${labelPrefix}address_postal_code]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_city`,
-                label: `Supplier city - [${keyPrefix}address_city]`,
+                label: `Supplier city - [${labelPrefix}address_city]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_province`,
-                label: `Supplier province - [${keyPrefix}address_province]`,
+                label: `Supplier province - [${labelPrefix}address_province]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}address_extra`,
-                label: `Supplier address extra info - [${keyPrefix}address_extra]`,
+                label: `Supplier address extra info - [${labelPrefix}address_extra]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}country`,
-                label: `Supplier country - [${keyPrefix}country]`,
+                label: `Supplier country - [${labelPrefix}country]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}email`,
-                label: `Supplier email - [${keyPrefix}email]`,
+                label: `Supplier email - [${labelPrefix}email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}certified_email`,
-                label: `Supplier certified email - [${keyPrefix}certified_email]`,
+                label: `Supplier certified email - [${labelPrefix}certified_email]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}phone`,
-                label: `Supplier phone - [${keyPrefix}phone]`,
+                label: `Supplier phone - [${labelPrefix}phone]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}fax`,
-                label: `Supplier fax - [${keyPrefix}fax]`,
+                label: `Supplier fax - [${labelPrefix}fax]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}notes`,
-                label: `Supplier extra notes - [${keyPrefix}notes]`,
+                label: `Supplier extra notes - [${labelPrefix}notes]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}bank_iban`,
-                label: `Supplier bank IBAN - [${keyPrefix}bank_iban]`,
+                label: `Supplier bank IBAN - [${labelPrefix}bank_iban]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}created_at`,
-                label: `Supplier creation date - [${keyPrefix}created_at]`,
+                label: `Supplier creation date - [${labelPrefix}created_at]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}updated_at`,
-                label: `Supplier last update date - [${keyPrefix}updated_at]`,
+                label: `Supplier last update date - [${labelPrefix}updated_at]`,
                 type: 'string',
             },
         ]

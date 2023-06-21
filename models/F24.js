@@ -5,42 +5,43 @@ const PaymentAccount = require('./PaymentAccount').fields;
 const PaymentAccountMapping = require('./PaymentAccount').mapping;
 
 module.exports = {
-    fields: (prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+    fields: (prefix = '', isInput = true) => {
+        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
+        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `F24 id - [${keyPrefix}id]`,
+                label: `F24 id - [${labelPrefix}id]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}due_date`,
-                label: `F24 due date - [${keyPrefix}due_date]`,
+                label: `F24 due date - [${labelPrefix}due_date]`,
                 type: 'datetime',
             },
             {
                 key: `${keyPrefix}status`,
-                ...F24Status(`${keyPrefix}status`),
+                ...F24Status(`${keyPrefix}status`, isInput),
             },
-            ...PaymentAccount(`${keyPrefix}payment_account`),
+            ...PaymentAccount(`${keyPrefix}payment_account`, isInput),
             {
                 key: `${keyPrefix}amount`,
-                label: `F24 amount - [${keyPrefix}amount]`,
+                label: `F24 amount - [${labelPrefix}amount]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}attachment_url`,
-                label: `[Temporary] [Read Only] F24 url of the attached file - [${keyPrefix}attachment_url]`,
+                label: `[Temporary] [Read Only] F24 url of the attached file - [${labelPrefix}attachment_url]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}attachment_token`,
-                label: `[Write Only]  F24 attachment token returned by POST /taxes/attachment - [${keyPrefix}attachment_token]`,
+                label: `[Write Only]  F24 attachment token returned by POST /taxes/attachment - [${labelPrefix}attachment_token]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}description`,
-                label: `F24 description - [${keyPrefix}description]`,
+                label: `F24 description - [${labelPrefix}description]`,
                 type: 'string',
             },
         ]
