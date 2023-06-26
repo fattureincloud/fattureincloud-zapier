@@ -19,7 +19,7 @@ module.exports = {
             {
                 key: `${keyPrefix}due_date`,
                 label: `Issued document payment due date - [${labelPrefix}due_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}amount`,
@@ -34,7 +34,7 @@ module.exports = {
             {
                 key: `${keyPrefix}paid_date`,
                 label: `Issued document payment date [Only if status is paid] - [${labelPrefix}paid_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}ei_raw`,

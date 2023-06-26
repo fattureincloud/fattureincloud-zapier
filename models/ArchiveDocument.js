@@ -14,7 +14,7 @@ module.exports = {
             {
                 key: `${keyPrefix}date`,
                 label: `Archive document date - [${labelPrefix}date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}description`,

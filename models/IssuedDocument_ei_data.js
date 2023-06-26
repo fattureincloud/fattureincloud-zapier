@@ -24,7 +24,7 @@ module.exports = {
             {
                 key: `${keyPrefix}od_date`,
                 label: `E-invoice original document date - [${labelPrefix}od_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}cig`,
@@ -64,7 +64,7 @@ module.exports = {
             {
                 key: `${keyPrefix}invoice_date`,
                 label: `E-invoice invoice date - [${labelPrefix}invoice_date]`,
-                type: 'datetime',
+                type: 'string',
             },
         ]
     },

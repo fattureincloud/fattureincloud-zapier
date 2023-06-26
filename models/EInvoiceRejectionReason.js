@@ -29,7 +29,7 @@ module.exports = {
             {
                 key: `${keyPrefix}date`,
                 label: `E-invoice rejection date - [${labelPrefix}date]`,
-                type: 'datetime',
+                type: 'string',
             },
         ]
     },

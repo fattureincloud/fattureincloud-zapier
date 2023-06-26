@@ -49,7 +49,7 @@ module.exports = {
             {
                 key: `${keyPrefix}date`,
                 label: `Issued document date [defaults to today's date] - [${labelPrefix}date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}year`,
@@ -265,7 +265,7 @@ module.exports = {
             {
                 key: `${keyPrefix}dn_date`,
                 label: `Issued document attached delivery note date - [${labelPrefix}dn_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}dn_ai_packages_number`,
@@ -361,12 +361,12 @@ module.exports = {
             {
                 key: `${keyPrefix}seen_date`,
                 label: `Issued document seen date - [${labelPrefix}seen_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}next_due_date`,
                 label: `Issued document date of the next not paid payment - [${labelPrefix}next_due_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}url`,

@@ -175,7 +175,7 @@ module.exports = {
             {
                 key: `${keyPrefix}intent_declaration_protocol_date`,
                 label: `Client intent declaration protocol date - [${labelPrefix}intent_declaration_protocol_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}created_at`,

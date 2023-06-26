@@ -22,7 +22,7 @@ module.exports = {
             {
                 key: `${keyPrefix}sent_date`,
                 label: `Email sent date - [${labelPrefix}sent_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}errors_count`,
@@ -76,7 +76,7 @@ module.exports = {
             {
                 key: `${keyPrefix}recipient_date`,
                 label: `Email recipient date - [${labelPrefix}recipient_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}kind`,

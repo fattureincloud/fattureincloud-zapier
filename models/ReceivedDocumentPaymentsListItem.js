@@ -23,12 +23,12 @@ module.exports = {
             {
                 key: `${keyPrefix}due_date`,
                 label: `Due date - [${labelPrefix}due_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}paid_date`,
                 label: `Received document payment paid date - [${labelPrefix}paid_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             ...ReceivedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`, isInput),
             {

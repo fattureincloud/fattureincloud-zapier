@@ -54,7 +54,7 @@ module.exports = {
             {
                 key: `${keyPrefix}ts_sent_date`,
                 label: `Issued document ts sent date - [${labelPrefix}ts_sent_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}ts_full_amount`,

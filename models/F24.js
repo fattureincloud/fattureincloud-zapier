@@ -17,7 +17,7 @@ module.exports = {
             {
                 key: `${keyPrefix}due_date`,
                 label: `F24 due date - [${labelPrefix}due_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}status`,

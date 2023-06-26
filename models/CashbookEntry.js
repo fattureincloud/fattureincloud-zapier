@@ -20,7 +20,7 @@ module.exports = {
             {
                 key: `${keyPrefix}date`,
                 label: `Cashbook date - [${labelPrefix}date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}description`,

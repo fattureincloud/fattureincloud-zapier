@@ -19,7 +19,7 @@ module.exports = {
             {
                 key: `${keyPrefix}date`,
                 label: `Receipt date - [${labelPrefix}date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}number`,

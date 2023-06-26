@@ -28,7 +28,7 @@ module.exports = {
             {
                 key: `${keyPrefix}date`,
                 label: `Received document date [defaults to today's date] - [${labelPrefix}date]`,
-                type: 'datetime',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}category`,
@@ -98,7 +98,7 @@ module.exports = {
             {
                 key: `${keyPrefix}next_due_date`,
                 label: `[Read Only] Received document date of the next not paid payment - [${labelPrefix}next_due_date]`,
-                type: 'datetime',
+                type: 'string',
             },
             ...Currency(`${keyPrefix}currency`, isInput),
             {
