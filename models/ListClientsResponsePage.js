@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const Client = require('./Client').fields;
-const ClientMapping = require('./Client').mapping;
+const Client = require('../models/Client');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: Client(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: Client.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

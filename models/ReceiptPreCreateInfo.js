@@ -1,9 +1,7 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const PaymentAccount = require('./PaymentAccount').fields;
-const PaymentAccountMapping = require('./PaymentAccount').mapping;
-const VatType = require('./VatType').fields;
-const VatTypeMapping = require('./VatType').mapping;
+const PaymentAccount = require('../models/PaymentAccount');
+const VatType = require('../models/VatType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -29,8 +27,8 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}payment_accounts_list`,
-                label: `${labelPrefix}payment_accounts_list]`,
-                children: PaymentAccount(`${keyPrefix}payment_accounts_list${!isInput && '[]'}`), 
+                label: `[${labelPrefix}payment_accounts_list]`,
+                children: PaymentAccount.fields(`${keyPrefix}payment_accounts_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}categories_list`,
@@ -40,8 +38,8 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}vat_types_list`,
-                label: `${labelPrefix}vat_types_list]`,
-                children: VatType(`${keyPrefix}vat_types_list${!isInput && '[]'}`), 
+                label: `[${labelPrefix}vat_types_list]`,
+                children: VatType.fields(`${keyPrefix}vat_types_list${!isInput && '[]'}`), 
             },
         ]
     },

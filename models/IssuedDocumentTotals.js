@@ -1,5 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
+const VatItem = require('../models/VatItem');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {

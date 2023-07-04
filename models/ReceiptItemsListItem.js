@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const VatType = require('./VatType').fields;
-const VatTypeMapping = require('./VatType').mapping;
+const VatType = require('../models/VatType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -28,7 +27,7 @@ module.exports = {
                 label: `Receipt item category - [${labelPrefix}category]`,
                 type: 'string',
             },
-            ...VatType(`${keyPrefix}vat`, isInput),
+            ...VatType.fields(`${keyPrefix}vat`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -38,7 +37,7 @@ module.exports = {
             'amount_net': bundle.inputData?.[`${keyPrefix}amount_net`],
             'amount_gross': bundle.inputData?.[`${keyPrefix}amount_gross`],
             'category': bundle.inputData?.[`${keyPrefix}category`],
-            'vat': utils.removeIfEmpty(VatTypeMapping(bundle, `${keyPrefix}vat`)),
+            'vat': utils.removeIfEmpty(VatType.mapping(bundle, `${keyPrefix}vat`)),
         }
     },
 }

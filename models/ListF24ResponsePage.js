@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const F24 = require('./F24').fields;
-const F24Mapping = require('./F24').mapping;
+const F24 = require('../models/F24');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: F24(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: F24.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

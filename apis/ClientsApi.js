@@ -1,12 +1,10 @@
-const samples = require('../samples/ClientsApi.json');
-const CreateClientRequest = require('../models/CreateClientRequest').fields;
-const CreateClientRequestMapping = require('../models/CreateClientRequest').mapping;
-const CreateClientResponse = require('../models/CreateClientResponse').fields;
-const GetClientResponse = require('../models/GetClientResponse').fields;
-const ListClientsResponse = require('../models/ListClientsResponse').fields;
-const ModifyClientRequest = require('../models/ModifyClientRequest').fields;
-const ModifyClientRequestMapping = require('../models/ModifyClientRequest').mapping;
-const ModifyClientResponse = require('../models/ModifyClientResponse').fields;
+const samples = require('../samples/ClientsApi');
+const CreateClientRequest = require('../models/CreateClientRequest');
+const CreateClientResponse = require('../models/CreateClientResponse');
+const GetClientResponse = require('../models/GetClientResponse');
+const ListClientsResponse = require('../models/ListClientsResponse');
+const ModifyClientRequest = require('../models/ModifyClientRequest');
+const ModifyClientResponse = require('../models/ModifyClientResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -27,10 +25,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateClientRequest(),
+                ...CreateClientRequest.fields(),
             ],
             outputFields: [
-                ...CreateClientResponse('', false),
+                ...CreateClientResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -45,7 +43,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateClientRequestMapping(bundle),
+                        ...CreateClientRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -90,7 +88,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -146,7 +144,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetClientResponse('', false),
+                ...GetClientResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -155,7 +153,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -227,7 +225,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListClientsResponse('', false),
+                ...ListClientsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -236,7 +234,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -282,10 +280,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyClientRequest(),
+                ...ModifyClientRequest.fields(),
             ],
             outputFields: [
-                ...ModifyClientResponse('', false),
+                ...ModifyClientResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -300,7 +298,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyClientRequestMapping(bundle),
+                        ...ModifyClientRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

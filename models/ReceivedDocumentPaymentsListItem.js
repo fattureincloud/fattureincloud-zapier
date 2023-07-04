@@ -1,9 +1,7 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const ReceivedDocumentPaymentsListItem_payment_terms = require('./ReceivedDocumentPaymentsListItem_payment_terms').fields;
-const ReceivedDocumentPaymentsListItem_payment_termsMapping = require('./ReceivedDocumentPaymentsListItem_payment_terms').mapping;
-const PaymentAccount = require('./PaymentAccount').fields;
-const PaymentAccountMapping = require('./PaymentAccount').mapping;
+const PaymentAccount = require('../models/PaymentAccount');
+const ReceivedDocumentPaymentsListItem_payment_terms = require('../models/ReceivedDocumentPaymentsListItem_payment_terms');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -30,13 +28,13 @@ module.exports = {
                 label: `Received document payment paid date - [${labelPrefix}paid_date]`,
                 type: 'string',
             },
-            ...ReceivedDocumentPaymentsListItem_payment_terms(`${keyPrefix}payment_terms`, isInput),
+            ...ReceivedDocumentPaymentsListItem_payment_terms.fields(`${keyPrefix}payment_terms`, isInput),
             {
                 key: `${keyPrefix}status`,
                 label: `Received document payment status - [${labelPrefix}status]`,
                 type: 'string',
             },
-            ...PaymentAccount(`${keyPrefix}payment_account`, isInput),
+            ...PaymentAccount.fields(`${keyPrefix}payment_account`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -46,9 +44,9 @@ module.exports = {
             'amount': bundle.inputData?.[`${keyPrefix}amount`],
             'due_date': bundle.inputData?.[`${keyPrefix}due_date`],
             'paid_date': bundle.inputData?.[`${keyPrefix}paid_date`],
-            'payment_terms': utils.removeIfEmpty(ReceivedDocumentPaymentsListItem_payment_termsMapping(bundle, `${keyPrefix}payment_terms`)),
+            'payment_terms': utils.removeIfEmpty(ReceivedDocumentPaymentsListItem_payment_terms.mapping(bundle, `${keyPrefix}payment_terms`)),
             'status': bundle.inputData?.[`${keyPrefix}status`],
-            'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}payment_account`)),
+            'payment_account': utils.removeIfEmpty(PaymentAccount.mapping(bundle, `${keyPrefix}payment_account`)),
         }
     },
 }

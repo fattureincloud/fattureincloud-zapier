@@ -1,14 +1,13 @@
-const samples = require('../samples/ArchiveApi.json');
-const CreateArchiveDocumentRequest = require('../models/CreateArchiveDocumentRequest').fields;
-const CreateArchiveDocumentRequestMapping = require('../models/CreateArchiveDocumentRequest').mapping;
-const CreateArchiveDocumentResponse = require('../models/CreateArchiveDocumentResponse').fields;
-const GetArchiveDocumentResponse = require('../models/GetArchiveDocumentResponse').fields;
-const ListArchiveDocumentsResponse = require('../models/ListArchiveDocumentsResponse').fields;
-const ModifyArchiveDocumentRequest = require('../models/ModifyArchiveDocumentRequest').fields;
-const ModifyArchiveDocumentRequestMapping = require('../models/ModifyArchiveDocumentRequest').mapping;
-const ModifyArchiveDocumentResponse = require('../models/ModifyArchiveDocumentResponse').fields;
-const UploadArchiveAttachmentResponse = require('../models/UploadArchiveAttachmentResponse').fields;
+const samples = require('../samples/ArchiveApi');
+const CreateArchiveDocumentRequest = require('../models/CreateArchiveDocumentRequest');
+const CreateArchiveDocumentResponse = require('../models/CreateArchiveDocumentResponse');
+const GetArchiveDocumentResponse = require('../models/GetArchiveDocumentResponse');
+const ListArchiveDocumentsResponse = require('../models/ListArchiveDocumentsResponse');
+const ModifyArchiveDocumentRequest = require('../models/ModifyArchiveDocumentRequest');
+const ModifyArchiveDocumentResponse = require('../models/ModifyArchiveDocumentResponse');
+const UploadArchiveAttachmentResponse = require('../models/UploadArchiveAttachmentResponse');
 const utils = require('../utils/utils');
+const FormData = require('form-data');
 
 module.exports = {
     createArchiveDocument: {
@@ -28,10 +27,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateArchiveDocumentRequest(),
+                ...CreateArchiveDocumentRequest.fields(),
             ],
             outputFields: [
-                ...CreateArchiveDocumentResponse('', false),
+                ...CreateArchiveDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -46,7 +45,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateArchiveDocumentRequestMapping(bundle),
+                        ...CreateArchiveDocumentRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -91,7 +90,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -147,7 +146,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetArchiveDocumentResponse('', false),
+                ...GetArchiveDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -156,7 +155,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -228,7 +227,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListArchiveDocumentsResponse('', false),
+                ...ListArchiveDocumentsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -237,7 +236,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -283,10 +282,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyArchiveDocumentRequest(),
+                ...ModifyArchiveDocumentRequest.fields(),
             ],
             outputFields: [
-                ...ModifyArchiveDocumentResponse('', false),
+                ...ModifyArchiveDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -301,7 +300,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyArchiveDocumentRequestMapping(bundle),
+                        ...ModifyArchiveDocumentRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -342,22 +341,25 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...UploadArchiveAttachmentResponse('', false),
+                ...UploadArchiveAttachmentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
+                const formData = new FormData()
+                formData.append('filename', bundle.inputData?.['filename'])
+                const filename = bundle.inputData?.['filename'] || bundle.inputData?.['attachment'].split('/').slice(-1)[0]
+                formData.append('attachment', (await (await z.request({url: bundle.inputData?.['attachment'], method: 'GET', raw: true})).buffer()), { filename: filename })
                 const options = {
                     url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/attachment'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        'Content-Type': 'multipart/form-data',
+                        
                         'Accept': 'application/json',
                     },
                     params: {
                     },
-                    body: {
-                    },
+                    body: formData,
                 }
                 return z.request(options).then((response) => {
                     response.throwForStatus();

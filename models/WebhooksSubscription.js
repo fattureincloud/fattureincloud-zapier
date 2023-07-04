@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const EventType = require('./EventType').fields;
-const EventTypeMapping = require('./EventType').mapping;
+const EventType = require('../models/EventType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -27,7 +26,7 @@ module.exports = {
                 key: `${keyPrefix}types`,
                 list: true,
                 type: 'string',
-                ...EventType(`${keyPrefix}types`, isInput),
+                ...EventType.fields(`${keyPrefix}types`, isInput),
             },
         ]
     },

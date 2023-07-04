@@ -1,9 +1,8 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const EmailStatus = require('./EmailStatus').fields;
-const EmailRecipientStatus = require('./EmailRecipientStatus').fields;
-const EmailAttachment = require('./EmailAttachment').fields;
-const EmailAttachmentMapping = require('./EmailAttachment').mapping;
+const EmailAttachment = require('../models/EmailAttachment');
+const EmailRecipientStatus = require('../models/EmailRecipientStatus');
+const EmailStatus = require('../models/EmailStatus');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -17,7 +16,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}status`,
-                ...EmailStatus(`${keyPrefix}status`, isInput),
+                ...EmailStatus.fields(`${keyPrefix}status`, isInput),
             },
             {
                 key: `${keyPrefix}sent_date`,
@@ -71,7 +70,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}recipient_status`,
-                ...EmailRecipientStatus(`${keyPrefix}recipient_status`, isInput),
+                ...EmailRecipientStatus.fields(`${keyPrefix}recipient_status`, isInput),
             },
             {
                 key: `${keyPrefix}recipient_date`,
@@ -85,8 +84,8 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}attachments`,
-                label: `${labelPrefix}attachments]`,
-                children: EmailAttachment(`${keyPrefix}attachments${!isInput && '[]'}`), 
+                label: `[${labelPrefix}attachments]`,
+                children: EmailAttachment.fields(`${keyPrefix}attachments${!isInput && '[]'}`), 
             },
         ]
     },

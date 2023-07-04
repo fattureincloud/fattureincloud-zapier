@@ -1,20 +1,19 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const IssuedDocumentPreCreateInfo = require('./IssuedDocumentPreCreateInfo').fields;
-const IssuedDocumentPreCreateInfoMapping = require('./IssuedDocumentPreCreateInfo').mapping;
+const IssuedDocumentPreCreateInfo = require('../models/IssuedDocumentPreCreateInfo');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
         let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
         let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...IssuedDocumentPreCreateInfo(`${keyPrefix}data`, isInput),
+            ...IssuedDocumentPreCreateInfo.fields(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(IssuedDocumentPreCreateInfoMapping(bundle, `${keyPrefix}data`)),
+            'data': utils.removeIfEmpty(IssuedDocumentPreCreateInfo.mapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

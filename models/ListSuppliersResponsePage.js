@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const Supplier = require('./Supplier').fields;
-const SupplierMapping = require('./Supplier').mapping;
+const Supplier = require('../models/Supplier');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: Supplier(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: Supplier.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

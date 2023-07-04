@@ -1,26 +1,22 @@
-const samples = require('../samples/IssuedDocumentsApi.json');
-const CreateIssuedDocumentRequest = require('../models/CreateIssuedDocumentRequest').fields;
-const CreateIssuedDocumentRequestMapping = require('../models/CreateIssuedDocumentRequest').mapping;
-const CreateIssuedDocumentResponse = require('../models/CreateIssuedDocumentResponse').fields;
-const GetEmailDataResponse = require('../models/GetEmailDataResponse').fields;
-const GetExistingIssuedDocumentTotalsRequest = require('../models/GetExistingIssuedDocumentTotalsRequest').fields;
-const GetExistingIssuedDocumentTotalsRequestMapping = require('../models/GetExistingIssuedDocumentTotalsRequest').mapping;
-const GetExistingIssuedDocumentTotalsResponse = require('../models/GetExistingIssuedDocumentTotalsResponse').fields;
-const GetIssuedDocumentResponse = require('../models/GetIssuedDocumentResponse').fields;
-const GetIssuedDocumentPreCreateInfoResponse = require('../models/GetIssuedDocumentPreCreateInfoResponse').fields;
-const GetNewIssuedDocumentTotalsRequest = require('../models/GetNewIssuedDocumentTotalsRequest').fields;
-const GetNewIssuedDocumentTotalsRequestMapping = require('../models/GetNewIssuedDocumentTotalsRequest').mapping;
-const GetNewIssuedDocumentTotalsResponse = require('../models/GetNewIssuedDocumentTotalsResponse').fields;
-const JoinIssuedDocumentsResponse = require('../models/JoinIssuedDocumentsResponse').fields;
-const ListIssuedDocumentsResponse = require('../models/ListIssuedDocumentsResponse').fields;
-const ModifyIssuedDocumentRequest = require('../models/ModifyIssuedDocumentRequest').fields;
-const ModifyIssuedDocumentRequestMapping = require('../models/ModifyIssuedDocumentRequest').mapping;
-const ModifyIssuedDocumentResponse = require('../models/ModifyIssuedDocumentResponse').fields;
-const ScheduleEmailRequest = require('../models/ScheduleEmailRequest').fields;
-const ScheduleEmailRequestMapping = require('../models/ScheduleEmailRequest').mapping;
-const TransformIssuedDocumentResponse = require('../models/TransformIssuedDocumentResponse').fields;
-const UploadIssuedDocumentAttachmentResponse = require('../models/UploadIssuedDocumentAttachmentResponse').fields;
+const samples = require('../samples/IssuedDocumentsApi');
+const CreateIssuedDocumentRequest = require('../models/CreateIssuedDocumentRequest');
+const CreateIssuedDocumentResponse = require('../models/CreateIssuedDocumentResponse');
+const GetEmailDataResponse = require('../models/GetEmailDataResponse');
+const GetExistingIssuedDocumentTotalsRequest = require('../models/GetExistingIssuedDocumentTotalsRequest');
+const GetExistingIssuedDocumentTotalsResponse = require('../models/GetExistingIssuedDocumentTotalsResponse');
+const GetIssuedDocumentPreCreateInfoResponse = require('../models/GetIssuedDocumentPreCreateInfoResponse');
+const GetIssuedDocumentResponse = require('../models/GetIssuedDocumentResponse');
+const GetNewIssuedDocumentTotalsRequest = require('../models/GetNewIssuedDocumentTotalsRequest');
+const GetNewIssuedDocumentTotalsResponse = require('../models/GetNewIssuedDocumentTotalsResponse');
+const JoinIssuedDocumentsResponse = require('../models/JoinIssuedDocumentsResponse');
+const ListIssuedDocumentsResponse = require('../models/ListIssuedDocumentsResponse');
+const ModifyIssuedDocumentRequest = require('../models/ModifyIssuedDocumentRequest');
+const ModifyIssuedDocumentResponse = require('../models/ModifyIssuedDocumentResponse');
+const ScheduleEmailRequest = require('../models/ScheduleEmailRequest');
+const TransformIssuedDocumentResponse = require('../models/TransformIssuedDocumentResponse');
+const UploadIssuedDocumentAttachmentResponse = require('../models/UploadIssuedDocumentAttachmentResponse');
 const utils = require('../utils/utils');
+const FormData = require('form-data');
 
 module.exports = {
     createIssuedDocument: {
@@ -40,10 +36,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateIssuedDocumentRequest(),
+                ...CreateIssuedDocumentRequest.fields(),
             ],
             outputFields: [
-                ...CreateIssuedDocumentResponse('', false),
+                ...CreateIssuedDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -58,7 +54,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateIssuedDocumentRequestMapping(bundle),
+                        ...CreateIssuedDocumentRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -103,7 +99,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -153,7 +149,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -195,7 +191,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetEmailDataResponse('', false),
+                ...GetEmailDataResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -204,7 +200,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -244,10 +240,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...GetExistingIssuedDocumentTotalsRequest(),
+                ...GetExistingIssuedDocumentTotalsRequest.fields(),
             ],
             outputFields: [
-                ...GetExistingIssuedDocumentTotalsResponse('', false),
+                ...GetExistingIssuedDocumentTotalsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -262,7 +258,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...GetExistingIssuedDocumentTotalsRequestMapping(bundle),
+                        ...GetExistingIssuedDocumentTotalsRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -313,7 +309,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetIssuedDocumentResponse('', false),
+                ...GetIssuedDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -322,7 +318,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -379,7 +375,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetIssuedDocumentPreCreateInfoResponse('', false),
+                ...GetIssuedDocumentPreCreateInfoResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -388,7 +384,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -423,10 +419,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...GetNewIssuedDocumentTotalsRequest(),
+                ...GetNewIssuedDocumentTotalsRequest.fields(),
             ],
             outputFields: [
-                ...GetNewIssuedDocumentTotalsResponse('', false),
+                ...GetNewIssuedDocumentTotalsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -441,7 +437,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...GetNewIssuedDocumentTotalsRequestMapping(bundle),
+                        ...GetNewIssuedDocumentTotalsRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -496,7 +492,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...JoinIssuedDocumentsResponse('', false),
+                ...JoinIssuedDocumentsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -505,7 +501,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -606,7 +602,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListIssuedDocumentsResponse('', false),
+                ...ListIssuedDocumentsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -615,7 +611,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -663,10 +659,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyIssuedDocumentRequest(),
+                ...ModifyIssuedDocumentRequest.fields(),
             ],
             outputFields: [
-                ...ModifyIssuedDocumentResponse('', false),
+                ...ModifyIssuedDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -681,7 +677,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyIssuedDocumentRequestMapping(bundle),
+                        ...ModifyIssuedDocumentRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -716,7 +712,7 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ScheduleEmailRequest(),
+                ...ScheduleEmailRequest.fields(),
             ],
             outputFields: [
             ],
@@ -733,7 +729,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ScheduleEmailRequestMapping(bundle),
+                        ...ScheduleEmailRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -794,7 +790,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...TransformIssuedDocumentResponse('', false),
+                ...TransformIssuedDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -803,7 +799,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -853,22 +849,25 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...UploadIssuedDocumentAttachmentResponse('', false),
+                ...UploadIssuedDocumentAttachmentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
+                const formData = new FormData()
+                formData.append('filename', bundle.inputData?.['filename'])
+                const filename = bundle.inputData?.['filename'] || bundle.inputData?.['attachment'].split('/').slice(-1)[0]
+                formData.append('attachment', (await (await z.request({url: bundle.inputData?.['attachment'], method: 'GET', raw: true})).buffer()), { filename: filename })
                 const options = {
                     url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/issued_documents/attachment'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        'Content-Type': 'multipart/form-data',
+                        
                         'Accept': 'application/json',
                     },
                     params: {
                     },
-                    body: {
-                    },
+                    body: formData,
                 }
                 return z.request(options).then((response) => {
                     response.throwForStatus();

@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
         fields: (key) => (
             {
-                label: `Received document type - [${key}]`,
+                label: `Received document type - [${key.replaceAll('__', '.')}]`,
                 choices: [
                     'expense',
                     'passive_credit_note',

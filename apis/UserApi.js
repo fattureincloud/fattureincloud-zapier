@@ -1,6 +1,6 @@
-const samples = require('../samples/UserApi.json');
-const GetUserInfoResponse = require('../models/GetUserInfoResponse').fields;
-const ListUserCompaniesResponse = require('../models/ListUserCompaniesResponse').fields;
+const samples = require('../samples/UserApi');
+const GetUserInfoResponse = require('../models/GetUserInfoResponse');
+const ListUserCompaniesResponse = require('../models/ListUserCompaniesResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...GetUserInfoResponse('', false),
+                ...GetUserInfoResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -25,7 +25,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -54,7 +54,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListUserCompaniesResponse('', false),
+                ...ListUserCompaniesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -63,7 +63,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {

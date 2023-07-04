@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const VatType = require('./VatType').fields;
-const VatTypeMapping = require('./VatType').mapping;
+const VatType = require('../models/VatType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: VatType(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: VatType.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

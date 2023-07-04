@@ -1,21 +1,18 @@
-const samples = require('../samples/ReceivedDocumentsApi.json');
-const CreateReceivedDocumentRequest = require('../models/CreateReceivedDocumentRequest').fields;
-const CreateReceivedDocumentRequestMapping = require('../models/CreateReceivedDocumentRequest').mapping;
-const CreateReceivedDocumentResponse = require('../models/CreateReceivedDocumentResponse').fields;
-const GetExistingReceivedDocumentTotalsRequest = require('../models/GetExistingReceivedDocumentTotalsRequest').fields;
-const GetExistingReceivedDocumentTotalsRequestMapping = require('../models/GetExistingReceivedDocumentTotalsRequest').mapping;
-const GetExistingReceivedDocumentTotalsResponse = require('../models/GetExistingReceivedDocumentTotalsResponse').fields;
-const GetNewReceivedDocumentTotalsRequest = require('../models/GetNewReceivedDocumentTotalsRequest').fields;
-const GetNewReceivedDocumentTotalsRequestMapping = require('../models/GetNewReceivedDocumentTotalsRequest').mapping;
-const GetNewReceivedDocumentTotalsResponse = require('../models/GetNewReceivedDocumentTotalsResponse').fields;
-const GetReceivedDocumentResponse = require('../models/GetReceivedDocumentResponse').fields;
-const GetReceivedDocumentPreCreateInfoResponse = require('../models/GetReceivedDocumentPreCreateInfoResponse').fields;
-const ListReceivedDocumentsResponse = require('../models/ListReceivedDocumentsResponse').fields;
-const ModifyReceivedDocumentRequest = require('../models/ModifyReceivedDocumentRequest').fields;
-const ModifyReceivedDocumentRequestMapping = require('../models/ModifyReceivedDocumentRequest').mapping;
-const ModifyReceivedDocumentResponse = require('../models/ModifyReceivedDocumentResponse').fields;
-const UploadReceivedDocumentAttachmentResponse = require('../models/UploadReceivedDocumentAttachmentResponse').fields;
+const samples = require('../samples/ReceivedDocumentsApi');
+const CreateReceivedDocumentRequest = require('../models/CreateReceivedDocumentRequest');
+const CreateReceivedDocumentResponse = require('../models/CreateReceivedDocumentResponse');
+const GetExistingReceivedDocumentTotalsRequest = require('../models/GetExistingReceivedDocumentTotalsRequest');
+const GetExistingReceivedDocumentTotalsResponse = require('../models/GetExistingReceivedDocumentTotalsResponse');
+const GetNewReceivedDocumentTotalsRequest = require('../models/GetNewReceivedDocumentTotalsRequest');
+const GetNewReceivedDocumentTotalsResponse = require('../models/GetNewReceivedDocumentTotalsResponse');
+const GetReceivedDocumentPreCreateInfoResponse = require('../models/GetReceivedDocumentPreCreateInfoResponse');
+const GetReceivedDocumentResponse = require('../models/GetReceivedDocumentResponse');
+const ListReceivedDocumentsResponse = require('../models/ListReceivedDocumentsResponse');
+const ModifyReceivedDocumentRequest = require('../models/ModifyReceivedDocumentRequest');
+const ModifyReceivedDocumentResponse = require('../models/ModifyReceivedDocumentResponse');
+const UploadReceivedDocumentAttachmentResponse = require('../models/UploadReceivedDocumentAttachmentResponse');
 const utils = require('../utils/utils');
+const FormData = require('form-data');
 
 module.exports = {
     createReceivedDocument: {
@@ -35,10 +32,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateReceivedDocumentRequest(),
+                ...CreateReceivedDocumentRequest.fields(),
             ],
             outputFields: [
-                ...CreateReceivedDocumentResponse('', false),
+                ...CreateReceivedDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -53,7 +50,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateReceivedDocumentRequestMapping(bundle),
+                        ...CreateReceivedDocumentRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -98,7 +95,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -148,7 +145,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -188,10 +185,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...GetExistingReceivedDocumentTotalsRequest(),
+                ...GetExistingReceivedDocumentTotalsRequest.fields(),
             ],
             outputFields: [
-                ...GetExistingReceivedDocumentTotalsResponse('', false),
+                ...GetExistingReceivedDocumentTotalsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -206,7 +203,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...GetExistingReceivedDocumentTotalsRequestMapping(bundle),
+                        ...GetExistingReceivedDocumentTotalsRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -235,10 +232,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...GetNewReceivedDocumentTotalsRequest(),
+                ...GetNewReceivedDocumentTotalsRequest.fields(),
             ],
             outputFields: [
-                ...GetNewReceivedDocumentTotalsResponse('', false),
+                ...GetNewReceivedDocumentTotalsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -253,7 +250,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...GetNewReceivedDocumentTotalsRequestMapping(bundle),
+                        ...GetNewReceivedDocumentTotalsRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -304,7 +301,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceivedDocumentResponse('', false),
+                ...GetReceivedDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -313,7 +310,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -362,7 +359,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceivedDocumentPreCreateInfoResponse('', false),
+                ...GetReceivedDocumentPreCreateInfoResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -371,7 +368,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -453,7 +450,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListReceivedDocumentsResponse('', false),
+                ...ListReceivedDocumentsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -462,7 +459,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -509,10 +506,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyReceivedDocumentRequest(),
+                ...ModifyReceivedDocumentRequest.fields(),
             ],
             outputFields: [
-                ...ModifyReceivedDocumentResponse('', false),
+                ...ModifyReceivedDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -527,7 +524,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyReceivedDocumentRequestMapping(bundle),
+                        ...ModifyReceivedDocumentRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -568,22 +565,25 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...UploadReceivedDocumentAttachmentResponse('', false),
+                ...UploadReceivedDocumentAttachmentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
+                const formData = new FormData()
+                formData.append('filename', bundle.inputData?.['filename'])
+                const filename = bundle.inputData?.['filename'] || bundle.inputData?.['attachment'].split('/').slice(-1)[0]
+                formData.append('attachment', (await (await z.request({url: bundle.inputData?.['attachment'], method: 'GET', raw: true})).buffer()), { filename: filename })
                 const options = {
                     url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/attachment'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        'Content-Type': 'multipart/form-data',
+                        
                         'Accept': 'application/json',
                     },
                     params: {
                     },
-                    body: {
-                    },
+                    body: formData,
                 }
                 return z.request(options).then((response) => {
                     response.throwForStatus();

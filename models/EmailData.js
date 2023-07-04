@@ -1,9 +1,7 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const EmailData_default_sender_email = require('./EmailData_default_sender_email').fields;
-const EmailData_default_sender_emailMapping = require('./EmailData_default_sender_email').mapping;
-const SenderEmail = require('./SenderEmail').fields;
-const SenderEmailMapping = require('./SenderEmail').mapping;
+const EmailData_default_sender_email = require('../models/EmailData_default_sender_email');
+const SenderEmail = require('../models/SenderEmail');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -15,11 +13,11 @@ module.exports = {
                 label: `Email recipient - [${labelPrefix}recipient_email]`,
                 type: 'string',
             },
-            ...EmailData_default_sender_email(`${keyPrefix}default_sender_email`, isInput),
+            ...EmailData_default_sender_email.fields(`${keyPrefix}default_sender_email`, isInput),
             {
                 key: `${keyPrefix}sender_emails_list`,
-                label: `${labelPrefix}sender_emails_list]`,
-                children: SenderEmail(`${keyPrefix}sender_emails_list${!isInput && '[]'}`), 
+                label: `[${labelPrefix}sender_emails_list]`,
+                children: SenderEmail.fields(`${keyPrefix}sender_emails_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}cc_email`,
@@ -67,7 +65,7 @@ module.exports = {
         let keyPrefix = prefix && `${prefix}.`
         return {
             'recipient_email': bundle.inputData?.[`${keyPrefix}recipient_email`],
-            'default_sender_email': utils.removeIfEmpty(EmailData_default_sender_emailMapping(bundle, `${keyPrefix}default_sender_email`)),
+            'default_sender_email': utils.removeIfEmpty(EmailData_default_sender_email.mapping(bundle, `${keyPrefix}default_sender_email`)),
             'sender_emails_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}sender_emails_list`]),
             'cc_email': bundle.inputData?.[`${keyPrefix}cc_email`],
             'subject': bundle.inputData?.[`${keyPrefix}subject`],

@@ -1,7 +1,7 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const VatKind = require('./VatKind').fields;
-const OriginalDocumentType = require('./OriginalDocumentType').fields;
+const OriginalDocumentType = require('../models/OriginalDocumentType');
+const VatKind = require('../models/VatKind');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,11 +10,11 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}vat_kind`,
-                ...VatKind(`${keyPrefix}vat_kind`, isInput),
+                ...VatKind.fields(`${keyPrefix}vat_kind`, isInput),
             },
             {
                 key: `${keyPrefix}original_document_type`,
-                ...OriginalDocumentType(`${keyPrefix}original_document_type`, isInput),
+                ...OriginalDocumentType.fields(`${keyPrefix}original_document_type`, isInput),
             },
             {
                 key: `${keyPrefix}od_number`,

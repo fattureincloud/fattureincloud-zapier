@@ -4,7 +4,7 @@ const utils = require('../utils/utils');
 module.exports = {
         fields: (key) => (
             {
-                label: `Webhooks event type - [${key}]`,
+                label: `Webhooks event type - [${key.replaceAll('__', '.')}]`,
                 choices: [
                     'it.fattureincloud.webhooks.issued_documents.invoices.create',
                     'it.fattureincloud.webhooks.issued_documents.invoices.update',

@@ -1,10 +1,8 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const PaymentMethodType = require('./PaymentMethodType').fields;
-const PaymentAccount = require('./PaymentAccount').fields;
-const PaymentAccountMapping = require('./PaymentAccount').mapping;
-const PaymentMethodDetails = require('./PaymentMethodDetails').fields;
-const PaymentMethodDetailsMapping = require('./PaymentMethodDetails').mapping;
+const PaymentAccount = require('../models/PaymentAccount');
+const PaymentMethodDetails = require('../models/PaymentMethodDetails');
+const PaymentMethodType = require('../models/PaymentMethodType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -23,18 +21,18 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...PaymentMethodType(`${keyPrefix}type`, isInput),
+                ...PaymentMethodType.fields(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}is_default`,
                 label: `Payment method is default - [${labelPrefix}is_default]`,
                 type: 'boolean',
             },
-            ...PaymentAccount(`${keyPrefix}default_payment_account`, isInput),
+            ...PaymentAccount.fields(`${keyPrefix}default_payment_account`, isInput),
             {
                 key: `${keyPrefix}details`,
-                label: `${labelPrefix}details]`,
-                children: PaymentMethodDetails(`${keyPrefix}details${!isInput && '[]'}`), 
+                label: `[${labelPrefix}details]`,
+                children: PaymentMethodDetails.fields(`${keyPrefix}details${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}bank_iban`,
@@ -65,7 +63,7 @@ module.exports = {
             'name': bundle.inputData?.[`${keyPrefix}name`],
             'type': bundle.inputData?.[`${keyPrefix}type`],
             'is_default': bundle.inputData?.[`${keyPrefix}is_default`],
-            'default_payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}default_payment_account`)),
+            'default_payment_account': utils.removeIfEmpty(PaymentAccount.mapping(bundle, `${keyPrefix}default_payment_account`)),
             'details': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}details`]),
             'bank_iban': bundle.inputData?.[`${keyPrefix}bank_iban`],
             'bank_name': bundle.inputData?.[`${keyPrefix}bank_name`],

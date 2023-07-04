@@ -1,12 +1,10 @@
-const samples = require('../samples/ProductsApi.json');
-const CreateProductRequest = require('../models/CreateProductRequest').fields;
-const CreateProductRequestMapping = require('../models/CreateProductRequest').mapping;
-const CreateProductResponse = require('../models/CreateProductResponse').fields;
-const GetProductResponse = require('../models/GetProductResponse').fields;
-const ListProductsResponse = require('../models/ListProductsResponse').fields;
-const ModifyProductRequest = require('../models/ModifyProductRequest').fields;
-const ModifyProductRequestMapping = require('../models/ModifyProductRequest').mapping;
-const ModifyProductResponse = require('../models/ModifyProductResponse').fields;
+const samples = require('../samples/ProductsApi');
+const CreateProductRequest = require('../models/CreateProductRequest');
+const CreateProductResponse = require('../models/CreateProductResponse');
+const GetProductResponse = require('../models/GetProductResponse');
+const ListProductsResponse = require('../models/ListProductsResponse');
+const ModifyProductRequest = require('../models/ModifyProductRequest');
+const ModifyProductResponse = require('../models/ModifyProductResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -27,10 +25,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateProductRequest(),
+                ...CreateProductRequest.fields(),
             ],
             outputFields: [
-                ...CreateProductResponse('', false),
+                ...CreateProductResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -45,7 +43,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateProductRequestMapping(bundle),
+                        ...CreateProductRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -90,7 +88,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -146,7 +144,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetProductResponse('', false),
+                ...GetProductResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -155,7 +153,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -227,7 +225,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListProductsResponse('', false),
+                ...ListProductsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -236,7 +234,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -282,10 +280,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyProductRequest(),
+                ...ModifyProductRequest.fields(),
             ],
             outputFields: [
-                ...ModifyProductResponse('', false),
+                ...ModifyProductResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -300,7 +298,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyProductRequestMapping(bundle),
+                        ...ModifyProductRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

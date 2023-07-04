@@ -1,24 +1,22 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const VerifyEInvoiceXmlErrorResponse_error = require('./VerifyEInvoiceXmlErrorResponse_error').fields;
-const VerifyEInvoiceXmlErrorResponse_errorMapping = require('./VerifyEInvoiceXmlErrorResponse_error').mapping;
-const VerifyEInvoiceXmlErrorResponse_extra = require('./VerifyEInvoiceXmlErrorResponse_extra').fields;
-const VerifyEInvoiceXmlErrorResponse_extraMapping = require('./VerifyEInvoiceXmlErrorResponse_extra').mapping;
+const VerifyEInvoiceXmlErrorResponse_error = require('../models/VerifyEInvoiceXmlErrorResponse_error');
+const VerifyEInvoiceXmlErrorResponse_extra = require('../models/VerifyEInvoiceXmlErrorResponse_extra');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
         let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
         let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...VerifyEInvoiceXmlErrorResponse_error(`${keyPrefix}error`, isInput),
-            ...VerifyEInvoiceXmlErrorResponse_extra(`${keyPrefix}extra`, isInput),
+            ...VerifyEInvoiceXmlErrorResponse_error.fields(`${keyPrefix}error`, isInput),
+            ...VerifyEInvoiceXmlErrorResponse_extra.fields(`${keyPrefix}extra`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'error': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_errorMapping(bundle, `${keyPrefix}error`)),
-            'extra': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_extraMapping(bundle, `${keyPrefix}extra`)),
+            'error': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_error.mapping(bundle, `${keyPrefix}error`)),
+            'extra': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_extra.mapping(bundle, `${keyPrefix}extra`)),
         }
     },
 }

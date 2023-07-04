@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const WebhooksSubscription = require('./WebhooksSubscription').fields;
-const WebhooksSubscriptionMapping = require('./WebhooksSubscription').mapping;
+const WebhooksSubscription = require('../models/WebhooksSubscription');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: WebhooksSubscription(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: WebhooksSubscription.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

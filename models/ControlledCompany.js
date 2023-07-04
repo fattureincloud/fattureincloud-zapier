@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const CompanyType = require('./CompanyType').fields;
+const CompanyType = require('../models/CompanyType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -19,7 +19,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...CompanyType(`${keyPrefix}type`, isInput),
+                ...CompanyType.fields(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}access_token`,

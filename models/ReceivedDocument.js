@@ -1,14 +1,10 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const ReceivedDocumentType = require('./ReceivedDocumentType').fields;
-const Entity = require('./Entity').fields;
-const EntityMapping = require('./Entity').mapping;
-const Currency = require('./Currency').fields;
-const CurrencyMapping = require('./Currency').mapping;
-const ReceivedDocumentItemsListItem = require('./ReceivedDocumentItemsListItem').fields;
-const ReceivedDocumentItemsListItemMapping = require('./ReceivedDocumentItemsListItem').mapping;
-const ReceivedDocumentPaymentsListItem = require('./ReceivedDocumentPaymentsListItem').fields;
-const ReceivedDocumentPaymentsListItemMapping = require('./ReceivedDocumentPaymentsListItem').mapping;
+const Currency = require('../models/Currency');
+const Entity = require('../models/Entity');
+const ReceivedDocumentItemsListItem = require('../models/ReceivedDocumentItemsListItem');
+const ReceivedDocumentPaymentsListItem = require('../models/ReceivedDocumentPaymentsListItem');
+const ReceivedDocumentType = require('../models/ReceivedDocumentType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -22,9 +18,9 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...ReceivedDocumentType(`${keyPrefix}type`, isInput),
+                ...ReceivedDocumentType.fields(`${keyPrefix}type`, isInput),
             },
-            ...Entity(`${keyPrefix}entity`, isInput),
+            ...Entity.fields(`${keyPrefix}entity`, isInput),
             {
                 key: `${keyPrefix}date`,
                 label: `Received document date [defaults to today's date] - [${labelPrefix}date]`,
@@ -100,7 +96,7 @@ module.exports = {
                 label: `[Read Only] Received document date of the next not paid payment - [${labelPrefix}next_due_date]`,
                 type: 'string',
             },
-            ...Currency(`${keyPrefix}currency`, isInput),
+            ...Currency.fields(`${keyPrefix}currency`, isInput),
             {
                 key: `${keyPrefix}tax_deductibility`,
                 label: `Received document tax deducibility percentage - [${labelPrefix}tax_deductibility]`,
@@ -113,13 +109,13 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}items_list`,
-                label: `${labelPrefix}items_list]`,
-                children: ReceivedDocumentItemsListItem(`${keyPrefix}items_list${!isInput && '[]'}`), 
+                label: `[${labelPrefix}items_list]`,
+                children: ReceivedDocumentItemsListItem.fields(`${keyPrefix}items_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}payments_list`,
-                label: `${labelPrefix}payments_list]`,
-                children: ReceivedDocumentPaymentsListItem(`${keyPrefix}payments_list${!isInput && '[]'}`), 
+                label: `[${labelPrefix}payments_list]`,
+                children: ReceivedDocumentPaymentsListItem.fields(`${keyPrefix}payments_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}attachment_url`,
@@ -158,7 +154,7 @@ module.exports = {
         return {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'type': bundle.inputData?.[`${keyPrefix}type`],
-            'entity': utils.removeIfEmpty(EntityMapping(bundle, `${keyPrefix}entity`)),
+            'entity': utils.removeIfEmpty(Entity.mapping(bundle, `${keyPrefix}entity`)),
             'date': bundle.inputData?.[`${keyPrefix}date`],
             'category': bundle.inputData?.[`${keyPrefix}category`],
             'description': bundle.inputData?.[`${keyPrefix}description`],
@@ -174,7 +170,7 @@ module.exports = {
             'is_detailed': bundle.inputData?.[`${keyPrefix}is_detailed`],
             'e_invoice': bundle.inputData?.[`${keyPrefix}e_invoice`],
             'next_due_date': bundle.inputData?.[`${keyPrefix}next_due_date`],
-            'currency': utils.removeIfEmpty(CurrencyMapping(bundle, `${keyPrefix}currency`)),
+            'currency': utils.removeIfEmpty(Currency.mapping(bundle, `${keyPrefix}currency`)),
             'tax_deductibility': bundle.inputData?.[`${keyPrefix}tax_deductibility`],
             'vat_deductibility': bundle.inputData?.[`${keyPrefix}vat_deductibility`],
             'items_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}items_list`]),

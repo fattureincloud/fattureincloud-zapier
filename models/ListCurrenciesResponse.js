@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const Currency = require('./Currency').fields;
-const CurrencyMapping = require('./Currency').mapping;
+const Currency = require('../models/Currency');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: Currency(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: Currency.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

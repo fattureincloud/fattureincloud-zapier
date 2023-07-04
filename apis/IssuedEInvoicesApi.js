@@ -1,9 +1,9 @@
-const samples = require('../samples/IssuedEInvoicesApi.json');
-const GetEInvoiceRejectionReasonResponse = require('../models/GetEInvoiceRejectionReasonResponse').fields;
-const SendEInvoiceRequest = require('../models/SendEInvoiceRequest').fields;
-const SendEInvoiceRequestMapping = require('../models/SendEInvoiceRequest').mapping;
-const SendEInvoiceResponse = require('../models/SendEInvoiceResponse').fields;
-const VerifyEInvoiceXmlResponse = require('../models/VerifyEInvoiceXmlResponse').fields;
+const samples = require('../samples/IssuedEInvoicesApi');
+const GetEInvoiceRejectionReasonResponse = require('../models/GetEInvoiceRejectionReasonResponse');
+const SendEInvoiceRequest = require('../models/SendEInvoiceRequest');
+const SendEInvoiceResponse = require('../models/SendEInvoiceResponse');
+const VerifyEInvoiceXmlErrorResponse = require('../models/VerifyEInvoiceXmlErrorResponse');
+const VerifyEInvoiceXmlResponse = require('../models/VerifyEInvoiceXmlResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetEInvoiceRejectionReasonResponse('', false),
+                ...GetEInvoiceRejectionReasonResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -41,7 +41,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -96,7 +96,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'text/xml',
                     },
                     params: {
@@ -108,7 +108,7 @@ module.exports = {
                 return z.request(options).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
-                    return results;
+                    return { data: results };
                 })
             },
             sample: { data: {} }
@@ -137,10 +137,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...SendEInvoiceRequest(),
+                ...SendEInvoiceRequest.fields(),
             ],
             outputFields: [
-                ...SendEInvoiceResponse('', false),
+                ...SendEInvoiceResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -155,7 +155,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...SendEInvoiceRequestMapping(bundle),
+                        ...SendEInvoiceRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -192,7 +192,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...VerifyEInvoiceXmlResponse('', false),
+                ...VerifyEInvoiceXmlResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -201,7 +201,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {

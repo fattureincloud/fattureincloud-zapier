@@ -1,11 +1,9 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const EntityType = require('./EntityType').fields;
-const VatType = require('./VatType').fields;
-const VatTypeMapping = require('./VatType').mapping;
-const PaymentTermsType = require('./PaymentTermsType').fields;
-const PaymentMethod = require('./PaymentMethod').fields;
-const PaymentMethodMapping = require('./PaymentMethod').mapping;
+const EntityType = require('../models/EntityType');
+const PaymentMethod = require('../models/PaymentMethod');
+const PaymentTermsType = require('../models/PaymentTermsType');
+const VatType = require('../models/VatType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -29,7 +27,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...EntityType(`${keyPrefix}type`, isInput),
+                ...EntityType.fields(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}first_name`,
@@ -121,12 +119,12 @@ module.exports = {
                 label: `[Only for client] Client default payment terms - [${labelPrefix}default_payment_terms]`,
                 type: 'integer',
             },
-            ...VatType(`${keyPrefix}default_vat`, isInput),
+            ...VatType.fields(`${keyPrefix}default_vat`, isInput),
             {
                 key: `${keyPrefix}default_payment_terms_type`,
-                ...PaymentTermsType(`${keyPrefix}default_payment_terms_type`, isInput),
+                ...PaymentTermsType.fields(`${keyPrefix}default_payment_terms_type`, isInput),
             },
-            ...PaymentMethod(`${keyPrefix}default_payment_method`, isInput),
+            ...PaymentMethod.fields(`${keyPrefix}default_payment_method`, isInput),
             {
                 key: `${keyPrefix}bank_name`,
                 label: `[Only for client] Client bank name - [${labelPrefix}bank_name]`,
@@ -209,9 +207,9 @@ module.exports = {
             'fax': bundle.inputData?.[`${keyPrefix}fax`],
             'notes': bundle.inputData?.[`${keyPrefix}notes`],
             'default_payment_terms': bundle.inputData?.[`${keyPrefix}default_payment_terms`],
-            'default_vat': utils.removeIfEmpty(VatTypeMapping(bundle, `${keyPrefix}default_vat`)),
+            'default_vat': utils.removeIfEmpty(VatType.mapping(bundle, `${keyPrefix}default_vat`)),
             'default_payment_terms_type': bundle.inputData?.[`${keyPrefix}default_payment_terms_type`],
-            'default_payment_method': utils.removeIfEmpty(PaymentMethodMapping(bundle, `${keyPrefix}default_payment_method`)),
+            'default_payment_method': utils.removeIfEmpty(PaymentMethod.mapping(bundle, `${keyPrefix}default_payment_method`)),
             'bank_name': bundle.inputData?.[`${keyPrefix}bank_name`],
             'bank_iban': bundle.inputData?.[`${keyPrefix}bank_iban`],
             'bank_swift_code': bundle.inputData?.[`${keyPrefix}bank_swift_code`],

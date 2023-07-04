@@ -1,14 +1,13 @@
-const samples = require('../samples/TaxesApi.json');
-const CreateF24Request = require('../models/CreateF24Request').fields;
-const CreateF24RequestMapping = require('../models/CreateF24Request').mapping;
-const CreateF24Response = require('../models/CreateF24Response').fields;
-const GetF24Response = require('../models/GetF24Response').fields;
-const ListF24Response = require('../models/ListF24Response').fields;
-const ModifyF24Request = require('../models/ModifyF24Request').fields;
-const ModifyF24RequestMapping = require('../models/ModifyF24Request').mapping;
-const ModifyF24Response = require('../models/ModifyF24Response').fields;
-const UploadF24AttachmentResponse = require('../models/UploadF24AttachmentResponse').fields;
+const samples = require('../samples/TaxesApi');
+const CreateF24Request = require('../models/CreateF24Request');
+const CreateF24Response = require('../models/CreateF24Response');
+const GetF24Response = require('../models/GetF24Response');
+const ListF24Response = require('../models/ListF24Response');
+const ModifyF24Request = require('../models/ModifyF24Request');
+const ModifyF24Response = require('../models/ModifyF24Response');
+const UploadF24AttachmentResponse = require('../models/UploadF24AttachmentResponse');
 const utils = require('../utils/utils');
+const FormData = require('form-data');
 
 module.exports = {
     createF24: {
@@ -28,10 +27,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateF24Request(),
+                ...CreateF24Request.fields(),
             ],
             outputFields: [
-                ...CreateF24Response('', false),
+                ...CreateF24Response.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -46,7 +45,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateF24RequestMapping(bundle),
+                        ...CreateF24Request.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -91,7 +90,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -141,7 +140,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -197,7 +196,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetF24Response('', false),
+                ...GetF24Response.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -206,7 +205,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -278,7 +277,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListF24Response('', false),
+                ...ListF24Response.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -287,7 +286,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -333,10 +332,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyF24Request(),
+                ...ModifyF24Request.fields(),
             ],
             outputFields: [
-                ...ModifyF24Response('', false),
+                ...ModifyF24Response.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -351,7 +350,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyF24RequestMapping(bundle),
+                        ...ModifyF24Request.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -392,22 +391,25 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...UploadF24AttachmentResponse('', false),
+                ...UploadF24AttachmentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
+                const formData = new FormData()
+                formData.append('filename', bundle.inputData?.['filename'])
+                const filename = bundle.inputData?.['filename'] || bundle.inputData?.['attachment'].split('/').slice(-1)[0]
+                formData.append('attachment', (await (await z.request({url: bundle.inputData?.['attachment'], method: 'GET', raw: true})).buffer()), { filename: filename })
                 const options = {
                     url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/taxes/attachment'),
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        'Content-Type': 'multipart/form-data',
+                        
                         'Accept': 'application/json',
                     },
                     params: {
                     },
-                    body: {
-                    },
+                    body: formData,
                 }
                 return z.request(options).then((response) => {
                     response.throwForStatus();

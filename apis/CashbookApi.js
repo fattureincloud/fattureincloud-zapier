@@ -1,12 +1,10 @@
-const samples = require('../samples/CashbookApi.json');
-const CreateCashbookEntryRequest = require('../models/CreateCashbookEntryRequest').fields;
-const CreateCashbookEntryRequestMapping = require('../models/CreateCashbookEntryRequest').mapping;
-const CreateCashbookEntryResponse = require('../models/CreateCashbookEntryResponse').fields;
-const GetCashbookEntryResponse = require('../models/GetCashbookEntryResponse').fields;
-const ListCashbookEntriesResponse = require('../models/ListCashbookEntriesResponse').fields;
-const ModifyCashbookEntryRequest = require('../models/ModifyCashbookEntryRequest').fields;
-const ModifyCashbookEntryRequestMapping = require('../models/ModifyCashbookEntryRequest').mapping;
-const ModifyCashbookEntryResponse = require('../models/ModifyCashbookEntryResponse').fields;
+const samples = require('../samples/CashbookApi');
+const CreateCashbookEntryRequest = require('../models/CreateCashbookEntryRequest');
+const CreateCashbookEntryResponse = require('../models/CreateCashbookEntryResponse');
+const GetCashbookEntryResponse = require('../models/GetCashbookEntryResponse');
+const ListCashbookEntriesResponse = require('../models/ListCashbookEntriesResponse');
+const ModifyCashbookEntryRequest = require('../models/ModifyCashbookEntryRequest');
+const ModifyCashbookEntryResponse = require('../models/ModifyCashbookEntryResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -27,10 +25,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateCashbookEntryRequest(),
+                ...CreateCashbookEntryRequest.fields(),
             ],
             outputFields: [
-                ...CreateCashbookEntryResponse('', false),
+                ...CreateCashbookEntryResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -45,7 +43,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateCashbookEntryRequestMapping(bundle),
+                        ...CreateCashbookEntryRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -90,7 +88,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -146,7 +144,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetCashbookEntryResponse('', false),
+                ...GetCashbookEntryResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -155,7 +153,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -225,7 +223,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListCashbookEntriesResponse('', false),
+                ...ListCashbookEntriesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -234,7 +232,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -279,10 +277,10 @@ module.exports = {
                     type: 'string',
                     required: true,
                 },
-                ...ModifyCashbookEntryRequest(),
+                ...ModifyCashbookEntryRequest.fields(),
             ],
             outputFields: [
-                ...ModifyCashbookEntryResponse('', false),
+                ...ModifyCashbookEntryResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -297,7 +295,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyCashbookEntryRequestMapping(bundle),
+                        ...ModifyCashbookEntryRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

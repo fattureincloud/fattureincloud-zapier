@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const PaymentAccount = require('./PaymentAccount').fields;
-const PaymentAccountMapping = require('./PaymentAccount').mapping;
+const PaymentAccount = require('../models/PaymentAccount');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: PaymentAccount(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: PaymentAccount.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

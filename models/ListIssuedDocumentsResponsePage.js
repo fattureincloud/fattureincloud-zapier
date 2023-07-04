@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const IssuedDocument = require('./IssuedDocument').fields;
-const IssuedDocumentMapping = require('./IssuedDocument').mapping;
+const IssuedDocument = require('../models/IssuedDocument');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: IssuedDocument(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: IssuedDocument.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

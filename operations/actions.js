@@ -14,7 +14,7 @@ const SuppliersApi = require('../apis/SuppliersApi');
 const TaxesApi = require('../apis/TaxesApi');
 const UserApi = require('../apis/UserApi');
 const WebhooksApi = require('../apis/WebhooksApi');
-const { extractDataMiddleware } = require('../utils/utils');
+const { searchMiddleware, hasASearchField, isSearchAction } = require('../utils/utils');
 
 const actions = {
     [ArchiveApi.createArchiveDocument.key]: ArchiveApi.createArchiveDocument,
@@ -124,10 +124,7 @@ const actions = {
     [WebhooksApi.modifyWebhooksSubscription.key]: WebhooksApi.modifyWebhooksSubscription,
 }
 
-const isSearchAction = key => key.startsWith('list')
-const hasASearchField = action => action.operation.inputFields.length > 0
-
 module.exports = {
-    searchActions: () => Object.entries(actions).reduce((actions, [key, value]) => isSearchAction(key) && hasASearchField(value) ? {...actions, [key]: extractDataMiddleware(value)} : actions, {}),
+    searchActions: () => Object.entries(actions).reduce((actions, [key, value]) => isSearchAction(key) && hasASearchField(value) ? {...actions, [key]: searchMiddleware(value)} : actions, {}),
     createActions: () => Object.entries(actions).reduce((actions, [key, value]) => !isSearchAction(key) ? {...actions, [key]: value} : actions, {}),
 }

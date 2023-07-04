@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const VatType = require('./VatType').fields;
-const VatTypeMapping = require('./VatType').mapping;
+const VatType = require('../models/VatType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -38,7 +37,7 @@ module.exports = {
                 label: `Product uses gross prices - [${labelPrefix}use_gross_price]`,
                 type: 'boolean',
             },
-            ...VatType(`${keyPrefix}default_vat`, isInput),
+            ...VatType.fields(`${keyPrefix}default_vat`, isInput),
             {
                 key: `${keyPrefix}net_cost`,
                 label: `Product net cost - [${labelPrefix}net_cost]`,
@@ -110,7 +109,7 @@ module.exports = {
             'net_price': bundle.inputData?.[`${keyPrefix}net_price`],
             'gross_price': bundle.inputData?.[`${keyPrefix}gross_price`],
             'use_gross_price': bundle.inputData?.[`${keyPrefix}use_gross_price`],
-            'default_vat': utils.removeIfEmpty(VatTypeMapping(bundle, `${keyPrefix}default_vat`)),
+            'default_vat': utils.removeIfEmpty(VatType.mapping(bundle, `${keyPrefix}default_vat`)),
             'net_cost': bundle.inputData?.[`${keyPrefix}net_cost`],
             'measure': bundle.inputData?.[`${keyPrefix}measure`],
             'description': bundle.inputData?.[`${keyPrefix}description`],

@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const CashbookEntry = require('./CashbookEntry').fields;
-const CashbookEntryMapping = require('./CashbookEntry').mapping;
+const CashbookEntry = require('../models/CashbookEntry');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: CashbookEntry(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: CashbookEntry.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

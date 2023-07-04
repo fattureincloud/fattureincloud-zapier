@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const Language = require('./Language').fields;
-const LanguageMapping = require('./Language').mapping;
+const Language = require('../models/Language');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: Language(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: Language.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

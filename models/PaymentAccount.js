@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const PaymentAccountType = require('./PaymentAccountType').fields;
+const PaymentAccountType = require('../models/PaymentAccountType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -19,7 +19,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...PaymentAccountType(`${keyPrefix}type`, isInput),
+                ...PaymentAccountType.fields(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}iban`,

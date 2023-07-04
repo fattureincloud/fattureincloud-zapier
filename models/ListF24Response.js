@@ -1,9 +1,7 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const F24 = require('./F24').fields;
-const F24Mapping = require('./F24').mapping;
-const ListF24ResponseAggregatedData = require('./ListF24ResponseAggregatedData').fields;
-const ListF24ResponseAggregatedDataMapping = require('./ListF24ResponseAggregatedData').mapping;
+const F24 = require('../models/F24');
+const ListF24ResponseAggregatedData = require('../models/ListF24ResponseAggregatedData');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -67,10 +65,10 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: F24(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: F24.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
-            ...ListF24ResponseAggregatedData(`${keyPrefix}aggregated_data`, isInput),
+            ...ListF24ResponseAggregatedData.fields(`${keyPrefix}aggregated_data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -88,7 +86,7 @@ module.exports = {
             'to': bundle.inputData?.[`${keyPrefix}to`],
             'total': bundle.inputData?.[`${keyPrefix}total`],
             'data': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}data`]),
-            'aggregated_data': utils.removeIfEmpty(ListF24ResponseAggregatedDataMapping(bundle, `${keyPrefix}aggregated_data`)),
+            'aggregated_data': utils.removeIfEmpty(ListF24ResponseAggregatedData.mapping(bundle, `${keyPrefix}aggregated_data`)),
         }
     },
 }

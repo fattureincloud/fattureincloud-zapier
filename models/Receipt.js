@@ -1,10 +1,8 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const ReceiptType = require('./ReceiptType').fields;
-const PaymentAccount = require('./PaymentAccount').fields;
-const PaymentAccountMapping = require('./PaymentAccount').mapping;
-const ReceiptItemsListItem = require('./ReceiptItemsListItem').fields;
-const ReceiptItemsListItemMapping = require('./ReceiptItemsListItem').mapping;
+const PaymentAccount = require('../models/PaymentAccount');
+const ReceiptItemsListItem = require('../models/ReceiptItemsListItem');
+const ReceiptType = require('../models/ReceiptType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -53,7 +51,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...ReceiptType(`${keyPrefix}type`, isInput),
+                ...ReceiptType.fields(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}description`,
@@ -75,11 +73,11 @@ module.exports = {
                 label: `Receipt last update date - [${labelPrefix}updated_at]`,
                 type: 'string',
             },
-            ...PaymentAccount(`${keyPrefix}payment_account`, isInput),
+            ...PaymentAccount.fields(`${keyPrefix}payment_account`, isInput),
             {
                 key: `${keyPrefix}items_list`,
-                label: `${labelPrefix}items_list]`,
-                children: ReceiptItemsListItem(`${keyPrefix}items_list${!isInput && '[]'}`), 
+                label: `[${labelPrefix}items_list]`,
+                children: ReceiptItemsListItem.fields(`${keyPrefix}items_list${!isInput && '[]'}`), 
             },
         ]
     },
@@ -99,7 +97,7 @@ module.exports = {
             'rc_center': bundle.inputData?.[`${keyPrefix}rc_center`],
             'created_at': bundle.inputData?.[`${keyPrefix}created_at`],
             'updated_at': bundle.inputData?.[`${keyPrefix}updated_at`],
-            'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}payment_account`)),
+            'payment_account': utils.removeIfEmpty(PaymentAccount.mapping(bundle, `${keyPrefix}payment_account`)),
             'items_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}items_list`]),
         }
     },

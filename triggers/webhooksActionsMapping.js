@@ -19,6 +19,11 @@ const resourcesOperations = {
         'listOperation': SuppliersApi.listSuppliers,
         'resourceKeyId': 'supplier_id',
     },
+    'entities.all': {
+        'getOperation': ClientsApi.getClient,
+        'listOperation': ClientsApi.listClients,
+        'resourceKeyId': 'client_id',
+    },
     'products': {
         'getOperation': ProductsApi.getProduct,
         'listOperation': ProductsApi.listProducts,
@@ -64,7 +69,7 @@ module.exports = {
     getDefaultGetOperationParams: (resource) => {
         let defaults = {};
         if (resource.split('.')[0] == 'issued_documents') {
-            defaults['type'] = resource.split('.')[1].slice(0, -1)
+            defaults['type'] = resource.split('.')[1]?.slice(0, -1) || 'invoice'
         } else if (resource == 'received_documents') {
             defaults['type'] = 'expense'
         }else if (resource == 'cashbook') {

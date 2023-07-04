@@ -1,11 +1,9 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const ClientType = require('./ClientType').fields;
-const VatType = require('./VatType').fields;
-const VatTypeMapping = require('./VatType').mapping;
-const PaymentTermsType = require('./PaymentTermsType').fields;
-const PaymentMethod = require('./PaymentMethod').fields;
-const PaymentMethodMapping = require('./PaymentMethod').mapping;
+const ClientType = require('../models/ClientType');
+const PaymentMethod = require('../models/PaymentMethod');
+const PaymentTermsType = require('../models/PaymentTermsType');
+const VatType = require('../models/VatType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -29,7 +27,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...ClientType(`${keyPrefix}type`, isInput),
+                ...ClientType.fields(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}first_name`,
@@ -111,7 +109,7 @@ module.exports = {
                 label: `Client extra - [${labelPrefix}notes]`,
                 type: 'string',
             },
-            ...VatType(`${keyPrefix}default_vat`, isInput),
+            ...VatType.fields(`${keyPrefix}default_vat`, isInput),
             {
                 key: `${keyPrefix}default_payment_terms`,
                 label: `Client default payment terms - [${labelPrefix}default_payment_terms]`,
@@ -119,9 +117,9 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}default_payment_terms_type`,
-                ...PaymentTermsType(`${keyPrefix}default_payment_terms_type`, isInput),
+                ...PaymentTermsType.fields(`${keyPrefix}default_payment_terms_type`, isInput),
             },
-            ...PaymentMethod(`${keyPrefix}default_payment_method`, isInput),
+            ...PaymentMethod.fields(`${keyPrefix}default_payment_method`, isInput),
             {
                 key: `${keyPrefix}bank_name`,
                 label: `Client bank name - [${labelPrefix}bank_name]`,
@@ -212,10 +210,10 @@ module.exports = {
             'phone': bundle.inputData?.[`${keyPrefix}phone`],
             'fax': bundle.inputData?.[`${keyPrefix}fax`],
             'notes': bundle.inputData?.[`${keyPrefix}notes`],
-            'default_vat': utils.removeIfEmpty(VatTypeMapping(bundle, `${keyPrefix}default_vat`)),
+            'default_vat': utils.removeIfEmpty(VatType.mapping(bundle, `${keyPrefix}default_vat`)),
             'default_payment_terms': bundle.inputData?.[`${keyPrefix}default_payment_terms`],
             'default_payment_terms_type': bundle.inputData?.[`${keyPrefix}default_payment_terms_type`],
-            'default_payment_method': utils.removeIfEmpty(PaymentMethodMapping(bundle, `${keyPrefix}default_payment_method`)),
+            'default_payment_method': utils.removeIfEmpty(PaymentMethod.mapping(bundle, `${keyPrefix}default_payment_method`)),
             'bank_name': bundle.inputData?.[`${keyPrefix}bank_name`],
             'bank_iban': bundle.inputData?.[`${keyPrefix}bank_iban`],
             'bank_swift_code': bundle.inputData?.[`${keyPrefix}bank_swift_code`],

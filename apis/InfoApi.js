@@ -1,20 +1,20 @@
-const samples = require('../samples/InfoApi.json');
-const ListArchiveCategoriesResponse = require('../models/ListArchiveCategoriesResponse').fields;
-const ListCitiesResponse = require('../models/ListCitiesResponse').fields;
-const ListCostCentersResponse = require('../models/ListCostCentersResponse').fields;
-const ListCountriesResponse = require('../models/ListCountriesResponse').fields;
-const ListCurrenciesResponse = require('../models/ListCurrenciesResponse').fields;
-const ListDeliveryNotesDefaultCausalsResponse = require('../models/ListDeliveryNotesDefaultCausalsResponse').fields;
-const ListDetailedCountriesResponse = require('../models/ListDetailedCountriesResponse').fields;
-const ListLanguagesResponse = require('../models/ListLanguagesResponse').fields;
-const ListPaymentAccountsResponse = require('../models/ListPaymentAccountsResponse').fields;
-const ListPaymentMethodsResponse = require('../models/ListPaymentMethodsResponse').fields;
-const ListProductCategoriesResponse = require('../models/ListProductCategoriesResponse').fields;
-const ListReceivedDocumentCategoriesResponse = require('../models/ListReceivedDocumentCategoriesResponse').fields;
-const ListRevenueCentersResponse = require('../models/ListRevenueCentersResponse').fields;
-const ListTemplatesResponse = require('../models/ListTemplatesResponse').fields;
-const ListUnitsOfMeasureResponse = require('../models/ListUnitsOfMeasureResponse').fields;
-const ListVatTypesResponse = require('../models/ListVatTypesResponse').fields;
+const samples = require('../samples/InfoApi');
+const ListArchiveCategoriesResponse = require('../models/ListArchiveCategoriesResponse');
+const ListCitiesResponse = require('../models/ListCitiesResponse');
+const ListCostCentersResponse = require('../models/ListCostCentersResponse');
+const ListCountriesResponse = require('../models/ListCountriesResponse');
+const ListCurrenciesResponse = require('../models/ListCurrenciesResponse');
+const ListDeliveryNotesDefaultCausalsResponse = require('../models/ListDeliveryNotesDefaultCausalsResponse');
+const ListDetailedCountriesResponse = require('../models/ListDetailedCountriesResponse');
+const ListLanguagesResponse = require('../models/ListLanguagesResponse');
+const ListPaymentAccountsResponse = require('../models/ListPaymentAccountsResponse');
+const ListPaymentMethodsResponse = require('../models/ListPaymentMethodsResponse');
+const ListProductCategoriesResponse = require('../models/ListProductCategoriesResponse');
+const ListReceivedDocumentCategoriesResponse = require('../models/ListReceivedDocumentCategoriesResponse');
+const ListRevenueCentersResponse = require('../models/ListRevenueCentersResponse');
+const ListTemplatesResponse = require('../models/ListTemplatesResponse');
+const ListUnitsOfMeasureResponse = require('../models/ListUnitsOfMeasureResponse');
+const ListVatTypesResponse = require('../models/ListVatTypesResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListArchiveCategoriesResponse('', false),
+                ...ListArchiveCategoriesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -46,7 +46,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -85,7 +85,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListCitiesResponse('', false),
+                ...ListCitiesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -94,7 +94,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -132,7 +132,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListCostCentersResponse('', false),
+                ...ListCostCentersResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -141,7 +141,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -170,7 +170,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListCountriesResponse('', false),
+                ...ListCountriesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -179,7 +179,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -208,7 +208,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListCurrenciesResponse('', false),
+                ...ListCurrenciesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -217,7 +217,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -246,7 +246,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListDeliveryNotesDefaultCausalsResponse('', false),
+                ...ListDeliveryNotesDefaultCausalsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -255,7 +255,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -284,7 +284,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListDetailedCountriesResponse('', false),
+                ...ListDetailedCountriesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -293,7 +293,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -322,7 +322,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListLanguagesResponse('', false),
+                ...ListLanguagesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -331,7 +331,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -386,7 +386,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListPaymentAccountsResponse('', false),
+                ...ListPaymentAccountsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -395,7 +395,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -453,7 +453,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListPaymentMethodsResponse('', false),
+                ...ListPaymentMethodsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -462,7 +462,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -512,7 +512,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListProductCategoriesResponse('', false),
+                ...ListProductCategoriesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -521,7 +521,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -558,7 +558,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListReceivedDocumentCategoriesResponse('', false),
+                ...ListReceivedDocumentCategoriesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -567,7 +567,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -603,7 +603,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListRevenueCentersResponse('', false),
+                ...ListRevenueCentersResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -612,7 +612,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -657,7 +657,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListTemplatesResponse('', false),
+                ...ListTemplatesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -666,7 +666,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -697,7 +697,7 @@ module.exports = {
             inputFields: [
             ],
             outputFields: [
-                ...ListUnitsOfMeasureResponse('', false),
+                ...ListUnitsOfMeasureResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -706,7 +706,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -751,7 +751,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListVatTypesResponse('', false),
+                ...ListVatTypesResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -760,7 +760,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {

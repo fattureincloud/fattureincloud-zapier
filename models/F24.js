@@ -1,8 +1,7 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const F24Status = require('./F24Status').fields;
-const PaymentAccount = require('./PaymentAccount').fields;
-const PaymentAccountMapping = require('./PaymentAccount').mapping;
+const F24Status = require('../models/F24Status');
+const PaymentAccount = require('../models/PaymentAccount');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -21,9 +20,9 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}status`,
-                ...F24Status(`${keyPrefix}status`, isInput),
+                ...F24Status.fields(`${keyPrefix}status`, isInput),
             },
-            ...PaymentAccount(`${keyPrefix}payment_account`, isInput),
+            ...PaymentAccount.fields(`${keyPrefix}payment_account`, isInput),
             {
                 key: `${keyPrefix}amount`,
                 label: `F24 amount - [${labelPrefix}amount]`,
@@ -52,7 +51,7 @@ module.exports = {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'due_date': bundle.inputData?.[`${keyPrefix}due_date`],
             'status': bundle.inputData?.[`${keyPrefix}status`],
-            'payment_account': utils.removeIfEmpty(PaymentAccountMapping(bundle, `${keyPrefix}payment_account`)),
+            'payment_account': utils.removeIfEmpty(PaymentAccount.mapping(bundle, `${keyPrefix}payment_account`)),
             'amount': bundle.inputData?.[`${keyPrefix}amount`],
             'attachment_url': bundle.inputData?.[`${keyPrefix}attachment_url`],
             'attachment_token': bundle.inputData?.[`${keyPrefix}attachment_token`],

@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const VerifyEInvoiceXmlErrorResponse_error_validation_result = require('./VerifyEInvoiceXmlErrorResponse_error_validation_result').fields;
-const VerifyEInvoiceXmlErrorResponse_error_validation_resultMapping = require('./VerifyEInvoiceXmlErrorResponse_error_validation_result').mapping;
+const VerifyEInvoiceXmlErrorResponse_error_validation_result = require('../models/VerifyEInvoiceXmlErrorResponse_error_validation_result');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -13,14 +12,14 @@ module.exports = {
                 label: `[${labelPrefix}message]`,
                 type: 'string',
             },
-            ...VerifyEInvoiceXmlErrorResponse_error_validation_result(`${keyPrefix}validation_result`, isInput),
+            ...VerifyEInvoiceXmlErrorResponse_error_validation_result.fields(`${keyPrefix}validation_result`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
             'message': bundle.inputData?.[`${keyPrefix}message`],
-            'validation_result': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_error_validation_resultMapping(bundle, `${keyPrefix}validation_result`)),
+            'validation_result': utils.removeIfEmpty(VerifyEInvoiceXmlErrorResponse_error_validation_result.mapping(bundle, `${keyPrefix}validation_result`)),
         }
     },
 }

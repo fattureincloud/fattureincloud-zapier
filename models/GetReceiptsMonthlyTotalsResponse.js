@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const MonthlyTotal = require('./MonthlyTotal').fields;
-const MonthlyTotalMapping = require('./MonthlyTotal').mapping;
+const MonthlyTotal = require('../models/MonthlyTotal');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: MonthlyTotal(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: MonthlyTotal.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

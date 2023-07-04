@@ -1,20 +1,19 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const CompanyInfo = require('./CompanyInfo').fields;
-const CompanyInfoMapping = require('./CompanyInfo').mapping;
+const CompanyInfo = require('../models/CompanyInfo');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
         let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
         let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...CompanyInfo(`${keyPrefix}data`, isInput),
+            ...CompanyInfo.fields(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(CompanyInfoMapping(bundle, `${keyPrefix}data`)),
+            'data': utils.removeIfEmpty(CompanyInfo.mapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

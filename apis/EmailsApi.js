@@ -1,5 +1,5 @@
-const samples = require('../samples/EmailsApi.json');
-const ListEmailsResponse = require('../models/ListEmailsResponse').fields;
+const samples = require('../samples/EmailsApi');
+const ListEmailsResponse = require('../models/ListEmailsResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListEmailsResponse('', false),
+                ...ListEmailsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -31,7 +31,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {

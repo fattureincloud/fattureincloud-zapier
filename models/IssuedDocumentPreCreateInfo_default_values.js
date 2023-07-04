@@ -1,18 +1,16 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const DocumentTemplate = require('./DocumentTemplate').fields;
-const DocumentTemplateMapping = require('./DocumentTemplate').mapping;
-const PaymentMethod = require('./PaymentMethod').fields;
-const PaymentMethodMapping = require('./PaymentMethod').mapping;
+const DocumentTemplate = require('../models/DocumentTemplate');
+const PaymentMethod = require('../models/PaymentMethod');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
         let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
         let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...DocumentTemplate(`${keyPrefix}default_template`, isInput),
-            ...DocumentTemplate(`${keyPrefix}dn_template`, isInput),
-            ...DocumentTemplate(`${keyPrefix}ai_template`, isInput),
+            ...DocumentTemplate.fields(`${keyPrefix}default_template`, isInput),
+            ...DocumentTemplate.fields(`${keyPrefix}dn_template`, isInput),
+            ...DocumentTemplate.fields(`${keyPrefix}ai_template`, isInput),
             {
                 key: `${keyPrefix}notes`,
                 label: `Default notes. - [${labelPrefix}notes]`,
@@ -48,15 +46,15 @@ module.exports = {
                 label: `Use gross price by default. - [${labelPrefix}use_gross_prices]`,
                 type: 'boolean',
             },
-            ...PaymentMethod(`${keyPrefix}payment_method`, isInput),
+            ...PaymentMethod.fields(`${keyPrefix}payment_method`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'default_template': utils.removeIfEmpty(DocumentTemplateMapping(bundle, `${keyPrefix}default_template`)),
-            'dn_template': utils.removeIfEmpty(DocumentTemplateMapping(bundle, `${keyPrefix}dn_template`)),
-            'ai_template': utils.removeIfEmpty(DocumentTemplateMapping(bundle, `${keyPrefix}ai_template`)),
+            'default_template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}default_template`)),
+            'dn_template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}dn_template`)),
+            'ai_template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}ai_template`)),
             'notes': bundle.inputData?.[`${keyPrefix}notes`],
             'rivalsa': bundle.inputData?.[`${keyPrefix}rivalsa`],
             'cassa': bundle.inputData?.[`${keyPrefix}cassa`],
@@ -64,7 +62,7 @@ module.exports = {
             'withholding_tax_taxable': bundle.inputData?.[`${keyPrefix}withholding_tax_taxable`],
             'other_withholding_tax': bundle.inputData?.[`${keyPrefix}other_withholding_tax`],
             'use_gross_prices': bundle.inputData?.[`${keyPrefix}use_gross_prices`],
-            'payment_method': utils.removeIfEmpty(PaymentMethodMapping(bundle, `${keyPrefix}payment_method`)),
+            'payment_method': utils.removeIfEmpty(PaymentMethod.mapping(bundle, `${keyPrefix}payment_method`)),
         }
     },
 }

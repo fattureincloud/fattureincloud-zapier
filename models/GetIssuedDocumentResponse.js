@@ -1,20 +1,19 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const IssuedDocument = require('./IssuedDocument').fields;
-const IssuedDocumentMapping = require('./IssuedDocument').mapping;
+const IssuedDocument = require('../models/IssuedDocument');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
         let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
         let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
         return [
-            ...IssuedDocument(`${keyPrefix}data`, isInput),
+            ...IssuedDocument.fields(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         let keyPrefix = prefix && `${prefix}.`
         return {
-            'data': utils.removeIfEmpty(IssuedDocumentMapping(bundle, `${keyPrefix}data`)),
+            'data': utils.removeIfEmpty(IssuedDocument.mapping(bundle, `${keyPrefix}data`)),
         }
     },
 }

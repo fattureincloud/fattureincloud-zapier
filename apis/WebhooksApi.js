@@ -1,12 +1,10 @@
-const samples = require('../samples/WebhooksApi.json');
-const CreateWebhooksSubscriptionRequest = require('../models/CreateWebhooksSubscriptionRequest').fields;
-const CreateWebhooksSubscriptionRequestMapping = require('../models/CreateWebhooksSubscriptionRequest').mapping;
-const CreateWebhooksSubscriptionResponse = require('../models/CreateWebhooksSubscriptionResponse').fields;
-const GetWebhooksSubscriptionResponse = require('../models/GetWebhooksSubscriptionResponse').fields;
-const ListWebhooksSubscriptionsResponse = require('../models/ListWebhooksSubscriptionsResponse').fields;
-const ModifyWebhooksSubscriptionRequest = require('../models/ModifyWebhooksSubscriptionRequest').fields;
-const ModifyWebhooksSubscriptionRequestMapping = require('../models/ModifyWebhooksSubscriptionRequest').mapping;
-const ModifyWebhooksSubscriptionResponse = require('../models/ModifyWebhooksSubscriptionResponse').fields;
+const samples = require('../samples/WebhooksApi');
+const CreateWebhooksSubscriptionRequest = require('../models/CreateWebhooksSubscriptionRequest');
+const CreateWebhooksSubscriptionResponse = require('../models/CreateWebhooksSubscriptionResponse');
+const GetWebhooksSubscriptionResponse = require('../models/GetWebhooksSubscriptionResponse');
+const ListWebhooksSubscriptionsResponse = require('../models/ListWebhooksSubscriptionsResponse');
+const ModifyWebhooksSubscriptionRequest = require('../models/ModifyWebhooksSubscriptionRequest');
+const ModifyWebhooksSubscriptionResponse = require('../models/ModifyWebhooksSubscriptionResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -27,10 +25,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateWebhooksSubscriptionRequest(),
+                ...CreateWebhooksSubscriptionRequest.fields(),
             ],
             outputFields: [
-                ...CreateWebhooksSubscriptionResponse('', false),
+                ...CreateWebhooksSubscriptionResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -45,7 +43,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateWebhooksSubscriptionRequestMapping(bundle),
+                        ...CreateWebhooksSubscriptionRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -90,7 +88,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -132,7 +130,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetWebhooksSubscriptionResponse('', false),
+                ...GetWebhooksSubscriptionResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -141,7 +139,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -177,7 +175,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListWebhooksSubscriptionsResponse('', false),
+                ...ListWebhooksSubscriptionsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -186,7 +184,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -226,10 +224,10 @@ module.exports = {
                     type: 'string',
                     required: true,
                 },
-                ...ModifyWebhooksSubscriptionRequest(),
+                ...ModifyWebhooksSubscriptionRequest.fields(),
             ],
             outputFields: [
-                ...ModifyWebhooksSubscriptionResponse('', false),
+                ...ModifyWebhooksSubscriptionResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -244,7 +242,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyWebhooksSubscriptionRequestMapping(bundle),
+                        ...ModifyWebhooksSubscriptionRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

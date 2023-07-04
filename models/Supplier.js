@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const SupplierType = require('./SupplierType').fields;
+const SupplierType = require('../models/SupplierType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -24,7 +24,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...SupplierType(`${keyPrefix}type`, isInput),
+                ...SupplierType.fields(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}first_name`,

@@ -1,8 +1,7 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const CompanyType = require('./CompanyType').fields;
-const ControlledCompany = require('./ControlledCompany').fields;
-const ControlledCompanyMapping = require('./ControlledCompany').mapping;
+const CompanyType = require('../models/CompanyType');
+const ControlledCompany = require('../models/ControlledCompany');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -21,7 +20,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...CompanyType(`${keyPrefix}type`, isInput),
+                ...CompanyType.fields(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}access_token`,
@@ -30,8 +29,8 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}controlled_companies`,
-                label: `${labelPrefix}controlled_companies]`,
-                children: ControlledCompany(`${keyPrefix}controlled_companies${!isInput && '[]'}`), 
+                label: `[${labelPrefix}controlled_companies]`,
+                children: ControlledCompany.fields(`${keyPrefix}controlled_companies${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}connection_id`,

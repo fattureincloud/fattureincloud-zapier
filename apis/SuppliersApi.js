@@ -1,12 +1,10 @@
-const samples = require('../samples/SuppliersApi.json');
-const CreateSupplierRequest = require('../models/CreateSupplierRequest').fields;
-const CreateSupplierRequestMapping = require('../models/CreateSupplierRequest').mapping;
-const CreateSupplierResponse = require('../models/CreateSupplierResponse').fields;
-const GetSupplierResponse = require('../models/GetSupplierResponse').fields;
-const ListSuppliersResponse = require('../models/ListSuppliersResponse').fields;
-const ModifySupplierRequest = require('../models/ModifySupplierRequest').fields;
-const ModifySupplierRequestMapping = require('../models/ModifySupplierRequest').mapping;
-const ModifySupplierResponse = require('../models/ModifySupplierResponse').fields;
+const samples = require('../samples/SuppliersApi');
+const CreateSupplierRequest = require('../models/CreateSupplierRequest');
+const CreateSupplierResponse = require('../models/CreateSupplierResponse');
+const GetSupplierResponse = require('../models/GetSupplierResponse');
+const ListSuppliersResponse = require('../models/ListSuppliersResponse');
+const ModifySupplierRequest = require('../models/ModifySupplierRequest');
+const ModifySupplierResponse = require('../models/ModifySupplierResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -27,10 +25,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateSupplierRequest(),
+                ...CreateSupplierRequest.fields(),
             ],
             outputFields: [
-                ...CreateSupplierResponse('', false),
+                ...CreateSupplierResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -45,7 +43,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateSupplierRequestMapping(bundle),
+                        ...CreateSupplierRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -90,7 +88,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -146,7 +144,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetSupplierResponse('', false),
+                ...GetSupplierResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -155,7 +153,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -227,7 +225,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListSuppliersResponse('', false),
+                ...ListSuppliersResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -236,7 +234,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -282,10 +280,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifySupplierRequest(),
+                ...ModifySupplierRequest.fields(),
             ],
             outputFields: [
-                ...ModifySupplierResponse('', false),
+                ...ModifySupplierResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -300,7 +298,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifySupplierRequestMapping(bundle),
+                        ...ModifySupplierRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

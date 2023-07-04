@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const PaymentTermsType = require('./PaymentTermsType').fields;
+const PaymentTermsType = require('../models/PaymentTermsType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -14,7 +14,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}type`,
-                ...PaymentTermsType(`${keyPrefix}type`, isInput),
+                ...PaymentTermsType.fields(`${keyPrefix}type`, isInput),
             },
         ]
     },

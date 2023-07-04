@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const EmailSchedule_include = require('./EmailSchedule_include').fields;
-const EmailSchedule_includeMapping = require('./EmailSchedule_include').mapping;
+const EmailSchedule_include = require('../models/EmailSchedule_include');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -33,7 +32,7 @@ module.exports = {
                 label: `Email body [HTML Escaped] [max size 50KiB] - [${labelPrefix}body]`,
                 type: 'string',
             },
-            ...EmailSchedule_include(`${keyPrefix}include`, isInput),
+            ...EmailSchedule_include.fields(`${keyPrefix}include`, isInput),
             {
                 key: `${keyPrefix}attach_pdf`,
                 label: `Attach the pdf of the document - [${labelPrefix}attach_pdf]`,
@@ -54,7 +53,7 @@ module.exports = {
             'recipient_email': bundle.inputData?.[`${keyPrefix}recipient_email`],
             'subject': bundle.inputData?.[`${keyPrefix}subject`],
             'body': bundle.inputData?.[`${keyPrefix}body`],
-            'include': utils.removeIfEmpty(EmailSchedule_includeMapping(bundle, `${keyPrefix}include`)),
+            'include': utils.removeIfEmpty(EmailSchedule_include.mapping(bundle, `${keyPrefix}include`)),
             'attach_pdf': bundle.inputData?.[`${keyPrefix}attach_pdf`],
             'send_copy': bundle.inputData?.[`${keyPrefix}send_copy`],
         }

@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const PermissionLevel = require('./PermissionLevel').fields;
+const PermissionLevel = require('../models/PermissionLevel');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -9,43 +9,43 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}quotes`,
-                ...PermissionLevel(`${keyPrefix}quotes`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}quotes`, isInput),
             },
             {
                 key: `${keyPrefix}proformas`,
-                ...PermissionLevel(`${keyPrefix}proformas`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}proformas`, isInput),
             },
             {
                 key: `${keyPrefix}invoices`,
-                ...PermissionLevel(`${keyPrefix}invoices`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}invoices`, isInput),
             },
             {
                 key: `${keyPrefix}receipts`,
-                ...PermissionLevel(`${keyPrefix}receipts`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}receipts`, isInput),
             },
             {
                 key: `${keyPrefix}delivery_notes`,
-                ...PermissionLevel(`${keyPrefix}delivery_notes`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}delivery_notes`, isInput),
             },
             {
                 key: `${keyPrefix}credit_notes`,
-                ...PermissionLevel(`${keyPrefix}credit_notes`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}credit_notes`, isInput),
             },
             {
                 key: `${keyPrefix}orders`,
-                ...PermissionLevel(`${keyPrefix}orders`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}orders`, isInput),
             },
             {
                 key: `${keyPrefix}work_reports`,
-                ...PermissionLevel(`${keyPrefix}work_reports`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}work_reports`, isInput),
             },
             {
                 key: `${keyPrefix}supplier_orders`,
-                ...PermissionLevel(`${keyPrefix}supplier_orders`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}supplier_orders`, isInput),
             },
             {
                 key: `${keyPrefix}self_invoices`,
-                ...PermissionLevel(`${keyPrefix}self_invoices`, isInput),
+                ...PermissionLevel.fields(`${keyPrefix}self_invoices`, isInput),
             },
         ]
     },

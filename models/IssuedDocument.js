@@ -1,25 +1,16 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const Entity = require('./Entity').fields;
-const EntityMapping = require('./Entity').mapping;
-const IssuedDocumentType = require('./IssuedDocumentType').fields;
-const Currency = require('./Currency').fields;
-const CurrencyMapping = require('./Currency').mapping;
-const Language = require('./Language').fields;
-const LanguageMapping = require('./Language').mapping;
-const PaymentMethod = require('./PaymentMethod').fields;
-const PaymentMethodMapping = require('./PaymentMethod').mapping;
-const IssuedDocument_ei_data = require('./IssuedDocument_ei_data').fields;
-const IssuedDocument_ei_dataMapping = require('./IssuedDocument_ei_data').mapping;
-const IssuedDocumentItemsListItem = require('./IssuedDocumentItemsListItem').fields;
-const IssuedDocumentItemsListItemMapping = require('./IssuedDocumentItemsListItem').mapping;
-const IssuedDocumentPaymentsListItem = require('./IssuedDocumentPaymentsListItem').fields;
-const IssuedDocumentPaymentsListItemMapping = require('./IssuedDocumentPaymentsListItem').mapping;
-const DocumentTemplate = require('./DocumentTemplate').fields;
-const DocumentTemplateMapping = require('./DocumentTemplate').mapping;
-const ShowTotalsMode = require('./ShowTotalsMode').fields;
-const IssuedDocument_extra_data = require('./IssuedDocument_extra_data').fields;
-const IssuedDocument_extra_dataMapping = require('./IssuedDocument_extra_data').mapping;
+const Currency = require('../models/Currency');
+const DocumentTemplate = require('../models/DocumentTemplate');
+const Entity = require('../models/Entity');
+const IssuedDocumentItemsListItem = require('../models/IssuedDocumentItemsListItem');
+const IssuedDocumentPaymentsListItem = require('../models/IssuedDocumentPaymentsListItem');
+const IssuedDocumentType = require('../models/IssuedDocumentType');
+const IssuedDocument_ei_data = require('../models/IssuedDocument_ei_data');
+const IssuedDocument_extra_data = require('../models/IssuedDocument_extra_data');
+const Language = require('../models/Language');
+const PaymentMethod = require('../models/PaymentMethod');
+const ShowTotalsMode = require('../models/ShowTotalsMode');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -31,10 +22,10 @@ module.exports = {
                 label: `Issued document id - [${labelPrefix}id]`,
                 type: 'integer',
             },
-            ...Entity(`${keyPrefix}entity`, isInput),
+            ...Entity.fields(`${keyPrefix}entity`, isInput),
             {
                 key: `${keyPrefix}type`,
-                ...IssuedDocumentType(`${keyPrefix}type`, isInput),
+                ...IssuedDocumentType.fields(`${keyPrefix}type`, isInput),
             },
             {
                 key: `${keyPrefix}number`,
@@ -56,8 +47,8 @@ module.exports = {
                 label: `Issued document year - [${labelPrefix}year]`,
                 type: 'integer',
             },
-            ...Currency(`${keyPrefix}currency`, isInput),
-            ...Language(`${keyPrefix}language`, isInput),
+            ...Currency.fields(`${keyPrefix}currency`, isInput),
+            ...Language.fields(`${keyPrefix}language`, isInput),
             {
                 key: `${keyPrefix}subject`,
                 label: `Issued document subject - [${labelPrefix}subject]`,
@@ -153,7 +144,7 @@ module.exports = {
                 label: `Issued document stamp duty value [0 if not present] - [${labelPrefix}stamp_duty]`,
                 type: 'number',
             },
-            ...PaymentMethod(`${keyPrefix}payment_method`, isInput),
+            ...PaymentMethod.fields(`${keyPrefix}payment_method`, isInput),
             {
                 key: `${keyPrefix}use_split_payment`,
                 label: `Issued document uses split payment - [${labelPrefix}use_split_payment]`,
@@ -169,7 +160,7 @@ module.exports = {
                 label: `Issued document is an e-invoice. - [${labelPrefix}e_invoice]`,
                 type: 'boolean',
             },
-            ...IssuedDocument_ei_data(`${keyPrefix}ei_data`, isInput),
+            ...IssuedDocument_ei_data.fields(`${keyPrefix}ei_data`, isInput),
             {
                 key: `${keyPrefix}ei_cassa_type`,
                 label: `E-invoice cassa type - [${labelPrefix}ei_cassa_type]`,
@@ -197,17 +188,17 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}items_list`,
-                label: `${labelPrefix}items_list]`,
-                children: IssuedDocumentItemsListItem(`${keyPrefix}items_list${!isInput && '[]'}`), 
+                label: `[${labelPrefix}items_list]`,
+                children: IssuedDocumentItemsListItem.fields(`${keyPrefix}items_list${!isInput && '[]'}`), 
             },
             {
                 key: `${keyPrefix}payments_list`,
-                label: `${labelPrefix}payments_list]`,
-                children: IssuedDocumentPaymentsListItem(`${keyPrefix}payments_list${!isInput && '[]'}`), 
+                label: `[${labelPrefix}payments_list]`,
+                children: IssuedDocumentPaymentsListItem.fields(`${keyPrefix}payments_list${!isInput && '[]'}`), 
             },
-            ...DocumentTemplate(`${keyPrefix}template`, isInput),
-            ...DocumentTemplate(`${keyPrefix}delivery_note_template`, isInput),
-            ...DocumentTemplate(`${keyPrefix}acc_inv_template`, isInput),
+            ...DocumentTemplate.fields(`${keyPrefix}template`, isInput),
+            ...DocumentTemplate.fields(`${keyPrefix}delivery_note_template`, isInput),
+            ...DocumentTemplate.fields(`${keyPrefix}acc_inv_template`, isInput),
             {
                 key: `${keyPrefix}h_margins`,
                 label: `Issued document PDF horizontal margins - [${labelPrefix}h_margins]`,
@@ -230,7 +221,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}show_totals`,
-                ...ShowTotalsMode(`${keyPrefix}show_totals`, isInput),
+                ...ShowTotalsMode.fields(`${keyPrefix}show_totals`, isInput),
             },
             {
                 key: `${keyPrefix}show_paypal_button`,
@@ -357,7 +348,7 @@ module.exports = {
                 label: `Issued document taxable enasarco amount - [${labelPrefix}amount_enasarco_taxable]`,
                 type: 'number',
             },
-            ...IssuedDocument_extra_data(`${keyPrefix}extra_data`, isInput),
+            ...IssuedDocument_extra_data.fields(`${keyPrefix}extra_data`, isInput),
             {
                 key: `${keyPrefix}seen_date`,
                 label: `Issued document seen date - [${labelPrefix}seen_date]`,
@@ -435,14 +426,14 @@ module.exports = {
         let keyPrefix = prefix && `${prefix}.`
         return {
             'id': bundle.inputData?.[`${keyPrefix}id`],
-            'entity': utils.removeIfEmpty(EntityMapping(bundle, `${keyPrefix}entity`)),
+            'entity': utils.removeIfEmpty(Entity.mapping(bundle, `${keyPrefix}entity`)),
             'type': bundle.inputData?.[`${keyPrefix}type`],
             'number': bundle.inputData?.[`${keyPrefix}number`],
             'numeration': bundle.inputData?.[`${keyPrefix}numeration`],
             'date': bundle.inputData?.[`${keyPrefix}date`],
             'year': bundle.inputData?.[`${keyPrefix}year`],
-            'currency': utils.removeIfEmpty(CurrencyMapping(bundle, `${keyPrefix}currency`)),
-            'language': utils.removeIfEmpty(LanguageMapping(bundle, `${keyPrefix}language`)),
+            'currency': utils.removeIfEmpty(Currency.mapping(bundle, `${keyPrefix}currency`)),
+            'language': utils.removeIfEmpty(Language.mapping(bundle, `${keyPrefix}language`)),
             'subject': bundle.inputData?.[`${keyPrefix}subject`],
             'visible_subject': bundle.inputData?.[`${keyPrefix}visible_subject`],
             'rc_center': bundle.inputData?.[`${keyPrefix}rc_center`],
@@ -462,11 +453,11 @@ module.exports = {
             'withholding_tax_taxable': bundle.inputData?.[`${keyPrefix}withholding_tax_taxable`],
             'other_withholding_tax': bundle.inputData?.[`${keyPrefix}other_withholding_tax`],
             'stamp_duty': bundle.inputData?.[`${keyPrefix}stamp_duty`],
-            'payment_method': utils.removeIfEmpty(PaymentMethodMapping(bundle, `${keyPrefix}payment_method`)),
+            'payment_method': utils.removeIfEmpty(PaymentMethod.mapping(bundle, `${keyPrefix}payment_method`)),
             'use_split_payment': bundle.inputData?.[`${keyPrefix}use_split_payment`],
             'use_gross_prices': bundle.inputData?.[`${keyPrefix}use_gross_prices`],
             'e_invoice': bundle.inputData?.[`${keyPrefix}e_invoice`],
-            'ei_data': utils.removeIfEmpty(IssuedDocument_ei_dataMapping(bundle, `${keyPrefix}ei_data`)),
+            'ei_data': utils.removeIfEmpty(IssuedDocument_ei_data.mapping(bundle, `${keyPrefix}ei_data`)),
             'ei_cassa_type': bundle.inputData?.[`${keyPrefix}ei_cassa_type`],
             'ei_cassa2_type': bundle.inputData?.[`${keyPrefix}ei_cassa2_type`],
             'ei_withholding_tax_causal': bundle.inputData?.[`${keyPrefix}ei_withholding_tax_causal`],
@@ -474,9 +465,9 @@ module.exports = {
             'ei_other_withholding_tax_causal': bundle.inputData?.[`${keyPrefix}ei_other_withholding_tax_causal`],
             'items_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}items_list`]),
             'payments_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}payments_list`]),
-            'template': utils.removeIfEmpty(DocumentTemplateMapping(bundle, `${keyPrefix}template`)),
-            'delivery_note_template': utils.removeIfEmpty(DocumentTemplateMapping(bundle, `${keyPrefix}delivery_note_template`)),
-            'acc_inv_template': utils.removeIfEmpty(DocumentTemplateMapping(bundle, `${keyPrefix}acc_inv_template`)),
+            'template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}template`)),
+            'delivery_note_template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}delivery_note_template`)),
+            'acc_inv_template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}acc_inv_template`)),
             'h_margins': bundle.inputData?.[`${keyPrefix}h_margins`],
             'v_margins': bundle.inputData?.[`${keyPrefix}v_margins`],
             'show_payments': bundle.inputData?.[`${keyPrefix}show_payments`],
@@ -507,7 +498,7 @@ module.exports = {
             'amount_other_withholding_tax': bundle.inputData?.[`${keyPrefix}amount_other_withholding_tax`],
             'amount_other_withholding_tax_taxable': bundle.inputData?.[`${keyPrefix}amount_other_withholding_tax_taxable`],
             'amount_enasarco_taxable': bundle.inputData?.[`${keyPrefix}amount_enasarco_taxable`],
-            'extra_data': utils.removeIfEmpty(IssuedDocument_extra_dataMapping(bundle, `${keyPrefix}extra_data`)),
+            'extra_data': utils.removeIfEmpty(IssuedDocument_extra_data.mapping(bundle, `${keyPrefix}extra_data`)),
             'seen_date': bundle.inputData?.[`${keyPrefix}seen_date`],
             'next_due_date': bundle.inputData?.[`${keyPrefix}next_due_date`],
             'url': bundle.inputData?.[`${keyPrefix}url`],

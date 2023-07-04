@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const DetailedCountry = require('./DetailedCountry').fields;
-const DetailedCountryMapping = require('./DetailedCountry').mapping;
+const DetailedCountry = require('../models/DetailedCountry');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: DetailedCountry(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: DetailedCountry.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },

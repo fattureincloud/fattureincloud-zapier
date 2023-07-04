@@ -1,14 +1,12 @@
-const samples = require('../samples/ReceiptsApi.json');
-const CreateReceiptRequest = require('../models/CreateReceiptRequest').fields;
-const CreateReceiptRequestMapping = require('../models/CreateReceiptRequest').mapping;
-const CreateReceiptResponse = require('../models/CreateReceiptResponse').fields;
-const GetReceiptResponse = require('../models/GetReceiptResponse').fields;
-const GetReceiptPreCreateInfoResponse = require('../models/GetReceiptPreCreateInfoResponse').fields;
-const GetReceiptsMonthlyTotalsResponse = require('../models/GetReceiptsMonthlyTotalsResponse').fields;
-const ListReceiptsResponse = require('../models/ListReceiptsResponse').fields;
-const ModifyReceiptRequest = require('../models/ModifyReceiptRequest').fields;
-const ModifyReceiptRequestMapping = require('../models/ModifyReceiptRequest').mapping;
-const ModifyReceiptResponse = require('../models/ModifyReceiptResponse').fields;
+const samples = require('../samples/ReceiptsApi');
+const CreateReceiptRequest = require('../models/CreateReceiptRequest');
+const CreateReceiptResponse = require('../models/CreateReceiptResponse');
+const GetReceiptPreCreateInfoResponse = require('../models/GetReceiptPreCreateInfoResponse');
+const GetReceiptResponse = require('../models/GetReceiptResponse');
+const GetReceiptsMonthlyTotalsResponse = require('../models/GetReceiptsMonthlyTotalsResponse');
+const ListReceiptsResponse = require('../models/ListReceiptsResponse');
+const ModifyReceiptRequest = require('../models/ModifyReceiptRequest');
+const ModifyReceiptResponse = require('../models/ModifyReceiptResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -29,10 +27,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateReceiptRequest(),
+                ...CreateReceiptRequest.fields(),
             ],
             outputFields: [
-                ...CreateReceiptResponse('', false),
+                ...CreateReceiptResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -47,7 +45,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateReceiptRequestMapping(bundle),
+                        ...CreateReceiptRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -92,7 +90,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -148,7 +146,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceiptResponse('', false),
+                ...GetReceiptResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -157,7 +155,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -195,7 +193,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceiptPreCreateInfoResponse('', false),
+                ...GetReceiptPreCreateInfoResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -204,7 +202,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -256,7 +254,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetReceiptsMonthlyTotalsResponse('', false),
+                ...GetReceiptsMonthlyTotalsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -265,7 +263,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -337,7 +335,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...ListReceiptsResponse('', false),
+                ...ListReceiptsResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -346,7 +344,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -392,10 +390,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyReceiptRequest(),
+                ...ModifyReceiptRequest.fields(),
             ],
             outputFields: [
-                ...ModifyReceiptResponse('', false),
+                ...ModifyReceiptResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -410,7 +408,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyReceiptRequestMapping(bundle),
+                        ...ModifyReceiptRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

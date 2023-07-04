@@ -1,25 +1,19 @@
-const samples = require('../samples/SettingsApi.json');
-const CreatePaymentAccountRequest = require('../models/CreatePaymentAccountRequest').fields;
-const CreatePaymentAccountRequestMapping = require('../models/CreatePaymentAccountRequest').mapping;
-const CreatePaymentAccountResponse = require('../models/CreatePaymentAccountResponse').fields;
-const CreatePaymentMethodRequest = require('../models/CreatePaymentMethodRequest').fields;
-const CreatePaymentMethodRequestMapping = require('../models/CreatePaymentMethodRequest').mapping;
-const CreatePaymentMethodResponse = require('../models/CreatePaymentMethodResponse').fields;
-const CreateVatTypeRequest = require('../models/CreateVatTypeRequest').fields;
-const CreateVatTypeRequestMapping = require('../models/CreateVatTypeRequest').mapping;
-const CreateVatTypeResponse = require('../models/CreateVatTypeResponse').fields;
-const GetPaymentAccountResponse = require('../models/GetPaymentAccountResponse').fields;
-const GetPaymentMethodResponse = require('../models/GetPaymentMethodResponse').fields;
-const GetVatTypeResponse = require('../models/GetVatTypeResponse').fields;
-const ModifyPaymentAccountRequest = require('../models/ModifyPaymentAccountRequest').fields;
-const ModifyPaymentAccountRequestMapping = require('../models/ModifyPaymentAccountRequest').mapping;
-const ModifyPaymentAccountResponse = require('../models/ModifyPaymentAccountResponse').fields;
-const ModifyPaymentMethodRequest = require('../models/ModifyPaymentMethodRequest').fields;
-const ModifyPaymentMethodRequestMapping = require('../models/ModifyPaymentMethodRequest').mapping;
-const ModifyPaymentMethodResponse = require('../models/ModifyPaymentMethodResponse').fields;
-const ModifyVatTypeRequest = require('../models/ModifyVatTypeRequest').fields;
-const ModifyVatTypeRequestMapping = require('../models/ModifyVatTypeRequest').mapping;
-const ModifyVatTypeResponse = require('../models/ModifyVatTypeResponse').fields;
+const samples = require('../samples/SettingsApi');
+const CreatePaymentAccountRequest = require('../models/CreatePaymentAccountRequest');
+const CreatePaymentAccountResponse = require('../models/CreatePaymentAccountResponse');
+const CreatePaymentMethodRequest = require('../models/CreatePaymentMethodRequest');
+const CreatePaymentMethodResponse = require('../models/CreatePaymentMethodResponse');
+const CreateVatTypeRequest = require('../models/CreateVatTypeRequest');
+const CreateVatTypeResponse = require('../models/CreateVatTypeResponse');
+const GetPaymentAccountResponse = require('../models/GetPaymentAccountResponse');
+const GetPaymentMethodResponse = require('../models/GetPaymentMethodResponse');
+const GetVatTypeResponse = require('../models/GetVatTypeResponse');
+const ModifyPaymentAccountRequest = require('../models/ModifyPaymentAccountRequest');
+const ModifyPaymentAccountResponse = require('../models/ModifyPaymentAccountResponse');
+const ModifyPaymentMethodRequest = require('../models/ModifyPaymentMethodRequest');
+const ModifyPaymentMethodResponse = require('../models/ModifyPaymentMethodResponse');
+const ModifyVatTypeRequest = require('../models/ModifyVatTypeRequest');
+const ModifyVatTypeResponse = require('../models/ModifyVatTypeResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -40,10 +34,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreatePaymentAccountRequest(),
+                ...CreatePaymentAccountRequest.fields(),
             ],
             outputFields: [
-                ...CreatePaymentAccountResponse('', false),
+                ...CreatePaymentAccountResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -58,7 +52,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreatePaymentAccountRequestMapping(bundle),
+                        ...CreatePaymentAccountRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -87,10 +81,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreatePaymentMethodRequest(),
+                ...CreatePaymentMethodRequest.fields(),
             ],
             outputFields: [
-                ...CreatePaymentMethodResponse('', false),
+                ...CreatePaymentMethodResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -105,7 +99,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreatePaymentMethodRequestMapping(bundle),
+                        ...CreatePaymentMethodRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -134,10 +128,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateVatTypeRequest(),
+                ...CreateVatTypeRequest.fields(),
             ],
             outputFields: [
-                ...CreateVatTypeResponse('', false),
+                ...CreateVatTypeResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -152,7 +146,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...CreateVatTypeRequestMapping(bundle),
+                        ...CreateVatTypeRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -197,7 +191,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -247,7 +241,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -297,7 +291,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': '',
                     },
                     params: {
@@ -353,7 +347,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetPaymentAccountResponse('', false),
+                ...GetPaymentAccountResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -362,7 +356,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -420,7 +414,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetPaymentMethodResponse('', false),
+                ...GetPaymentMethodResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -429,7 +423,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -473,7 +467,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetVatTypeResponse('', false),
+                ...GetVatTypeResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -482,7 +476,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Authorization': 'Bearer {{bundle.authData.access_token}}',
-                        
+                        'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
@@ -522,10 +516,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyPaymentAccountRequest(),
+                ...ModifyPaymentAccountRequest.fields(),
             ],
             outputFields: [
-                ...ModifyPaymentAccountResponse('', false),
+                ...ModifyPaymentAccountResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -540,7 +534,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyPaymentAccountRequestMapping(bundle),
+                        ...ModifyPaymentAccountRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -575,10 +569,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyPaymentMethodRequest(),
+                ...ModifyPaymentMethodRequest.fields(),
             ],
             outputFields: [
-                ...ModifyPaymentMethodResponse('', false),
+                ...ModifyPaymentMethodResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -593,7 +587,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyPaymentMethodRequestMapping(bundle),
+                        ...ModifyPaymentMethodRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {
@@ -628,10 +622,10 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...ModifyVatTypeRequest(),
+                ...ModifyVatTypeRequest.fields(),
             ],
             outputFields: [
-                ...ModifyVatTypeResponse('', false),
+                ...ModifyVatTypeResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -646,7 +640,7 @@ module.exports = {
                     params: {
                     },
                     body: {
-                        ...ModifyVatTypeRequestMapping(bundle),
+                        ...ModifyVatTypeRequest.mapping(bundle),
                     },
                 }
                 return z.request(options).then((response) => {

@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const VatType = require('./VatType').fields;
-const VatTypeMapping = require('./VatType').mapping;
+const VatType = require('../models/VatType');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -58,7 +57,7 @@ module.exports = {
                 label: `Issued document item gross price - [${labelPrefix}gross_price]`,
                 type: 'number',
             },
-            ...VatType(`${keyPrefix}vat`, isInput),
+            ...VatType.fields(`${keyPrefix}vat`, isInput),
             {
                 key: `${keyPrefix}not_taxable`,
                 label: `Issued document item is not taxable - [${labelPrefix}not_taxable]`,
@@ -109,7 +108,7 @@ module.exports = {
             'measure': bundle.inputData?.[`${keyPrefix}measure`],
             'net_price': bundle.inputData?.[`${keyPrefix}net_price`],
             'gross_price': bundle.inputData?.[`${keyPrefix}gross_price`],
-            'vat': utils.removeIfEmpty(VatTypeMapping(bundle, `${keyPrefix}vat`)),
+            'vat': utils.removeIfEmpty(VatType.mapping(bundle, `${keyPrefix}vat`)),
             'not_taxable': bundle.inputData?.[`${keyPrefix}not_taxable`],
             'apply_withholding_taxes': bundle.inputData?.[`${keyPrefix}apply_withholding_taxes`],
             'discount': bundle.inputData?.[`${keyPrefix}discount`],

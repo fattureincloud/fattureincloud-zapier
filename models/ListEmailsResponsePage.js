@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const utils = require('../utils/utils');
-const Email = require('./Email').fields;
-const EmailMapping = require('./Email').mapping;
+const Email = require('../models/Email');
 
 module.exports = {
     fields: (prefix = '', isInput = true) => {
@@ -10,8 +9,8 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}data`,
-                label: `${labelPrefix}data]`,
-                children: Email(`${keyPrefix}data${!isInput && '[]'}`), 
+                label: `[${labelPrefix}data]`,
+                children: Email.fields(`${keyPrefix}data${!isInput && '[]'}`), 
             },
         ]
     },
