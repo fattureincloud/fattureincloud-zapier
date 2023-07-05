@@ -1,10 +1,8 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}document`,
@@ -29,7 +27,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'document': bundle.inputData?.[`${keyPrefix}document`],
             'delivery_note': bundle.inputData?.[`${keyPrefix}delivery_note`],

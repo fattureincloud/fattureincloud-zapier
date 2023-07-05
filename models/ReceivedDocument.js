@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const Currency = require('../models/Currency');
 const Entity = require('../models/Entity');
@@ -7,9 +6,8 @@ const ReceivedDocumentPaymentsListItem = require('../models/ReceivedDocumentPaym
 const ReceivedDocumentType = require('../models/ReceivedDocumentType');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}id`,
@@ -110,12 +108,12 @@ module.exports = {
             {
                 key: `${keyPrefix}items_list`,
                 label: `[${labelPrefix}items_list]`,
-                children: ReceivedDocumentItemsListItem.fields(`${keyPrefix}items_list${!isInput && '[]'}`), 
+                children: ReceivedDocumentItemsListItem.fields(`${keyPrefix}items_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}payments_list`,
                 label: `[${labelPrefix}payments_list]`,
-                children: ReceivedDocumentPaymentsListItem.fields(`${keyPrefix}payments_list${!isInput && '[]'}`), 
+                children: ReceivedDocumentPaymentsListItem.fields(`${keyPrefix}payments_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}attachment_url`,
@@ -150,7 +148,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'type': bundle.inputData?.[`${keyPrefix}type`],

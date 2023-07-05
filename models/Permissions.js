@@ -1,12 +1,10 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const PermissionLevel = require('../models/PermissionLevel');
 const Permissions_fic_issued_documents_detailed = require('../models/Permissions_fic_issued_documents_detailed');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}fic_situation`,
@@ -108,7 +106,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'fic_situation': bundle.inputData?.[`${keyPrefix}fic_situation`],
             'fic_clients': bundle.inputData?.[`${keyPrefix}fic_clients`],

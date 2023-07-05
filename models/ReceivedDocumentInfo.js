@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const Currency = require('../models/Currency');
 const PaymentAccount = require('../models/PaymentAccount');
@@ -7,9 +6,8 @@ const ReceivedDocumentInfo_items_default_values = require('../models/ReceivedDoc
 const VatType = require('../models/VatType');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             ...ReceivedDocumentInfo_default_values.fields(`${keyPrefix}default_values`, isInput),
             ...ReceivedDocumentInfo_items_default_values.fields(`${keyPrefix}items_default_values`, isInput),
@@ -22,7 +20,7 @@ module.exports = {
             {
                 key: `${keyPrefix}currencies_list`,
                 label: `[${labelPrefix}currencies_list]`,
-                children: Currency.fields(`${keyPrefix}currencies_list${!isInput && '[]'}`), 
+                children: Currency.fields(`${keyPrefix}currencies_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}categories_list`,
@@ -33,17 +31,17 @@ module.exports = {
             {
                 key: `${keyPrefix}payment_accounts_list`,
                 label: `[${labelPrefix}payment_accounts_list]`,
-                children: PaymentAccount.fields(`${keyPrefix}payment_accounts_list${!isInput && '[]'}`), 
+                children: PaymentAccount.fields(`${keyPrefix}payment_accounts_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}vat_types_list`,
                 label: `[${labelPrefix}vat_types_list]`,
-                children: VatType.fields(`${keyPrefix}vat_types_list${!isInput && '[]'}`), 
+                children: VatType.fields(`${keyPrefix}vat_types_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'default_values': utils.removeIfEmpty(ReceivedDocumentInfo_default_values.mapping(bundle, `${keyPrefix}default_values`)),
             'items_default_values': utils.removeIfEmpty(ReceivedDocumentInfo_items_default_values.mapping(bundle, `${keyPrefix}items_default_values`)),

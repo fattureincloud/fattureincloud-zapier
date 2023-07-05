@@ -1,12 +1,10 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const PaymentAccount = require('../models/PaymentAccount');
 const ReceivedDocumentPaymentsListItem_payment_terms = require('../models/ReceivedDocumentPaymentsListItem_payment_terms');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}id`,
@@ -38,7 +36,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'amount': bundle.inputData?.[`${keyPrefix}amount`],

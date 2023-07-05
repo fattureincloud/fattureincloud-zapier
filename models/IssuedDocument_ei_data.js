@@ -1,12 +1,10 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const OriginalDocumentType = require('../models/OriginalDocumentType');
 const VatKind = require('../models/VatKind');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}vat_kind`,
@@ -69,7 +67,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'vat_kind': bundle.inputData?.[`${keyPrefix}vat_kind`],
             'original_document_type': bundle.inputData?.[`${keyPrefix}original_document_type`],

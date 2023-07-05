@@ -1,13 +1,11 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const PaymentAccount = require('../models/PaymentAccount');
 const ReceiptItemsListItem = require('../models/ReceiptItemsListItem');
 const ReceiptType = require('../models/ReceiptType');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}id`,
@@ -77,12 +75,12 @@ module.exports = {
             {
                 key: `${keyPrefix}items_list`,
                 label: `[${labelPrefix}items_list]`,
-                children: ReceiptItemsListItem.fields(`${keyPrefix}items_list${!isInput && '[]'}`), 
+                children: ReceiptItemsListItem.fields(`${keyPrefix}items_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'date': bundle.inputData?.[`${keyPrefix}date`],

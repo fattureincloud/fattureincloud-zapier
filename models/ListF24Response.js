@@ -1,12 +1,10 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const F24 = require('../models/F24');
 const ListF24ResponseAggregatedData = require('../models/ListF24ResponseAggregatedData');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}current_page`,
@@ -66,13 +64,13 @@ module.exports = {
             {
                 key: `${keyPrefix}data`,
                 label: `[${labelPrefix}data]`,
-                children: F24.fields(`${keyPrefix}data${!isInput && '[]'}`), 
+                children: F24.fields(`${keyPrefix}data${!isInput ? '[]' : ''}`, isInput, true), 
             },
             ...ListF24ResponseAggregatedData.fields(`${keyPrefix}aggregated_data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'current_page': bundle.inputData?.[`${keyPrefix}current_page`],
             'first_page_url': bundle.inputData?.[`${keyPrefix}first_page_url`],

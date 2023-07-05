@@ -1,13 +1,11 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const CompanyInfo_plan_info_functions = require('../models/CompanyInfo_plan_info_functions');
 const CompanyInfo_plan_info_functions_status = require('../models/CompanyInfo_plan_info_functions_status');
 const CompanyInfo_plan_info_limits = require('../models/CompanyInfo_plan_info_limits');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             ...CompanyInfo_plan_info_limits.fields(`${keyPrefix}limits`, isInput),
             ...CompanyInfo_plan_info_functions.fields(`${keyPrefix}functions`, isInput),
@@ -15,7 +13,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'limits': utils.removeIfEmpty(CompanyInfo_plan_info_limits.mapping(bundle, `${keyPrefix}limits`)),
             'functions': utils.removeIfEmpty(CompanyInfo_plan_info_functions.mapping(bundle, `${keyPrefix}functions`)),

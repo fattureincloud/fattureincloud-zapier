@@ -1,12 +1,10 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const Permissions = require('../models/Permissions');
 const UserCompanyRole = require('../models/UserCompanyRole');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}role`,
@@ -21,7 +19,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'role': bundle.inputData?.[`${keyPrefix}role`],
             'permissions': utils.removeIfEmpty(Permissions.mapping(bundle, `${keyPrefix}permissions`)),

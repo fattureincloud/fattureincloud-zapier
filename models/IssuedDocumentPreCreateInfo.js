@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const Currency = require('../models/Currency');
 const DocumentTemplate = require('../models/DocumentTemplate');
@@ -11,9 +10,8 @@ const PaymentMethod = require('../models/PaymentMethod');
 const VatType = require('../models/VatType');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}numerations`,
@@ -37,47 +35,47 @@ module.exports = {
             {
                 key: `${keyPrefix}currencies_list`,
                 label: `[${labelPrefix}currencies_list]`,
-                children: Currency.fields(`${keyPrefix}currencies_list${!isInput && '[]'}`), 
+                children: Currency.fields(`${keyPrefix}currencies_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}templates_list`,
                 label: `[${labelPrefix}templates_list]`,
-                children: DocumentTemplate.fields(`${keyPrefix}templates_list${!isInput && '[]'}`), 
+                children: DocumentTemplate.fields(`${keyPrefix}templates_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}dn_templates_list`,
                 label: `[${labelPrefix}dn_templates_list]`,
-                children: DocumentTemplate.fields(`${keyPrefix}dn_templates_list${!isInput && '[]'}`), 
+                children: DocumentTemplate.fields(`${keyPrefix}dn_templates_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}ai_templates_list`,
                 label: `[${labelPrefix}ai_templates_list]`,
-                children: DocumentTemplate.fields(`${keyPrefix}ai_templates_list${!isInput && '[]'}`), 
+                children: DocumentTemplate.fields(`${keyPrefix}ai_templates_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}payment_methods_list`,
                 label: `[${labelPrefix}payment_methods_list]`,
-                children: PaymentMethod.fields(`${keyPrefix}payment_methods_list${!isInput && '[]'}`), 
+                children: PaymentMethod.fields(`${keyPrefix}payment_methods_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}payment_accounts_list`,
                 label: `[${labelPrefix}payment_accounts_list]`,
-                children: PaymentAccount.fields(`${keyPrefix}payment_accounts_list${!isInput && '[]'}`), 
+                children: PaymentAccount.fields(`${keyPrefix}payment_accounts_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}vat_types_list`,
                 label: `[${labelPrefix}vat_types_list]`,
-                children: VatType.fields(`${keyPrefix}vat_types_list${!isInput && '[]'}`), 
+                children: VatType.fields(`${keyPrefix}vat_types_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}languages_list`,
                 label: `[${labelPrefix}languages_list]`,
-                children: Language.fields(`${keyPrefix}languages_list${!isInput && '[]'}`), 
+                children: Language.fields(`${keyPrefix}languages_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'numerations': bundle.inputData?.[`${keyPrefix}numerations`],
             'dn_numerations': bundle.inputData?.[`${keyPrefix}dn_numerations`],

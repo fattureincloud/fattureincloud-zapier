@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const Currency = require('../models/Currency');
 const DocumentTemplate = require('../models/DocumentTemplate');
@@ -13,9 +12,8 @@ const PaymentMethod = require('../models/PaymentMethod');
 const ShowTotalsMode = require('../models/ShowTotalsMode');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}id`,
@@ -189,12 +187,12 @@ module.exports = {
             {
                 key: `${keyPrefix}items_list`,
                 label: `[${labelPrefix}items_list]`,
-                children: IssuedDocumentItemsListItem.fields(`${keyPrefix}items_list${!isInput && '[]'}`), 
+                children: IssuedDocumentItemsListItem.fields(`${keyPrefix}items_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}payments_list`,
                 label: `[${labelPrefix}payments_list]`,
-                children: IssuedDocumentPaymentsListItem.fields(`${keyPrefix}payments_list${!isInput && '[]'}`), 
+                children: IssuedDocumentPaymentsListItem.fields(`${keyPrefix}payments_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             ...DocumentTemplate.fields(`${keyPrefix}template`, isInput),
             ...DocumentTemplate.fields(`${keyPrefix}delivery_note_template`, isInput),
@@ -423,7 +421,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'entity': utils.removeIfEmpty(Entity.mapping(bundle, `${keyPrefix}entity`)),

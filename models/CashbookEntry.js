@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const CashbookEntryKind = require('../models/CashbookEntryKind');
 const CashbookEntryType = require('../models/CashbookEntryType');
@@ -6,9 +5,8 @@ const CashbookEntry_document = require('../models/CashbookEntry_document');
 const PaymentAccount = require('../models/PaymentAccount');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}id`,
@@ -54,7 +52,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'date': bundle.inputData?.[`${keyPrefix}date`],

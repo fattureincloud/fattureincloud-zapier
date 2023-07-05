@@ -1,11 +1,9 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const EmailSchedule_include = require('../models/EmailSchedule_include');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}sender_id`,
@@ -46,7 +44,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'sender_id': bundle.inputData?.[`${keyPrefix}sender_id`],
             'sender_email': bundle.inputData?.[`${keyPrefix}sender_email`],

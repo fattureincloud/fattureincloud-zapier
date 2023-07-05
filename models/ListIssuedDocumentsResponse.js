@@ -1,11 +1,9 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const IssuedDocument = require('../models/IssuedDocument');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}current_page`,
@@ -65,12 +63,12 @@ module.exports = {
             {
                 key: `${keyPrefix}data`,
                 label: `[${labelPrefix}data]`,
-                children: IssuedDocument.fields(`${keyPrefix}data${!isInput && '[]'}`), 
+                children: IssuedDocument.fields(`${keyPrefix}data${!isInput ? '[]' : ''}`, isInput, true), 
             },
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'current_page': bundle.inputData?.[`${keyPrefix}current_page`],
             'first_page_url': bundle.inputData?.[`${keyPrefix}first_page_url`],

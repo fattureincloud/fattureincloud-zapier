@@ -1,12 +1,10 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const CompanyType = require('../models/CompanyType');
 const ControlledCompany = require('../models/ControlledCompany');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}id`,
@@ -30,7 +28,7 @@ module.exports = {
             {
                 key: `${keyPrefix}controlled_companies`,
                 label: `[${labelPrefix}controlled_companies]`,
-                children: ControlledCompany.fields(`${keyPrefix}controlled_companies${!isInput && '[]'}`), 
+                children: ControlledCompany.fields(`${keyPrefix}controlled_companies${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}connection_id`,
@@ -45,7 +43,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'name': bundle.inputData?.[`${keyPrefix}name`],

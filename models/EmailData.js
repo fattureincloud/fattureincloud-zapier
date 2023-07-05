@@ -1,12 +1,10 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const EmailData_default_sender_email = require('../models/EmailData_default_sender_email');
 const SenderEmail = require('../models/SenderEmail');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}recipient_email`,
@@ -17,7 +15,7 @@ module.exports = {
             {
                 key: `${keyPrefix}sender_emails_list`,
                 label: `[${labelPrefix}sender_emails_list]`,
-                children: SenderEmail.fields(`${keyPrefix}sender_emails_list${!isInput && '[]'}`), 
+                children: SenderEmail.fields(`${keyPrefix}sender_emails_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
                 key: `${keyPrefix}cc_email`,
@@ -62,7 +60,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'recipient_email': bundle.inputData?.[`${keyPrefix}recipient_email`],
             'default_sender_email': utils.removeIfEmpty(EmailData_default_sender_email.mapping(bundle, `${keyPrefix}default_sender_email`)),

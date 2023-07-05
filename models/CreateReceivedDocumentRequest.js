@@ -1,11 +1,9 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const ReceivedDocument = require('../models/ReceivedDocument');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
                 key: `${keyPrefix}pending_id`,
@@ -16,7 +14,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'pending_id': bundle.inputData?.[`${keyPrefix}pending_id`],
             'data': utils.removeIfEmpty(ReceivedDocument.mapping(bundle, `${keyPrefix}data`)),

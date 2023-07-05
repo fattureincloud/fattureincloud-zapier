@@ -1,12 +1,10 @@
-const _ = require('lodash')
 const utils = require('../utils/utils');
 const DocumentTemplate = require('../models/DocumentTemplate');
 const PaymentMethod = require('../models/PaymentMethod');
 
 module.exports = {
-    fields: (prefix = '', isInput = true) => {
-        let keyPrefix = prefix && `${prefix}${isInput ? '.' : '__'}`
-        let labelPrefix = keyPrefix && keyPrefix.replaceAll('__', '.')
+    fields: (prefix = '', isInput = true, isArrayChild = false) => {
+        const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             ...DocumentTemplate.fields(`${keyPrefix}default_template`, isInput),
             ...DocumentTemplate.fields(`${keyPrefix}dn_template`, isInput),
@@ -50,7 +48,7 @@ module.exports = {
         ]
     },
     mapping: (bundle, prefix = '') => {
-        let keyPrefix = prefix && `${prefix}.`
+        const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
             'default_template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}default_template`)),
             'dn_template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}dn_template`)),
