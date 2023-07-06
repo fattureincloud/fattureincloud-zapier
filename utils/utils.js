@@ -12,11 +12,20 @@ const buildKeyAndLabel = (prefix, isInput = true, isArrayChild = false) => {
         labelPrefix:labelPrefix,
     }
 }
-const hasASearchField = action => action.operation.inputFields.length > 0
 const isSearchAction = (key) => {
     return key.startsWith('list')
 }
+const hasASearchField = action => action.operation.inputFields.length > 0
+const returnsObjectsArray = action => !!action.operation.outputFields.find(field => 'children' in field)
+const hasSearchRequisites = action => hasASearchField(action) && returnsObjectsArray(action)
 const searchMiddleware = (action) => {
+    let newOutputFields = action.operation.outputFields.find(field => field.key === 'data').children.map(field => ({
+            key: field.key.replace('data[]', ''),
+            label: field.label.replace('data[]', ''),
+            type: field.type,
+        })
+    )
+    action.operation.outputFields = newOutputFields
     let oldFunc = action.operation.perform
     action.operation.perform = async(z, bundle) => oldFunc(z, bundle).then((response) => response.data)
     return action
@@ -32,7 +41,7 @@ module.exports = {
     removeKeyPrefixes: removeKeyPrefixes,
     removeIfEmpty: removeIfEmpty,
     buildKeyAndLabel: buildKeyAndLabel,
-    hasASearchField: hasASearchField,
+    hasSearchRequisites: hasSearchRequisites,
     isSearchAction: isSearchAction,
     searchMiddleware: searchMiddleware,
     extractResourceAndOperation: extractResourceAndOperation,

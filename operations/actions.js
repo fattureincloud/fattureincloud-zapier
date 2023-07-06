@@ -14,7 +14,7 @@ const SuppliersApi = require('../apis/SuppliersApi');
 const TaxesApi = require('../apis/TaxesApi');
 const UserApi = require('../apis/UserApi');
 const WebhooksApi = require('../apis/WebhooksApi');
-const { searchMiddleware, hasASearchField, isSearchAction } = require('../utils/utils');
+const { searchMiddleware, hasSearchRequisites, isSearchAction } = require('../utils/utils');
 
 const actions = {
     [ArchiveApi.createArchiveDocument.key]: ArchiveApi.createArchiveDocument,
@@ -35,7 +35,7 @@ const actions = {
     [ClientsApi.modifyClient.key]: ClientsApi.modifyClient,
     [CompaniesApi.getCompanyInfo.key]: CompaniesApi.getCompanyInfo,
     [EmailsApi.listEmails.key]: EmailsApi.listEmails,
-    [InfoApi.listArchiveCategories.key]: InfoApi.listArchiveCategories,
+    [InfoApi.listArchiveCategories.key]: InfoApi.listArchiveCategories, // unused
     [InfoApi.listCities.key]: InfoApi.listCities, // unused
     [InfoApi.listCostCenters.key]: InfoApi.listCostCenters, // unused
     [InfoApi.listCountries.key]: InfoApi.listCountries, // unused
@@ -45,10 +45,10 @@ const actions = {
     [InfoApi.listLanguages.key]: InfoApi.listLanguages, // unused
     [InfoApi.listPaymentAccounts.key]: InfoApi.listPaymentAccounts,
     [InfoApi.listPaymentMethods.key]: InfoApi.listPaymentMethods,
-    [InfoApi.listProductCategories.key]: InfoApi.listProductCategories,
-    [InfoApi.listReceivedDocumentCategories.key]: InfoApi.listReceivedDocumentCategories,
-    [InfoApi.listRevenueCenters.key]: InfoApi.listRevenueCenters,
-    [InfoApi.listTemplates.key]: InfoApi.listTemplates,
+    [InfoApi.listProductCategories.key]: InfoApi.listProductCategories, // unused
+    [InfoApi.listReceivedDocumentCategories.key]: InfoApi.listReceivedDocumentCategories, // unused
+    [InfoApi.listRevenueCenters.key]: InfoApi.listRevenueCenters, // unused
+    [InfoApi.listTemplates.key]: InfoApi.listTemplates, 
     [InfoApi.listUnitsOfMeasure.key]: InfoApi.listUnitsOfMeasure, // unused
     [InfoApi.listVatTypes.key]: InfoApi.listVatTypes,
     [IssuedDocumentsApi.createIssuedDocument.key]: IssuedDocumentsApi.createIssuedDocument,
@@ -125,6 +125,6 @@ const actions = {
 }
 
 module.exports = {
-    searchActions: () => Object.entries(actions).reduce((actions, [key, value]) => isSearchAction(key) && hasASearchField(value) ? {...actions, [key]: searchMiddleware(value)} : actions, {}),
+    searchActions: () => Object.entries(actions).reduce((actions, [key, value]) => isSearchAction(key) && hasSearchRequisites(value) ? {...actions, [key]: searchMiddleware(value)} : actions, {}),
     createActions: () => Object.entries(actions).reduce((actions, [key, value]) => !isSearchAction(key) ? {...actions, [key]: value} : actions, {}),
 }
