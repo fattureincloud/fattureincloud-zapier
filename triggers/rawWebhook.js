@@ -8,11 +8,7 @@ const perform = async (z, bundle) => {
     let req = bundle.cleanedRequest;
     const ids = req?.data?.ids;
     if(_.isEmpty(ids)) return []
-    const eventId = req.id;
-    const eventSource = req.source;
-    const eventType = req.type;
     const eventSubject = req.subject;
-    const eventTime = req.time;
 
     let companyId = null;
   
@@ -20,32 +16,14 @@ const perform = async (z, bundle) => {
     if (spl[0] == 'company') {
         companyId = spl[1];
     }
-  
-    const events = ids.map((i) => (
-        {
-            eventId: eventId,
-            eventSource: eventSource,
-            eventType: eventType,
-            eventSubject: eventSubject,
-            eventTime: eventTime,
-            resourceId: i,
-        })
-    )
 
-    return Promise.all(events.map(async (ev) => {
-        let {resource, eventOperation} = extractResourceAndOperation(ev.eventType)
-        let operation = getWebhooksOperation(resource)
-        if (eventOperation === 'delete') return ev.resourceId
-        bundle.inputData[operation['resourceKeyId']] = ev.resourceId
-        let res = await (operation['getOperation']).operation.perform(z, bundle)
-        return res.data
-    }))
+    return ids.map(id => ({id}))
 
 };
 
 const performList = async (z, bundle) => {
     let operation = getWebhooksOperation(bundle.inputData.resource)
-    bundle.inputData['fieldset'] = 'detailed'
+    bundle.inputData['fields'] = 'id'
     bundle.inputData = {...bundle.inputData, ...getDefaultGetOperationParams(bundle.inputData.resource)}
 
     try {
@@ -113,11 +91,11 @@ module.exports = {
             id: 12345
         }
     },
-    key: 'genericWebhook',
-    noun: 'Generic Event',
+    key: 'rawWebhook',
+    noun: 'Raw Event',
     display: {
-        label: 'Receive Generic Event',
-        description: 'Triggers when a webhooks arrives from Fatture in Cloud.',
+        label: 'Receive Raw Event',
+        description: 'Triggers when a webhooks arrives from Fatture in Cloud, returns an array of ids',
         hidden: false,
     },
 };
