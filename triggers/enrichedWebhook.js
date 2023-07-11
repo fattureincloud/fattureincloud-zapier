@@ -19,15 +19,18 @@ const perform = async (z, bundle) => {
     if (spl[0] == 'company') {
         companyId = spl[1];
     }
-  
-    return Promise.all(ids.map(async (id) => {
-        let {resource, eventOperation} = extractResourceAndOperation(eventType)
-        let operation = getWebhooksOperation(resource)
+
+    const {resource, eventOperation} = extractResourceAndOperation(eventType)
+    const resourceOp = getWebhooksOperation(resource)
+
+    let resources = []
+    for(const id of ids) {
         if (eventOperation === 'delete') return {id}
-        bundle.inputData[operation['resourceKeyId']] = id
-        let res = await (operation['getOperation']).operation.perform(z, bundle)
-        return res.data
-    }))
+        bundle.inputData[resourceOp['resourceKeyId']] = id
+        const res = await (resourceOp['getOperation']).operation.perform(z, bundle)
+        resources.push(res.data)
+    }
+    return resources
 
 };
 
@@ -59,7 +62,7 @@ module.exports = {
     noun: 'Enriched Event',
     display: {
         label: 'Receive Enriched Event',
-        description: 'Triggers when a webhooks arrives from Fatture in Cloud, returns an array of resources',
+        description: 'Triggers when a webhooks arrives from Fatture in Cloud, returns an array of resources.',
         hidden: false,
     },
 };

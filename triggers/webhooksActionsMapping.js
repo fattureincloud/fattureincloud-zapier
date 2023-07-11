@@ -19,11 +19,6 @@ const resourcesOperations = {
         'listOperation': SuppliersApi.listSuppliers,
         'resourceKeyId': 'supplier_id',
     },
-    'entities.all': {
-        'getOperation': ClientsApi.getClient,
-        'listOperation': ClientsApi.listClients,
-        'resourceKeyId': 'client_id',
-    },
     'products': {
         'getOperation': ProductsApi.getProduct,
         'listOperation': ProductsApi.listProducts,

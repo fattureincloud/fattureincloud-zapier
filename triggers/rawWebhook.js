@@ -95,7 +95,7 @@ module.exports = {
     noun: 'Raw Event',
     display: {
         label: 'Receive Raw Event',
-        description: 'Triggers when a webhooks arrives from Fatture in Cloud, returns an array of ids',
+        description: 'Triggers when a webhooks arrives from Fatture in Cloud, returns an array of ids.',
         hidden: false,
     },
 };
