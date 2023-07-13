@@ -4,14 +4,15 @@ const { extractResourceAndOperation } = require('../utils/utils');
 const rawWebhook = require('./rawWebhook');
 
 const perform = async (z, bundle) => {
-    let req = bundle.cleanedRequest;
-    const ids = req?.data?.ids;
+    let reqHeaders = bundle.rawRequest.headers;
+    const ids = bundle.cleanedRequest?.data?.ids;
     if(_.isEmpty(ids)) return []
-    // const eventId = req.id;
-    // const eventSource = req.source;
-    // const eventTime = req.time;
-    const eventType = req.type;
-    const eventSubject = req.subject;
+    // const eventId = reqHeaders['Http-Ce-Id'];
+    // const eventSource = reqHeaders['Http-Ce-Source'];
+    // const eventTime = reqHeaders['Http-Ce-Time'];
+
+    const eventType = reqHeaders['Http-Ce-Type'];
+    const eventSubject = reqHeaders['Http-Ce-Subject'];
 
     let companyId = null;
   
