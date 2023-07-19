@@ -12,7 +12,7 @@ module.exports = {
         key: 'createCashbookEntry',
         noun: 'Cashbook',
         display: {
-            label: 'createCashbookEntry',
+            label: 'Create Cashbook Entry',
             description: 'Creates a new cashbook entry.',
             hidden: false,
         },
@@ -59,7 +59,7 @@ module.exports = {
         key: 'deleteCashbookEntry',
         noun: 'Cashbook',
         display: {
-            label: 'deleteCashbookEntry',
+            label: 'Delete Cashbook Entry',
             description: 'Deletes the specified cashbook entry.',
             hidden: false,
         },
@@ -109,7 +109,7 @@ module.exports = {
         key: 'getCashbookEntry',
         noun: 'Cashbook',
         display: {
-            label: 'getCashbookEntry',
+            label: 'Get Cashbook Entry',
             description: 'Gets the specified cashbook entry.',
             hidden: false,
         },
@@ -176,7 +176,7 @@ module.exports = {
         key: 'listCashbookEntries',
         noun: 'Cashbook',
         display: {
-            label: 'listCashbookEntries',
+            label: 'List Cashbook Entries',
             description: 'Lists the cashbook entries.',
             hidden: false,
         },
@@ -258,7 +258,7 @@ module.exports = {
         key: 'modifyCashbookEntry',
         noun: 'Cashbook',
         display: {
-            label: 'modifyCashbookEntry',
+            label: 'Modify Cashbook Entry',
             description: 'Modifies the specified cashbook entry.',
             hidden: false,
         },

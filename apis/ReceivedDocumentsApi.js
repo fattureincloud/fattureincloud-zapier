@@ -17,9 +17,9 @@ const FormData = require('form-data');
 module.exports = {
     createReceivedDocument: {
         key: 'createReceivedDocument',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'createReceivedDocument',
+            label: 'Create Received Document',
             description: 'Creates a new document.',
             hidden: false,
         },
@@ -64,9 +64,9 @@ module.exports = {
     },
     deleteReceivedDocument: {
         key: 'deleteReceivedDocument',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'deleteReceivedDocument',
+            label: 'Delete Received Document',
             description: 'Deletes the specified document.',
             hidden: false,
         },
@@ -114,9 +114,9 @@ module.exports = {
     },
     deleteReceivedDocumentAttachment: {
         key: 'deleteReceivedDocumentAttachment',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'deleteReceivedDocumentAttachment',
+            label: 'Delete Received Document Attachment',
             description: 'Removes the attachment of the specified document.',
             hidden: false,
         },
@@ -164,9 +164,9 @@ module.exports = {
     },
     getExistingReceivedDocumentTotals: {
         key: 'getExistingReceivedDocumentTotals',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'getExistingReceivedDocumentTotals',
+            label: 'Get Existing Received Document Totals',
             description: 'Returns the totals for the specified document.',
             hidden: false,
         },
@@ -217,9 +217,9 @@ module.exports = {
     },
     getNewReceivedDocumentTotals: {
         key: 'getNewReceivedDocumentTotals',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'getNewReceivedDocumentTotals',
+            label: 'Get New Received Document Totals',
             description: 'Returns the totals for a new document.',
             hidden: false,
         },
@@ -264,9 +264,9 @@ module.exports = {
     },
     getReceivedDocument: {
         key: 'getReceivedDocument',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'getReceivedDocument',
+            label: 'Get Received Document',
             description: 'Gets the specified document.',
             hidden: false,
         },
@@ -331,9 +331,9 @@ module.exports = {
     },
     getReceivedDocumentPreCreateInfo: {
         key: 'getReceivedDocumentPreCreateInfo',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'getReceivedDocumentPreCreateInfo',
+            label: 'Get Received Document Pre-Create Info',
             description: 'Retrieves the information useful while creating a new document.',
             hidden: false,
         },
@@ -388,9 +388,9 @@ module.exports = {
     },
     listReceivedDocuments: {
         key: 'listReceivedDocuments',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'listReceivedDocuments',
+            label: 'List Received Documents',
             description: 'Lists the received documents.',
             hidden: false,
         },
@@ -485,9 +485,9 @@ module.exports = {
     },
     modifyReceivedDocument: {
         key: 'modifyReceivedDocument',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'modifyReceivedDocument',
+            label: 'Modify Received Document',
             description: 'Modifies the specified document.',
             hidden: false,
         },
@@ -538,9 +538,9 @@ module.exports = {
     },
     uploadReceivedDocumentAttachment: {
         key: 'uploadReceivedDocumentAttachment',
-        noun: 'ReceivedDocuments',
+        noun: 'Received Documents',
         display: {
-            label: 'uploadReceivedDocumentAttachment',
+            label: 'Upload Received Document Attachment',
             description: 'Uploads an attachment destined to a received document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
             hidden: false,
         },

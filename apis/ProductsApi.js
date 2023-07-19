@@ -12,7 +12,7 @@ module.exports = {
         key: 'createProduct',
         noun: 'Products',
         display: {
-            label: 'createProduct',
+            label: 'Create Product',
             description: 'Creates a new product.',
             hidden: false,
         },
@@ -59,7 +59,7 @@ module.exports = {
         key: 'deleteProduct',
         noun: 'Products',
         display: {
-            label: 'deleteProduct',
+            label: 'Delete Product',
             description: 'Deletes the specified product.',
             hidden: false,
         },
@@ -109,7 +109,7 @@ module.exports = {
         key: 'getProduct',
         noun: 'Products',
         display: {
-            label: 'getProduct',
+            label: 'Get Product',
             description: 'Gets the specified product.',
             hidden: false,
         },
@@ -176,7 +176,7 @@ module.exports = {
         key: 'listProducts',
         noun: 'Products',
         display: {
-            label: 'listProducts',
+            label: 'List Products',
             description: 'Lists the products.',
             hidden: false,
         },
@@ -261,7 +261,7 @@ module.exports = {
         key: 'modifyProduct',
         noun: 'Products',
         display: {
-            label: 'modifyProduct',
+            label: 'Modify Product',
             description: 'Modifies the specified product.',
             hidden: false,
         },

@@ -14,7 +14,7 @@ module.exports = {
         key: 'createArchiveDocument',
         noun: 'Archive',
         display: {
-            label: 'createArchiveDocument',
+            label: 'Create Archive Document',
             description: 'Creates a new archive document.',
             hidden: false,
         },
@@ -61,7 +61,7 @@ module.exports = {
         key: 'deleteArchiveDocument',
         noun: 'Archive',
         display: {
-            label: 'deleteArchiveDocument',
+            label: 'Delete Archive Document',
             description: 'Deletes the specified archive document.',
             hidden: false,
         },
@@ -111,7 +111,7 @@ module.exports = {
         key: 'getArchiveDocument',
         noun: 'Archive',
         display: {
-            label: 'getArchiveDocument',
+            label: 'Get Archive Document',
             description: 'Gets the specified archive document.',
             hidden: false,
         },
@@ -178,7 +178,7 @@ module.exports = {
         key: 'listArchiveDocuments',
         noun: 'Archive',
         display: {
-            label: 'listArchiveDocuments',
+            label: 'List Archive Documents',
             description: 'Lists the archive documents.',
             hidden: false,
         },
@@ -263,7 +263,7 @@ module.exports = {
         key: 'modifyArchiveDocument',
         noun: 'Archive',
         display: {
-            label: 'modifyArchiveDocument',
+            label: 'Modify Archive Document',
             description: 'Modifies the specified archive document.',
             hidden: false,
         },
@@ -316,7 +316,7 @@ module.exports = {
         key: 'uploadArchiveDocumentAttachment',
         noun: 'Archive',
         display: {
-            label: 'uploadArchiveDocumentAttachment',
+            label: 'Upload Archive Document Attachment',
             description: 'Uploads an attachment destined to an archive document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
             hidden: false,
         },

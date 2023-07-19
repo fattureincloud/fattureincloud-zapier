@@ -12,7 +12,7 @@ module.exports = {
         key: 'createSupplier',
         noun: 'Suppliers',
         display: {
-            label: 'createSupplier',
+            label: 'Create Supplier',
             description: 'Creates a new supplier.',
             hidden: false,
         },
@@ -59,7 +59,7 @@ module.exports = {
         key: 'deleteSupplier',
         noun: 'Suppliers',
         display: {
-            label: 'deleteSupplier',
+            label: 'Delete Supplier',
             description: 'Deletes the specified supplier.',
             hidden: false,
         },
@@ -109,7 +109,7 @@ module.exports = {
         key: 'getSupplier',
         noun: 'Suppliers',
         display: {
-            label: 'getSupplier',
+            label: 'Get Supplier',
             description: 'Gets the specified supplier.',
             hidden: false,
         },
@@ -176,7 +176,7 @@ module.exports = {
         key: 'listSuppliers',
         noun: 'Suppliers',
         display: {
-            label: 'listSuppliers',
+            label: 'List Suppliers',
             description: 'Lists the suppliers.',
             hidden: false,
         },
@@ -261,7 +261,7 @@ module.exports = {
         key: 'modifySupplier',
         noun: 'Suppliers',
         display: {
-            label: 'modifySupplier',
+            label: 'Modify Supplier',
             description: 'Modifies the specified supplier.',
             hidden: false,
         },

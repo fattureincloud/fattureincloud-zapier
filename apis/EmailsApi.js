@@ -7,7 +7,7 @@ module.exports = {
         key: 'listEmails',
         noun: 'Emails',
         display: {
-            label: 'listEmails',
+            label: 'List emails',
             description: 'List Emails.',
             hidden: false,
         },

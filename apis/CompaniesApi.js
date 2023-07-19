@@ -7,7 +7,7 @@ module.exports = {
         key: 'getCompanyInfo',
         noun: 'Companies',
         display: {
-            label: 'getCompanyInfo',
+            label: 'Get Company Info',
             description: 'Gets the company detailed info.',
             hidden: false,
         },

@@ -9,9 +9,9 @@ const utils = require('../utils/utils');
 module.exports = {
     getEInvoiceRejectionReason: {
         key: 'getEInvoiceRejectionReason',
-        noun: 'IssuedEInvoices',
+        noun: 'Issued e-invoices',
         display: {
-            label: 'getEInvoiceRejectionReason',
+            label: 'Get e-invoice rejection reason',
             description: 'Get e-invoice rejection reason',
             hidden: false,
         },
@@ -48,9 +48,9 @@ module.exports = {
                     },
                     body: {
                     },
+                    skipThrowForStatus: true,
                 }
                 return z.request(options).then((response) => {
-                    response.throwForStatus();
                     const results = response.json;
                     return results;
                 })
@@ -60,9 +60,9 @@ module.exports = {
     },
     getEInvoiceXml: {
         key: 'getEInvoiceXml',
-        noun: 'IssuedEInvoices',
+        noun: 'Issued e-invoices',
         display: {
-            label: 'getEInvoiceXml',
+            label: 'Get e-invoice XML',
             description: 'Downloads the e-invoice in XML format.',
             hidden: false,
         },
@@ -116,9 +116,9 @@ module.exports = {
     },
     sendEInvoice: {
         key: 'sendEInvoice',
-        noun: 'IssuedEInvoices',
+        noun: 'Issued e-invoices',
         display: {
-            label: 'sendEInvoice',
+            label: 'Send the e-invoice',
             description: 'Sends the e-invoice to SDI.',
             hidden: false,
         },
@@ -157,9 +157,9 @@ module.exports = {
                     body: {
                         ...SendEInvoiceRequest.mapping(bundle),
                     },
+                    skipThrowForStatus: true,
                 }
                 return z.request(options).then((response) => {
-                    response.throwForStatus();
                     const results = response.json;
                     return results;
                 })
@@ -169,9 +169,9 @@ module.exports = {
     },
     verifyEInvoiceXml: {
         key: 'verifyEInvoiceXml',
-        noun: 'IssuedEInvoices',
+        noun: 'Issued e-invoices',
         display: {
-            label: 'verifyEInvoiceXml',
+            label: 'Verify e-invoice XML',
             description: 'Verifies the e-invoice XML format. Checks if all of the mandatory fields are filled and compliant to the right format.',
             hidden: false,
         },

@@ -14,7 +14,7 @@ module.exports = {
         key: 'createF24',
         noun: 'Taxes',
         display: {
-            label: 'createF24',
+            label: 'Create F24',
             description: 'Creates a new F24.',
             hidden: false,
         },
@@ -61,7 +61,7 @@ module.exports = {
         key: 'deleteF24',
         noun: 'Taxes',
         display: {
-            label: 'deleteF24',
+            label: 'Delete F24',
             description: 'Removes the specified F24.',
             hidden: false,
         },
@@ -111,7 +111,7 @@ module.exports = {
         key: 'deleteF24Attachment',
         noun: 'Taxes',
         display: {
-            label: 'deleteF24Attachment',
+            label: 'Delete F24 Attachment',
             description: 'Removes the attachment of the specified F24.',
             hidden: false,
         },
@@ -161,7 +161,7 @@ module.exports = {
         key: 'getF24',
         noun: 'Taxes',
         display: {
-            label: 'getF24',
+            label: 'Get F24',
             description: 'Gets the specified F24.',
             hidden: false,
         },
@@ -228,7 +228,7 @@ module.exports = {
         key: 'listF24',
         noun: 'Taxes',
         display: {
-            label: 'listF24',
+            label: 'List F24',
             description: 'Lists the F24s.',
             hidden: false,
         },
@@ -313,7 +313,7 @@ module.exports = {
         key: 'modifyF24',
         noun: 'Taxes',
         display: {
-            label: 'modifyF24',
+            label: 'Modify F24',
             description: 'Modifies the specified F24.',
             hidden: false,
         },
@@ -366,7 +366,7 @@ module.exports = {
         key: 'uploadF24Attachment',
         noun: 'Taxes',
         display: {
-            label: 'uploadF24Attachment',
+            label: 'Upload F24 Attachment',
             description: 'Uploads an attachment destined to a F24. The actual association between the document and the attachment must be implemented separately, using the returned token.',
             hidden: false,
         },

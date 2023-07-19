@@ -21,9 +21,9 @@ const FormData = require('form-data');
 module.exports = {
     createIssuedDocument: {
         key: 'createIssuedDocument',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'createIssuedDocument',
+            label: 'Create Issued Document',
             description: 'Creates a new document.',
             hidden: false,
         },
@@ -68,9 +68,9 @@ module.exports = {
     },
     deleteIssuedDocument: {
         key: 'deleteIssuedDocument',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'deleteIssuedDocument',
+            label: 'Delete Issued Document',
             description: 'Deletes the specified document.',
             hidden: false,
         },
@@ -118,9 +118,9 @@ module.exports = {
     },
     deleteIssuedDocumentAttachment: {
         key: 'deleteIssuedDocumentAttachment',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'deleteIssuedDocumentAttachment',
+            label: 'Delete Issued Document Attachment',
             description: 'Removes the attachment of the specified document.',
             hidden: false,
         },
@@ -168,9 +168,9 @@ module.exports = {
     },
     getEmailData: {
         key: 'getEmailData',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'getEmailData',
+            label: 'Get Email Data',
             description: 'Gets the pre-compiled email details.',
             hidden: false,
         },
@@ -219,9 +219,9 @@ module.exports = {
     },
     getExistingIssuedDocumentTotals: {
         key: 'getExistingIssuedDocumentTotals',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'getExistingIssuedDocumentTotals',
+            label: 'Get Existing Issued Document Totals',
             description: 'Returns the totals for a specified document.',
             hidden: false,
         },
@@ -272,9 +272,9 @@ module.exports = {
     },
     getIssuedDocument: {
         key: 'getIssuedDocument',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'getIssuedDocument',
+            label: 'Get Issued Document',
             description: 'Gets the specified document. ',
             hidden: false,
         },
@@ -339,9 +339,9 @@ module.exports = {
     },
     getIssuedDocumentPreCreateInfo: {
         key: 'getIssuedDocumentPreCreateInfo',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'getIssuedDocumentPreCreateInfo',
+            label: 'Get Issued Document Pre-create info',
             description: 'Retrieves the information useful while creating a new document.',
             hidden: false,
         },
@@ -404,9 +404,9 @@ module.exports = {
     },
     getNewIssuedDocumentTotals: {
         key: 'getNewIssuedDocumentTotals',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'getNewIssuedDocumentTotals',
+            label: 'Get New Issued Document Totals',
             description: 'Returns the totals for a new document.',
             hidden: false,
         },
@@ -451,9 +451,9 @@ module.exports = {
     },
     joinIssuedDocuments: {
         key: 'joinIssuedDocuments',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'joinIssuedDocuments',
+            label: 'Join issued documents',
             description: 'Joins issued documents.',
             hidden: false,
         },
@@ -523,9 +523,9 @@ module.exports = {
     },
     listIssuedDocuments: {
         key: 'listIssuedDocuments',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'listIssuedDocuments',
+            label: 'List Issued Documents',
             description: 'Lists the issued documents.',
             hidden: false,
         },
@@ -638,9 +638,9 @@ module.exports = {
     },
     modifyIssuedDocument: {
         key: 'modifyIssuedDocument',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'modifyIssuedDocument',
+            label: 'Modify Issued Document',
             description: 'Modifies the specified document.',
             hidden: false,
         },
@@ -691,9 +691,9 @@ module.exports = {
     },
     scheduleEmail: {
         key: 'scheduleEmail',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'scheduleEmail',
+            label: 'Schedule Email',
             description: 'Schedules the sending of a document by email.',
             hidden: false,
         },
@@ -743,9 +743,9 @@ module.exports = {
     },
     transformIssuedDocument: {
         key: 'transformIssuedDocument',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'transformIssuedDocument',
+            label: 'Transform issued document',
             description: 'Transforms the document.',
             hidden: false,
         },
@@ -822,9 +822,9 @@ module.exports = {
     },
     uploadIssuedDocumentAttachment: {
         key: 'uploadIssuedDocumentAttachment',
-        noun: 'IssuedDocuments',
+        noun: 'Issued Documents',
         display: {
-            label: 'uploadIssuedDocumentAttachment',
+            label: 'Upload Issued Document Attachment',
             description: 'Uploads an attachment destined to an issued document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
             hidden: false,
         },

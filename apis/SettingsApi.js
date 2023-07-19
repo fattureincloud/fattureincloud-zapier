@@ -21,7 +21,7 @@ module.exports = {
         key: 'createPaymentAccount',
         noun: 'Settings',
         display: {
-            label: 'createPaymentAccount',
+            label: 'Create Payment Account',
             description: 'Creates a new payment account.',
             hidden: false,
         },
@@ -68,7 +68,7 @@ module.exports = {
         key: 'createPaymentMethod',
         noun: 'Settings',
         display: {
-            label: 'createPaymentMethod',
+            label: 'Create Payment Method',
             description: 'Creates a new payment method.',
             hidden: false,
         },
@@ -115,7 +115,7 @@ module.exports = {
         key: 'createVatType',
         noun: 'Settings',
         display: {
-            label: 'createVatType',
+            label: 'Create Vat Type',
             description: 'Creates a vat type.',
             hidden: false,
         },
@@ -162,7 +162,7 @@ module.exports = {
         key: 'deletePaymentAccount',
         noun: 'Settings',
         display: {
-            label: 'deletePaymentAccount',
+            label: 'Delete Payment Account',
             description: 'Deletes the specified payment account.',
             hidden: false,
         },
@@ -212,7 +212,7 @@ module.exports = {
         key: 'deletePaymentMethod',
         noun: 'Settings',
         display: {
-            label: 'deletePaymentMethod',
+            label: 'Delete Payment Method',
             description: 'Deletes the specified payment method.',
             hidden: false,
         },
@@ -262,7 +262,7 @@ module.exports = {
         key: 'deleteVatType',
         noun: 'Settings',
         display: {
-            label: 'deleteVatType',
+            label: 'Delete Vat Type',
             description: 'Deletes the specified vat type.',
             hidden: false,
         },
@@ -312,7 +312,7 @@ module.exports = {
         key: 'getPaymentAccount',
         noun: 'Settings',
         display: {
-            label: 'getPaymentAccount',
+            label: 'Get Payment Account',
             description: 'Gets the specified payment account.',
             hidden: false,
         },
@@ -379,7 +379,7 @@ module.exports = {
         key: 'getPaymentMethod',
         noun: 'Settings',
         display: {
-            label: 'getPaymentMethod',
+            label: 'Get Payment Method',
             description: 'Gets the specified payment method.',
             hidden: false,
         },
@@ -446,7 +446,7 @@ module.exports = {
         key: 'getVatType',
         noun: 'Settings',
         display: {
-            label: 'getVatType',
+            label: 'Get Vat Type',
             description: 'Gets the specified vat type.',
             hidden: false,
         },
@@ -497,7 +497,7 @@ module.exports = {
         key: 'modifyPaymentAccount',
         noun: 'Settings',
         display: {
-            label: 'modifyPaymentAccount',
+            label: 'Modify Payment Account',
             description: 'Modifies the specified payment account.',
             hidden: false,
         },
@@ -550,7 +550,7 @@ module.exports = {
         key: 'modifyPaymentMethod',
         noun: 'Settings',
         display: {
-            label: 'modifyPaymentMethod',
+            label: 'Modify Payment Method',
             description: 'Modifies the specified payment method.',
             hidden: false,
         },
@@ -603,7 +603,7 @@ module.exports = {
         key: 'modifyVatType',
         noun: 'Settings',
         display: {
-            label: 'modifyVatType',
+            label: 'Modify Vat Type',
             description: 'Modifies the specified vat type.',
             hidden: false,
         },

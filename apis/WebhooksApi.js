@@ -12,7 +12,7 @@ module.exports = {
         key: 'createWebhooksSubscription',
         noun: 'Webhooks',
         display: {
-            label: 'createWebhooksSubscription',
+            label: 'Create a Webhook Subscription',
             description: 'Register some webhooks Subscriptions.',
             hidden: false,
         },
@@ -59,7 +59,7 @@ module.exports = {
         key: 'deleteWebhooksSubscription',
         noun: 'Webhooks',
         display: {
-            label: 'deleteWebhooksSubscription',
+            label: 'Delete Webhooks Subscription',
             description: 'Delete a webhooks subscription.',
             hidden: false,
         },
@@ -109,7 +109,7 @@ module.exports = {
         key: 'getWebhooksSubscription',
         noun: 'Webhooks',
         display: {
-            label: 'getWebhooksSubscription',
+            label: 'Get Webhooks Subscription',
             description: 'Get a webhooks subscription.',
             hidden: false,
         },
@@ -160,7 +160,7 @@ module.exports = {
         key: 'listWebhooksSubscriptions',
         noun: 'Webhooks',
         display: {
-            label: 'listWebhooksSubscriptions',
+            label: 'List Webhooks Subscriptions',
             description: 'List active webhooks subscriptions.',
             hidden: false,
         },
@@ -205,7 +205,7 @@ module.exports = {
         key: 'modifyWebhooksSubscription',
         noun: 'Webhooks',
         display: {
-            label: 'modifyWebhooksSubscription',
+            label: 'Modify Webhooks Subscription',
             description: 'Edit a webhooks subscription.',
             hidden: false,
         },

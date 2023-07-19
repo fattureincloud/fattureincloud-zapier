@@ -8,7 +8,7 @@ module.exports = {
         key: 'getUserInfo',
         noun: 'User',
         display: {
-            label: 'getUserInfo',
+            label: 'Get User Info',
             description: 'Gets the current user&#39;s info.',
             hidden: false,
         },
@@ -46,7 +46,7 @@ module.exports = {
         key: 'listUserCompanies',
         noun: 'User',
         display: {
-            label: 'listUserCompanies',
+            label: 'List User Companies',
             description: 'Lists the companies controlled by the current user.',
             hidden: false,
         },

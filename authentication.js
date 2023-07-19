@@ -14,7 +14,7 @@ const testAuth = async (z, bundle) => {
 
     // You can do any parsing you need for results here before returning them
 
-    return results;
+    return results.data;
   });
 };
 const scopes = [
@@ -46,6 +46,7 @@ const scopes = [
 module.exports = {
   type: 'oauth2',
   test: testAuth,
+  connectionLabel: '{{name}}',
   oauth2Config: {
     authorizeUrl: {
       url: 'https://api-v2.fattureincloud.it/oauth/authorize',

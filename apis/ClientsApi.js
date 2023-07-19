@@ -12,7 +12,7 @@ module.exports = {
         key: 'createClient',
         noun: 'Clients',
         display: {
-            label: 'createClient',
+            label: 'Create Client',
             description: 'Creates a new client.',
             hidden: false,
         },
@@ -59,7 +59,7 @@ module.exports = {
         key: 'deleteClient',
         noun: 'Clients',
         display: {
-            label: 'deleteClient',
+            label: 'Delete Client',
             description: 'Deletes the specified client.',
             hidden: false,
         },
@@ -109,7 +109,7 @@ module.exports = {
         key: 'getClient',
         noun: 'Clients',
         display: {
-            label: 'getClient',
+            label: 'Get Client',
             description: 'Gets the specified client.',
             hidden: false,
         },
@@ -176,7 +176,7 @@ module.exports = {
         key: 'listClients',
         noun: 'Clients',
         display: {
-            label: 'listClients',
+            label: 'List Clients',
             description: 'Lists the clients.',
             hidden: false,
         },
@@ -261,7 +261,7 @@ module.exports = {
         key: 'modifyClient',
         noun: 'Clients',
         display: {
-            label: 'modifyClient',
+            label: 'Modify Client',
             description: 'Modifies the specified client.',
             hidden: false,
         },

@@ -14,7 +14,7 @@ module.exports = {
         key: 'createReceipt',
         noun: 'Receipts',
         display: {
-            label: 'createReceipt',
+            label: 'Create Receipt',
             description: 'Creates a new receipt.',
             hidden: false,
         },
@@ -61,7 +61,7 @@ module.exports = {
         key: 'deleteReceipt',
         noun: 'Receipts',
         display: {
-            label: 'deleteReceipt',
+            label: 'Delete Receipt',
             description: 'Deletes the specified receipt.',
             hidden: false,
         },
@@ -111,7 +111,7 @@ module.exports = {
         key: 'getReceipt',
         noun: 'Receipts',
         display: {
-            label: 'getReceipt',
+            label: 'Get Receipt',
             description: 'Gets the specified receipt.',
             hidden: false,
         },
@@ -178,7 +178,7 @@ module.exports = {
         key: 'getReceiptPreCreateInfo',
         noun: 'Receipts',
         display: {
-            label: 'getReceiptPreCreateInfo',
+            label: 'Get Receipt Pre-Create Info',
             description: 'Retrieves the information useful while creating a new receipt.',
             hidden: false,
         },
@@ -223,7 +223,7 @@ module.exports = {
         key: 'getReceiptsMonthlyTotals',
         noun: 'Receipts',
         display: {
-            label: 'getReceiptsMonthlyTotals',
+            label: 'Get Receipts Monthly Totals',
             description: 'Returns the monthly totals by year and receipt type.',
             hidden: false,
         },
@@ -286,7 +286,7 @@ module.exports = {
         key: 'listReceipts',
         noun: 'Receipts',
         display: {
-            label: 'listReceipts',
+            label: 'List Receipts',
             description: 'Lists the receipts.',
             hidden: false,
         },
@@ -371,7 +371,7 @@ module.exports = {
         key: 'modifyReceipt',
         noun: 'Receipts',
         display: {
-            label: 'modifyReceipt',
+            label: 'Modify Receipt',
             description: 'Modifies the specified receipt.',
             hidden: false,
         },

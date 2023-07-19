@@ -22,7 +22,7 @@ module.exports = {
         key: 'listArchiveCategories',
         noun: 'Info',
         display: {
-            label: 'listArchiveCategories',
+            label: 'List Archive Categories',
             description: 'Lists the archive categories.',
             hidden: false,
         },
@@ -67,7 +67,7 @@ module.exports = {
         key: 'listCities',
         noun: 'Info',
         display: {
-            label: 'listCities',
+            label: 'List Cities',
             description: 'Lists the Italian cities.',
             hidden: false,
         },
@@ -117,7 +117,7 @@ module.exports = {
         key: 'listCostCenters',
         noun: 'Info',
         display: {
-            label: 'listCostCenters',
+            label: 'List Cost Centers',
             description: 'Lists the cost centers.',
             hidden: false,
         },
@@ -162,7 +162,7 @@ module.exports = {
         key: 'listCountries',
         noun: 'Info',
         display: {
-            label: 'listCountries',
+            label: 'List Countries',
             description: 'Lists the supported countries.',
             hidden: false,
         },
@@ -200,7 +200,7 @@ module.exports = {
         key: 'listCurrencies',
         noun: 'Info',
         display: {
-            label: 'listCurrencies',
+            label: 'List Currencies',
             description: 'Lists the supported currencies.',
             hidden: false,
         },
@@ -238,7 +238,7 @@ module.exports = {
         key: 'listDeliveryNotesDefaultCausals',
         noun: 'Info',
         display: {
-            label: 'listDeliveryNotesDefaultCausals',
+            label: 'List Delivery Notes Default Causals',
             description: 'Lists the delivery note default causals.',
             hidden: false,
         },
@@ -276,7 +276,7 @@ module.exports = {
         key: 'listDetailedCountries',
         noun: 'Info',
         display: {
-            label: 'listDetailedCountries',
+            label: 'List Detailed Countries',
             description: 'Lists the supported countries.',
             hidden: false,
         },
@@ -314,7 +314,7 @@ module.exports = {
         key: 'listLanguages',
         noun: 'Info',
         display: {
-            label: 'listLanguages',
+            label: 'List Languages',
             description: 'Lists the supported languages.',
             hidden: false,
         },
@@ -352,7 +352,7 @@ module.exports = {
         key: 'listPaymentAccounts',
         noun: 'Info',
         display: {
-            label: 'listPaymentAccounts',
+            label: 'List Payment Accounts',
             description: 'Lists the available payment accounts.',
             hidden: false,
         },
@@ -419,7 +419,7 @@ module.exports = {
         key: 'listPaymentMethods',
         noun: 'Info',
         display: {
-            label: 'listPaymentMethods',
+            label: 'List Payment Methods',
             description: 'Lists the available payment methods.',
             hidden: false,
         },
@@ -486,7 +486,7 @@ module.exports = {
         key: 'listProductCategories',
         noun: 'Info',
         display: {
-            label: 'listProductCategories',
+            label: 'List Product Categories',
             description: 'Lists the product categories.',
             hidden: false,
         },
@@ -543,7 +543,7 @@ module.exports = {
         key: 'listReceivedDocumentCategories',
         noun: 'Info',
         display: {
-            label: 'listReceivedDocumentCategories',
+            label: 'List Received Document Categories',
             description: 'Lists the received document categories.',
             hidden: false,
         },
@@ -588,7 +588,7 @@ module.exports = {
         key: 'listRevenueCenters',
         noun: 'Info',
         display: {
-            label: 'listRevenueCenters',
+            label: 'List Revenue Centers',
             description: 'Lists the revenue centers.',
             hidden: false,
         },
@@ -633,7 +633,7 @@ module.exports = {
         key: 'listTemplates',
         noun: 'Info',
         display: {
-            label: 'listTemplates',
+            label: 'List Templates',
             description: 'Lists the available templates.',
             hidden: false,
         },
@@ -689,7 +689,7 @@ module.exports = {
         key: 'listUnitsOfMeasure',
         noun: 'Info',
         display: {
-            label: 'listUnitsOfMeasure',
+            label: 'List Units of Measure',
             description: 'Lists the units of measure.',
             hidden: false,
         },
@@ -727,7 +727,7 @@ module.exports = {
         key: 'listVatTypes',
         noun: 'Info',
         display: {
-            label: 'listVatTypes',
+            label: 'List Vat Types',
             description: 'Lists the available vat types.',
             hidden: false,
         },
