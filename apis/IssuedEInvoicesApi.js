@@ -11,7 +11,7 @@ module.exports = {
         key: 'getEInvoiceRejectionReason',
         noun: 'Issued e-invoices',
         display: {
-            label: 'Get e-invoice rejection reason',
+            label: 'Get E-Invoice Rejection Reason',
             description: 'Get e-invoice rejection reason',
             hidden: false,
         },
@@ -62,7 +62,7 @@ module.exports = {
         key: 'getEInvoiceXml',
         noun: 'Issued e-invoices',
         display: {
-            label: 'Get e-invoice XML',
+            label: 'Get E-Invoice XML',
             description: 'Downloads the e-invoice in XML format.',
             hidden: false,
         },
@@ -118,7 +118,7 @@ module.exports = {
         key: 'sendEInvoice',
         noun: 'Issued e-invoices',
         display: {
-            label: 'Send the e-invoice',
+            label: 'Send E-Invoice',
             description: 'Sends the e-invoice to SDI.',
             hidden: false,
         },
@@ -171,7 +171,7 @@ module.exports = {
         key: 'verifyEInvoiceXml',
         noun: 'Issued e-invoices',
         display: {
-            label: 'Verify e-invoice XML',
+            label: 'Verify E-Invoice XML',
             description: 'Verifies the e-invoice XML format. Checks if all of the mandatory fields are filled and compliant to the right format.',
             hidden: false,
         },

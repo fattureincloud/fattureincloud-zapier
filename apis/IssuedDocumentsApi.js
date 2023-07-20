@@ -341,7 +341,7 @@ module.exports = {
         key: 'getIssuedDocumentPreCreateInfo',
         noun: 'Issued Documents',
         display: {
-            label: 'Get Issued Document Pre-create info',
+            label: 'Get Issued Document Pre-Create Info',
             description: 'Retrieves the information useful while creating a new document.',
             hidden: false,
         },
@@ -453,7 +453,7 @@ module.exports = {
         key: 'joinIssuedDocuments',
         noun: 'Issued Documents',
         display: {
-            label: 'Join issued documents',
+            label: 'Join Issued Documents',
             description: 'Joins issued documents.',
             hidden: false,
         },
@@ -745,7 +745,7 @@ module.exports = {
         key: 'transformIssuedDocument',
         noun: 'Issued Documents',
         display: {
-            label: 'Transform issued document',
+            label: 'Transform Issued Document',
             description: 'Transforms the document.',
             hidden: false,
         },
