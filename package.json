@@ -1,7 +1,7 @@
 {
   "name": "fattureincloud",
-  "version": "1.0.0",
-  "description": "Fatture in Cloud è il Software di Fatturazione online con tutti gli strumenti necessari per semplificarti la vita e avere il tuo business sotto controllo: fatture, fatture elettroniche B2B e verso la PA, fatture pro-forma, analisi dell'andamento, scadenziario rubrica...",
+  "version": "1.0.1",
+  "description": "Fatture in Cloud is an italian online invoicing software with all the tools you need keep your business under control.",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive -t 10000"
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "zapier-platform-core": "14.1.1"
+    "zapier-platform-core": "15.0.1"
   },
   "devDependencies": {
     "mocha": "^10.2.0",
