@@ -1,21 +1,8 @@
+const UserApi = require("./apis/UserApi");
+
 const testAuth = async (z, bundle) => {
-  const options = {
-    url: 'https://api-v2.fattureincloud.it/user/companies',
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${bundle.authData.access_token}`,
-    },
-    params: {},
-  };
-
-  return z.request(options).then((response) => {
-    response.throwForStatus();
-    const results = response.json;
-
-    // You can do any parsing you need for results here before returning them
-
-    return results.data;
-  });
+  const userInfo = await UserApi.getUserInfo.operation.perform(z, bundle)
+  return userInfo.data;
 };
 const scopes = [
     "situation:r",
@@ -46,7 +33,7 @@ const scopes = [
 module.exports = {
   type: 'oauth2',
   test: testAuth,
-  connectionLabel: '{{name}}',
+  connectionLabel: '- {{name}}',
   oauth2Config: {
     authorizeUrl: {
       url: 'https://api-v2.fattureincloud.it/oauth/authorize',
