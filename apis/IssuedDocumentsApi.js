@@ -17,6 +17,7 @@ const TransformIssuedDocumentResponse = require('../models/TransformIssuedDocume
 const UploadIssuedDocumentAttachmentResponse = require('../models/UploadIssuedDocumentAttachmentResponse');
 const utils = require('../utils/utils');
 const FormData = require('form-data');
+const CreateIssuedDocumentUnwantedFields = require('../modelsUnwantedFields/CreateIssuedDocumentUnwantedFields');
 
 module.exports = {
     createIssuedDocument: {
@@ -36,7 +37,7 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
-                ...CreateIssuedDocumentRequest.fields(),
+                ...utils.removeUnwantedFields(CreateIssuedDocumentRequest.fields(), CreateIssuedDocumentUnwantedFields),
             ],
             outputFields: [
                 ...CreateIssuedDocumentResponse.fields('', false),

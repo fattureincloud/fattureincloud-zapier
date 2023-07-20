@@ -40,6 +40,13 @@ const overrideUserAgent = (request, z, bundle) => {
     return request
 }
 
+const removeUnwantedFields = (fieldsArray, unwantedFieldsArray) => {
+    unwantedFieldsArray.forEach(unwantedField => {
+        let indexToRemove = fieldsArray.findIndex((f) => f.key === unwantedField)
+        fieldsArray.splice(indexToRemove, 1)
+    });
+    return fieldsArray
+}
 module.exports = {
     replacePathParameters: replacePathParameters,
     removeKeyPrefixes: removeKeyPrefixes,
@@ -51,4 +58,5 @@ module.exports = {
     extractResourceAndOperation: extractResourceAndOperation,
     retrieveResourceOperations: retrieveResourceOperations,
     overrideUserAgent: overrideUserAgent,
+    removeUnwantedFields: removeUnwantedFields,
 }
