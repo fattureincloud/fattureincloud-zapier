@@ -49,7 +49,7 @@ module.exports = {
             'name': bundle.inputData?.[`${keyPrefix}name`],
             'type': bundle.inputData?.[`${keyPrefix}type`],
             'access_token': bundle.inputData?.[`${keyPrefix}access_token`],
-            'controlled_companies': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}controlled_companies`]),
+            'controlled_companies': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}controlled_companies`], `${keyPrefix}controlled_companies`),
             'connection_id': bundle.inputData?.[`${keyPrefix}connection_id`],
             'tax_code': bundle.inputData?.[`${keyPrefix}tax_code`],
         }

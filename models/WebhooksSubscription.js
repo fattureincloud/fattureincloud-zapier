@@ -34,7 +34,7 @@ module.exports = {
             'id': bundle.inputData?.[`${keyPrefix}id`],
             'sink': bundle.inputData?.[`${keyPrefix}sink`],
             'verified': bundle.inputData?.[`${keyPrefix}verified`],
-            'types': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}types`]),
+            'types': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}types`], `${keyPrefix}types`),
         }
     },
 }

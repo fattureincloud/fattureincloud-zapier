@@ -47,9 +47,9 @@ module.exports = {
             'numerations': bundle.inputData?.[`${keyPrefix}numerations`],
             'numerations_list': bundle.inputData?.[`${keyPrefix}numerations_list`],
             'rc_centers_list': bundle.inputData?.[`${keyPrefix}rc_centers_list`],
-            'payment_accounts_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}payment_accounts_list`]),
+            'payment_accounts_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}payment_accounts_list`], `${keyPrefix}payment_accounts_list`),
             'categories_list': bundle.inputData?.[`${keyPrefix}categories_list`],
-            'vat_types_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}vat_types_list`]),
+            'vat_types_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}vat_types_list`], `${keyPrefix}vat_types_list`),
         }
     },
 }

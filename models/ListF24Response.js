@@ -83,7 +83,7 @@ module.exports = {
             'prev_page_url': bundle.inputData?.[`${keyPrefix}prev_page_url`],
             'to': bundle.inputData?.[`${keyPrefix}to`],
             'total': bundle.inputData?.[`${keyPrefix}total`],
-            'data': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}data`]),
+            'data': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}data`], `${keyPrefix}data`),
             'aggregated_data': utils.removeIfEmpty(ListF24ResponseAggregatedData.mapping(bundle, `${keyPrefix}aggregated_data`)),
         }
     },

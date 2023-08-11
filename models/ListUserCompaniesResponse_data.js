@@ -15,7 +15,7 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'companies': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}companies`]),
+            'companies': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}companies`], `${keyPrefix}data`),
         }
     },
 }

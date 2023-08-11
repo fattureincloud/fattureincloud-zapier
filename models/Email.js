@@ -105,7 +105,7 @@ module.exports = {
             'recipient_status': bundle.inputData?.[`${keyPrefix}recipient_status`],
             'recipient_date': bundle.inputData?.[`${keyPrefix}recipient_date`],
             'kind': bundle.inputData?.[`${keyPrefix}kind`],
-            'attachments': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}attachments`]),
+            'attachments': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}attachments`], `${keyPrefix}attachments`),
         }
     },
 }

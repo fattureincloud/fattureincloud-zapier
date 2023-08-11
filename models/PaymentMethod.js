@@ -62,7 +62,7 @@ module.exports = {
             'type': bundle.inputData?.[`${keyPrefix}type`],
             'is_default': bundle.inputData?.[`${keyPrefix}is_default`],
             'default_payment_account': utils.removeIfEmpty(PaymentAccount.mapping(bundle, `${keyPrefix}default_payment_account`)),
-            'details': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}details`]),
+            'details': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}details`], `${keyPrefix}details`),
             'bank_iban': bundle.inputData?.[`${keyPrefix}bank_iban`],
             'bank_name': bundle.inputData?.[`${keyPrefix}bank_name`],
             'bank_beneficiary': bundle.inputData?.[`${keyPrefix}bank_beneficiary`],
