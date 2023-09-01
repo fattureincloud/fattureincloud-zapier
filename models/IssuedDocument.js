@@ -385,7 +385,7 @@ module.exports = {
             {
                 key: `${keyPrefix}ei_raw`,
                 label: `Issued document advanced raw attributes for e-invoices - [${labelPrefix}ei_raw]`,
-                dict: true,
+                type: 'string',
             },
             {
                 key: `${keyPrefix}ei_status`,
@@ -504,7 +504,7 @@ module.exports = {
             'ai_url': bundle.inputData?.[`${keyPrefix}ai_url`],
             'attachment_url': bundle.inputData?.[`${keyPrefix}attachment_url`],
             'attachment_token': bundle.inputData?.[`${keyPrefix}attachment_token`],
-            'ei_raw': bundle.inputData?.[`${keyPrefix}ei_raw`],
+            'ei_raw': JSON.parse(bundle.inputData?.[`${keyPrefix}ei_raw`]),
             'ei_status': bundle.inputData?.[`${keyPrefix}ei_status`],
             'created_at': bundle.inputData?.[`${keyPrefix}created_at`],
             'updated_at': bundle.inputData?.[`${keyPrefix}updated_at`],

@@ -89,7 +89,7 @@ module.exports = {
             {
                 key: `${keyPrefix}ei_raw`,
                 label: `Issued document advanced raw attributes for e-invoices - [${labelPrefix}ei_raw]`,
-                dict: true,
+                type: 'string',
             },
         ]
     },
@@ -113,7 +113,7 @@ module.exports = {
             'discount_highlight': bundle.inputData?.[`${keyPrefix}discount_highlight`],
             'in_dn': bundle.inputData?.[`${keyPrefix}in_dn`],
             'stock': bundle.inputData?.[`${keyPrefix}stock`],
-            'ei_raw': bundle.inputData?.[`${keyPrefix}ei_raw`],
+            'ei_raw': JSON.parse(bundle.inputData?.[`${keyPrefix}ei_raw`]),
         }
     },
 }

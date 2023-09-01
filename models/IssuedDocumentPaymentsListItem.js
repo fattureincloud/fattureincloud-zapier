@@ -35,7 +35,7 @@ module.exports = {
             {
                 key: `${keyPrefix}ei_raw`,
                 label: `Issued document payment advanced raw attributes for e-invoices - [${labelPrefix}ei_raw]`,
-                dict: true,
+                type: 'string',
             },
             ...IssuedDocumentPaymentsListItem_payment_terms.fields(`${keyPrefix}payment_terms`, isInput),
         ]
@@ -49,7 +49,7 @@ module.exports = {
             'status': bundle.inputData?.[`${keyPrefix}status`],
             'payment_account': utils.removeIfEmpty(PaymentAccount.mapping(bundle, `${keyPrefix}payment_account`)),
             'paid_date': bundle.inputData?.[`${keyPrefix}paid_date`],
-            'ei_raw': bundle.inputData?.[`${keyPrefix}ei_raw`],
+            'ei_raw': JSON.parse(bundle.inputData?.[`${keyPrefix}ei_raw`]),
             'payment_terms': utils.removeIfEmpty(IssuedDocumentPaymentsListItem_payment_terms.mapping(bundle, `${keyPrefix}payment_terms`)),
         }
     },
