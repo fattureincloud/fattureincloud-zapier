@@ -1,6 +1,6 @@
 {
   "name": "fattureincloud",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fatture in Cloud is an italian online invoicing software with all the tools you need keep your business under control.",
   "main": "index.js",
   "scripts": {
