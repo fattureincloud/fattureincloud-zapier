@@ -30,7 +30,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -125,7 +124,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -360,7 +358,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -427,7 +424,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -494,7 +490,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -551,7 +546,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -596,7 +590,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -735,7 +728,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,

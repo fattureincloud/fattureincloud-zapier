@@ -19,7 +19,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -48,9 +47,9 @@ module.exports = {
                     },
                     body: {
                     },
-                    skipThrowForStatus: true,
                 }
                 return z.request(options).then((response) => {
+                    response.throwForStatus();
                     const results = response.json;
                     return results;
                 })
@@ -70,7 +69,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -126,7 +124,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,
@@ -157,9 +154,9 @@ module.exports = {
                     body: {
                         ...SendEInvoiceRequest.mapping(bundle),
                     },
-                    skipThrowForStatus: true,
                 }
                 return z.request(options).then((response) => {
+                    response.throwForStatus();
                     const results = response.json;
                     return results;
                 })
@@ -179,7 +176,6 @@ module.exports = {
             inputFields: [
                 {
                     key: 'company_id',
-                    dynamic: 'listUserCompaniesTrigger.id.name',
                     label: 'The ID of the company.',
                     type: 'integer',
                     required: true,

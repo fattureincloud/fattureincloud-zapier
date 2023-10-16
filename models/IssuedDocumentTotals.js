@@ -88,7 +88,7 @@ module.exports = {
             {
                 key: `${keyPrefix}vat_list`,
                 label: `[${labelPrefix}vat_list]`,
-                dict: true,
+                type: 'string',
             },
         ]
     },
@@ -111,7 +111,7 @@ module.exports = {
             'amount_due': bundle.inputData?.[`${keyPrefix}amount_due`],
             'is_enasarco_maximal_exceeded': bundle.inputData?.[`${keyPrefix}is_enasarco_maximal_exceeded`],
             'payments_sum': bundle.inputData?.[`${keyPrefix}payments_sum`],
-            'vat_list': bundle.inputData?.[`${keyPrefix}vat_list`],
+            'vat_list': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}vat_list`], `${keyPrefix}vat_list`),
         }
     },
 }

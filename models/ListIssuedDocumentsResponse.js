@@ -81,7 +81,7 @@ module.exports = {
             'prev_page_url': bundle.inputData?.[`${keyPrefix}prev_page_url`],
             'to': bundle.inputData?.[`${keyPrefix}to`],
             'total': bundle.inputData?.[`${keyPrefix}total`],
-            'data': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}data`], `${keyPrefix}data`),
+            'data': utils.childMapping(bundle.inputData?.[`${keyPrefix}data`], `${keyPrefix}data`, IssuedDocument),
         }
     },
 }
