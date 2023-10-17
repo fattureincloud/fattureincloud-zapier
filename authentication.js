@@ -33,24 +33,24 @@ const scopes = [
 module.exports = {
   type: 'oauth2',
   test: testAuth,
-  connectionLabel: '- ',
+  connectionLabel: '- {{name}}',
   oauth2Config: {
     authorizeUrl: {
       url: 'https://api-v2.fattureincloud.it/oauth/authorize',
       params: {
-        client_id: '',
-        state: '',
-        redirect_uri: '',
+        client_id: '{{process.env.CLIENT_ID}}',
+        state: '{{bundle.inputData.state}}',
+        redirect_uri: '{{bundle.inputData.redirect_uri}}',
         response_type: 'code',
       },
     },
     getAccessToken: {
       body: {
-        code: '',
-        client_id: '',
-        client_secret: '',
+        code: '{{bundle.inputData.code}}',
+        client_id: '{{process.env.CLIENT_ID}}',
+        client_secret: '{{process.env.CLIENT_SECRET}}',
         grant_type: 'authorization_code',
-        redirect_uri: '',
+        redirect_uri: '{{bundle.inputData.redirect_uri}}',
       },
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
@@ -61,10 +61,10 @@ module.exports = {
     },
     refreshAccessToken: {
       body: {
-        refresh_token: '',
+        refresh_token: '{{bundle.authData.refresh_token}}',
         grant_type: 'refresh_token',
-        client_id: '',
-        client_secret: '',
+        client_id: '{{process.env.CLIENT_ID}}',
+        client_secret: '{{process.env.CLIENT_SECRET}}',
       },
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
