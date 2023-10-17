@@ -64,7 +64,7 @@ module.exports = {
         return {
             'recipient_email': bundle.inputData?.[`${keyPrefix}recipient_email`],
             'default_sender_email': utils.removeIfEmpty(EmailData_default_sender_email.mapping(bundle, `${keyPrefix}default_sender_email`)),
-            'sender_emails_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}sender_emails_list`], `${keyPrefix}sender_emails_list`),
+            'sender_emails_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}sender_emails_list`], `${keyPrefix}sender_emails_list`, SenderEmail),
             'cc_email': bundle.inputData?.[`${keyPrefix}cc_email`],
             'subject': bundle.inputData?.[`${keyPrefix}subject`],
             'body': bundle.inputData?.[`${keyPrefix}body`],
