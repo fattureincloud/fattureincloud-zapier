@@ -409,6 +409,11 @@ module.exports = {
                 ],
             },
             {
+                key: `${keyPrefix}locked`,
+                label: `Issued Document can't be edited - [${labelPrefix}locked]`,
+                type: 'boolean',
+            },
+            {
                 key: `${keyPrefix}created_at`,
                 label: `Issued document creation date - [${labelPrefix}created_at]`,
                 type: 'string',
@@ -461,8 +466,8 @@ module.exports = {
             'ei_withholding_tax_causal': bundle.inputData?.[`${keyPrefix}ei_withholding_tax_causal`],
             'ei_other_withholding_tax_type': bundle.inputData?.[`${keyPrefix}ei_other_withholding_tax_type`],
             'ei_other_withholding_tax_causal': bundle.inputData?.[`${keyPrefix}ei_other_withholding_tax_causal`],
-            'items_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}items_list`], `${keyPrefix}items_list`),
-            'payments_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}payments_list`], `${keyPrefix}payments_list`),
+            'items_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}items_list`], `${keyPrefix}items_list`, IssuedDocumentItemsListItem),
+            'payments_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}payments_list`], `${keyPrefix}payments_list`, IssuedDocumentPaymentsListItem),
             'template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}template`)),
             'delivery_note_template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}delivery_note_template`)),
             'acc_inv_template': utils.removeIfEmpty(DocumentTemplate.mapping(bundle, `${keyPrefix}acc_inv_template`)),
@@ -504,8 +509,9 @@ module.exports = {
             'ai_url': bundle.inputData?.[`${keyPrefix}ai_url`],
             'attachment_url': bundle.inputData?.[`${keyPrefix}attachment_url`],
             'attachment_token': bundle.inputData?.[`${keyPrefix}attachment_token`],
-            'ei_raw': bundle.inputData?.[`${keyPrefix}ei_raw`] ? JSON.parse(bundle.inputData?.[`${keyPrefix}ei_raw`]) : undefined,
+            'ei_raw': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}ei_raw`], `${keyPrefix}ei_raw`),
             'ei_status': bundle.inputData?.[`${keyPrefix}ei_status`],
+            'locked': bundle.inputData?.[`${keyPrefix}locked`],
             'created_at': bundle.inputData?.[`${keyPrefix}created_at`],
             'updated_at': bundle.inputData?.[`${keyPrefix}updated_at`],
         }

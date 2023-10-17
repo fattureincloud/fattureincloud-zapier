@@ -36,7 +36,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}payment_method`,
-                label: `E-invoice payment method [required for e-invoices](see https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.2/Rappresentazione_Tabellare_FattOrdinaria_V1.2.2.pdf for the accepted values of ModalitaPagamento) - [${labelPrefix}payment_method]`,
+                label: `E-invoice payment method [required for e-invoices] (see [here](https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.2/Rappresentazione_Tabellare_FattOrdinaria_V1.2.2.pdf) for the accepted values of ModalitaPagamento) - [${labelPrefix}payment_method]`,
                 type: 'string',
             },
             {

@@ -96,7 +96,7 @@ module.exports = {
             'created_at': bundle.inputData?.[`${keyPrefix}created_at`],
             'updated_at': bundle.inputData?.[`${keyPrefix}updated_at`],
             'payment_account': utils.removeIfEmpty(PaymentAccount.mapping(bundle, `${keyPrefix}payment_account`)),
-            'items_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}items_list`], `${keyPrefix}items_list`),
+            'items_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}items_list`], `${keyPrefix}items_list`, ReceiptItemsListItem),
         }
     },
 }

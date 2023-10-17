@@ -48,9 +48,9 @@ module.exports = {
                     },
                     body: {
                     },
-                    skipThrowForStatus: true,
                 }
                 return z.request(options).then((response) => {
+                    response.throwForStatus();
                     const results = response.json;
                     return results;
                 })
@@ -157,9 +157,9 @@ module.exports = {
                     body: {
                         ...SendEInvoiceRequest.mapping(bundle),
                     },
-                    skipThrowForStatus: true,
                 }
                 return z.request(options).then((response) => {
+                    response.throwForStatus();
                     const results = response.json;
                     return results;
                 })
