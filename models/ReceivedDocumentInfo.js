@@ -46,10 +46,10 @@ module.exports = {
             'default_values': utils.removeIfEmpty(ReceivedDocumentInfo_default_values.mapping(bundle, `${keyPrefix}default_values`)),
             'items_default_values': utils.removeIfEmpty(ReceivedDocumentInfo_items_default_values.mapping(bundle, `${keyPrefix}items_default_values`)),
             'countries_list': bundle.inputData?.[`${keyPrefix}countries_list`],
-            'currencies_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}currencies_list`], `${keyPrefix}currencies_list`),
+            'currencies_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}currencies_list`], `${keyPrefix}currencies_list`, Currency),
             'categories_list': bundle.inputData?.[`${keyPrefix}categories_list`],
-            'payment_accounts_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}payment_accounts_list`], `${keyPrefix}payment_accounts_list`),
-            'vat_types_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}vat_types_list`], `${keyPrefix}vat_types_list`),
+            'payment_accounts_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}payment_accounts_list`], `${keyPrefix}payment_accounts_list`, PaymentAccount),
+            'vat_types_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}vat_types_list`], `${keyPrefix}vat_types_list`, VatType),
         }
     },
 }

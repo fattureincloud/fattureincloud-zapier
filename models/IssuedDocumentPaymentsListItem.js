@@ -49,7 +49,7 @@ module.exports = {
             'status': bundle.inputData?.[`${keyPrefix}status`],
             'payment_account': utils.removeIfEmpty(PaymentAccount.mapping(bundle, `${keyPrefix}payment_account`)),
             'paid_date': bundle.inputData?.[`${keyPrefix}paid_date`],
-            'ei_raw': bundle.inputData?.[`${keyPrefix}ei_raw`] ? JSON.parse(bundle.inputData?.[`${keyPrefix}ei_raw`]) : undefined,
+            'ei_raw': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}ei_raw`], `${keyPrefix}ei_raw`),
             'payment_terms': utils.removeIfEmpty(IssuedDocumentPaymentsListItem_payment_terms.mapping(bundle, `${keyPrefix}payment_terms`)),
         }
     },
