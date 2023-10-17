@@ -136,6 +136,11 @@ module.exports = {
                 type: 'string',
             },
             {
+                key: `${keyPrefix}locked`,
+                label: `Received Document can't be edited - [${labelPrefix}locked]`,
+                type: 'boolean',
+            },
+            {
                 key: `${keyPrefix}created_at`,
                 label: `Received document creation date - [${labelPrefix}created_at]`,
                 type: 'string',
@@ -171,12 +176,13 @@ module.exports = {
             'currency': utils.removeIfEmpty(Currency.mapping(bundle, `${keyPrefix}currency`)),
             'tax_deductibility': bundle.inputData?.[`${keyPrefix}tax_deductibility`],
             'vat_deductibility': bundle.inputData?.[`${keyPrefix}vat_deductibility`],
-            'items_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}items_list`], `${keyPrefix}items_list`),
-            'payments_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}payments_list`], `${keyPrefix}payments_list`),
+            'items_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}items_list`], `${keyPrefix}items_list`, ReceivedDocumentItemsListItem),
+            'payments_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}payments_list`], `${keyPrefix}payments_list`, ReceivedDocumentPaymentsListItem),
             'attachment_url': bundle.inputData?.[`${keyPrefix}attachment_url`],
             'attachment_preview_url': bundle.inputData?.[`${keyPrefix}attachment_preview_url`],
             'auto_calculate': bundle.inputData?.[`${keyPrefix}auto_calculate`],
             'attachment_token': bundle.inputData?.[`${keyPrefix}attachment_token`],
+            'locked': bundle.inputData?.[`${keyPrefix}locked`],
             'created_at': bundle.inputData?.[`${keyPrefix}created_at`],
             'updated_at': bundle.inputData?.[`${keyPrefix}updated_at`],
         }
