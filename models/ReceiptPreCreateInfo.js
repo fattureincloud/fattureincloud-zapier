@@ -9,7 +9,7 @@ module.exports = {
             {
                 key: `${keyPrefix}numerations`,
                 label: `[${labelPrefix}numerations]`,
-                dict: true,
+                type: 'string',
             },
             {
                 key: `${keyPrefix}numerations_list`,
@@ -44,12 +44,12 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'numerations': bundle.inputData?.[`${keyPrefix}numerations`],
+            'numerations': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}numerations`], `${keyPrefix}numerations`),
             'numerations_list': bundle.inputData?.[`${keyPrefix}numerations_list`],
             'rc_centers_list': bundle.inputData?.[`${keyPrefix}rc_centers_list`],
-            'payment_accounts_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}payment_accounts_list`], `${keyPrefix}payment_accounts_list`),
+            'payment_accounts_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}payment_accounts_list`], `${keyPrefix}payment_accounts_list`, PaymentAccount),
             'categories_list': bundle.inputData?.[`${keyPrefix}categories_list`],
-            'vat_types_list': utils.removeKeyPrefixes(bundle.inputData?.[`${keyPrefix}vat_types_list`], `${keyPrefix}vat_types_list`),
+            'vat_types_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}vat_types_list`], `${keyPrefix}vat_types_list`, VatType),
         }
     },
 }

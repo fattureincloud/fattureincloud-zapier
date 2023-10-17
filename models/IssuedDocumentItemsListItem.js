@@ -113,7 +113,7 @@ module.exports = {
             'discount_highlight': bundle.inputData?.[`${keyPrefix}discount_highlight`],
             'in_dn': bundle.inputData?.[`${keyPrefix}in_dn`],
             'stock': bundle.inputData?.[`${keyPrefix}stock`],
-            'ei_raw': bundle.inputData?.[`${keyPrefix}ei_raw`] ? JSON.parse(bundle.inputData?.[`${keyPrefix}ei_raw`]) : undefined,
+            'ei_raw': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}ei_raw`], `${keyPrefix}ei_raw`),
         }
     },
 }

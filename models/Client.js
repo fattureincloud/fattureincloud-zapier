@@ -83,6 +83,11 @@ module.exports = {
                 type: 'string',
             },
             {
+                key: `${keyPrefix}country_iso`,
+                label: `Client country iso code - [${labelPrefix}country_iso]`,
+                type: 'string',
+            },
+            {
                 key: `${keyPrefix}email`,
                 label: `Client email - [${labelPrefix}email]`,
                 type: 'string',
@@ -203,6 +208,7 @@ module.exports = {
             'address_province': bundle.inputData?.[`${keyPrefix}address_province`],
             'address_extra': bundle.inputData?.[`${keyPrefix}address_extra`],
             'country': bundle.inputData?.[`${keyPrefix}country`],
+            'country_iso': bundle.inputData?.[`${keyPrefix}country_iso`],
             'email': bundle.inputData?.[`${keyPrefix}email`],
             'certified_email': bundle.inputData?.[`${keyPrefix}certified_email`],
             'phone': bundle.inputData?.[`${keyPrefix}phone`],
