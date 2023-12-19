@@ -116,7 +116,7 @@ const actions = {
     [TaxesApi.modifyF24.key]: TaxesApi.modifyF24,
     [TaxesApi.uploadF24Attachment.key]: TaxesApi.uploadF24Attachment,
     [UserApi.getUserInfo.key]: UserApi.getUserInfo,
-    [UserApi.listUserCompanies.key]: UserApi.listUserCompanies, // unused
+    [UserApi.listUserCompanies.key]: UserApi.listUserCompanies,
     [WebhooksApi.createWebhooksSubscription.key]: WebhooksApi.createWebhooksSubscription,
     [WebhooksApi.deleteWebhooksSubscription.key]: WebhooksApi.deleteWebhooksSubscription,
     [WebhooksApi.getWebhooksSubscription.key]: WebhooksApi.getWebhooksSubscription,

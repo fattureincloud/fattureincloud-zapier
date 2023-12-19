@@ -47,6 +47,9 @@ module.exports = {
                     'it.fattureincloud.webhooks.taxes.create',
                     'it.fattureincloud.webhooks.taxes.update',
                     'it.fattureincloud.webhooks.taxes.delete',
+                    'it.fattureincloud.webhooks.archive_documents.create',
+                    'it.fattureincloud.webhooks.archive_documents.update',
+                    'it.fattureincloud.webhooks.archive_documents.delete',
                     'it.fattureincloud.webhooks.cashbook.create',
                     'it.fattureincloud.webhooks.cashbook.update',
                     'it.fattureincloud.webhooks.cashbook.delete',
@@ -64,7 +67,7 @@ module.exports = {
                     'it.fattureincloud.webhooks.entities.all.update',
                     'it.fattureincloud.webhooks.entities.all.delete',
                     'it.fattureincloud.webhooks.issued_documents.e_invoices.status_update',
-                    'it.fattureincloud.webhooks.received_documents.e_invoices.status_update',
+                    'it.fattureincloud.webhooks.received_documents.e_invoices.receive',
                 ],
             }
         )
