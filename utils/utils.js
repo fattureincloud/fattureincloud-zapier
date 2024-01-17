@@ -45,6 +45,24 @@ const overrideUserAgent = (request, z, bundle) => {
     request.headers['user-agent'] = `FattureInCloud/${require('../package.json').version}/Zapier`
     return request
 }
+const handleClientErrors = (response, z) => {
+    if (response.status >= 400 && response.status < 500) {
+        let errorMessage = JSON.stringify(response.json)
+
+        if (!_.isEmpty(response.json?.error?.validation_result)) {
+            errorMessage = Object.keys(response.json?.error?.validation_result)
+                .map(key => `[${key}]: ${response.json.error.validation_result[key].join(' - ')}`)
+                .join('\n')
+        } else if (!_.isEmpty(response.json?.error?.message)) {
+            errorMessage = response.json.error.message
+        }
+
+        throw new z.errors.Error(
+            errorMessage
+        );
+      }
+      return response;
+}
 const jsonFieldToObject = (val, fieldname) => {
     if (_.isEmpty(val)) return undefined
     try {
@@ -65,5 +83,6 @@ module.exports = {
     extractResourceAndOperation: extractResourceAndOperation,
     retrieveResourceOperations: retrieveResourceOperations,
     overrideUserAgent: overrideUserAgent,
+    handleClientErrors: handleClientErrors,
     jsonFieldToObject: jsonFieldToObject,
 }
