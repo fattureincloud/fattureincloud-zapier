@@ -1,7 +1,5 @@
-const UserApi = require("../apis/UserApi")
+const { listUserCompanies: listUserCompaniesAction } = require("../apis/UserApi")
 const Company = require("../models/Company")
-
-let listUserCompaniesAction = UserApi.listUserCompanies
 
 module.exports = {
     key: listUserCompaniesAction.key + 'Trigger',

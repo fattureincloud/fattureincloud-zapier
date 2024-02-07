@@ -1,6 +1,6 @@
 {
   "name": "@fattureincloud/zapier",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Fatture in Cloud è il Software di Fatturazione online con tutti gli strumenti necessari per semplificarti la vita e avere il tuo business sotto controllo: fatture, fatture elettroniche B2B e verso la PA, fatture pro-forma, analisi dell'andamento, scadenziario rubrica...",
   "author": "Fatture in Cloud API team",
   "main": "index.js",
