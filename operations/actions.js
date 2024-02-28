@@ -34,22 +34,23 @@ const actions = {
     [ClientsApi.listClients.key]: ClientsApi.listClients,
     [ClientsApi.modifyClient.key]: ClientsApi.modifyClient,
     [CompaniesApi.getCompanyInfo.key]: CompaniesApi.getCompanyInfo,
+    [CompaniesApi.getCompanyPlanUsage.key]: CompaniesApi.getCompanyPlanUsage,
     [EmailsApi.listEmails.key]: EmailsApi.listEmails,
-    [InfoApi.listArchiveCategories.key]: InfoApi.listArchiveCategories, // unused
-    [InfoApi.listCities.key]: InfoApi.listCities, // unused
-    [InfoApi.listCostCenters.key]: InfoApi.listCostCenters, // unused
-    [InfoApi.listCountries.key]: InfoApi.listCountries, // unused
-    [InfoApi.listCurrencies.key]: InfoApi.listCurrencies, // unused
-    [InfoApi.listDeliveryNotesDefaultCausals.key]: InfoApi.listDeliveryNotesDefaultCausals, // unused
-    [InfoApi.listDetailedCountries.key]: InfoApi.listDetailedCountries, // unused
-    [InfoApi.listLanguages.key]: InfoApi.listLanguages, // unused
+    [InfoApi.listArchiveCategories.key]: InfoApi.listArchiveCategories,
+    [InfoApi.listCities.key]: InfoApi.listCities,
+    [InfoApi.listCostCenters.key]: InfoApi.listCostCenters,
+    [InfoApi.listCountries.key]: InfoApi.listCountries,
+    [InfoApi.listCurrencies.key]: InfoApi.listCurrencies,
+    [InfoApi.listDeliveryNotesDefaultCausals.key]: InfoApi.listDeliveryNotesDefaultCausals,
+    [InfoApi.listDetailedCountries.key]: InfoApi.listDetailedCountries,
+    [InfoApi.listLanguages.key]: InfoApi.listLanguages,
     [InfoApi.listPaymentAccounts.key]: InfoApi.listPaymentAccounts,
     [InfoApi.listPaymentMethods.key]: InfoApi.listPaymentMethods,
-    [InfoApi.listProductCategories.key]: InfoApi.listProductCategories, // unused
-    [InfoApi.listReceivedDocumentCategories.key]: InfoApi.listReceivedDocumentCategories, // unused
-    [InfoApi.listRevenueCenters.key]: InfoApi.listRevenueCenters, // unused
-    [InfoApi.listTemplates.key]: InfoApi.listTemplates, 
-    [InfoApi.listUnitsOfMeasure.key]: InfoApi.listUnitsOfMeasure, // unused
+    [InfoApi.listProductCategories.key]: InfoApi.listProductCategories,
+    [InfoApi.listReceivedDocumentCategories.key]: InfoApi.listReceivedDocumentCategories,
+    [InfoApi.listRevenueCenters.key]: InfoApi.listRevenueCenters,
+    [InfoApi.listTemplates.key]: InfoApi.listTemplates,
+    [InfoApi.listUnitsOfMeasure.key]: InfoApi.listUnitsOfMeasure,
     [InfoApi.listVatTypes.key]: InfoApi.listVatTypes,
     [IssuedDocumentsApi.createIssuedDocument.key]: IssuedDocumentsApi.createIssuedDocument,
     [IssuedDocumentsApi.deleteIssuedDocument.key]: IssuedDocumentsApi.deleteIssuedDocument,

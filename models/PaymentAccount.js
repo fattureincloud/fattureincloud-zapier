@@ -7,7 +7,6 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                dynamic: 'listPaymentAccountsTrigger.id.name',
                 label: `Payment account id - [${labelPrefix}id]`,
                 type: 'integer',
             },

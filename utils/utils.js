@@ -37,8 +37,8 @@ const searchMiddleware = (action) => {
     return action
 }
 const extractResourceAndOperation = (eventType) => ({
-  resource: eventType.substring('it.fattureincloud.webhooks.'.length, eventType.lastIndexOf('.')),
-  eventOperation: eventType.substring(eventType.lastIndexOf('.') + 1)
+    resource: eventType.substring('it.fattureincloud.webhooks.'.length, eventType.lastIndexOf('.')),
+    eventOperation: eventType.substring(eventType.lastIndexOf('.') + 1)
 })
 const retrieveResourceOperations = (resource) => EventType.fields('').choices.filter(eventType => extractResourceAndOperation(eventType).resource == resource).map(et => ({type: extractResourceAndOperation(et).eventOperation, id: extractResourceAndOperation(et).eventOperation}))
 const overrideUserAgent = (request, z, bundle) => {
