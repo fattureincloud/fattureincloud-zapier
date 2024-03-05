@@ -33,6 +33,7 @@ models/CompanyInfo_plan_info.js
 models/CompanyInfo_plan_info_functions.js
 models/CompanyInfo_plan_info_functions_status.js
 models/CompanyInfo_plan_info_limits.js
+models/CompanyPlanUsage.js
 models/CompanyType.js
 models/ControlledCompany.js
 models/CreateArchiveDocumentRequest.js
@@ -78,11 +79,13 @@ models/EntityType.js
 models/EventType.js
 models/F24.js
 models/F24Status.js
+models/FattureInCloudPlanType.js
 models/FunctionStatus.js
 models/GetArchiveDocumentResponse.js
 models/GetCashbookEntryResponse.js
 models/GetClientResponse.js
 models/GetCompanyInfoResponse.js
+models/GetCompanyPlanUsageResponse.js
 models/GetEInvoiceRejectionReasonResponse.js
 models/GetEmailDataResponse.js
 models/GetExistingIssuedDocumentTotalsRequest.js

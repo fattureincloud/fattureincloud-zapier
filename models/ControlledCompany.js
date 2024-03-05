@@ -1,5 +1,6 @@
 const utils = require('../utils/utils');
 const CompanyType = require('../models/CompanyType');
+const FattureInCloudPlanType = require('../models/FattureInCloudPlanType');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -25,6 +26,15 @@ module.exports = {
                 type: 'string',
             },
             {
+                key: `${keyPrefix}fic_license_expire`,
+                label: `[${labelPrefix}fic_license_expire]`,
+                type: 'string',
+            },
+            {
+                key: `${keyPrefix}fic_plan`,
+                ...FattureInCloudPlanType.fields(`${keyPrefix}fic_plan`, isInput),
+            },
+            {
                 key: `${keyPrefix}connection_id`,
                 label: `Controlled company connection id - [${labelPrefix}connection_id]`,
                 type: 'number',
@@ -43,6 +53,8 @@ module.exports = {
             'name': bundle.inputData?.[`${keyPrefix}name`],
             'type': bundle.inputData?.[`${keyPrefix}type`],
             'access_token': bundle.inputData?.[`${keyPrefix}access_token`],
+            'fic_license_expire': bundle.inputData?.[`${keyPrefix}fic_license_expire`],
+            'fic_plan': bundle.inputData?.[`${keyPrefix}fic_plan`],
             'connection_id': bundle.inputData?.[`${keyPrefix}connection_id`],
             'tax_code': bundle.inputData?.[`${keyPrefix}tax_code`],
         }

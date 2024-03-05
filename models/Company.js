@@ -1,6 +1,7 @@
 const utils = require('../utils/utils');
 const CompanyType = require('../models/CompanyType');
 const ControlledCompany = require('../models/ControlledCompany');
+const FattureInCloudPlanType = require('../models/FattureInCloudPlanType');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -31,6 +32,15 @@ module.exports = {
                 children: ControlledCompany.fields(`${keyPrefix}controlled_companies${!isInput ? '[]' : ''}`, isInput, true), 
             },
             {
+                key: `${keyPrefix}fic_license_expire`,
+                label: `[${labelPrefix}fic_license_expire]`,
+                type: 'string',
+            },
+            {
+                key: `${keyPrefix}fic_plan`,
+                ...FattureInCloudPlanType.fields(`${keyPrefix}fic_plan`, isInput),
+            },
+            {
                 key: `${keyPrefix}connection_id`,
                 label: `Company connection id - [${labelPrefix}connection_id]`,
                 type: 'integer',
@@ -50,6 +60,8 @@ module.exports = {
             'type': bundle.inputData?.[`${keyPrefix}type`],
             'access_token': bundle.inputData?.[`${keyPrefix}access_token`],
             'controlled_companies': utils.childMapping(bundle.inputData?.[`${keyPrefix}controlled_companies`], `${keyPrefix}controlled_companies`, ControlledCompany),
+            'fic_license_expire': bundle.inputData?.[`${keyPrefix}fic_license_expire`],
+            'fic_plan': bundle.inputData?.[`${keyPrefix}fic_plan`],
             'connection_id': bundle.inputData?.[`${keyPrefix}connection_id`],
             'tax_code': bundle.inputData?.[`${keyPrefix}tax_code`],
         }

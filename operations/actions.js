@@ -34,6 +34,7 @@ const actions = {
     [ClientsApi.listClients.key]: ClientsApi.listClients,
     [ClientsApi.modifyClient.key]: ClientsApi.modifyClient,
     [CompaniesApi.getCompanyInfo.key]: CompaniesApi.getCompanyInfo,
+    [CompaniesApi.getCompanyPlanUsage.key]: CompaniesApi.getCompanyPlanUsage,
     [EmailsApi.listEmails.key]: EmailsApi.listEmails,
     [InfoApi.listArchiveCategories.key]: InfoApi.listArchiveCategories, // unused
     [InfoApi.listCities.key]: InfoApi.listCities, // unused
