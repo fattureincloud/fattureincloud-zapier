@@ -6,7 +6,6 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                dynamic: 'listVatTypesTrigger.id.name',
                 label: `Vat type id - [${labelPrefix}id]`,
                 type: 'integer',
             },

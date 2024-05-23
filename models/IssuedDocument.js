@@ -222,11 +222,6 @@ module.exports = {
                 ...ShowTotalsMode.fields(`${keyPrefix}show_totals`, isInput),
             },
             {
-                key: `${keyPrefix}show_paypal_button`,
-                label: `Show paypal button in the PDF - [${labelPrefix}show_paypal_button]`,
-                type: 'boolean',
-            },
-            {
                 key: `${keyPrefix}show_notification_button`,
                 label: `Show notification button in the PDF - [${labelPrefix}show_notification_button]`,
                 type: 'boolean',
@@ -476,7 +471,6 @@ module.exports = {
             'show_payments': bundle.inputData?.[`${keyPrefix}show_payments`],
             'show_payment_method': bundle.inputData?.[`${keyPrefix}show_payment_method`],
             'show_totals': bundle.inputData?.[`${keyPrefix}show_totals`],
-            'show_paypal_button': bundle.inputData?.[`${keyPrefix}show_paypal_button`],
             'show_notification_button': bundle.inputData?.[`${keyPrefix}show_notification_button`],
             'show_tspay_button': bundle.inputData?.[`${keyPrefix}show_tspay_button`],
             'delivery_note': bundle.inputData?.[`${keyPrefix}delivery_note`],
