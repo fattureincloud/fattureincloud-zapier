@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## 1.0.0 (2024-05-27)
 
+## 1.0.0 (2024-05-27)
+
 ## 1.0.0 (2024-03-05)
 
 ## 1.0.0 (2024-01-17)
