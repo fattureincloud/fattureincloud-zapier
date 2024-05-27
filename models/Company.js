@@ -50,6 +50,11 @@ module.exports = {
                 label: `Company tax code - [${labelPrefix}tax_code]`,
                 type: 'string',
             },
+            {
+                key: `${keyPrefix}vat_number`,
+                label: `Company vat number - [${labelPrefix}vat_number]`,
+                type: 'string',
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -64,6 +69,7 @@ module.exports = {
             'fic_plan': bundle.inputData?.[`${keyPrefix}fic_plan`],
             'connection_id': bundle.inputData?.[`${keyPrefix}connection_id`],
             'tax_code': bundle.inputData?.[`${keyPrefix}tax_code`],
+            'vat_number': bundle.inputData?.[`${keyPrefix}vat_number`],
         }
     },
 }

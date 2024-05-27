@@ -5,11 +5,6 @@ module.exports = {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
             {
-                key: `${keyPrefix}show_sofort_button`,
-                label: `[${labelPrefix}show_sofort_button]`,
-                type: 'boolean',
-            },
-            {
                 key: `${keyPrefix}multifatture_sent`,
                 label: `[${labelPrefix}multifatture_sent]`,
                 type: 'integer',
@@ -69,7 +64,6 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'show_sofort_button': bundle.inputData?.[`${keyPrefix}show_sofort_button`],
             'multifatture_sent': bundle.inputData?.[`${keyPrefix}multifatture_sent`],
             'ts_communication': bundle.inputData?.[`${keyPrefix}ts_communication`],
             'ts_flag_tipo_spesa': bundle.inputData?.[`${keyPrefix}ts_flag_tipo_spesa`],
