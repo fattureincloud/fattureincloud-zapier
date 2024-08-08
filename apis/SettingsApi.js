@@ -7,6 +7,7 @@ const CreateVatTypeRequest = require('../models/CreateVatTypeRequest');
 const CreateVatTypeResponse = require('../models/CreateVatTypeResponse');
 const GetPaymentAccountResponse = require('../models/GetPaymentAccountResponse');
 const GetPaymentMethodResponse = require('../models/GetPaymentMethodResponse');
+const GetTaxProfileResponse = require('../models/GetTaxProfileResponse');
 const GetVatTypeResponse = require('../models/GetVatTypeResponse');
 const ModifyPaymentAccountRequest = require('../models/ModifyPaymentAccountRequest');
 const ModifyPaymentAccountResponse = require('../models/ModifyPaymentAccountResponse');
@@ -55,7 +56,7 @@ module.exports = {
                         ...CreatePaymentAccountRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -102,7 +103,7 @@ module.exports = {
                         ...CreatePaymentMethodRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -149,7 +150,7 @@ module.exports = {
                         ...CreateVatTypeRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -199,7 +200,7 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -249,7 +250,7 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -299,7 +300,7 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -366,7 +367,7 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -433,13 +434,58 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
                 })
             },
             sample: samples['GetPaymentMethodResponseSample']
+        }
+    },
+    getTaxProfile: {
+        key: 'getTaxProfile',
+        noun: 'Settings',
+        display: {
+            label: 'Get Tax Profile',
+            description: 'Gets the Tax Profile',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+                ...GetTaxProfileResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/tax_profile'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = response.json;
+                    return results;
+                })
+            },
+            sample: samples['GetTaxProfileResponseSample']
         }
     },
     getVatType: {
@@ -484,7 +530,7 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -537,7 +583,7 @@ module.exports = {
                         ...ModifyPaymentAccountRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -590,7 +636,7 @@ module.exports = {
                         ...ModifyPaymentMethodRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;
@@ -643,7 +689,7 @@ module.exports = {
                         ...ModifyVatTypeRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = response.json;
                     return results;

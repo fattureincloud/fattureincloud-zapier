@@ -108,6 +108,7 @@ models/GetReceiptsMonthlyTotalsResponse.js
 models/GetReceivedDocumentPreCreateInfoResponse.js
 models/GetReceivedDocumentResponse.js
 models/GetSupplierResponse.js
+models/GetTaxProfileResponse.js
 models/GetUserInfoResponse.js
 models/GetUserInfoResponse_email_confirmation_state.js
 models/GetUserInfoResponse_info.js
@@ -231,6 +232,7 @@ models/SenderEmail.js
 models/ShowTotalsMode.js
 models/Supplier.js
 models/SupplierType.js
+models/TaxProfile.js
 models/TransformIssuedDocumentResponse.js
 models/UploadArchiveAttachmentResponse.js
 models/UploadF24AttachmentResponse.js
