@@ -49,7 +49,7 @@ module.exports = {
             ...Language.fields(`${keyPrefix}language`, isInput),
             {
                 key: `${keyPrefix}subject`,
-                label: `Issued document subject - [${labelPrefix}subject]`,
+                label: `Issued document subject [not shown on the PDF] - [${labelPrefix}subject]`,
                 type: 'string',
             },
             {
