@@ -49,6 +49,11 @@ module.exports = {
                 label: `Is the vat type disabled - [${labelPrefix}is_disabled]`,
                 type: 'boolean',
             },
+            {
+                key: `${keyPrefix}default`,
+                label: `If the vat type is default - [${labelPrefix}default]`,
+                type: 'boolean',
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -63,6 +68,7 @@ module.exports = {
             'ei_description': bundle.inputData?.[`${keyPrefix}ei_description`],
             'editable': bundle.inputData?.[`${keyPrefix}editable`],
             'is_disabled': bundle.inputData?.[`${keyPrefix}is_disabled`],
+            'default': bundle.inputData?.[`${keyPrefix}default`],
         }
     },
 }

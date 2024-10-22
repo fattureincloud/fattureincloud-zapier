@@ -7,6 +7,7 @@ const CreateVatTypeRequest = require('../models/CreateVatTypeRequest');
 const CreateVatTypeResponse = require('../models/CreateVatTypeResponse');
 const GetPaymentAccountResponse = require('../models/GetPaymentAccountResponse');
 const GetPaymentMethodResponse = require('../models/GetPaymentMethodResponse');
+const GetTaxProfileResponse = require('../models/GetTaxProfileResponse');
 const GetVatTypeResponse = require('../models/GetVatTypeResponse');
 const ModifyPaymentAccountRequest = require('../models/ModifyPaymentAccountRequest');
 const ModifyPaymentAccountResponse = require('../models/ModifyPaymentAccountResponse');
@@ -45,7 +46,6 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
                     },
@@ -55,9 +55,9 @@ module.exports = {
                         ...CreatePaymentAccountRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'createPaymentAccount', response.json);
                     return results;
                 })
             },
@@ -92,7 +92,6 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
                     },
@@ -102,9 +101,9 @@ module.exports = {
                         ...CreatePaymentMethodRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'createPaymentMethod', response.json);
                     return results;
                 })
             },
@@ -139,7 +138,6 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
                     },
@@ -149,9 +147,9 @@ module.exports = {
                         ...CreateVatTypeRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'createVatType', response.json);
                     return results;
                 })
             },
@@ -190,7 +188,6 @@ module.exports = {
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': '',
                         'Accept': '',
                     },
@@ -199,9 +196,9 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deletePaymentAccount', response.json);
                     return results;
                 })
             },
@@ -240,7 +237,6 @@ module.exports = {
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': '',
                         'Accept': '',
                     },
@@ -249,9 +245,9 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deletePaymentMethod', response.json);
                     return results;
                 })
             },
@@ -290,7 +286,6 @@ module.exports = {
                     method: 'DELETE',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': '',
                         'Accept': '',
                     },
@@ -299,9 +294,9 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deleteVatType', response.json);
                     return results;
                 })
             },
@@ -355,7 +350,6 @@ module.exports = {
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': '',
                         'Accept': 'application/json',
                     },
@@ -366,9 +360,9 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getPaymentAccount', response.json);
                     return results;
                 })
             },
@@ -422,7 +416,6 @@ module.exports = {
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': '',
                         'Accept': 'application/json',
                     },
@@ -433,13 +426,57 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getPaymentMethod', response.json);
                     return results;
                 })
             },
             sample: samples['GetPaymentMethodResponseSample']
+        }
+    },
+    getTaxProfile: {
+        key: 'getTaxProfile',
+        noun: 'Settings',
+        display: {
+            label: 'Get Tax Profile',
+            description: 'Gets the Tax Profile',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+                ...GetTaxProfileResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/tax_profile'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getTaxProfile', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetTaxProfileResponseSample']
         }
     },
     getVatType: {
@@ -475,7 +512,6 @@ module.exports = {
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': '',
                         'Accept': 'application/json',
                     },
@@ -484,9 +520,9 @@ module.exports = {
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getVatType', response.json);
                     return results;
                 })
             },
@@ -527,7 +563,6 @@ module.exports = {
                     method: 'PUT',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
                     },
@@ -537,9 +572,9 @@ module.exports = {
                         ...ModifyPaymentAccountRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'modifyPaymentAccount', response.json);
                     return results;
                 })
             },
@@ -580,7 +615,6 @@ module.exports = {
                     method: 'PUT',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
                     },
@@ -590,9 +624,9 @@ module.exports = {
                         ...ModifyPaymentMethodRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'modifyPaymentMethod', response.json);
                     return results;
                 })
             },
@@ -633,7 +667,6 @@ module.exports = {
                     method: 'PUT',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
                     },
@@ -643,9 +676,9 @@ module.exports = {
                         ...ModifyVatTypeRequest.mapping(bundle),
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'modifyVatType', response.json);
                     return results;
                 })
             },
