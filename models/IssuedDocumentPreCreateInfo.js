@@ -16,12 +16,12 @@ module.exports = {
             {
                 key: `${keyPrefix}numerations`,
                 label: `[${labelPrefix}numerations]`,
-                type: 'string',
+                type: 'object',
             },
             {
                 key: `${keyPrefix}dn_numerations`,
                 label: `[${labelPrefix}dn_numerations]`,
-                type: 'string',
+                type: 'object',
             },
             ...IssuedDocumentPreCreateInfo_default_values.fields(`${keyPrefix}default_values`, isInput),
             ...IssuedDocumentPreCreateInfo_extra_data_default_values.fields(`${keyPrefix}extra_data_default_values`, isInput),
@@ -77,8 +77,8 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'numerations': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}numerations`], `${keyPrefix}numerations`),
-            'dn_numerations': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}dn_numerations`], `${keyPrefix}dn_numerations`),
+            'numerations': bundle.inputData?.[`${keyPrefix}numerations`],
+            'dn_numerations': bundle.inputData?.[`${keyPrefix}dn_numerations`],
             'default_values': utils.removeIfEmpty(IssuedDocumentPreCreateInfo_default_values.mapping(bundle, `${keyPrefix}default_values`)),
             'extra_data_default_values': utils.removeIfEmpty(IssuedDocumentPreCreateInfo_extra_data_default_values.mapping(bundle, `${keyPrefix}extra_data_default_values`)),
             'items_default_values': utils.removeIfEmpty(IssuedDocumentPreCreateInfo_items_default_values.mapping(bundle, `${keyPrefix}items_default_values`)),
