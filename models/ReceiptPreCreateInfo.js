@@ -9,7 +9,7 @@ module.exports = {
             {
                 key: `${keyPrefix}numerations`,
                 label: `[${labelPrefix}numerations]`,
-                type: 'object',
+                type: 'string',
             },
             {
                 key: `${keyPrefix}numerations_list`,
@@ -44,7 +44,7 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'numerations': bundle.inputData?.[`${keyPrefix}numerations`],
+            'numerations': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}numerations`], `${keyPrefix}numerations`),
             'numerations_list': bundle.inputData?.[`${keyPrefix}numerations_list`],
             'rc_centers_list': bundle.inputData?.[`${keyPrefix}rc_centers_list`],
             'payment_accounts_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}payment_accounts_list`], `${keyPrefix}payment_accounts_list`, PaymentAccount),
