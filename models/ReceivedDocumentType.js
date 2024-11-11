@@ -8,6 +8,7 @@ module.exports = {
                     'expense',
                     'passive_credit_note',
                     'passive_delivery_note',
+                    'self_invoice',
                 ],
             }
         )
