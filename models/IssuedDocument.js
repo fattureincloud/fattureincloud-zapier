@@ -404,6 +404,11 @@ module.exports = {
                 ],
             },
             {
+                key: `${keyPrefix}price_list_id`,
+                label: `Price list id - [${labelPrefix}price_list_id]`,
+                type: 'string',
+            },
+            {
                 key: `${keyPrefix}locked`,
                 label: `Issued Document can't be edited - [${labelPrefix}locked]`,
                 type: 'boolean',
@@ -505,6 +510,7 @@ module.exports = {
             'attachment_token': bundle.inputData?.[`${keyPrefix}attachment_token`],
             'ei_raw': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}ei_raw`], `${keyPrefix}ei_raw`),
             'ei_status': bundle.inputData?.[`${keyPrefix}ei_status`],
+            'price_list_id': bundle.inputData?.[`${keyPrefix}price_list_id`],
             'locked': bundle.inputData?.[`${keyPrefix}locked`],
             'created_at': bundle.inputData?.[`${keyPrefix}created_at`],
             'updated_at': bundle.inputData?.[`${keyPrefix}updated_at`],
