@@ -23,7 +23,7 @@ module.exports = {
                 },
                 {
                     key: 'price_list_id',
-                    label: '',
+                    label: 'The ID of the price list',
                     type: 'string',
                     required: true,
                 },

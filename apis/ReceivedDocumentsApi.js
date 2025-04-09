@@ -67,7 +67,7 @@ module.exports = {
         key: 'deleteBinReceivedDocument',
         noun: 'Received Documents',
         display: {
-            label: '',
+            label: 'Delete Bin Received Document',
             description: 'Delete Bin Received Document',
             hidden: false,
         },
@@ -678,7 +678,7 @@ module.exports = {
         key: 'recoverBinReceivedDocument',
         noun: 'Received Documents',
         display: {
-            label: '',
+            label: 'Recover Received Document From The Bin',
             description: 'Recover Received Document From The Bin',
             hidden: false,
         },
@@ -764,7 +764,7 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        
+
                         'Accept': 'application/json',
                     },
                     params: {
