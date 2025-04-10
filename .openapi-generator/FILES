@@ -7,6 +7,7 @@ apis/EmailsApi.js
 apis/InfoApi.js
 apis/IssuedDocumentsApi.js
 apis/IssuedEInvoicesApi.js
+apis/PriceListsApi.js
 apis/ProductsApi.js
 apis/ReceiptsApi.js
 apis/ReceivedDocumentsApi.js
@@ -75,6 +76,7 @@ models/EmailSchedule.js
 models/EmailSchedule_include.js
 models/EmailStatus.js
 models/Entity.js
+models/EntityClientPreCreateInfo.js
 models/EntityType.js
 models/EventType.js
 models/F24.js
@@ -82,12 +84,15 @@ models/F24Status.js
 models/FattureInCloudPlanType.js
 models/FunctionStatus.js
 models/GetArchiveDocumentResponse.js
+models/GetBinIssuedDocumentResponse.js
+models/GetBinReceivedDocumentResponse.js
 models/GetCashbookEntryResponse.js
 models/GetClientResponse.js
 models/GetCompanyInfoResponse.js
 models/GetCompanyPlanUsageResponse.js
 models/GetEInvoiceRejectionReasonResponse.js
 models/GetEmailDataResponse.js
+models/GetEntityClientPreCreateInfoResponse.js
 models/GetExistingIssuedDocumentTotalsRequest.js
 models/GetExistingIssuedDocumentTotalsResponse.js
 models/GetExistingReceivedDocumentTotalsRequest.js
@@ -101,6 +106,7 @@ models/GetNewReceivedDocumentTotalsRequest.js
 models/GetNewReceivedDocumentTotalsResponse.js
 models/GetPaymentAccountResponse.js
 models/GetPaymentMethodResponse.js
+models/GetPriceListItemsResponse.js
 models/GetProductResponse.js
 models/GetReceiptPreCreateInfoResponse.js
 models/GetReceiptResponse.js
@@ -133,6 +139,8 @@ models/Language.js
 models/ListArchiveCategoriesResponse.js
 models/ListArchiveDocumentsResponse.js
 models/ListArchiveDocumentsResponsePage.js
+models/ListBinIssuedDocuments.js
+models/ListBinReceivedDocuments.js
 models/ListCashbookEntriesResponse.js
 models/ListCitiesResponse.js
 models/ListClientsResponse.js
@@ -153,6 +161,7 @@ models/ListIssuedDocumentsResponsePage.js
 models/ListLanguagesResponse.js
 models/ListPaymentAccountsResponse.js
 models/ListPaymentMethodsResponse.js
+models/ListPriceListsResponse.js
 models/ListProductCategoriesResponse.js
 models/ListProductsResponse.js
 models/ListProductsResponsePage.js
@@ -208,6 +217,10 @@ models/PaymentTermsType.js
 models/PermissionLevel.js
 models/Permissions.js
 models/Permissions_fic_issued_documents_detailed.js
+models/PriceList.js
+models/PriceListItem.js
+models/PriceListPricesType.js
+models/PriceListType.js
 models/Product.js
 models/Receipt.js
 models/ReceiptItemsListItem.js
@@ -249,9 +262,12 @@ models/VerifyEInvoiceXmlErrorResponse_error_validation_result.js
 models/VerifyEInvoiceXmlErrorResponse_extra.js
 models/VerifyEInvoiceXmlResponse.js
 models/VerifyEInvoiceXmlResponse_data.js
+models/VerifyWebhooksSubscription.js
+models/VerifyWebhooksSubscriptionRequest.js
 models/WebhooksSubscription.js
 models/WebhooksSubscriptionConfig.js
 models/WebhooksSubscriptionMapping.js
+models/WebhooksSubscriptionVerificationMethod.js
 operations/actions.js
 package.json
 samples/ArchiveApi.js
@@ -262,6 +278,7 @@ samples/EmailsApi.js
 samples/InfoApi.js
 samples/IssuedDocumentsApi.js
 samples/IssuedEInvoicesApi.js
+samples/PriceListsApi.js
 samples/ProductsApi.js
 samples/ReceiptsApi.js
 samples/ReceivedDocumentsApi.js

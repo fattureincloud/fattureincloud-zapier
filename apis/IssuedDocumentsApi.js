@@ -1,6 +1,7 @@
 const samples = require('../samples/IssuedDocumentsApi');
 const CreateIssuedDocumentRequest = require('../models/CreateIssuedDocumentRequest');
 const CreateIssuedDocumentResponse = require('../models/CreateIssuedDocumentResponse');
+const GetBinIssuedDocumentResponse = require('../models/GetBinIssuedDocumentResponse');
 const GetEmailDataResponse = require('../models/GetEmailDataResponse');
 const GetExistingIssuedDocumentTotalsRequest = require('../models/GetExistingIssuedDocumentTotalsRequest');
 const GetExistingIssuedDocumentTotalsResponse = require('../models/GetExistingIssuedDocumentTotalsResponse');
@@ -9,6 +10,7 @@ const GetIssuedDocumentResponse = require('../models/GetIssuedDocumentResponse')
 const GetNewIssuedDocumentTotalsRequest = require('../models/GetNewIssuedDocumentTotalsRequest');
 const GetNewIssuedDocumentTotalsResponse = require('../models/GetNewIssuedDocumentTotalsResponse');
 const JoinIssuedDocumentsResponse = require('../models/JoinIssuedDocumentsResponse');
+const ListBinIssuedDocuments = require('../models/ListBinIssuedDocuments');
 const ListIssuedDocumentsResponse = require('../models/ListIssuedDocumentsResponse');
 const ModifyIssuedDocumentRequest = require('../models/ModifyIssuedDocumentRequest');
 const ModifyIssuedDocumentResponse = require('../models/ModifyIssuedDocumentResponse');
@@ -63,6 +65,55 @@ module.exports = {
                 })
             },
             sample: samples['CreateIssuedDocumentResponseSample']
+        }
+    },
+    deleteBinIssuedDocument: {
+        key: 'deleteBinIssuedDocument',
+        noun: 'Issued Documents',
+        display: {
+            label: '',
+            description: 'Delete Bin Issued Document',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/bin/issued_documents/{document_id}'),
+                    method: 'DELETE',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': '',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deleteBinIssuedDocument', response.json);
+                    return results;
+                })
+            },
+            sample: { data: {} }
         }
     },
     deleteIssuedDocument: {
@@ -161,6 +212,56 @@ module.exports = {
                 })
             },
             sample: { data: {} }
+        }
+    },
+    getBinIssuedDocument: {
+        key: 'getBinIssuedDocument',
+        noun: 'Issued Documents',
+        display: {
+            label: 'Get Bin Issued Documents List',
+            description: 'Get bin issued documents detail',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+                ...GetBinIssuedDocumentResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/bin/issued_documents/{document_id}'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getBinIssuedDocument', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetBinIssuedDocumentResponseSample']
         }
     },
     getEmailData: {
@@ -514,6 +615,50 @@ module.exports = {
             sample: samples['JoinIssuedDocumentsResponseSample']
         }
     },
+    listBinIssuedDocuments: {
+        key: 'listBinIssuedDocuments',
+        noun: 'Issued Documents',
+        display: {
+            label: 'Get Bin Issued Documents List',
+            description: 'Get bin issued documents list',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+                ...ListBinIssuedDocuments.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/bin/issued_documents'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'listBinIssuedDocuments', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ListBinIssuedDocumentsSample']
+        }
+    },
     listIssuedDocuments: {
         key: 'listIssuedDocuments',
         noun: 'Issued Documents',
@@ -678,6 +823,55 @@ module.exports = {
                 })
             },
             sample: samples['ModifyIssuedDocumentResponseSample']
+        }
+    },
+    recoverBinIssuedDocument: {
+        key: 'recoverBinIssuedDocument',
+        noun: 'Issued Documents',
+        display: {
+            label: '',
+            description: 'Recover Issued Document From The Bin',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/bin/issued_documents/{document_id}/recover'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': '',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'recoverBinIssuedDocument', response.json);
+                    return results;
+                })
+            },
+            sample: { data: {} }
         }
     },
     scheduleEmail: {
