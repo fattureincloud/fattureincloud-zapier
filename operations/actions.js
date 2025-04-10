@@ -15,7 +15,7 @@ const SuppliersApi = require('../apis/SuppliersApi');
 const TaxesApi = require('../apis/TaxesApi');
 const UserApi = require('../apis/UserApi');
 const WebhooksApi = require('../apis/WebhooksApi');
-const { triggerMiddleware, isTrigger, searchMiddleware, hasSearchRequisites, isSearchAction, isCreateAction, createMiddleware } = require('../utils/utils');
+const { triggerMiddleware, isTrigger, searchMiddleware, hasSearchRequisites, isSearchAction, isCreateAction } = require('../utils/utils');
 
 const actions = {
     [ArchiveApi.createArchiveDocument.key]: ArchiveApi.createArchiveDocument,
@@ -38,21 +38,21 @@ const actions = {
     [CompaniesApi.getCompanyInfo.key]: CompaniesApi.getCompanyInfo,
     [CompaniesApi.getCompanyPlanUsage.key]: CompaniesApi.getCompanyPlanUsage,
     [EmailsApi.listEmails.key]: EmailsApi.listEmails,
-    [InfoApi.listArchiveCategories.key]: InfoApi.listArchiveCategories,
-    [InfoApi.listCities.key]: InfoApi.listCities,
-    [InfoApi.listCostCenters.key]: InfoApi.listCostCenters,
-    [InfoApi.listCountries.key]: InfoApi.listCountries,
-    [InfoApi.listCurrencies.key]: InfoApi.listCurrencies,
-    [InfoApi.listDeliveryNotesDefaultCausals.key]: InfoApi.listDeliveryNotesDefaultCausals,
-    [InfoApi.listDetailedCountries.key]: InfoApi.listDetailedCountries,
-    [InfoApi.listLanguages.key]: InfoApi.listLanguages,
+    [InfoApi.listArchiveCategories.key]: InfoApi.listArchiveCategories, //unused
+    [InfoApi.listCities.key]: InfoApi.listCities, //unused
+    [InfoApi.listCostCenters.key]: InfoApi.listCostCenters, //unused
+    [InfoApi.listCountries.key]: InfoApi.listCountries, //unused
+    [InfoApi.listCurrencies.key]: InfoApi.listCurrencies, //unused
+    [InfoApi.listDeliveryNotesDefaultCausals.key]: InfoApi.listDeliveryNotesDefaultCausals, //unused
+    [InfoApi.listDetailedCountries.key]: InfoApi.listDetailedCountries, //unused
+    [InfoApi.listLanguages.key]: InfoApi.listLanguages, //unused
     [InfoApi.listPaymentAccounts.key]: InfoApi.listPaymentAccounts,
     [InfoApi.listPaymentMethods.key]: InfoApi.listPaymentMethods,
-    [InfoApi.listProductCategories.key]: InfoApi.listProductCategories,
-    [InfoApi.listReceivedDocumentCategories.key]: InfoApi.listReceivedDocumentCategories,
-    [InfoApi.listRevenueCenters.key]: InfoApi.listRevenueCenters,
-    [InfoApi.listTemplates.key]: InfoApi.listTemplates,
-    [InfoApi.listUnitsOfMeasure.key]: InfoApi.listUnitsOfMeasure,
+    [InfoApi.listProductCategories.key]: InfoApi.listProductCategories, //unused
+    [InfoApi.listReceivedDocumentCategories.key]: InfoApi.listReceivedDocumentCategories, //unused
+    [InfoApi.listRevenueCenters.key]: InfoApi.listRevenueCenters, //unused
+    [InfoApi.listTemplates.key]: InfoApi.listTemplates, //unused
+    [InfoApi.listUnitsOfMeasure.key]: InfoApi.listUnitsOfMeasure, //unused
     [InfoApi.listVatTypes.key]: InfoApi.listVatTypes,
     [IssuedDocumentsApi.createIssuedDocument.key]: IssuedDocumentsApi.createIssuedDocument,
     [IssuedDocumentsApi.deleteBinIssuedDocument.key]: IssuedDocumentsApi.deleteBinIssuedDocument,
@@ -141,6 +141,6 @@ const actions = {
 
 module.exports = {
     searchActions: () => Object.entries(actions).reduce((actions, [key, value]) => isSearchAction(key) && hasSearchRequisites(value) ? {...actions, [key]: searchMiddleware(value)} : actions, {}),
-    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => isCreateAction(key) ? {...actions, [key]: createMiddleware(value)} : actions, {}),
+    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => isCreateAction(key) ? {...actions, [key]: value} : actions, {}),
     triggers: () => Object.entries(actions).reduce((actions, [key, value]) => isTrigger(key) ? {...actions, [key]: triggerMiddleware(value)} : actions, {}),
 }
