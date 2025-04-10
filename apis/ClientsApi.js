@@ -2,6 +2,7 @@ const samples = require('../samples/ClientsApi');
 const CreateClientRequest = require('../models/CreateClientRequest');
 const CreateClientResponse = require('../models/CreateClientResponse');
 const GetClientResponse = require('../models/GetClientResponse');
+const GetEntityClientPreCreateInfoResponse = require('../models/GetEntityClientPreCreateInfoResponse');
 const ListClientsResponse = require('../models/ListClientsResponse');
 const ModifyClientRequest = require('../models/ModifyClientRequest');
 const ModifyClientResponse = require('../models/ModifyClientResponse');
@@ -167,6 +168,50 @@ module.exports = {
                 })
             },
             sample: samples['GetClientResponseSample']
+        }
+    },
+    getClientInfo: {
+        key: 'getClientInfo',
+        noun: 'Clients',
+        display: {
+            label: 'Get Client info',
+            description: 'Retrieves the information useful while creating a new Client.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+                ...GetEntityClientPreCreateInfoResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/entities/clients/info'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getClientInfo', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetEntityClientPreCreateInfoResponseSample']
         }
     },
     listClients: {

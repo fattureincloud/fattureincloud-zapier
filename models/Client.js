@@ -149,14 +149,14 @@ module.exports = {
                 type: 'boolean',
             },
             {
-                key: `${keyPrefix}ei_code`,
-                label: `Client e-invoice code  - [${labelPrefix}ei_code]`,
-                type: 'string',
-            },
-            {
                 key: `${keyPrefix}discount_highlight`,
                 label: `Highlight Discount - [${labelPrefix}discount_highlight]`,
                 type: 'boolean',
+            },
+            {
+                key: `${keyPrefix}ei_code`,
+                label: `Client e-invoice code  - [${labelPrefix}ei_code]`,
+                type: 'string',
             },
             {
                 key: `${keyPrefix}default_discount`,
@@ -176,6 +176,11 @@ module.exports = {
             {
                 key: `${keyPrefix}intent_declaration_protocol_date`,
                 label: `Client intent declaration protocol date - [${labelPrefix}intent_declaration_protocol_date]`,
+                type: 'string',
+            },
+            {
+                key: `${keyPrefix}price_list_id`,
+                label: `Price list id - [${labelPrefix}price_list_id]`,
                 type: 'string',
             },
             {
@@ -223,12 +228,13 @@ module.exports = {
             'bank_swift_code': bundle.inputData?.[`${keyPrefix}bank_swift_code`],
             'shipping_address': bundle.inputData?.[`${keyPrefix}shipping_address`],
             'e_invoice': bundle.inputData?.[`${keyPrefix}e_invoice`],
-            'ei_code': bundle.inputData?.[`${keyPrefix}ei_code`],
             'discount_highlight': bundle.inputData?.[`${keyPrefix}discount_highlight`],
+            'ei_code': bundle.inputData?.[`${keyPrefix}ei_code`],
             'default_discount': bundle.inputData?.[`${keyPrefix}default_discount`],
             'has_intent_declaration': bundle.inputData?.[`${keyPrefix}has_intent_declaration`],
             'intent_declaration_protocol_number': bundle.inputData?.[`${keyPrefix}intent_declaration_protocol_number`],
             'intent_declaration_protocol_date': bundle.inputData?.[`${keyPrefix}intent_declaration_protocol_date`],
+            'price_list_id': bundle.inputData?.[`${keyPrefix}price_list_id`],
             'created_at': bundle.inputData?.[`${keyPrefix}created_at`],
             'updated_at': bundle.inputData?.[`${keyPrefix}updated_at`],
         }

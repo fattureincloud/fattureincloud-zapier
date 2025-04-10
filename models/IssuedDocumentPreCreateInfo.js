@@ -7,6 +7,7 @@ const IssuedDocumentPreCreateInfo_items_default_values = require('../models/Issu
 const Language = require('../models/Language');
 const PaymentAccount = require('../models/PaymentAccount');
 const PaymentMethod = require('../models/PaymentMethod');
+const PriceList = require('../models/PriceList');
 const VatType = require('../models/VatType');
 
 module.exports = {
@@ -16,12 +17,12 @@ module.exports = {
             {
                 key: `${keyPrefix}numerations`,
                 label: `[${labelPrefix}numerations]`,
-                type: 'string',
+                type: 'object',
             },
             {
                 key: `${keyPrefix}dn_numerations`,
                 label: `[${labelPrefix}dn_numerations]`,
-                type: 'string',
+                type: 'object',
             },
             ...IssuedDocumentPreCreateInfo_default_values.fields(`${keyPrefix}default_values`, isInput),
             ...IssuedDocumentPreCreateInfo_extra_data_default_values.fields(`${keyPrefix}extra_data_default_values`, isInput),
@@ -72,13 +73,18 @@ module.exports = {
                 label: `[${labelPrefix}languages_list]`,
                 children: Language.fields(`${keyPrefix}languages_list${!isInput ? '[]' : ''}`, isInput, true), 
             },
+            {
+                key: `${keyPrefix}price_lists`,
+                label: `[${labelPrefix}price_lists]`,
+                children: PriceList.fields(`${keyPrefix}price_lists${!isInput ? '[]' : ''}`, isInput, true), 
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'numerations': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}numerations`], `${keyPrefix}numerations`),
-            'dn_numerations': utils.jsonFieldToObject(bundle.inputData?.[`${keyPrefix}dn_numerations`], `${keyPrefix}dn_numerations`),
+            'numerations': bundle.inputData?.[`${keyPrefix}numerations`],
+            'dn_numerations': bundle.inputData?.[`${keyPrefix}dn_numerations`],
             'default_values': utils.removeIfEmpty(IssuedDocumentPreCreateInfo_default_values.mapping(bundle, `${keyPrefix}default_values`)),
             'extra_data_default_values': utils.removeIfEmpty(IssuedDocumentPreCreateInfo_extra_data_default_values.mapping(bundle, `${keyPrefix}extra_data_default_values`)),
             'items_default_values': utils.removeIfEmpty(IssuedDocumentPreCreateInfo_items_default_values.mapping(bundle, `${keyPrefix}items_default_values`)),
@@ -91,6 +97,7 @@ module.exports = {
             'payment_accounts_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}payment_accounts_list`], `${keyPrefix}payment_accounts_list`, PaymentAccount),
             'vat_types_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}vat_types_list`], `${keyPrefix}vat_types_list`, VatType),
             'languages_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}languages_list`], `${keyPrefix}languages_list`, Language),
+            'price_lists': utils.childMapping(bundle.inputData?.[`${keyPrefix}price_lists`], `${keyPrefix}price_lists`, PriceList),
         }
     },
 }

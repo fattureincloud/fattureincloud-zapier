@@ -1,6 +1,7 @@
 const utils = require('../utils/utils');
 const EventType = require('../models/EventType');
 const WebhooksSubscriptionConfig = require('../models/WebhooksSubscriptionConfig');
+const WebhooksSubscriptionVerificationMethod = require('../models/WebhooksSubscriptionVerificationMethod');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -28,6 +29,10 @@ module.exports = {
                 ...EventType.fields(`${keyPrefix}types`, isInput),
             },
             ...WebhooksSubscriptionConfig.fields(`${keyPrefix}config`, isInput),
+            {
+                key: `${keyPrefix}verification_method`,
+                ...WebhooksSubscriptionVerificationMethod.fields(`${keyPrefix}verification_method`, isInput),
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -38,6 +43,7 @@ module.exports = {
             'verified': bundle.inputData?.[`${keyPrefix}verified`],
             'types': utils.childMapping(bundle.inputData?.[`${keyPrefix}types`], `${keyPrefix}types`, EventType),
             'config': utils.removeIfEmpty(WebhooksSubscriptionConfig.mapping(bundle, `${keyPrefix}config`)),
+            'verification_method': bundle.inputData?.[`${keyPrefix}verification_method`],
         }
     },
 }

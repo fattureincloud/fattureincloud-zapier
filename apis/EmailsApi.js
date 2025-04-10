@@ -20,6 +20,40 @@ module.exports = {
                     type: 'integer',
                     required: true,
                 },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                    ],
+                },
+                {
+                    key: 'sort',
+                    label: 'List of comma-separated fields for result sorting (minus for desc sorting).',
+                    type: 'string',
+                },
+                {
+                    key: 'page',
+                    label: 'The page to retrieve.',
+                    type: 'integer',
+                },
+                {
+                    key: 'per_page',
+                    label: 'The size of the page.',
+                    type: 'integer',
+                },
+                {
+                    key: 'q',
+                    label: 'Query for filtering the results.',
+                    type: 'string',
+                },
             ],
             outputFields: [
                 ...ListEmailsResponse.fields('', false),
@@ -34,6 +68,12 @@ module.exports = {
                         'Accept': 'application/json',
                     },
                     params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                        'sort': bundle.inputData?.['sort'],
+                        'page': bundle.inputData?.['page'],
+                        'per_page': bundle.inputData?.['per_page'],
+                        'q': bundle.inputData?.['q'],
                     },
                     body: {
                     },
