@@ -26,7 +26,7 @@ module.exports = {
             {
                 key: `${keyPrefix}payment_accounts_list`,
                 label: `[${labelPrefix}payment_accounts_list]`,
-                children: PaymentAccount.fields(`${keyPrefix}payment_accounts_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: PaymentAccount.fields(`${keyPrefix}payment_accounts_list${!isInput ? '[]' : ''}`, isInput, true),
             },
             {
                 key: `${keyPrefix}categories_list`,
@@ -37,7 +37,7 @@ module.exports = {
             {
                 key: `${keyPrefix}vat_types_list`,
                 label: `[${labelPrefix}vat_types_list]`,
-                children: VatType.fields(`${keyPrefix}vat_types_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: VatType.fields(`${keyPrefix}vat_types_list${!isInput ? '[]' : ''}`, isInput, true),
             },
         ]
     },

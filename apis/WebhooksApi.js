@@ -5,6 +5,7 @@ const GetWebhooksSubscriptionResponse = require('../models/GetWebhooksSubscripti
 const ListWebhooksSubscriptionsResponse = require('../models/ListWebhooksSubscriptionsResponse');
 const ModifyWebhooksSubscriptionRequest = require('../models/ModifyWebhooksSubscriptionRequest');
 const ModifyWebhooksSubscriptionResponse = require('../models/ModifyWebhooksSubscriptionResponse');
+const VerifyWebhooksSubscriptionRequest = require('../models/VerifyWebhooksSubscriptionRequest');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -247,6 +248,57 @@ module.exports = {
                 })
             },
             sample: samples['ModifyWebhooksSubscriptionResponseSample']
+        }
+    },
+    verifyWebhooksSubscription: {
+        key: 'verifyWebhooksSubscription',
+        noun: 'Webhooks',
+        display: {
+            label: 'Verify Webhooks Subscription',
+            description: 'Verify a webhook subscription.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'subscription_id',
+                    label: 'The ID of the subscription.',
+                    type: 'string',
+                    required: true,
+                },
+                ...VerifyWebhooksSubscriptionRequest.fields(),
+            ],
+            outputFields: [
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/subscriptions/{subscription_id}/verify'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': '',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...VerifyWebhooksSubscriptionRequest.mapping(bundle),
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'verifyWebhooksSubscription', response.json);
+                    return results;
+                })
+            },
+            sample: { data: {} }
         }
     },
 }

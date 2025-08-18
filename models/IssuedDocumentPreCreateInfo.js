@@ -7,6 +7,7 @@ const IssuedDocumentPreCreateInfo_items_default_values = require('../models/Issu
 const Language = require('../models/Language');
 const PaymentAccount = require('../models/PaymentAccount');
 const PaymentMethod = require('../models/PaymentMethod');
+const PriceList = require('../models/PriceList');
 const VatType = require('../models/VatType');
 
 module.exports = {
@@ -35,42 +36,47 @@ module.exports = {
             {
                 key: `${keyPrefix}currencies_list`,
                 label: `[${labelPrefix}currencies_list]`,
-                children: Currency.fields(`${keyPrefix}currencies_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: Currency.fields(`${keyPrefix}currencies_list${!isInput ? '[]' : ''}`, isInput, true),
             },
             {
                 key: `${keyPrefix}templates_list`,
                 label: `[${labelPrefix}templates_list]`,
-                children: DocumentTemplate.fields(`${keyPrefix}templates_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: DocumentTemplate.fields(`${keyPrefix}templates_list${!isInput ? '[]' : ''}`, isInput, true),
             },
             {
                 key: `${keyPrefix}dn_templates_list`,
                 label: `[${labelPrefix}dn_templates_list]`,
-                children: DocumentTemplate.fields(`${keyPrefix}dn_templates_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: DocumentTemplate.fields(`${keyPrefix}dn_templates_list${!isInput ? '[]' : ''}`, isInput, true),
             },
             {
                 key: `${keyPrefix}ai_templates_list`,
                 label: `[${labelPrefix}ai_templates_list]`,
-                children: DocumentTemplate.fields(`${keyPrefix}ai_templates_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: DocumentTemplate.fields(`${keyPrefix}ai_templates_list${!isInput ? '[]' : ''}`, isInput, true),
             },
             {
                 key: `${keyPrefix}payment_methods_list`,
                 label: `[${labelPrefix}payment_methods_list]`,
-                children: PaymentMethod.fields(`${keyPrefix}payment_methods_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: PaymentMethod.fields(`${keyPrefix}payment_methods_list${!isInput ? '[]' : ''}`, isInput, true),
             },
             {
                 key: `${keyPrefix}payment_accounts_list`,
                 label: `[${labelPrefix}payment_accounts_list]`,
-                children: PaymentAccount.fields(`${keyPrefix}payment_accounts_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: PaymentAccount.fields(`${keyPrefix}payment_accounts_list${!isInput ? '[]' : ''}`, isInput, true),
             },
             {
                 key: `${keyPrefix}vat_types_list`,
                 label: `[${labelPrefix}vat_types_list]`,
-                children: VatType.fields(`${keyPrefix}vat_types_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: VatType.fields(`${keyPrefix}vat_types_list${!isInput ? '[]' : ''}`, isInput, true),
             },
             {
                 key: `${keyPrefix}languages_list`,
                 label: `[${labelPrefix}languages_list]`,
-                children: Language.fields(`${keyPrefix}languages_list${!isInput ? '[]' : ''}`, isInput, true), 
+                children: Language.fields(`${keyPrefix}languages_list${!isInput ? '[]' : ''}`, isInput, true),
+            },
+            {
+                key: `${keyPrefix}price_lists`,
+                label: `[${labelPrefix}price_lists]`,
+                children: PriceList.fields(`${keyPrefix}price_lists${!isInput ? '[]' : ''}`, isInput, true),
             },
         ]
     },
@@ -91,6 +97,7 @@ module.exports = {
             'payment_accounts_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}payment_accounts_list`], `${keyPrefix}payment_accounts_list`, PaymentAccount),
             'vat_types_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}vat_types_list`], `${keyPrefix}vat_types_list`, VatType),
             'languages_list': utils.childMapping(bundle.inputData?.[`${keyPrefix}languages_list`], `${keyPrefix}languages_list`, Language),
+            'price_lists': utils.childMapping(bundle.inputData?.[`${keyPrefix}price_lists`], `${keyPrefix}price_lists`, PriceList),
         }
     },
 }

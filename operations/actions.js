@@ -6,6 +6,7 @@ const EmailsApi = require('../apis/EmailsApi');
 const InfoApi = require('../apis/InfoApi');
 const IssuedDocumentsApi = require('../apis/IssuedDocumentsApi');
 const IssuedEInvoicesApi = require('../apis/IssuedEInvoicesApi');
+const PriceListsApi = require('../apis/PriceListsApi');
 const ProductsApi = require('../apis/ProductsApi');
 const ReceiptsApi = require('../apis/ReceiptsApi');
 const ReceivedDocumentsApi = require('../apis/ReceivedDocumentsApi');
@@ -31,38 +32,43 @@ const actions = {
     [ClientsApi.createClient.key]: ClientsApi.createClient,
     [ClientsApi.deleteClient.key]: ClientsApi.deleteClient,
     [ClientsApi.getClient.key]: ClientsApi.getClient,
+    [ClientsApi.getClientInfo.key]: ClientsApi.getClientInfo,
     [ClientsApi.listClients.key]: ClientsApi.listClients,
     [ClientsApi.modifyClient.key]: ClientsApi.modifyClient,
     [CompaniesApi.getCompanyInfo.key]: CompaniesApi.getCompanyInfo,
     [CompaniesApi.getCompanyPlanUsage.key]: CompaniesApi.getCompanyPlanUsage,
     [EmailsApi.listEmails.key]: EmailsApi.listEmails,
-    [InfoApi.listArchiveCategories.key]: InfoApi.listArchiveCategories, // unused
-    [InfoApi.listCities.key]: InfoApi.listCities, // unused
-    [InfoApi.listCostCenters.key]: InfoApi.listCostCenters, // unused
-    [InfoApi.listCountries.key]: InfoApi.listCountries, // unused
-    [InfoApi.listCurrencies.key]: InfoApi.listCurrencies, // unused
-    [InfoApi.listDeliveryNotesDefaultCausals.key]: InfoApi.listDeliveryNotesDefaultCausals, // unused
-    [InfoApi.listDetailedCountries.key]: InfoApi.listDetailedCountries, // unused
-    [InfoApi.listLanguages.key]: InfoApi.listLanguages, // unused
+    [InfoApi.listArchiveCategories.key]: InfoApi.listArchiveCategories,
+    [InfoApi.listCities.key]: InfoApi.listCities,
+    [InfoApi.listCostCenters.key]: InfoApi.listCostCenters,
+    [InfoApi.listCountries.key]: InfoApi.listCountries,
+    [InfoApi.listCurrencies.key]: InfoApi.listCurrencies,
+    [InfoApi.listDeliveryNotesDefaultCausals.key]: InfoApi.listDeliveryNotesDefaultCausals,
+    [InfoApi.listDetailedCountries.key]: InfoApi.listDetailedCountries,
+    [InfoApi.listLanguages.key]: InfoApi.listLanguages,
     [InfoApi.listPaymentAccounts.key]: InfoApi.listPaymentAccounts,
     [InfoApi.listPaymentMethods.key]: InfoApi.listPaymentMethods,
-    [InfoApi.listProductCategories.key]: InfoApi.listProductCategories, // unused
-    [InfoApi.listReceivedDocumentCategories.key]: InfoApi.listReceivedDocumentCategories, // unused
-    [InfoApi.listRevenueCenters.key]: InfoApi.listRevenueCenters, // unused
-    [InfoApi.listTemplates.key]: InfoApi.listTemplates, 
-    [InfoApi.listUnitsOfMeasure.key]: InfoApi.listUnitsOfMeasure, // unused
+    [InfoApi.listProductCategories.key]: InfoApi.listProductCategories,
+    [InfoApi.listReceivedDocumentCategories.key]: InfoApi.listReceivedDocumentCategories,
+    [InfoApi.listRevenueCenters.key]: InfoApi.listRevenueCenters,
+    [InfoApi.listTemplates.key]: InfoApi.listTemplates,
+    [InfoApi.listUnitsOfMeasure.key]: InfoApi.listUnitsOfMeasure,
     [InfoApi.listVatTypes.key]: InfoApi.listVatTypes,
     [IssuedDocumentsApi.createIssuedDocument.key]: IssuedDocumentsApi.createIssuedDocument,
+    [IssuedDocumentsApi.deleteBinIssuedDocument.key]: IssuedDocumentsApi.deleteBinIssuedDocument,
     [IssuedDocumentsApi.deleteIssuedDocument.key]: IssuedDocumentsApi.deleteIssuedDocument,
     [IssuedDocumentsApi.deleteIssuedDocumentAttachment.key]: IssuedDocumentsApi.deleteIssuedDocumentAttachment,
+    [IssuedDocumentsApi.getBinIssuedDocument.key]: IssuedDocumentsApi.getBinIssuedDocument,
     [IssuedDocumentsApi.getEmailData.key]: IssuedDocumentsApi.getEmailData,
     [IssuedDocumentsApi.getExistingIssuedDocumentTotals.key]: IssuedDocumentsApi.getExistingIssuedDocumentTotals,
     [IssuedDocumentsApi.getIssuedDocument.key]: IssuedDocumentsApi.getIssuedDocument,
     [IssuedDocumentsApi.getIssuedDocumentPreCreateInfo.key]: IssuedDocumentsApi.getIssuedDocumentPreCreateInfo,
     [IssuedDocumentsApi.getNewIssuedDocumentTotals.key]: IssuedDocumentsApi.getNewIssuedDocumentTotals,
     [IssuedDocumentsApi.joinIssuedDocuments.key]: IssuedDocumentsApi.joinIssuedDocuments,
+    [IssuedDocumentsApi.listBinIssuedDocuments.key]: IssuedDocumentsApi.listBinIssuedDocuments,
     [IssuedDocumentsApi.listIssuedDocuments.key]: IssuedDocumentsApi.listIssuedDocuments,
     [IssuedDocumentsApi.modifyIssuedDocument.key]: IssuedDocumentsApi.modifyIssuedDocument,
+    [IssuedDocumentsApi.recoverBinIssuedDocument.key]: IssuedDocumentsApi.recoverBinIssuedDocument,
     [IssuedDocumentsApi.scheduleEmail.key]: IssuedDocumentsApi.scheduleEmail,
     [IssuedDocumentsApi.transformIssuedDocument.key]: IssuedDocumentsApi.transformIssuedDocument,
     [IssuedDocumentsApi.uploadIssuedDocumentAttachment.key]: IssuedDocumentsApi.uploadIssuedDocumentAttachment,
@@ -70,6 +76,8 @@ const actions = {
     [IssuedEInvoicesApi.getEInvoiceXml.key]: IssuedEInvoicesApi.getEInvoiceXml,
     [IssuedEInvoicesApi.sendEInvoice.key]: IssuedEInvoicesApi.sendEInvoice,
     [IssuedEInvoicesApi.verifyEInvoiceXml.key]: IssuedEInvoicesApi.verifyEInvoiceXml,
+    [PriceListsApi.getPriceListItems.key]: PriceListsApi.getPriceListItems,
+    [PriceListsApi.getPriceLists.key]: PriceListsApi.getPriceLists,
     [ProductsApi.createProduct.key]: ProductsApi.createProduct,
     [ProductsApi.deleteProduct.key]: ProductsApi.deleteProduct,
     [ProductsApi.getProduct.key]: ProductsApi.getProduct,
@@ -83,14 +91,18 @@ const actions = {
     [ReceiptsApi.listReceipts.key]: ReceiptsApi.listReceipts,
     [ReceiptsApi.modifyReceipt.key]: ReceiptsApi.modifyReceipt,
     [ReceivedDocumentsApi.createReceivedDocument.key]: ReceivedDocumentsApi.createReceivedDocument,
+    [ReceivedDocumentsApi.deleteBinReceivedDocument.key]: ReceivedDocumentsApi.deleteBinReceivedDocument,
     [ReceivedDocumentsApi.deleteReceivedDocument.key]: ReceivedDocumentsApi.deleteReceivedDocument,
     [ReceivedDocumentsApi.deleteReceivedDocumentAttachment.key]: ReceivedDocumentsApi.deleteReceivedDocumentAttachment,
+    [ReceivedDocumentsApi.getBinReceivedDocument.key]: ReceivedDocumentsApi.getBinReceivedDocument,
     [ReceivedDocumentsApi.getExistingReceivedDocumentTotals.key]: ReceivedDocumentsApi.getExistingReceivedDocumentTotals,
     [ReceivedDocumentsApi.getNewReceivedDocumentTotals.key]: ReceivedDocumentsApi.getNewReceivedDocumentTotals,
     [ReceivedDocumentsApi.getReceivedDocument.key]: ReceivedDocumentsApi.getReceivedDocument,
     [ReceivedDocumentsApi.getReceivedDocumentPreCreateInfo.key]: ReceivedDocumentsApi.getReceivedDocumentPreCreateInfo,
+    [ReceivedDocumentsApi.listBinReceivedDocuments.key]: ReceivedDocumentsApi.listBinReceivedDocuments,
     [ReceivedDocumentsApi.listReceivedDocuments.key]: ReceivedDocumentsApi.listReceivedDocuments,
     [ReceivedDocumentsApi.modifyReceivedDocument.key]: ReceivedDocumentsApi.modifyReceivedDocument,
+    [ReceivedDocumentsApi.recoverBinReceivedDocument.key]: ReceivedDocumentsApi.recoverBinReceivedDocument,
     [ReceivedDocumentsApi.uploadReceivedDocumentAttachment.key]: ReceivedDocumentsApi.uploadReceivedDocumentAttachment,
     [SettingsApi.createPaymentAccount.key]: SettingsApi.createPaymentAccount,
     [SettingsApi.createPaymentMethod.key]: SettingsApi.createPaymentMethod,
@@ -124,6 +136,7 @@ const actions = {
     [WebhooksApi.getWebhooksSubscription.key]: WebhooksApi.getWebhooksSubscription,
     [WebhooksApi.listWebhooksSubscriptions.key]: WebhooksApi.listWebhooksSubscriptions,
     [WebhooksApi.modifyWebhooksSubscription.key]: WebhooksApi.modifyWebhooksSubscription,
+    [WebhooksApi.verifyWebhooksSubscription.key]: WebhooksApi.verifyWebhooksSubscription,
 }
 
 module.exports = {

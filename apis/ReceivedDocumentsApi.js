@@ -1,12 +1,14 @@
 const samples = require('../samples/ReceivedDocumentsApi');
 const CreateReceivedDocumentRequest = require('../models/CreateReceivedDocumentRequest');
 const CreateReceivedDocumentResponse = require('../models/CreateReceivedDocumentResponse');
+const GetBinIssuedDocumentResponse = require('../models/GetBinIssuedDocumentResponse');
 const GetExistingReceivedDocumentTotalsRequest = require('../models/GetExistingReceivedDocumentTotalsRequest');
 const GetExistingReceivedDocumentTotalsResponse = require('../models/GetExistingReceivedDocumentTotalsResponse');
 const GetNewReceivedDocumentTotalsRequest = require('../models/GetNewReceivedDocumentTotalsRequest');
 const GetNewReceivedDocumentTotalsResponse = require('../models/GetNewReceivedDocumentTotalsResponse');
 const GetReceivedDocumentPreCreateInfoResponse = require('../models/GetReceivedDocumentPreCreateInfoResponse');
 const GetReceivedDocumentResponse = require('../models/GetReceivedDocumentResponse');
+const ListBinReceivedDocuments = require('../models/ListBinReceivedDocuments');
 const ListReceivedDocumentsResponse = require('../models/ListReceivedDocumentsResponse');
 const ModifyReceivedDocumentRequest = require('../models/ModifyReceivedDocumentRequest');
 const ModifyReceivedDocumentResponse = require('../models/ModifyReceivedDocumentResponse');
@@ -59,6 +61,55 @@ module.exports = {
                 })
             },
             sample: samples['CreateReceivedDocumentResponseSample']
+        }
+    },
+    deleteBinReceivedDocument: {
+        key: 'deleteBinReceivedDocument',
+        noun: 'Received Documents',
+        display: {
+            label: 'Delete Bin Received Document',
+            description: 'Delete Bin Received Document',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/bin/received_documents/{document_id}'),
+                    method: 'DELETE',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': '',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deleteBinReceivedDocument', response.json);
+                    return results;
+                })
+            },
+            sample: { data: {} }
         }
     },
     deleteReceivedDocument: {
@@ -157,6 +208,56 @@ module.exports = {
                 })
             },
             sample: { data: {} }
+        }
+    },
+    getBinReceivedDocument: {
+        key: 'getBinReceivedDocument',
+        noun: 'Received Documents',
+        display: {
+            label: 'Get Bin Received Documents List',
+            description: 'Get bin issued documents detail',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+                ...GetBinIssuedDocumentResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/bin/received_documents/{document_id}'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getBinReceivedDocument', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetBinIssuedDocumentResponseSample']
         }
     },
     getExistingReceivedDocumentTotals: {
@@ -380,6 +481,50 @@ module.exports = {
             sample: samples['GetReceivedDocumentPreCreateInfoResponseSample']
         }
     },
+    listBinReceivedDocuments: {
+        key: 'listBinReceivedDocuments',
+        noun: 'Received Documents',
+        display: {
+            label: 'Get Bin Received Documents List',
+            description: 'Get bin Received documents list',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+                ...ListBinReceivedDocuments.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/bin/received_documents'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'listBinReceivedDocuments', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ListBinReceivedDocumentsSample']
+        }
+    },
     listReceivedDocuments: {
         key: 'listReceivedDocuments',
         noun: 'Received Documents',
@@ -527,6 +672,55 @@ module.exports = {
                 })
             },
             sample: samples['ModifyReceivedDocumentResponseSample']
+        }
+    },
+    recoverBinReceivedDocument: {
+        key: 'recoverBinReceivedDocument',
+        noun: 'Received Documents',
+        display: {
+            label: 'Recover Received Document From The Bin',
+            description: 'Recover Received Document From The Bin',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/bin/received_documents/{document_id}/recover'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': '',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'recoverBinReceivedDocument', response.json);
+                    return results;
+                })
+            },
+            sample: { data: {} }
         }
     },
     uploadReceivedDocumentAttachment: {
