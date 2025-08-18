@@ -60,11 +60,6 @@ module.exports = {
                 type: 'boolean',
             },
             {
-                key: `${keyPrefix}sofort`,
-                label: `[${labelPrefix}sofort]`,
-                type: 'boolean',
-            },
-            {
                 key: `${keyPrefix}stock`,
                 label: `[${labelPrefix}stock]`,
                 type: 'boolean',
@@ -110,7 +105,6 @@ module.exports = {
             'receipts': bundle.inputData?.[`${keyPrefix}receipts`],
             'recurring': bundle.inputData?.[`${keyPrefix}recurring`],
             'smtp': bundle.inputData?.[`${keyPrefix}smtp`],
-            'sofort': bundle.inputData?.[`${keyPrefix}sofort`],
             'stock': bundle.inputData?.[`${keyPrefix}stock`],
             'subaccounts': bundle.inputData?.[`${keyPrefix}subaccounts`],
             'tessera_sanitaria': bundle.inputData?.[`${keyPrefix}tessera_sanitaria`],
