@@ -19,8 +19,8 @@ jobs:
     - id: setup-libraries
       name: Install libraries
       run: |
-        yarn global add zapier-platform-cli
-        yarn
+        npm install -g zapier-platform-cli@latest
+        yarn install
     
     - id: zapier-validate
       name: Zapier validate
