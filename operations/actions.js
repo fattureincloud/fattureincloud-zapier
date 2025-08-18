@@ -15,7 +15,7 @@ const SuppliersApi = require('../apis/SuppliersApi');
 const TaxesApi = require('../apis/TaxesApi');
 const UserApi = require('../apis/UserApi');
 const WebhooksApi = require('../apis/WebhooksApi');
-const { triggerMiddleware, isTrigger, searchMiddleware, hasSearchRequisites, isSearchAction, isCreateAction, createMiddleware } = require('../utils/utils');
+const { triggerMiddleware, isTrigger, searchMiddleware, hasSearchRequisites, isSearchAction, isCreateAction } = require('../utils/utils');
 
 const actions = {
     [ArchiveApi.createArchiveDocument.key]: ArchiveApi.createArchiveDocument,
@@ -141,6 +141,6 @@ const actions = {
 
 module.exports = {
     searchActions: () => Object.entries(actions).reduce((actions, [key, value]) => isSearchAction(key) && hasSearchRequisites(value) ? {...actions, [key]: searchMiddleware(value)} : actions, {}),
-    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => isCreateAction(key) ? {...actions, [key]: createMiddleware(value)} : actions, {}),
+    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => isCreateAction(key) ? {...actions, [key]: value} : actions, {}),
     triggers: () => Object.entries(actions).reduce((actions, [key, value]) => isTrigger(key) ? {...actions, [key]: triggerMiddleware(value)} : actions, {}),
 }
