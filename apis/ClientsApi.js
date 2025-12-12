@@ -174,7 +174,7 @@ module.exports = {
         key: 'getClientInfo',
         noun: 'Clients',
         display: {
-            label: 'Get Client Info',
+            label: 'Get Client info',
             description: 'Retrieves the information useful while creating a new Client.',
             hidden: false,
         },

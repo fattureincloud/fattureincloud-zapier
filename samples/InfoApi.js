@@ -9,6 +9,8 @@ module.exports = {
         {"data":["Italia","Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","..."]},
     "ListCurrenciesResponseSample": 
         {"data":[{"id":"AED","symbol":"AED","html_symbol":"AED","exchange_rate":"4.09500"},{"id":"EUR","symbol":"€","html_symbol":"&euro;","exchange_rate":"1.00000"}]},
+    "ListTemplatesResponseSample": 
+        {"data":[{"id":10,"name":"New Standard S1"},{"id":106,"name":"Minimalist"}]},
     "ListDeliveryNotesDefaultCausalsResponseSample": 
         {"data":["Vendita","Conto visione","Conto deposito","Conto vendita","Tentata vendita","Prestito d'uso","Conto lavorazione","Omaggio","Riparazione","Reso per accredito","Reso per sostituzione"]},
     "ListDetailedCountriesResponseSample": 
@@ -25,8 +27,6 @@ module.exports = {
         {"data":["Telefono e internet","Assicurazioni e quote","Auto ed altri veicoli","Computer e accessori","Server e hosting"]},
     "ListRevenueCentersResponseSample": 
         {"data":["Negozio Bergamo","Negozio Milano"]},
-    "ListTemplatesResponseSample": 
-        {"data":[{"id":10,"name":"New Standard S1"},{"id":106,"name":"Minimalist"}]},
     "ListUnitsOfMeasureResponseSample": 
         {"data":["pezzi","kg","litri","ore","giorni","km","mesi"]},
     "ListVatTypesResponseSample": 

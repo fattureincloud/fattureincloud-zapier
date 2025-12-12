@@ -678,8 +678,8 @@ module.exports = {
         key: 'recoverBinReceivedDocument',
         noun: 'Received Documents',
         display: {
-            label: 'Recover Received Document From the Bin',
-            description: 'Recover Received Document From the Bin',
+            label: 'Recover Received Document From The Bin',
+            description: 'Recover Received Document From The Bin',
             hidden: false,
         },
         operation: {
@@ -764,7 +764,7 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-
+                        
                         'Accept': 'application/json',
                     },
                     params: {
