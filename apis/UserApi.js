@@ -1,4 +1,5 @@
 const samples = require('../samples/UserApi');
+const AnyType = require('../models/AnyType');
 const GetUserInfoResponse = require('../models/GetUserInfoResponse');
 const ListUserCompaniesResponse = require('../models/ListUserCompaniesResponse');
 const utils = require('../utils/utils');

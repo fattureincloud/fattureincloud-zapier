@@ -1,4 +1,5 @@
 const samples = require('../samples/PriceListsApi');
+const AnyType = require('../models/AnyType');
 const GetPriceListItemsResponse = require('../models/GetPriceListItemsResponse');
 const ListPriceListsResponse = require('../models/ListPriceListsResponse');
 const utils = require('../utils/utils');

@@ -1,4 +1,5 @@
 const samples = require('../samples/ArchiveApi');
+const AnyType = require('../models/AnyType');
 const CreateArchiveDocumentRequest = require('../models/CreateArchiveDocumentRequest');
 const CreateArchiveDocumentResponse = require('../models/CreateArchiveDocumentResponse');
 const GetArchiveDocumentResponse = require('../models/GetArchiveDocumentResponse');
@@ -89,7 +90,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -140,6 +141,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -200,6 +202,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {

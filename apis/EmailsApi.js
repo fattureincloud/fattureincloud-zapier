@@ -1,4 +1,5 @@
 const samples = require('../samples/EmailsApi');
+const AnyType = require('../models/AnyType');
 const ListEmailsResponse = require('../models/ListEmailsResponse');
 const utils = require('../utils/utils');
 
@@ -32,6 +33,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {

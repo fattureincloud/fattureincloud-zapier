@@ -150,6 +150,16 @@ module.exports = {
                 label: `Received document last update date - [${labelPrefix}updated_at]`,
                 type: 'string',
             },
+            {
+                key: `${keyPrefix}ei_reception_date`,
+                label: `[Read Only] Received document e-invoice reception date, needs fic_view  fieldset - [${labelPrefix}ei_reception_date]`,
+                type: 'string',
+            },
+            {
+                key: `${keyPrefix}is_from_pending_expenses`,
+                label: `[Read Only] True if received document is generated from pending expenses,  needs fic_view fieldset - [${labelPrefix}is_from_pending_expenses]`,
+                type: 'boolean',
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -185,6 +195,8 @@ module.exports = {
             'locked': bundle.inputData?.[`${keyPrefix}locked`],
             'created_at': bundle.inputData?.[`${keyPrefix}created_at`],
             'updated_at': bundle.inputData?.[`${keyPrefix}updated_at`],
+            'ei_reception_date': bundle.inputData?.[`${keyPrefix}ei_reception_date`],
+            'is_from_pending_expenses': bundle.inputData?.[`${keyPrefix}is_from_pending_expenses`],
         }
     },
 }

@@ -1,4 +1,5 @@
 const samples = require('../samples/IssuedEInvoicesApi');
+const AnyType = require('../models/AnyType');
 const GetEInvoiceRejectionReasonResponse = require('../models/GetEInvoiceRejectionReasonResponse');
 const SendEInvoiceRequest = require('../models/SendEInvoiceRequest');
 const SendEInvoiceResponse = require('../models/SendEInvoiceResponse');
@@ -95,7 +96,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': 'text/xml',
+                        'Accept': 'text/xml, application/json',
                     },
                     params: {
                         'include_attachment': bundle.inputData?.['include_attachment'],

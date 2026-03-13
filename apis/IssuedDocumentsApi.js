@@ -1,4 +1,5 @@
 const samples = require('../samples/IssuedDocumentsApi');
+const AnyType = require('../models/AnyType');
 const CreateIssuedDocumentRequest = require('../models/CreateIssuedDocumentRequest');
 const CreateIssuedDocumentResponse = require('../models/CreateIssuedDocumentResponse');
 const GetBinIssuedDocumentResponse = require('../models/GetBinIssuedDocumentResponse');
@@ -100,7 +101,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -149,7 +150,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -198,7 +199,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -401,6 +402,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -707,6 +709,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {
@@ -829,8 +832,8 @@ module.exports = {
         key: 'recoverBinIssuedDocument',
         noun: 'Issued Documents',
         display: {
-            label: 'Recover Issued Document From the Bin',
-            description: 'Recover Issued Document From the Bin',
+            label: 'Recover Issued Document From The Bin',
+            description: 'Recover Issued Document From The Bin',
             hidden: false,
         },
         operation: {
@@ -858,7 +861,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -908,7 +911,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': 'application/json',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -1050,7 +1053,7 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-
+                        
                         'Accept': 'application/json',
                     },
                     params: {

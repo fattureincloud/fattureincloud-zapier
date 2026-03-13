@@ -1,4 +1,5 @@
 const samples = require('../samples/TaxesApi');
+const AnyType = require('../models/AnyType');
 const CreateF24Request = require('../models/CreateF24Request');
 const CreateF24Response = require('../models/CreateF24Response');
 const GetF24Response = require('../models/GetF24Response');
@@ -89,7 +90,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -138,7 +139,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -189,6 +190,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -249,6 +251,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {
