@@ -1,4 +1,5 @@
 const samples = require('../samples/ProductsApi');
+const AnyType = require('../models/AnyType');
 const CreateProductRequest = require('../models/CreateProductRequest');
 const CreateProductResponse = require('../models/CreateProductResponse');
 const GetProductResponse = require('../models/GetProductResponse');
@@ -87,7 +88,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -138,6 +139,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -198,6 +200,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {

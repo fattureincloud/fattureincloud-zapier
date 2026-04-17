@@ -1,4 +1,5 @@
 const samples = require('../samples/ReceiptsApi');
+const AnyType = require('../models/AnyType');
 const CreateReceiptRequest = require('../models/CreateReceiptRequest');
 const CreateReceiptResponse = require('../models/CreateReceiptResponse');
 const GetReceiptPreCreateInfoResponse = require('../models/GetReceiptPreCreateInfoResponse');
@@ -89,7 +90,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -140,6 +141,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -306,6 +308,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {

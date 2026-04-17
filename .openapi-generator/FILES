@@ -15,10 +15,10 @@ apis/SettingsApi.js
 apis/SuppliersApi.js
 apis/TaxesApi.js
 apis/UserApi.js
-apis/WebhooksApi.js
 authentication.js
 index.js
 models/ArchiveDocument.js
+models/Attachment.js
 models/AttachmentData.js
 models/CashbookEntry.js
 models/CashbookEntryKind.js
@@ -61,7 +61,6 @@ models/CreateSupplierRequest.js
 models/CreateSupplierResponse.js
 models/CreateVatTypeRequest.js
 models/CreateVatTypeResponse.js
-models/CreateWebhooksSubscriptionRequest.js
 models/CreateWebhooksSubscriptionResponse.js
 models/Currency.js
 models/DetailedCountry.js
@@ -106,6 +105,7 @@ models/GetNewReceivedDocumentTotalsRequest.js
 models/GetNewReceivedDocumentTotalsResponse.js
 models/GetPaymentAccountResponse.js
 models/GetPaymentMethodResponse.js
+models/GetPendingReceivedDocumentResponse.js
 models/GetPriceListItemsResponse.js
 models/GetProductResponse.js
 models/GetReceiptPreCreateInfoResponse.js
@@ -115,6 +115,7 @@ models/GetReceivedDocumentPreCreateInfoResponse.js
 models/GetReceivedDocumentResponse.js
 models/GetSupplierResponse.js
 models/GetTaxProfileResponse.js
+models/GetTemplatesResponse.js
 models/GetUserInfoResponse.js
 models/GetUserInfoResponse_email_confirmation_state.js
 models/GetUserInfoResponse_info.js
@@ -161,6 +162,8 @@ models/ListIssuedDocumentsResponsePage.js
 models/ListLanguagesResponse.js
 models/ListPaymentAccountsResponse.js
 models/ListPaymentMethodsResponse.js
+models/ListPendingReceivedDocumentsResponse.js
+models/ListPendingReceivedDocumentsResponsePage.js
 models/ListPriceListsResponse.js
 models/ListProductCategoriesResponse.js
 models/ListProductsResponse.js
@@ -203,7 +206,6 @@ models/ModifySupplierRequest.js
 models/ModifySupplierResponse.js
 models/ModifyVatTypeRequest.js
 models/ModifyVatTypeResponse.js
-models/ModifyWebhooksSubscriptionRequest.js
 models/ModifyWebhooksSubscriptionResponse.js
 models/MonthlyTotal.js
 models/OriginalDocumentType.js
@@ -214,6 +216,12 @@ models/PaymentMethod.js
 models/PaymentMethodDetails.js
 models/PaymentMethodType.js
 models/PaymentTermsType.js
+models/PendingReceivedDocument.js
+models/PendingReceivedDocumentPaymentsListItem.js
+models/PendingReceivedDocumentPaymentsListItem_payment_terms.js
+models/PendingReceivedDocumentType.js
+models/PendingReceivedDocument_extracted_data.js
+models/PendingReceivedDocument_extracted_data_mining.js
 models/PermissionLevel.js
 models/Permissions.js
 models/Permissions_fic_issued_documents_detailed.js
@@ -246,6 +254,7 @@ models/ShowTotalsMode.js
 models/Supplier.js
 models/SupplierType.js
 models/TaxProfile.js
+models/TemplateType.js
 models/TransformIssuedDocumentResponse.js
 models/UploadArchiveAttachmentResponse.js
 models/UploadF24AttachmentResponse.js
@@ -262,8 +271,6 @@ models/VerifyEInvoiceXmlErrorResponse_error_validation_result.js
 models/VerifyEInvoiceXmlErrorResponse_extra.js
 models/VerifyEInvoiceXmlResponse.js
 models/VerifyEInvoiceXmlResponse_data.js
-models/VerifyWebhooksSubscription.js
-models/VerifyWebhooksSubscriptionRequest.js
 models/WebhooksSubscription.js
 models/WebhooksSubscriptionConfig.js
 models/WebhooksSubscriptionMapping.js
@@ -286,5 +293,4 @@ samples/SettingsApi.js
 samples/SuppliersApi.js
 samples/TaxesApi.js
 samples/UserApi.js
-samples/WebhooksApi.js
 utils/utils.js

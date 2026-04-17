@@ -1,17 +1,17 @@
 const utils = require('../utils/utils');
-const WebhooksSubscription = require('../models/WebhooksSubscription');
+const PendingReceivedDocument_extracted_data_mining = require('../models/PendingReceivedDocument_extracted_data_mining');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
-            ...WebhooksSubscription.fields(`${keyPrefix}data`, isInput),
+            ...PendingReceivedDocument_extracted_data_mining.fields(`${keyPrefix}mining`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'data': utils.removeIfEmpty(WebhooksSubscription.mapping(bundle, `${keyPrefix}data`)),
+            'mining': utils.removeIfEmpty(PendingReceivedDocument_extracted_data_mining.mapping(bundle, `${keyPrefix}mining`)),
         }
     },
 }

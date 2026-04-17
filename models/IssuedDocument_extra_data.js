@@ -59,6 +59,16 @@ module.exports = {
                 label: `Issued document imported by software - [${labelPrefix}imported_by]`,
                 type: 'string',
             },
+            {
+                key: `${keyPrefix}debt_vat_detect`,
+                label: `Issued document debt VAT detect - [${labelPrefix}debt_vat_detect]`,
+                type: 'boolean',
+            },
+            {
+                key: `${keyPrefix}revenue_detect`,
+                label: `Issued document revenue detect - [${labelPrefix}revenue_detect]`,
+                type: 'boolean',
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -75,6 +85,8 @@ module.exports = {
             'ts_sent_date': bundle.inputData?.[`${keyPrefix}ts_sent_date`],
             'ts_full_amount': bundle.inputData?.[`${keyPrefix}ts_full_amount`],
             'imported_by': bundle.inputData?.[`${keyPrefix}imported_by`],
+            'debt_vat_detect': bundle.inputData?.[`${keyPrefix}debt_vat_detect`],
+            'revenue_detect': bundle.inputData?.[`${keyPrefix}revenue_detect`],
         }
     },
 }

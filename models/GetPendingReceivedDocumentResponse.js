@@ -1,17 +1,17 @@
 const utils = require('../utils/utils');
-const VerifyWebhooksSubscription = require('../models/VerifyWebhooksSubscription');
+const PendingReceivedDocument = require('../models/PendingReceivedDocument');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
-            ...VerifyWebhooksSubscription.fields(`${keyPrefix}data`, isInput),
+            ...PendingReceivedDocument.fields(`${keyPrefix}data`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'data': utils.removeIfEmpty(VerifyWebhooksSubscription.mapping(bundle, `${keyPrefix}data`)),
+            'data': utils.removeIfEmpty(PendingReceivedDocument.mapping(bundle, `${keyPrefix}data`)),
         }
     },
 }
