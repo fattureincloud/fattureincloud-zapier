@@ -10,6 +10,7 @@ module.exports = {
                     'received_document',
                     'tax',
                     'receipt',
+                    'ts_pay',
                 ],
             }
         )

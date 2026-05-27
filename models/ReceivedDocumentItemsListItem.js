@@ -51,6 +51,11 @@ module.exports = {
                 label: `Received document item product number of items in stock - [${labelPrefix}stock]`,
                 type: 'number',
             },
+            {
+                key: `${keyPrefix}deductibility_vat_percentage`,
+                label: `Received document item deductibility vat percentage - [${labelPrefix}deductibility_vat_percentage]`,
+                type: 'number',
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -66,6 +71,7 @@ module.exports = {
             'qty': bundle.inputData?.[`${keyPrefix}qty`],
             'vat': utils.removeIfEmpty(VatType.mapping(bundle, `${keyPrefix}vat`)),
             'stock': bundle.inputData?.[`${keyPrefix}stock`],
+            'deductibility_vat_percentage': bundle.inputData?.[`${keyPrefix}deductibility_vat_percentage`],
         }
     },
 }

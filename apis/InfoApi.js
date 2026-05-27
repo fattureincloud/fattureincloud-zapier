@@ -1,4 +1,5 @@
 const samples = require('../samples/InfoApi');
+const AnyType = require('../models/AnyType');
 const ListArchiveCategoriesResponse = require('../models/ListArchiveCategoriesResponse');
 const ListCitiesResponse = require('../models/ListCitiesResponse');
 const ListCostCentersResponse = require('../models/ListCostCentersResponse');
@@ -229,6 +230,61 @@ module.exports = {
             sample: samples['ListCurrenciesResponseSample']
         }
     },
+    listDefaultTemplates: {
+        key: 'listDefaultTemplates',
+        noun: 'Info',
+        display: {
+            label: 'List Default Templates',
+            description: 'Lists the default available templates.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'type',
+                    label: 'Type of the templates.',
+                    type: 'string',
+                    choices: [
+                        'all',
+                        'standard',
+                        'delivery_note',
+                        'accompanying_invoice',
+                    ],
+                },
+                {
+                    key: 'by_type',
+                    label: '[Only if type&#x3D;all] If true, splits the list in objects, grouping templates by type.',
+                    type: 'boolean',
+                },
+            ],
+            outputFields: [
+                ...ListTemplatesResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/info/templates'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'type': bundle.inputData?.['type'],
+                        'by_type': bundle.inputData?.['by_type'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'listDefaultTemplates', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ListTemplatesResponseSample']
+        }
+    },
     listDeliveryNotesDefaultCausals: {
         key: 'listDeliveryNotesDefaultCausals',
         noun: 'Info',
@@ -369,6 +425,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {
@@ -435,6 +492,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {
@@ -616,61 +674,6 @@ module.exports = {
             sample: samples['ListRevenueCentersResponseSample']
         }
     },
-    listTemplates: {
-        key: 'listTemplates',
-        noun: 'Info',
-        display: {
-            label: 'List Templates',
-            description: 'Lists the available templates.',
-            hidden: false,
-        },
-        operation: {
-            inputFields: [
-                {
-                    key: 'type',
-                    label: 'Type of the templates.',
-                    type: 'string',
-                    choices: [
-                        'all',
-                        'standard',
-                        'delivery_note',
-                        'accompanying_invoice',
-                    ],
-                },
-                {
-                    key: 'by_type',
-                    label: '[Only if type&#x3D;all] If true, splits the list in objects, grouping templates by type.',
-                    type: 'boolean',
-                },
-            ],
-            outputFields: [
-                ...ListTemplatesResponse.fields('', false),
-            ],
-            perform: async (z, bundle) => {
-                const options = {
-                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/info/templates'),
-                    method: 'GET',
-                    removeMissingValuesFrom: { params: true, body: true },
-                    headers: {
-                        'Content-Type': '',
-                        'Accept': 'application/json',
-                    },
-                    params: {
-                        'type': bundle.inputData?.['type'],
-                        'by_type': bundle.inputData?.['by_type'],
-                    },
-                    body: {
-                    },
-                }
-                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-                    response.throwForStatus();
-                    const results = utils.responseOptionsMiddleware(z, bundle, 'listTemplates', response.json);
-                    return results;
-                })
-            },
-            sample: samples['ListTemplatesResponseSample']
-        }
-    },
     listUnitsOfMeasure: {
         key: 'listUnitsOfMeasure',
         noun: 'Info',
@@ -732,6 +735,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],

@@ -15,7 +15,7 @@ const SuppliersApi = require('../apis/SuppliersApi');
 const TaxesApi = require('../apis/TaxesApi');
 const UserApi = require('../apis/UserApi');
 const WebhooksApi = require('../apis/WebhooksApi');
-const { triggerMiddleware, isTrigger, searchMiddleware, hasSearchRequisites, isSearchAction, isCreateAction } = require('../utils/utils');
+const { triggerMiddleware, isTrigger, searchMiddleware, hasSearchRequisites, isSearchAction, isCreateAction, createMiddleware } = require('../utils/utils');
 
 const actions = {
     [ArchiveApi.createArchiveDocument.key]: ArchiveApi.createArchiveDocument,
@@ -43,6 +43,7 @@ const actions = {
     [InfoApi.listCostCenters.key]: InfoApi.listCostCenters,
     [InfoApi.listCountries.key]: InfoApi.listCountries,
     [InfoApi.listCurrencies.key]: InfoApi.listCurrencies,
+    [InfoApi.listDefaultTemplates.key]: InfoApi.listDefaultTemplates,
     [InfoApi.listDeliveryNotesDefaultCausals.key]: InfoApi.listDeliveryNotesDefaultCausals,
     [InfoApi.listDetailedCountries.key]: InfoApi.listDetailedCountries,
     [InfoApi.listLanguages.key]: InfoApi.listLanguages,
@@ -51,7 +52,6 @@ const actions = {
     [InfoApi.listProductCategories.key]: InfoApi.listProductCategories,
     [InfoApi.listReceivedDocumentCategories.key]: InfoApi.listReceivedDocumentCategories,
     [InfoApi.listRevenueCenters.key]: InfoApi.listRevenueCenters,
-    [InfoApi.listTemplates.key]: InfoApi.listTemplates,
     [InfoApi.listUnitsOfMeasure.key]: InfoApi.listUnitsOfMeasure,
     [InfoApi.listVatTypes.key]: InfoApi.listVatTypes,
     [IssuedDocumentsApi.createIssuedDocument.key]: IssuedDocumentsApi.createIssuedDocument,
@@ -97,9 +97,11 @@ const actions = {
     [ReceivedDocumentsApi.getBinReceivedDocument.key]: ReceivedDocumentsApi.getBinReceivedDocument,
     [ReceivedDocumentsApi.getExistingReceivedDocumentTotals.key]: ReceivedDocumentsApi.getExistingReceivedDocumentTotals,
     [ReceivedDocumentsApi.getNewReceivedDocumentTotals.key]: ReceivedDocumentsApi.getNewReceivedDocumentTotals,
+    [ReceivedDocumentsApi.getPendingReceivedDocument.key]: ReceivedDocumentsApi.getPendingReceivedDocument,
     [ReceivedDocumentsApi.getReceivedDocument.key]: ReceivedDocumentsApi.getReceivedDocument,
     [ReceivedDocumentsApi.getReceivedDocumentPreCreateInfo.key]: ReceivedDocumentsApi.getReceivedDocumentPreCreateInfo,
     [ReceivedDocumentsApi.listBinReceivedDocuments.key]: ReceivedDocumentsApi.listBinReceivedDocuments,
+    [ReceivedDocumentsApi.listPendingReceivedDocuments.key]: ReceivedDocumentsApi.listPendingReceivedDocuments,
     [ReceivedDocumentsApi.listReceivedDocuments.key]: ReceivedDocumentsApi.listReceivedDocuments,
     [ReceivedDocumentsApi.modifyReceivedDocument.key]: ReceivedDocumentsApi.modifyReceivedDocument,
     [ReceivedDocumentsApi.recoverBinReceivedDocument.key]: ReceivedDocumentsApi.recoverBinReceivedDocument,
@@ -113,7 +115,9 @@ const actions = {
     [SettingsApi.getPaymentAccount.key]: SettingsApi.getPaymentAccount,
     [SettingsApi.getPaymentMethod.key]: SettingsApi.getPaymentMethod,
     [SettingsApi.getTaxProfile.key]: SettingsApi.getTaxProfile,
+    [SettingsApi.getTemplate.key]: SettingsApi.getTemplate,
     [SettingsApi.getVatType.key]: SettingsApi.getVatType,
+    [SettingsApi.listTemplates.key]: SettingsApi.listTemplates,
     [SettingsApi.modifyPaymentAccount.key]: SettingsApi.modifyPaymentAccount,
     [SettingsApi.modifyPaymentMethod.key]: SettingsApi.modifyPaymentMethod,
     [SettingsApi.modifyVatType.key]: SettingsApi.modifyVatType,
@@ -141,6 +145,6 @@ const actions = {
 
 module.exports = {
     searchActions: () => Object.entries(actions).reduce((actions, [key, value]) => isSearchAction(key) && hasSearchRequisites(value) ? {...actions, [key]: searchMiddleware(value)} : actions, {}),
-    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => isCreateAction(key) ? {...actions, [key]: value} : actions, {}),
+    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => isCreateAction(key) ? {...actions, [key]: createMiddleware(value)} : actions, {}),
     triggers: () => Object.entries(actions).reduce((actions, [key, value]) => isTrigger(key) ? {...actions, [key]: triggerMiddleware(value)} : actions, {}),
 }

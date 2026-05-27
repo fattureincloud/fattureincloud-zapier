@@ -1,14 +1,17 @@
 const samples = require('../samples/ReceivedDocumentsApi');
+const AnyType = require('../models/AnyType');
 const CreateReceivedDocumentRequest = require('../models/CreateReceivedDocumentRequest');
 const CreateReceivedDocumentResponse = require('../models/CreateReceivedDocumentResponse');
-const GetBinIssuedDocumentResponse = require('../models/GetBinIssuedDocumentResponse');
+const GetBinReceivedDocumentResponse = require('../models/GetBinReceivedDocumentResponse');
 const GetExistingReceivedDocumentTotalsRequest = require('../models/GetExistingReceivedDocumentTotalsRequest');
 const GetExistingReceivedDocumentTotalsResponse = require('../models/GetExistingReceivedDocumentTotalsResponse');
 const GetNewReceivedDocumentTotalsRequest = require('../models/GetNewReceivedDocumentTotalsRequest');
 const GetNewReceivedDocumentTotalsResponse = require('../models/GetNewReceivedDocumentTotalsResponse');
+const GetPendingReceivedDocumentResponse = require('../models/GetPendingReceivedDocumentResponse');
 const GetReceivedDocumentPreCreateInfoResponse = require('../models/GetReceivedDocumentPreCreateInfoResponse');
 const GetReceivedDocumentResponse = require('../models/GetReceivedDocumentResponse');
 const ListBinReceivedDocuments = require('../models/ListBinReceivedDocuments');
+const ListPendingReceivedDocumentsResponse = require('../models/ListPendingReceivedDocumentsResponse');
 const ListReceivedDocumentsResponse = require('../models/ListReceivedDocumentsResponse');
 const ModifyReceivedDocumentRequest = require('../models/ModifyReceivedDocumentRequest');
 const ModifyReceivedDocumentResponse = require('../models/ModifyReceivedDocumentResponse');
@@ -96,7 +99,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -145,7 +148,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -194,7 +197,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -235,7 +238,7 @@ module.exports = {
                 },
             ],
             outputFields: [
-                ...GetBinIssuedDocumentResponse.fields('', false),
+                ...GetBinReceivedDocumentResponse.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -257,7 +260,7 @@ module.exports = {
                     return results;
                 })
             },
-            sample: samples['GetBinIssuedDocumentResponseSample']
+            sample: samples['GetBinReceivedDocumentResponseSample']
         }
     },
     getExistingReceivedDocumentTotals: {
@@ -358,6 +361,73 @@ module.exports = {
             sample: samples['GetNewReceivedDocumentTotalsResponseSample']
         }
     },
+    getPendingReceivedDocument: {
+        key: 'getPendingReceivedDocument',
+        noun: 'Received Documents',
+        display: {
+            label: 'Get Pending Received Document',
+            description: 'Gets the specified pending received document.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+            ],
+            outputFields: [
+                ...GetPendingReceivedDocumentResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/pending/{document_id}'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getPendingReceivedDocument', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetPendingReceivedDocumentResponseSample']
+        }
+    },
     getReceivedDocument: {
         key: 'getReceivedDocument',
         noun: 'Received Documents',
@@ -393,6 +463,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -525,6 +596,103 @@ module.exports = {
             sample: samples['ListBinReceivedDocumentsSample']
         }
     },
+    listPendingReceivedDocuments: {
+        key: 'listPendingReceivedDocuments',
+        noun: 'Received Documents',
+        display: {
+            label: 'List Pending Received Documents',
+            description: 'Lists the pending received documents.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'type',
+                    label: 'The type of the pending received document.',
+                    type: 'string',
+                    required: true,
+                    choices: [
+                        'agyo',
+                        'mail',
+                        'browser',
+                    ],
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+                {
+                    key: 'sort',
+                    label: 'List of comma-separated fields for result sorting (minus for desc sorting).',
+                    type: 'string',
+                },
+                {
+                    key: 'page',
+                    label: 'The page to retrieve.',
+                    type: 'integer',
+                },
+                {
+                    key: 'per_page',
+                    label: 'The size of the page.',
+                    type: 'integer',
+                },
+                {
+                    key: 'q',
+                    label: 'Query for filtering the results.',
+                    type: 'string',
+                },
+            ],
+            outputFields: [
+                ...ListPendingReceivedDocumentsResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/received_documents/pending'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'type': bundle.inputData?.['type'],
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                        'sort': bundle.inputData?.['sort'],
+                        'page': bundle.inputData?.['page'],
+                        'per_page': bundle.inputData?.['per_page'],
+                        'q': bundle.inputData?.['q'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'listPendingReceivedDocuments', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ListPendingReceivedDocumentsResponseSample']
+        }
+    },
     listReceivedDocuments: {
         key: 'listReceivedDocuments',
         noun: 'Received Documents',
@@ -566,6 +734,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {
@@ -678,8 +847,8 @@ module.exports = {
         key: 'recoverBinReceivedDocument',
         noun: 'Received Documents',
         display: {
-            label: 'Recover Received Document From the Bin',
-            description: 'Recover Received Document From the Bin',
+            label: 'Recover Received Document From The Bin',
+            description: 'Recover Received Document From The Bin',
             hidden: false,
         },
         operation: {
@@ -707,7 +876,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -764,7 +933,7 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-
+                        
                         'Accept': 'application/json',
                     },
                     params: {

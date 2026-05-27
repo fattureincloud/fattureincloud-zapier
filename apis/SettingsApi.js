@@ -1,4 +1,5 @@
 const samples = require('../samples/SettingsApi');
+const AnyType = require('../models/AnyType');
 const CreatePaymentAccountRequest = require('../models/CreatePaymentAccountRequest');
 const CreatePaymentAccountResponse = require('../models/CreatePaymentAccountResponse');
 const CreatePaymentMethodRequest = require('../models/CreatePaymentMethodRequest');
@@ -8,7 +9,9 @@ const CreateVatTypeResponse = require('../models/CreateVatTypeResponse');
 const GetPaymentAccountResponse = require('../models/GetPaymentAccountResponse');
 const GetPaymentMethodResponse = require('../models/GetPaymentMethodResponse');
 const GetTaxProfileResponse = require('../models/GetTaxProfileResponse');
+const GetTemplatesResponse = require('../models/GetTemplatesResponse');
 const GetVatTypeResponse = require('../models/GetVatTypeResponse');
+const ListTemplatesResponse = require('../models/ListTemplatesResponse');
 const ModifyPaymentAccountRequest = require('../models/ModifyPaymentAccountRequest');
 const ModifyPaymentAccountResponse = require('../models/ModifyPaymentAccountResponse');
 const ModifyPaymentMethodRequest = require('../models/ModifyPaymentMethodRequest');
@@ -189,7 +192,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -238,7 +241,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -287,7 +290,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -338,6 +341,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -404,6 +408,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -479,6 +484,73 @@ module.exports = {
             sample: samples['GetTaxProfileResponseSample']
         }
     },
+    getTemplate: {
+        key: 'getTemplate',
+        noun: 'Settings',
+        display: {
+            label: 'Get Template',
+            description: 'Gets a specified template.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'template_id',
+                    label: 'The Referred Template Id.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+            ],
+            outputFields: [
+                ...GetTemplatesResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/templates/{template_id}'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getTemplate', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetTemplatesResponseSample']
+        }
+    },
     getVatType: {
         key: 'getVatType',
         noun: 'Settings',
@@ -527,6 +599,67 @@ module.exports = {
                 })
             },
             sample: samples['GetVatTypeResponseSample']
+        }
+    },
+    listTemplates: {
+        key: 'listTemplates',
+        noun: 'Settings',
+        display: {
+            label: 'List Templates',
+            description: 'Gets all the standard and private templates.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+            ],
+            outputFields: [
+                ...ListTemplatesResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/templates'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'listTemplates', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ListTemplatesResponseSample']
         }
     },
     modifyPaymentAccount: {

@@ -1,4 +1,5 @@
 const samples = require('../samples/ClientsApi');
+const AnyType = require('../models/AnyType');
 const CreateClientRequest = require('../models/CreateClientRequest');
 const CreateClientResponse = require('../models/CreateClientResponse');
 const GetClientResponse = require('../models/GetClientResponse');
@@ -88,7 +89,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -139,6 +140,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -174,7 +176,7 @@ module.exports = {
         key: 'getClientInfo',
         noun: 'Clients',
         display: {
-            label: 'Get Client Info',
+            label: 'Get Client info',
             description: 'Retrieves the information useful while creating a new Client.',
             hidden: false,
         },
@@ -243,6 +245,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {

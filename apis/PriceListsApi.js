@@ -1,4 +1,5 @@
 const samples = require('../samples/PriceListsApi');
+const AnyType = require('../models/AnyType');
 const GetPriceListItemsResponse = require('../models/GetPriceListItemsResponse');
 const ListPriceListsResponse = require('../models/ListPriceListsResponse');
 const utils = require('../utils/utils');
@@ -23,7 +24,7 @@ module.exports = {
                 },
                 {
                     key: 'price_list_id',
-                    label: 'The ID of the price',
+                    label: 'The price list ID',
                     type: 'string',
                     required: true,
                 },

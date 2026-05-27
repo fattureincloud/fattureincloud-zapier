@@ -1,4 +1,5 @@
 const samples = require('../samples/SuppliersApi');
+const AnyType = require('../models/AnyType');
 const CreateSupplierRequest = require('../models/CreateSupplierRequest');
 const CreateSupplierResponse = require('../models/CreateSupplierResponse');
 const GetSupplierResponse = require('../models/GetSupplierResponse');
@@ -87,7 +88,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -138,6 +139,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
@@ -198,6 +200,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
                 {

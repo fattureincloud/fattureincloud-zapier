@@ -1,4 +1,5 @@
 const samples = require('../samples/WebhooksApi');
+const AnyType = require('../models/AnyType');
 const CreateWebhooksSubscriptionRequest = require('../models/CreateWebhooksSubscriptionRequest');
 const CreateWebhooksSubscriptionResponse = require('../models/CreateWebhooksSubscriptionResponse');
 const GetWebhooksSubscriptionResponse = require('../models/GetWebhooksSubscriptionResponse');
@@ -88,7 +89,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -284,7 +285,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': 'application/json',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },

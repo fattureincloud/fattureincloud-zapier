@@ -1,4 +1,5 @@
 const samples = require('../samples/CashbookApi');
+const AnyType = require('../models/AnyType');
 const CreateCashbookEntryRequest = require('../models/CreateCashbookEntryRequest');
 const CreateCashbookEntryResponse = require('../models/CreateCashbookEntryResponse');
 const GetCashbookEntryResponse = require('../models/GetCashbookEntryResponse');
@@ -87,7 +88,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'application/json',
                     },
                     params: {
                     },
@@ -138,6 +139,7 @@ module.exports = {
                     choices: [
                         'basic',
                         'detailed',
+                        'fic_view',
                     ],
                 },
             ],
