@@ -55,7 +55,48 @@ const isCreateAction = (key) => {
   return !isSearchAction(key);
 };
 
+const VALID_OUTPUT_FIELD_TYPES = new Set([
+  "string",
+  "number",
+  "boolean",
+  "datetime",
+  "file",
+  "password",
+  "integer",
+]);
+
+const sanitizeOutputField = (field) => {
+  if (!field || typeof field !== "object" || Array.isArray(field)) {
+    return field;
+  }
+
+  const sanitizedField = { ...field };
+  delete sanitizedField.choices;
+
+  if (
+    Object.prototype.hasOwnProperty.call(sanitizedField, "type") &&
+    (typeof sanitizedField.type !== "string" ||
+      !VALID_OUTPUT_FIELD_TYPES.has(sanitizedField.type))
+  ) {
+    delete sanitizedField.type;
+  }
+
+  if (Array.isArray(sanitizedField.children)) {
+    sanitizedField.children = sanitizedField.children.map(sanitizeOutputField);
+  }
+
+  return sanitizedField;
+};
+
+const sanitizeOutputFields = (outputFields) =>
+  Array.isArray(outputFields)
+    ? outputFields.map(sanitizeOutputField)
+    : outputFields;
+
 const createMiddleware = (action) => {
+  action.operation.outputFields = sanitizeOutputFields(
+    action.operation.outputFields,
+  );
   return action;
 };
 
@@ -154,4 +195,5 @@ module.exports = {
   overrideUserAgent: overrideUserAgent,
   handleClientErrors: handleClientErrors,
   jsonFieldToObject: jsonFieldToObject,
+  sanitizeOutputFields: sanitizeOutputFields,
 };
