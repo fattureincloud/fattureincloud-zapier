@@ -4,16 +4,12 @@ const { triggers } = require('./operations/triggers');
 const { overrideUserAgent, handleClientErrors } = require('./utils/utils');
 
 module.exports = {
-    version: require('./package.json').version,
-    platformVersion: require('zapier-platform-core').version,
-    authentication: authentication,
-    triggers: triggers(),
-    searches: searchActions(),
-    creates: createActions(),
-    beforeRequest: [
-        overrideUserAgent,
-    ],
-    afterResponse: [
-        handleClientErrors,
-    ],
+  version: require('./package.json').version,
+  platformVersion: require('zapier-platform-core').version,
+  authentication: authentication,
+  triggers: triggers(),
+  searches: searchActions(),
+  creates: createActions(),
+  beforeRequest: [overrideUserAgent],
+  afterResponse: [handleClientErrors],
 };
