@@ -1,66 +1,67 @@
-const _ = require('lodash')
+const _ = require('lodash');
 const { getWebhooksOperation, getDefaultGetOperationParams } = require('./webhooksActionsMapping');
 const { extractResourceAndOperation } = require('../utils/utils');
 const rawWebhook = require('./rawWebhook');
 
 const perform = async (z, bundle) => {
-    const ids = bundle.cleanedRequest?.data?.ids
-    if(_.isEmpty(ids)) return []
+  const ids = bundle.cleanedRequest?.data?.ids;
+  if (_.isEmpty(ids)) return [];
 
-    const eventType = bundle.cleanedRequest?.type
-    const eventSubject = bundle.cleanedRequest?.subject
+  const eventType = bundle.cleanedRequest?.type;
+  const eventSubject = bundle.cleanedRequest?.subject;
 
-    let companyId = null
-  
-    const spl = eventSubject.split(':')
-    if (spl[0] == 'company') {
-        companyId = spl[1]
-    }
+  let companyId = null;
 
-    const {resource, eventOperation} = extractResourceAndOperation(eventType)
-    const resourceOp = getWebhooksOperation(resource)
+  const spl = eventSubject.split(':');
+  if (spl[0] == 'company') {
+    companyId = spl[1];
+  }
 
-    let resources = []
-    for(const id of ids) {
-        if (eventOperation === 'delete') return {id}
-        bundle.inputData[resourceOp['resourceKeyId']] = id
-        const res = await (resourceOp['getOperation']).operation.perform(z, bundle)
-        resources.push(res.data)
-    }
-    return resources
+  const { resource, eventOperation } = extractResourceAndOperation(eventType);
+  const resourceOp = getWebhooksOperation(resource);
 
+  let resources = [];
+  for (const id of ids) {
+    if (eventOperation === 'delete') return { id };
+    bundle.inputData[resourceOp['resourceKeyId']] = id;
+    const res = await resourceOp['getOperation'].operation.perform(z, bundle);
+    resources.push(res.data);
+  }
+  return resources;
 };
 
 const performList = async (z, bundle) => {
-    let operation = getWebhooksOperation(bundle.inputData.resource)
-    bundle.inputData['fieldset'] = 'detailed'
-    bundle.inputData = {...bundle.inputData, ...getDefaultGetOperationParams(bundle.inputData.resource)}
+  let operation = getWebhooksOperation(bundle.inputData.resource);
+  bundle.inputData['fieldset'] = 'detailed';
+  bundle.inputData = {
+    ...bundle.inputData,
+    ...getDefaultGetOperationParams(bundle.inputData.resource),
+  };
 
-    try {
-        let docList = await operation['listOperation'].operation.perform(z, bundle)
-        let example = [docList?.[0]] || [{}]
-        return example
-    } catch (e) {
-        return [{}]
-    }
-    
-}
+  try {
+    let docList = await operation['listOperation'].operation.perform(z, bundle);
+    let example = [docList?.[0]] || [{}];
+    return example;
+  } catch (e) {
+    return [{}];
+  }
+};
 
-let rawWebhookOperation = {...rawWebhook.operation};
+let rawWebhookOperation = { ...rawWebhook.operation };
 
-rawWebhookOperation.perform = perform
-rawWebhookOperation.performList = performList
+rawWebhookOperation.perform = perform;
+rawWebhookOperation.performList = performList;
 
 module.exports = {
-    operation: {
-        ...rawWebhookOperation
-    },
-    key: 'genericWebhook',
-    noun: 'Enriched Event',
-    display: {
-        label: 'Receive Enriched Event',
-        description: 'Triggers when a webhooks arrives from Fatture in Cloud, returns an array of resources.',
-        hidden: false,
-    },
+  operation: {
+    ...rawWebhookOperation,
+  },
+  key: 'genericWebhook',
+  noun: 'Enriched Event',
+  display: {
+    label: 'Receive Enriched Event',
+    description:
+      'Triggers when a webhooks arrives from Fatture in Cloud, returns an array of resources.',
+    hidden: false,
+  },
 };
-  

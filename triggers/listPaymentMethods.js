@@ -1,11 +1,9 @@
-const {
-  listPaymentMethods: listPaymentMethodsTrigger,
-} = require("../apis/InfoApi");
-const PaymentMethod = require("../models/PaymentMethod");
-const { sanitizeOutputFields } = require("../utils/utils");
+const { listPaymentMethods: listPaymentMethodsTrigger } = require('../apis/InfoApi');
+const PaymentMethod = require('../models/PaymentMethod');
+const { sanitizeOutputFields } = require('../utils/utils');
 
 module.exports = {
-  key: listPaymentMethodsTrigger.key + "Trigger",
+  key: listPaymentMethodsTrigger.key + 'Trigger',
   noun: listPaymentMethodsTrigger.noun,
   display: {
     label: listPaymentMethodsTrigger.display.label,
@@ -13,8 +11,7 @@ module.exports = {
     hidden: true,
   },
   operation: {
-    outputFields: sanitizeOutputFields(PaymentMethod.fields("", false)),
-    perform: async (z, bundle) =>
-      listPaymentMethodsTrigger.operation.perform(z, bundle),
+    outputFields: sanitizeOutputFields(PaymentMethod.fields('', false)),
+    perform: async (z, bundle) => listPaymentMethodsTrigger.operation.perform(z, bundle),
   },
 };

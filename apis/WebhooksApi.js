@@ -1,88 +1,86 @@
-const samples = require("../samples/WebhooksApi");
-const AnyType = require("../models/AnyType");
-const CreateWebhooksSubscriptionRequest = require("../models/CreateWebhooksSubscriptionRequest");
-const CreateWebhooksSubscriptionResponse = require("../models/CreateWebhooksSubscriptionResponse");
-const GetWebhooksSubscriptionResponse = require("../models/GetWebhooksSubscriptionResponse");
-const ListWebhooksSubscriptionsResponse = require("../models/ListWebhooksSubscriptionsResponse");
-const ModifyWebhooksSubscriptionRequest = require("../models/ModifyWebhooksSubscriptionRequest");
-const ModifyWebhooksSubscriptionResponse = require("../models/ModifyWebhooksSubscriptionResponse");
-const VerifyWebhooksSubscriptionRequest = require("../models/VerifyWebhooksSubscriptionRequest");
-const utils = require("../utils/utils");
+const samples = require('../samples/WebhooksApi');
+const AnyType = require('../models/AnyType');
+const CreateWebhooksSubscriptionRequest = require('../models/CreateWebhooksSubscriptionRequest');
+const CreateWebhooksSubscriptionResponse = require('../models/CreateWebhooksSubscriptionResponse');
+const GetWebhooksSubscriptionResponse = require('../models/GetWebhooksSubscriptionResponse');
+const ListWebhooksSubscriptionsResponse = require('../models/ListWebhooksSubscriptionsResponse');
+const ModifyWebhooksSubscriptionRequest = require('../models/ModifyWebhooksSubscriptionRequest');
+const ModifyWebhooksSubscriptionResponse = require('../models/ModifyWebhooksSubscriptionResponse');
+const VerifyWebhooksSubscriptionRequest = require('../models/VerifyWebhooksSubscriptionRequest');
+const utils = require('../utils/utils');
 
 module.exports = {
   createWebhooksSubscription: {
-    key: "createWebhooksSubscription",
-    noun: "Webhooks",
+    key: 'createWebhooksSubscription',
+    noun: 'Webhooks',
     display: {
-      label: "Create a Webhook Subscription",
-      description: "Register some webhooks Subscriptions.",
+      label: 'Create a Webhook Subscription',
+      description: 'Register some webhooks Subscriptions.',
       hidden: true,
     },
     operation: {
       inputFields: [
         {
-          key: "company_id",
-          dynamic: "listUserCompaniesTrigger.id.name",
-          label: "The ID of the company.",
-          type: "integer",
+          key: 'company_id',
+          dynamic: 'listUserCompaniesTrigger.id.name',
+          label: 'The ID of the company.',
+          type: 'integer',
           required: true,
         },
         ...CreateWebhooksSubscriptionRequest.fields(),
       ],
-      outputFields: [...CreateWebhooksSubscriptionResponse.fields("", false)],
+      outputFields: [...CreateWebhooksSubscriptionResponse.fields('', false)],
       perform: async (z, bundle) => {
         const options = {
           url: utils.replacePathParameters(
-            "https://api-v2.fattureincloud.it/c/{company_id}/subscriptions",
+            'https://api-v2.fattureincloud.it/c/{company_id}/subscriptions'
           ),
-          method: "POST",
+          method: 'POST',
           removeMissingValuesFrom: { params: true, body: true },
           headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
           },
           params: {},
           body: {
             ...CreateWebhooksSubscriptionRequest.mapping(bundle),
           },
         };
-        return z
-          .request(utils.requestOptionsMiddleware(z, bundle, options))
-          .then((response) => {
-            response.throwForStatus();
-            const results = utils.responseOptionsMiddleware(
-              z,
-              bundle,
-              "createWebhooksSubscription",
-              response.json,
-            );
-            return results;
-          });
+        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+          response.throwForStatus();
+          const results = utils.responseOptionsMiddleware(
+            z,
+            bundle,
+            'createWebhooksSubscription',
+            response.json
+          );
+          return results;
+        });
       },
-      sample: samples["CreateWebhooksSubscriptionResponseSample"],
+      sample: samples['CreateWebhooksSubscriptionResponseSample'],
     },
   },
   deleteWebhooksSubscription: {
-    key: "deleteWebhooksSubscription",
-    noun: "Webhooks",
+    key: 'deleteWebhooksSubscription',
+    noun: 'Webhooks',
     display: {
-      label: "Delete Webhooks Subscription",
-      description: "Delete a webhooks subscription.",
+      label: 'Delete Webhooks Subscription',
+      description: 'Delete a webhooks subscription.',
       hidden: true,
     },
     operation: {
       inputFields: [
         {
-          key: "company_id",
-          dynamic: "listUserCompaniesTrigger.id.name",
-          label: "The ID of the company.",
-          type: "integer",
+          key: 'company_id',
+          dynamic: 'listUserCompaniesTrigger.id.name',
+          label: 'The ID of the company.',
+          type: 'integer',
           required: true,
         },
         {
-          key: "subscription_id",
-          label: "The ID of the subscription.",
-          type: "string",
+          key: 'subscription_id',
+          label: 'The ID of the subscription.',
+          type: 'string',
           required: true,
         },
       ],
@@ -90,216 +88,208 @@ module.exports = {
       perform: async (z, bundle) => {
         const options = {
           url: utils.replacePathParameters(
-            "https://api-v2.fattureincloud.it/c/{company_id}/subscriptions/{subscription_id}",
+            'https://api-v2.fattureincloud.it/c/{company_id}/subscriptions/{subscription_id}'
           ),
-          method: "DELETE",
+          method: 'DELETE',
           removeMissingValuesFrom: { params: true, body: true },
           headers: {
-            "Content-Type": "",
-            Accept: "application/json",
+            'Content-Type': '',
+            Accept: 'application/json',
           },
           params: {},
           body: {},
         };
-        return z
-          .request(utils.requestOptionsMiddleware(z, bundle, options))
-          .then((response) => {
-            response.throwForStatus();
-            const results = utils.responseOptionsMiddleware(
-              z,
-              bundle,
-              "deleteWebhooksSubscription",
-              response.json,
-            );
-            return results;
-          });
+        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+          response.throwForStatus();
+          const results = utils.responseOptionsMiddleware(
+            z,
+            bundle,
+            'deleteWebhooksSubscription',
+            response.json
+          );
+          return results;
+        });
       },
       sample: { data: {} },
     },
   },
   getWebhooksSubscription: {
-    key: "getWebhooksSubscription",
-    noun: "Webhooks",
+    key: 'getWebhooksSubscription',
+    noun: 'Webhooks',
     display: {
-      label: "Get Webhooks Subscription",
-      description: "Get a webhooks subscription.",
+      label: 'Get Webhooks Subscription',
+      description: 'Get a webhooks subscription.',
       hidden: true,
     },
     operation: {
       inputFields: [
         {
-          key: "company_id",
-          dynamic: "listUserCompaniesTrigger.id.name",
-          label: "The ID of the company.",
-          type: "integer",
+          key: 'company_id',
+          dynamic: 'listUserCompaniesTrigger.id.name',
+          label: 'The ID of the company.',
+          type: 'integer',
           required: true,
         },
         {
-          key: "subscription_id",
-          label: "The ID of the subscription.",
-          type: "string",
+          key: 'subscription_id',
+          label: 'The ID of the subscription.',
+          type: 'string',
           required: true,
         },
       ],
-      outputFields: [...GetWebhooksSubscriptionResponse.fields("", false)],
+      outputFields: [...GetWebhooksSubscriptionResponse.fields('', false)],
       perform: async (z, bundle) => {
         const options = {
           url: utils.replacePathParameters(
-            "https://api-v2.fattureincloud.it/c/{company_id}/subscriptions/{subscription_id}",
+            'https://api-v2.fattureincloud.it/c/{company_id}/subscriptions/{subscription_id}'
           ),
-          method: "GET",
+          method: 'GET',
           removeMissingValuesFrom: { params: true, body: true },
           headers: {
-            "Content-Type": "",
-            Accept: "application/json",
+            'Content-Type': '',
+            Accept: 'application/json',
           },
           params: {},
           body: {},
         };
-        return z
-          .request(utils.requestOptionsMiddleware(z, bundle, options))
-          .then((response) => {
-            response.throwForStatus();
-            const results = utils.responseOptionsMiddleware(
-              z,
-              bundle,
-              "getWebhooksSubscription",
-              response.json,
-            );
-            return results;
-          });
+        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+          response.throwForStatus();
+          const results = utils.responseOptionsMiddleware(
+            z,
+            bundle,
+            'getWebhooksSubscription',
+            response.json
+          );
+          return results;
+        });
       },
-      sample: samples["GetWebhooksSubscriptionResponseSample"],
+      sample: samples['GetWebhooksSubscriptionResponseSample'],
     },
   },
   listWebhooksSubscriptions: {
-    key: "listWebhooksSubscriptions",
-    noun: "Webhooks",
+    key: 'listWebhooksSubscriptions',
+    noun: 'Webhooks',
     display: {
-      label: "List Webhooks Subscriptions",
-      description: "List active webhooks subscriptions.",
+      label: 'List Webhooks Subscriptions',
+      description: 'List active webhooks subscriptions.',
       hidden: true,
     },
     operation: {
       inputFields: [
         {
-          key: "company_id",
-          dynamic: "listUserCompaniesTrigger.id.name",
-          label: "The ID of the company.",
-          type: "integer",
+          key: 'company_id',
+          dynamic: 'listUserCompaniesTrigger.id.name',
+          label: 'The ID of the company.',
+          type: 'integer',
           required: true,
         },
       ],
-      outputFields: [...ListWebhooksSubscriptionsResponse.fields("", false)],
+      outputFields: [...ListWebhooksSubscriptionsResponse.fields('', false)],
       perform: async (z, bundle) => {
         const options = {
           url: utils.replacePathParameters(
-            "https://api-v2.fattureincloud.it/c/{company_id}/subscriptions",
+            'https://api-v2.fattureincloud.it/c/{company_id}/subscriptions'
           ),
-          method: "GET",
+          method: 'GET',
           removeMissingValuesFrom: { params: true, body: true },
           headers: {
-            "Content-Type": "",
-            Accept: "application/json",
+            'Content-Type': '',
+            Accept: 'application/json',
           },
           params: {},
           body: {},
         };
-        return z
-          .request(utils.requestOptionsMiddleware(z, bundle, options))
-          .then((response) => {
-            response.throwForStatus();
-            const results = utils.responseOptionsMiddleware(
-              z,
-              bundle,
-              "listWebhooksSubscriptions",
-              response.json,
-            );
-            return results;
-          });
+        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+          response.throwForStatus();
+          const results = utils.responseOptionsMiddleware(
+            z,
+            bundle,
+            'listWebhooksSubscriptions',
+            response.json
+          );
+          return results;
+        });
       },
-      sample: samples["ListWebhooksSubscriptionsResponseSample"],
+      sample: samples['ListWebhooksSubscriptionsResponseSample'],
     },
   },
   modifyWebhooksSubscription: {
-    key: "modifyWebhooksSubscription",
-    noun: "Webhooks",
+    key: 'modifyWebhooksSubscription',
+    noun: 'Webhooks',
     display: {
-      label: "Modify Webhooks Subscription",
-      description: "Edit a webhooks subscription.",
+      label: 'Modify Webhooks Subscription',
+      description: 'Edit a webhooks subscription.',
       hidden: true,
     },
     operation: {
       inputFields: [
         {
-          key: "company_id",
-          dynamic: "listUserCompaniesTrigger.id.name",
-          label: "The ID of the company.",
-          type: "integer",
+          key: 'company_id',
+          dynamic: 'listUserCompaniesTrigger.id.name',
+          label: 'The ID of the company.',
+          type: 'integer',
           required: true,
         },
         {
-          key: "subscription_id",
-          label: "The ID of the subscription.",
-          type: "string",
+          key: 'subscription_id',
+          label: 'The ID of the subscription.',
+          type: 'string',
           required: true,
         },
         ...ModifyWebhooksSubscriptionRequest.fields(),
       ],
-      outputFields: [...ModifyWebhooksSubscriptionResponse.fields("", false)],
+      outputFields: [...ModifyWebhooksSubscriptionResponse.fields('', false)],
       perform: async (z, bundle) => {
         const options = {
           url: utils.replacePathParameters(
-            "https://api-v2.fattureincloud.it/c/{company_id}/subscriptions/{subscription_id}",
+            'https://api-v2.fattureincloud.it/c/{company_id}/subscriptions/{subscription_id}'
           ),
-          method: "PUT",
+          method: 'PUT',
           removeMissingValuesFrom: { params: true, body: true },
           headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
           },
           params: {},
           body: {
             ...ModifyWebhooksSubscriptionRequest.mapping(bundle),
           },
         };
-        return z
-          .request(utils.requestOptionsMiddleware(z, bundle, options))
-          .then((response) => {
-            response.throwForStatus();
-            const results = utils.responseOptionsMiddleware(
-              z,
-              bundle,
-              "modifyWebhooksSubscription",
-              response.json,
-            );
-            return results;
-          });
+        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+          response.throwForStatus();
+          const results = utils.responseOptionsMiddleware(
+            z,
+            bundle,
+            'modifyWebhooksSubscription',
+            response.json
+          );
+          return results;
+        });
       },
-      sample: samples["ModifyWebhooksSubscriptionResponseSample"],
+      sample: samples['ModifyWebhooksSubscriptionResponseSample'],
     },
   },
   verifyWebhooksSubscription: {
-    key: "verifyWebhooksSubscription",
-    noun: "Webhooks",
+    key: 'verifyWebhooksSubscription',
+    noun: 'Webhooks',
     display: {
-      label: "Verify Webhooks Subscription",
-      description: "Verify a webhook subscription.",
+      label: 'Verify Webhooks Subscription',
+      description: 'Verify a webhook subscription.',
       hidden: true,
     },
     operation: {
       inputFields: [
         {
-          key: "company_id",
-          dynamic: "listUserCompaniesTrigger.id.name",
-          label: "The ID of the company.",
-          type: "integer",
+          key: 'company_id',
+          dynamic: 'listUserCompaniesTrigger.id.name',
+          label: 'The ID of the company.',
+          type: 'integer',
           required: true,
         },
         {
-          key: "subscription_id",
-          label: "The ID of the subscription.",
-          type: "string",
+          key: 'subscription_id',
+          label: 'The ID of the subscription.',
+          type: 'string',
           required: true,
         },
         ...VerifyWebhooksSubscriptionRequest.fields(),
@@ -308,31 +298,29 @@ module.exports = {
       perform: async (z, bundle) => {
         const options = {
           url: utils.replacePathParameters(
-            "https://api-v2.fattureincloud.it/c/{company_id}/subscriptions/{subscription_id}/verify",
+            'https://api-v2.fattureincloud.it/c/{company_id}/subscriptions/{subscription_id}/verify'
           ),
-          method: "POST",
+          method: 'POST',
           removeMissingValuesFrom: { params: true, body: true },
           headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
           },
           params: {},
           body: {
             ...VerifyWebhooksSubscriptionRequest.mapping(bundle),
           },
         };
-        return z
-          .request(utils.requestOptionsMiddleware(z, bundle, options))
-          .then((response) => {
-            response.throwForStatus();
-            const results = utils.responseOptionsMiddleware(
-              z,
-              bundle,
-              "verifyWebhooksSubscription",
-              response.json,
-            );
-            return results;
-          });
+        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+          response.throwForStatus();
+          const results = utils.responseOptionsMiddleware(
+            z,
+            bundle,
+            'verifyWebhooksSubscription',
+            response.json
+          );
+          return results;
+        });
       },
       sample: { data: {} },
     },

@@ -7,23 +7,21 @@ const listWebhooksResourceOperations = require('../triggers/listWebhooksResource
 const rawWebhook = require('../triggers/rawWebhook');
 
 const dropdownTriggers = {
-    [listUserCompaniesTrigger.key]: listUserCompaniesTrigger,
-    [listVatTypesTrigger.key]: listVatTypesTrigger,
-    [listPaymentAccountsTrigger.key]: listPaymentAccountsTrigger,
-    [listPaymentMethodsTrigger.key]: listPaymentMethodsTrigger,
-    [listWebhooksResourceOperations.key]: listWebhooksResourceOperations,
-}
+  [listUserCompaniesTrigger.key]: listUserCompaniesTrigger,
+  [listVatTypesTrigger.key]: listVatTypesTrigger,
+  [listPaymentAccountsTrigger.key]: listPaymentAccountsTrigger,
+  [listPaymentMethodsTrigger.key]: listPaymentMethodsTrigger,
+  [listWebhooksResourceOperations.key]: listWebhooksResourceOperations,
+};
 
 const webhooksTriggers = {
-    [rawWebhook.key]: rawWebhook,
-    [enrichedWebhook.key]: enrichedWebhook,
-}
+  [rawWebhook.key]: rawWebhook,
+  [enrichedWebhook.key]: enrichedWebhook,
+};
 
 module.exports = {
-    triggers: () => (
-        {
-            ...dropdownTriggers,
-            ...webhooksTriggers,
-        }
-    )
-}
+  triggers: () => ({
+    ...dropdownTriggers,
+    ...webhooksTriggers,
+  }),
+};

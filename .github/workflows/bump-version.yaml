@@ -1,15 +1,13 @@
 name: Bump Zapier version
 on: [workflow_dispatch]
-    
+
 jobs:
-  
   bump-version:
     runs-on: ubuntu-latest
     env:
       GIT_OPENAPI_REPO_ID: openapi-fattureincloud
       GIT_USER_ID: fattureincloud
-    steps: 
-
+    steps:
       - id: checkout-openapi
         name: Checkout OpenAPI repo
         env:

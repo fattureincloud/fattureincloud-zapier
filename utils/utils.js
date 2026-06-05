@@ -1,46 +1,38 @@
-const _ = require("lodash");
-const EventType = require("../models/EventType");
+const _ = require('lodash');
+const EventType = require('../models/EventType');
 
 const replacePathParameters = (url) =>
   url.replace(/{([^{}]+)}/g, (keyExpr, key) => `{{bundle.inputData.${key}}}`);
 const childMapping = (objectsArray, prefix, model) => {
   if (_.isEmpty(objectsArray)) return undefined;
-  if (typeof model.mapping === "function") {
-    return objectsArray.map((object) =>
-      model.mapping({ inputData: object }, prefix),
-    );
+  if (typeof model.mapping === 'function') {
+    return objectsArray.map((object) => model.mapping({ inputData: object }, prefix));
   }
   return objectsArray;
 };
-const removeIfEmpty = (obj) =>
-  _.isEmpty(JSON.parse(JSON.stringify(obj))) ? undefined : obj;
+const removeIfEmpty = (obj) => (_.isEmpty(JSON.parse(JSON.stringify(obj))) ? undefined : obj);
 const buildKeyAndLabel = (prefix, isInput = true, isArrayChild = false) => {
   const keyPrefix =
-    !_.isEmpty(prefix) && (!isArrayChild || isInput)
-      ? `${prefix}${isInput ? "." : "__"}`
-      : prefix;
-  const labelPrefix = !_.isEmpty(keyPrefix)
-    ? keyPrefix.replaceAll("__", ".")
-    : "";
+    !_.isEmpty(prefix) && (!isArrayChild || isInput) ? `${prefix}${isInput ? '.' : '__'}` : prefix;
+  const labelPrefix = !_.isEmpty(keyPrefix) ? keyPrefix.replaceAll('__', '.') : '';
   return {
     keyPrefix: keyPrefix,
     labelPrefix: labelPrefix,
   };
 };
 const isSearchAction = (key) => {
-  return key.startsWith("list");
+  return key.startsWith('list');
 };
 const hasASearchField = (action) => action.operation.inputFields.length > 0;
 const returnsObjectsArray = (action) =>
-  !!action.operation.outputFields.find((field) => "children" in field);
-const hasSearchRequisites = (action) =>
-  hasASearchField(action) && returnsObjectsArray(action);
+  !!action.operation.outputFields.find((field) => 'children' in field);
+const hasSearchRequisites = (action) => hasASearchField(action) && returnsObjectsArray(action);
 const searchMiddleware = (action) => {
   let newOutputFields = action.operation.outputFields
-    .find((field) => field.key === "data")
+    .find((field) => field.key === 'data')
     .children.map((field) => ({
-      key: field.key.replace("data[]", ""),
-      label: field.label.replace("data[]", ""),
+      key: field.key.replace('data[]', ''),
+      label: field.label.replace('data[]', ''),
       type: field.type,
     }));
   action.operation.outputFields = newOutputFields;
@@ -56,17 +48,17 @@ const isCreateAction = (key) => {
 };
 
 const VALID_OUTPUT_FIELD_TYPES = new Set([
-  "string",
-  "number",
-  "boolean",
-  "datetime",
-  "file",
-  "password",
-  "integer",
+  'string',
+  'number',
+  'boolean',
+  'datetime',
+  'file',
+  'password',
+  'integer',
 ]);
 
 const sanitizeOutputField = (field) => {
-  if (!field || typeof field !== "object" || Array.isArray(field)) {
+  if (!field || typeof field !== 'object' || Array.isArray(field)) {
     return field;
   }
 
@@ -74,9 +66,8 @@ const sanitizeOutputField = (field) => {
   delete sanitizedField.choices;
 
   if (
-    Object.prototype.hasOwnProperty.call(sanitizedField, "type") &&
-    (typeof sanitizedField.type !== "string" ||
-      !VALID_OUTPUT_FIELD_TYPES.has(sanitizedField.type))
+    Object.prototype.hasOwnProperty.call(sanitizedField, 'type') &&
+    (typeof sanitizedField.type !== 'string' || !VALID_OUTPUT_FIELD_TYPES.has(sanitizedField.type))
   ) {
     delete sanitizedField.type;
   }
@@ -89,14 +80,10 @@ const sanitizeOutputField = (field) => {
 };
 
 const sanitizeOutputFields = (outputFields) =>
-  Array.isArray(outputFields)
-    ? outputFields.map(sanitizeOutputField)
-    : outputFields;
+  Array.isArray(outputFields) ? outputFields.map(sanitizeOutputField) : outputFields;
 
 const createMiddleware = (action) => {
-  action.operation.outputFields = sanitizeOutputFields(
-    action.operation.outputFields,
-  );
+  action.operation.outputFields = sanitizeOutputFields(action.operation.outputFields);
   return action;
 };
 
@@ -110,8 +97,7 @@ const triggerMiddleware = (action) => {
 };
 
 const requestOptionsMiddleware = (z, bundle, requestOptions) => {
-  requestOptions.headers["Authorization"] =
-    `Bearer ${bundle.authData.access_token}`;
+  requestOptions.headers['Authorization'] = `Bearer ${bundle.authData.access_token}`;
   return requestOptions;
 };
 
@@ -127,25 +113,18 @@ const responseOptionsMiddleware = (z, bundle, key, json) => {
 };
 
 const extractResourceAndOperation = (eventType) => ({
-  resource: eventType.substring(
-    "it.fattureincloud.webhooks.".length,
-    eventType.lastIndexOf("."),
-  ),
-  eventOperation: eventType.substring(eventType.lastIndexOf(".") + 1),
+  resource: eventType.substring('it.fattureincloud.webhooks.'.length, eventType.lastIndexOf('.')),
+  eventOperation: eventType.substring(eventType.lastIndexOf('.') + 1),
 });
 const retrieveResourceOperations = (resource) =>
-  EventType.fields("")
-    .choices.filter(
-      (eventType) =>
-        extractResourceAndOperation(eventType).resource == resource,
-    )
+  EventType.fields('')
+    .choices.filter((eventType) => extractResourceAndOperation(eventType).resource == resource)
     .map((et) => ({
       type: extractResourceAndOperation(et).eventOperation,
       id: extractResourceAndOperation(et).eventOperation,
     }));
 const overrideUserAgent = (request, z, bundle) => {
-  request.headers["user-agent"] =
-    `FattureInCloud/${require("../package.json").version}/Zapier`;
+  request.headers['user-agent'] = `FattureInCloud/${require('../package.json').version}/Zapier`;
   return request;
 };
 const handleClientErrors = (response, z) => {
@@ -154,11 +133,8 @@ const handleClientErrors = (response, z) => {
 
     if (!_.isEmpty(response.json?.error?.validation_result)) {
       errorMessage = Object.keys(response.json?.error?.validation_result)
-        .map(
-          (key) =>
-            `[${key}]: ${response.json.error.validation_result[key].join(" - ")}`,
-        )
-        .join("\n");
+        .map((key) => `[${key}]: ${response.json.error.validation_result[key].join(' - ')}`)
+        .join('\n');
     } else if (!_.isEmpty(response.json?.error?.message)) {
       errorMessage = response.json.error.message;
     }

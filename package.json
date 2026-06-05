@@ -5,7 +5,11 @@
   "author": "Fatture in Cloud API team",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive -t 10000"
+    "test": "mocha --recursive -t 10000",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "engines": {
     "node": ">=v16",
@@ -17,7 +21,12 @@
     "form-data": "^4.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "eslint": "^9.30.1",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^16.3.0",
     "mocha": "^11.7.0",
+    "prettier": "^3.6.2",
     "should": "^13.2.0"
   },
   "private": true,
