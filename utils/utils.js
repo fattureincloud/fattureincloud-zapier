@@ -1,8 +1,24 @@
 const _ = require('lodash');
 const EventType = require('../models/EventType');
 
-const replacePathParameters = (url) =>
-  url.replace(/{([^{}]+)}/g, (keyExpr, key) => `{{bundle.inputData.${key}}}`);
+const replacePathParameters = (url, bundle) => {
+  if (!url || typeof url !== 'string') {
+    return url;
+  }
+
+  if (!bundle || !bundle.inputData) {
+    return url;
+  }
+
+  return url.replace(/{([^{}]+)}/g, (keyExpr, key) => {
+    const rawValue = bundle?.inputData?.[key];
+    if (rawValue === undefined || rawValue === null || rawValue === '') {
+      return '';
+    }
+
+    return encodeURIComponent(String(rawValue));
+  });
+};
 const childMapping = (objectsArray, prefix, model) => {
   if (_.isEmpty(objectsArray)) return undefined;
   if (typeof model.mapping === 'function') {
@@ -97,6 +113,7 @@ const triggerMiddleware = (action) => {
 };
 
 const requestOptionsMiddleware = (z, bundle, requestOptions) => {
+  requestOptions.url = replacePathParameters(requestOptions.url, bundle);
   requestOptions.headers['Authorization'] = `Bearer ${bundle.authData.access_token}`;
   return requestOptions;
 };
