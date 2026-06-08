@@ -11,384 +11,360 @@ const utils = require('../utils/utils');
 const FormData = require('form-data');
 
 module.exports = {
-  createArchiveDocument: {
-    key: 'createArchiveDocument',
-    noun: 'Archive',
-    display: {
-      label: 'Create Archive Document',
-      description: 'Creates a new archive document.',
-      hidden: false,
+    createArchiveDocument: {
+        key: 'createArchiveDocument',
+        noun: 'Archive',
+        display: {
+            label: 'Create Archive Document',
+            description: 'Creates a new archive document.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                ...CreateArchiveDocumentRequest.fields(),
+            ],
+            outputFields: [
+                ...CreateArchiveDocumentResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...CreateArchiveDocumentRequest.mapping(bundle),
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'createArchiveDocument', response.json);
+                    return results;
+                })
+            },
+            sample: samples['CreateArchiveDocumentResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    deleteArchiveDocument: {
+        key: 'deleteArchiveDocument',
+        noun: 'Archive',
+        display: {
+            label: 'Delete Archive Document',
+            description: 'Deletes the specified archive document.',
+            hidden: false,
         },
-        ...CreateArchiveDocumentRequest.fields(),
-      ],
-      outputFields: [...CreateArchiveDocumentResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/archive'
-          ),
-          method: 'POST',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {
-            ...CreateArchiveDocumentRequest.mapping(bundle),
-          },
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'createArchiveDocument',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['CreateArchiveDocumentResponseSample'],
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'),
+                    method: 'DELETE',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deleteArchiveDocument', response.json);
+                    return results;
+                })
+            },
+            sample: { data: {} }
+        }
     },
-  },
-  deleteArchiveDocument: {
-    key: 'deleteArchiveDocument',
-    noun: 'Archive',
-    display: {
-      label: 'Delete Archive Document',
-      description: 'Deletes the specified archive document.',
-      hidden: false,
+    getArchiveDocument: {
+        key: 'getArchiveDocument',
+        noun: 'Archive',
+        display: {
+            label: 'Get Archive Document',
+            description: 'Gets the specified archive document.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+            ],
+            outputFields: [
+                ...GetArchiveDocumentResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getArchiveDocument', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetArchiveDocumentResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    listArchiveDocuments: {
+        key: 'listArchiveDocuments',
+        noun: 'Archive',
+        display: {
+            label: 'List Archive Documents',
+            description: 'Lists the archive documents.',
+            hidden: false,
         },
-        {
-          key: 'document_id',
-          label: 'The ID of the document.',
-          type: 'integer',
-          required: true,
-        },
-      ],
-      outputFields: [],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'
-          ),
-          method: 'DELETE',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'deleteArchiveDocument',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: { data: {} },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+                {
+                    key: 'sort',
+                    label: 'List of comma-separated fields for result sorting (minus for desc sorting).',
+                    type: 'string',
+                },
+                {
+                    key: 'page',
+                    label: 'The page to retrieve.',
+                    type: 'integer',
+                },
+                {
+                    key: 'per_page',
+                    label: 'The size of the page.',
+                    type: 'integer',
+                },
+                {
+                    key: 'q',
+                    label: 'Query for filtering the results.',
+                    type: 'string',
+                },
+            ],
+            outputFields: [
+                ...ListArchiveDocumentsResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                        'sort': bundle.inputData?.['sort'],
+                        'page': bundle.inputData?.['page'],
+                        'per_page': bundle.inputData?.['per_page'],
+                        'q': bundle.inputData?.['q'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'listArchiveDocuments', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ListArchiveDocumentsResponseSample']
+        }
     },
-  },
-  getArchiveDocument: {
-    key: 'getArchiveDocument',
-    noun: 'Archive',
-    display: {
-      label: 'Get Archive Document',
-      description: 'Gets the specified archive document.',
-      hidden: false,
+    modifyArchiveDocument: {
+        key: 'modifyArchiveDocument',
+        noun: 'Archive',
+        display: {
+            label: 'Modify Archive Document',
+            description: 'Modifies the specified archive document.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'document_id',
+                    label: 'The ID of the document.',
+                    type: 'integer',
+                    required: true,
+                },
+                ...ModifyArchiveDocumentRequest.fields(),
+            ],
+            outputFields: [
+                ...ModifyArchiveDocumentResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'),
+                    method: 'PUT',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...ModifyArchiveDocumentRequest.mapping(bundle),
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'modifyArchiveDocument', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ModifyArchiveDocumentResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    uploadArchiveDocumentAttachment: {
+        key: 'uploadArchiveDocumentAttachment',
+        noun: 'Archive',
+        display: {
+            label: 'Upload Archive Document Attachment',
+            description: 'Uploads an attachment destined to an archive document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
+            hidden: false,
         },
-        {
-          key: 'document_id',
-          label: 'The ID of the document.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'fields',
-          label: 'List of comma-separated fields.',
-          type: 'string',
-        },
-        {
-          key: 'fieldset',
-          label: 'Name of the fieldset.',
-          type: 'string',
-          choices: ['basic', 'detailed', 'fic_view'],
-        },
-      ],
-      outputFields: [...GetArchiveDocumentResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'
-          ),
-          method: 'GET',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {
-            fields: bundle.inputData?.['fields'],
-            fieldset: bundle.inputData?.['fieldset'],
-          },
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'getArchiveDocument',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['GetArchiveDocumentResponseSample'],
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'filename',
+                    label: 'Attachment file name',
+                    type: 'string',
+                },
+                {
+                    key: 'attachment',
+                    label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
+                    type: 'file',
+                },
+            ],
+            outputFields: [
+                ...UploadArchiveAttachmentResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const formData = new FormData()
+                formData.append('filename', bundle.inputData?.['filename'])
+                const filename = bundle.inputData?.['filename'] || bundle.inputData?.['attachment'].split('/').slice(-1)[0]
+                formData.append('attachment', (await (await z.request({url: bundle.inputData?.['attachment'], method: 'GET', raw: true})).buffer()), { filename: filename })
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/archive/attachment'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: formData,
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'uploadArchiveDocumentAttachment', response.json);
+                    return results;
+                })
+            },
+            sample: samples['UploadArchiveAttachmentResponseSample']
+        }
     },
-  },
-  listArchiveDocuments: {
-    key: 'listArchiveDocuments',
-    noun: 'Archive',
-    display: {
-      label: 'List Archive Documents',
-      description: 'Lists the archive documents.',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'fields',
-          label: 'List of comma-separated fields.',
-          type: 'string',
-        },
-        {
-          key: 'fieldset',
-          label: 'Name of the fieldset.',
-          type: 'string',
-          choices: ['basic', 'detailed', 'fic_view'],
-        },
-        {
-          key: 'sort',
-          label: 'List of comma-separated fields for result sorting (minus for desc sorting).',
-          type: 'string',
-        },
-        {
-          key: 'page',
-          label: 'The page to retrieve.',
-          type: 'integer',
-        },
-        {
-          key: 'per_page',
-          label: 'The size of the page.',
-          type: 'integer',
-        },
-        {
-          key: 'q',
-          label: 'Query for filtering the results.',
-          type: 'string',
-        },
-      ],
-      outputFields: [...ListArchiveDocumentsResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/archive'
-          ),
-          method: 'GET',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {
-            fields: bundle.inputData?.['fields'],
-            fieldset: bundle.inputData?.['fieldset'],
-            sort: bundle.inputData?.['sort'],
-            page: bundle.inputData?.['page'],
-            per_page: bundle.inputData?.['per_page'],
-            q: bundle.inputData?.['q'],
-          },
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'listArchiveDocuments',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['ListArchiveDocumentsResponseSample'],
-    },
-  },
-  modifyArchiveDocument: {
-    key: 'modifyArchiveDocument',
-    noun: 'Archive',
-    display: {
-      label: 'Modify Archive Document',
-      description: 'Modifies the specified archive document.',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'document_id',
-          label: 'The ID of the document.',
-          type: 'integer',
-          required: true,
-        },
-        ...ModifyArchiveDocumentRequest.fields(),
-      ],
-      outputFields: [...ModifyArchiveDocumentResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/archive/{document_id}'
-          ),
-          method: 'PUT',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {
-            ...ModifyArchiveDocumentRequest.mapping(bundle),
-          },
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'modifyArchiveDocument',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['ModifyArchiveDocumentResponseSample'],
-    },
-  },
-  uploadArchiveDocumentAttachment: {
-    key: 'uploadArchiveDocumentAttachment',
-    noun: 'Archive',
-    display: {
-      label: 'Upload Archive Document Attachment',
-      description:
-        'Uploads an attachment destined to an archive document. The actual association between the document and the attachment must be implemented separately, using the returned token.',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'filename',
-          label: 'Attachment file name',
-          type: 'string',
-        },
-        {
-          key: 'attachment',
-          label: 'Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]',
-          type: 'file',
-        },
-      ],
-      outputFields: [...UploadArchiveAttachmentResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const formData = new FormData();
-        formData.append('filename', bundle.inputData?.['filename']);
-        const filename =
-          bundle.inputData?.['filename'] ||
-          bundle.inputData?.['attachment'].split('/').slice(-1)[0];
-        formData.append(
-          'attachment',
-          await (
-            await z.request({ url: bundle.inputData?.['attachment'], method: 'GET', raw: true })
-          ).buffer(),
-          { filename: filename }
-        );
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/archive/attachment'
-          ),
-          method: 'POST',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            Accept: 'application/json',
-          },
-          params: {},
-          body: formData,
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'uploadArchiveDocumentAttachment',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['UploadArchiveAttachmentResponseSample'],
-    },
-  },
-};
+}
