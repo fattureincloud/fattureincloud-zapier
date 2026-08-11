@@ -21,833 +21,801 @@ const ModifyVatTypeResponse = require('../models/ModifyVatTypeResponse');
 const utils = require('../utils/utils');
 
 module.exports = {
-  createPaymentAccount: {
-    key: 'createPaymentAccount',
-    noun: 'Settings',
-    display: {
-      label: 'Create Payment Account',
-      description: 'Creates a new payment account.',
-      hidden: false,
+    createPaymentAccount: {
+        key: 'createPaymentAccount',
+        noun: 'Settings',
+        display: {
+            label: 'Create Payment Account',
+            description: 'Creates a new payment account.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                ...CreatePaymentAccountRequest.fields(),
+            ],
+            outputFields: [
+                ...CreatePaymentAccountResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_accounts'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...CreatePaymentAccountRequest.mapping(bundle),
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'createPaymentAccount', response.json);
+                    return results;
+                })
+            },
+            sample: samples['CreatePaymentAccountResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    createPaymentMethod: {
+        key: 'createPaymentMethod',
+        noun: 'Settings',
+        display: {
+            label: 'Create Payment Method',
+            description: 'Creates a new payment method.',
+            hidden: false,
         },
-        ...CreatePaymentAccountRequest.fields(),
-      ],
-      outputFields: [...CreatePaymentAccountResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_accounts'
-          ),
-          method: 'POST',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {
-            ...CreatePaymentAccountRequest.mapping(bundle),
-          },
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'createPaymentAccount',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['CreatePaymentAccountResponseSample'],
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                ...CreatePaymentMethodRequest.fields(),
+            ],
+            outputFields: [
+                ...CreatePaymentMethodResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_methods'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...CreatePaymentMethodRequest.mapping(bundle),
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'createPaymentMethod', response.json);
+                    return results;
+                })
+            },
+            sample: samples['CreatePaymentMethodResponseSample']
+        }
     },
-  },
-  createPaymentMethod: {
-    key: 'createPaymentMethod',
-    noun: 'Settings',
-    display: {
-      label: 'Create Payment Method',
-      description: 'Creates a new payment method.',
-      hidden: false,
+    createVatType: {
+        key: 'createVatType',
+        noun: 'Settings',
+        display: {
+            label: 'Create Vat Type',
+            description: 'Creates a vat type.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                ...CreateVatTypeRequest.fields(),
+            ],
+            outputFields: [
+                ...CreateVatTypeResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/vat_types'),
+                    method: 'POST',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...CreateVatTypeRequest.mapping(bundle),
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'createVatType', response.json);
+                    return results;
+                })
+            },
+            sample: samples['CreateVatTypeResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    deletePaymentAccount: {
+        key: 'deletePaymentAccount',
+        noun: 'Settings',
+        display: {
+            label: 'Delete Payment Account',
+            description: 'Deletes the specified payment account.',
+            hidden: false,
         },
-        ...CreatePaymentMethodRequest.fields(),
-      ],
-      outputFields: [...CreatePaymentMethodResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_methods'
-          ),
-          method: 'POST',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {
-            ...CreatePaymentMethodRequest.mapping(bundle),
-          },
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'createPaymentMethod',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['CreatePaymentMethodResponseSample'],
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'payment_account_id',
+                    label: 'The Referred Payment Account Id.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_accounts/{payment_account_id}'),
+                    method: 'DELETE',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deletePaymentAccount', response.json);
+                    return results;
+                })
+            },
+            sample: { data: {} }
+        }
     },
-  },
-  createVatType: {
-    key: 'createVatType',
-    noun: 'Settings',
-    display: {
-      label: 'Create Vat Type',
-      description: 'Creates a vat type.',
-      hidden: false,
+    deletePaymentMethod: {
+        key: 'deletePaymentMethod',
+        noun: 'Settings',
+        display: {
+            label: 'Delete Payment Method',
+            description: 'Deletes the specified payment method.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'payment_method_id',
+                    label: 'The Referred Payment Method Id.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_methods/{payment_method_id}'),
+                    method: 'DELETE',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deletePaymentMethod', response.json);
+                    return results;
+                })
+            },
+            sample: { data: {} }
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    deleteVatType: {
+        key: 'deleteVatType',
+        noun: 'Settings',
+        display: {
+            label: 'Delete Vat Type',
+            description: 'Deletes the specified vat type.',
+            hidden: false,
         },
-        ...CreateVatTypeRequest.fields(),
-      ],
-      outputFields: [...CreateVatTypeResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/vat_types'
-          ),
-          method: 'POST',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {
-            ...CreateVatTypeRequest.mapping(bundle),
-          },
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'createVatType',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['CreateVatTypeResponseSample'],
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'vat_type_id',
+                    label: 'The Referred Vat Type Id.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/vat_types/{vat_type_id}'),
+                    method: 'DELETE',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'deleteVatType', response.json);
+                    return results;
+                })
+            },
+            sample: { data: {} }
+        }
     },
-  },
-  deletePaymentAccount: {
-    key: 'deletePaymentAccount',
-    noun: 'Settings',
-    display: {
-      label: 'Delete Payment Account',
-      description: 'Deletes the specified payment account.',
-      hidden: false,
+    getPaymentAccount: {
+        key: 'getPaymentAccount',
+        noun: 'Settings',
+        display: {
+            label: 'Get Payment Account',
+            description: 'Gets the specified payment account.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'payment_account_id',
+                    label: 'The Referred Payment Account Id.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+            ],
+            outputFields: [
+                ...GetPaymentAccountResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_accounts/{payment_account_id}'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getPaymentAccount', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetPaymentAccountResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    getPaymentMethod: {
+        key: 'getPaymentMethod',
+        noun: 'Settings',
+        display: {
+            label: 'Get Payment Method',
+            description: 'Gets the specified payment method.',
+            hidden: false,
         },
-        {
-          key: 'payment_account_id',
-          label: 'The Referred Payment Account Id.',
-          type: 'integer',
-          required: true,
-        },
-      ],
-      outputFields: [],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_accounts/{payment_account_id}'
-          ),
-          method: 'DELETE',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'deletePaymentAccount',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: { data: {} },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'payment_method_id',
+                    label: 'The Referred Payment Method Id.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+            ],
+            outputFields: [
+                ...GetPaymentMethodResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_methods/{payment_method_id}'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getPaymentMethod', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetPaymentMethodResponseSample']
+        }
     },
-  },
-  deletePaymentMethod: {
-    key: 'deletePaymentMethod',
-    noun: 'Settings',
-    display: {
-      label: 'Delete Payment Method',
-      description: 'Deletes the specified payment method.',
-      hidden: false,
+    getTaxProfile: {
+        key: 'getTaxProfile',
+        noun: 'Settings',
+        display: {
+            label: 'Get Tax Profile',
+            description: 'Gets the Tax Profile',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+                ...GetTaxProfileResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/tax_profile'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getTaxProfile', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetTaxProfileResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    getTemplate: {
+        key: 'getTemplate',
+        noun: 'Settings',
+        display: {
+            label: 'Get Template',
+            description: 'Gets a specified template.',
+            hidden: false,
         },
-        {
-          key: 'payment_method_id',
-          label: 'The Referred Payment Method Id.',
-          type: 'integer',
-          required: true,
-        },
-      ],
-      outputFields: [],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_methods/{payment_method_id}'
-          ),
-          method: 'DELETE',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'deletePaymentMethod',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: { data: {} },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'template_id',
+                    label: 'The Referred Template Id.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+            ],
+            outputFields: [
+                ...GetTemplatesResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/templates/{template_id}'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getTemplate', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetTemplatesResponseSample']
+        }
     },
-  },
-  deleteVatType: {
-    key: 'deleteVatType',
-    noun: 'Settings',
-    display: {
-      label: 'Delete Vat Type',
-      description: 'Deletes the specified vat type.',
-      hidden: false,
+    getVatType: {
+        key: 'getVatType',
+        noun: 'Settings',
+        display: {
+            label: 'Get Vat Type',
+            description: 'Gets the specified vat type.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'vat_type_id',
+                    label: 'The Referred Vat Type Id.',
+                    type: 'integer',
+                    required: true,
+                },
+            ],
+            outputFields: [
+                ...GetVatTypeResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/vat_types/{vat_type_id}'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getVatType', response.json);
+                    return results;
+                })
+            },
+            sample: samples['GetVatTypeResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    listTemplates: {
+        key: 'listTemplates',
+        noun: 'Settings',
+        display: {
+            label: 'List Templates',
+            description: 'Gets all the standard and private templates.',
+            hidden: false,
         },
-        {
-          key: 'vat_type_id',
-          label: 'The Referred Vat Type Id.',
-          type: 'integer',
-          required: true,
-        },
-      ],
-      outputFields: [],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/vat_types/{vat_type_id}'
-          ),
-          method: 'DELETE',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'deleteVatType',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: { data: {} },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'fields',
+                    label: 'List of comma-separated fields.',
+                    type: 'string',
+                },
+                {
+                    key: 'fieldset',
+                    label: 'Name of the fieldset.',
+                    type: 'string',
+                    choices: [
+                        'basic',
+                        'detailed',
+                        'fic_view',
+                    ],
+                },
+            ],
+            outputFields: [
+                ...ListTemplatesResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/templates'),
+                    method: 'GET',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': '',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                        'fields': bundle.inputData?.['fields'],
+                        'fieldset': bundle.inputData?.['fieldset'],
+                    },
+                    body: {
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'listTemplates', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ListTemplatesResponseSample']
+        }
     },
-  },
-  getPaymentAccount: {
-    key: 'getPaymentAccount',
-    noun: 'Settings',
-    display: {
-      label: 'Get Payment Account',
-      description: 'Gets the specified payment account.',
-      hidden: false,
+    modifyPaymentAccount: {
+        key: 'modifyPaymentAccount',
+        noun: 'Settings',
+        display: {
+            label: 'Modify Payment Account',
+            description: 'Modifies the specified payment account.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'payment_account_id',
+                    label: 'The Referred Payment Account Id.',
+                    type: 'integer',
+                    required: true,
+                },
+                ...ModifyPaymentAccountRequest.fields(),
+            ],
+            outputFields: [
+                ...ModifyPaymentAccountResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_accounts/{payment_account_id}'),
+                    method: 'PUT',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...ModifyPaymentAccountRequest.mapping(bundle),
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'modifyPaymentAccount', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ModifyPaymentAccountResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
+    modifyPaymentMethod: {
+        key: 'modifyPaymentMethod',
+        noun: 'Settings',
+        display: {
+            label: 'Modify Payment Method',
+            description: 'Modifies the specified payment method.',
+            hidden: false,
         },
-        {
-          key: 'payment_account_id',
-          label: 'The Referred Payment Account Id.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'fields',
-          label: 'List of comma-separated fields.',
-          type: 'string',
-        },
-        {
-          key: 'fieldset',
-          label: 'Name of the fieldset.',
-          type: 'string',
-          choices: ['basic', 'detailed', 'fic_view'],
-        },
-      ],
-      outputFields: [...GetPaymentAccountResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_accounts/{payment_account_id}'
-          ),
-          method: 'GET',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {
-            fields: bundle.inputData?.['fields'],
-            fieldset: bundle.inputData?.['fieldset'],
-          },
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'getPaymentAccount',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['GetPaymentAccountResponseSample'],
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'payment_method_id',
+                    label: 'The Referred Payment Method Id.',
+                    type: 'integer',
+                    required: true,
+                },
+                ...ModifyPaymentMethodRequest.fields(),
+            ],
+            outputFields: [
+                ...ModifyPaymentMethodResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_methods/{payment_method_id}'),
+                    method: 'PUT',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...ModifyPaymentMethodRequest.mapping(bundle),
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'modifyPaymentMethod', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ModifyPaymentMethodResponseSample']
+        }
     },
-  },
-  getPaymentMethod: {
-    key: 'getPaymentMethod',
-    noun: 'Settings',
-    display: {
-      label: 'Get Payment Method',
-      description: 'Gets the specified payment method.',
-      hidden: false,
+    modifyVatType: {
+        key: 'modifyVatType',
+        noun: 'Settings',
+        display: {
+            label: 'Modify Vat Type',
+            description: 'Modifies the specified vat type.',
+            hidden: false,
+        },
+        operation: {
+            inputFields: [
+                {
+                    key: 'company_id',
+                    dynamic: 'listUserCompaniesTrigger.id.name',
+                    label: 'The ID of the company.',
+                    type: 'integer',
+                    required: true,
+                },
+                {
+                    key: 'vat_type_id',
+                    label: 'The Referred Vat Type Id.',
+                    type: 'integer',
+                    required: true,
+                },
+                ...ModifyVatTypeRequest.fields(),
+            ],
+            outputFields: [
+                ...ModifyVatTypeResponse.fields('', false),
+            ],
+            perform: async (z, bundle) => {
+                const options = {
+                    url: utils.replacePathParameters('https://api-v2.fattureincloud.it/c/{company_id}/settings/vat_types/{vat_type_id}'),
+                    method: 'PUT',
+                    removeMissingValuesFrom: { params: true, body: true },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    params: {
+                    },
+                    body: {
+                        ...ModifyVatTypeRequest.mapping(bundle),
+                    },
+                }
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
+                    response.throwForStatus();
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'modifyVatType', response.json);
+                    return results;
+                })
+            },
+            sample: samples['ModifyVatTypeResponseSample']
+        }
     },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'payment_method_id',
-          label: 'The Referred Payment Method Id.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'fields',
-          label: 'List of comma-separated fields.',
-          type: 'string',
-        },
-        {
-          key: 'fieldset',
-          label: 'Name of the fieldset.',
-          type: 'string',
-          choices: ['basic', 'detailed', 'fic_view'],
-        },
-      ],
-      outputFields: [...GetPaymentMethodResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_methods/{payment_method_id}'
-          ),
-          method: 'GET',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {
-            fields: bundle.inputData?.['fields'],
-            fieldset: bundle.inputData?.['fieldset'],
-          },
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'getPaymentMethod',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['GetPaymentMethodResponseSample'],
-    },
-  },
-  getTaxProfile: {
-    key: 'getTaxProfile',
-    noun: 'Settings',
-    display: {
-      label: 'Get Tax Profile',
-      description: 'Gets the Tax Profile',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-      ],
-      outputFields: [...GetTaxProfileResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/tax_profile'
-          ),
-          method: 'GET',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'getTaxProfile',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['GetTaxProfileResponseSample'],
-    },
-  },
-  getTemplate: {
-    key: 'getTemplate',
-    noun: 'Settings',
-    display: {
-      label: 'Get Template',
-      description: 'Gets a specified template.',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'template_id',
-          label: 'The Referred Template Id.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'fields',
-          label: 'List of comma-separated fields.',
-          type: 'string',
-        },
-        {
-          key: 'fieldset',
-          label: 'Name of the fieldset.',
-          type: 'string',
-          choices: ['basic', 'detailed', 'fic_view'],
-        },
-      ],
-      outputFields: [...GetTemplatesResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/templates/{template_id}'
-          ),
-          method: 'GET',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {
-            fields: bundle.inputData?.['fields'],
-            fieldset: bundle.inputData?.['fieldset'],
-          },
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(z, bundle, 'getTemplate', response.json);
-          return results;
-        });
-      },
-      sample: samples['GetTemplatesResponseSample'],
-    },
-  },
-  getVatType: {
-    key: 'getVatType',
-    noun: 'Settings',
-    display: {
-      label: 'Get Vat Type',
-      description: 'Gets the specified vat type.',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'vat_type_id',
-          label: 'The Referred Vat Type Id.',
-          type: 'integer',
-          required: true,
-        },
-      ],
-      outputFields: [...GetVatTypeResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/vat_types/{vat_type_id}'
-          ),
-          method: 'GET',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(z, bundle, 'getVatType', response.json);
-          return results;
-        });
-      },
-      sample: samples['GetVatTypeResponseSample'],
-    },
-  },
-  listTemplates: {
-    key: 'listTemplates',
-    noun: 'Settings',
-    display: {
-      label: 'List Templates',
-      description: 'Gets all the standard and private templates.',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'fields',
-          label: 'List of comma-separated fields.',
-          type: 'string',
-        },
-        {
-          key: 'fieldset',
-          label: 'Name of the fieldset.',
-          type: 'string',
-          choices: ['basic', 'detailed', 'fic_view'],
-        },
-      ],
-      outputFields: [...ListTemplatesResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/templates'
-          ),
-          method: 'GET',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': '',
-            Accept: 'application/json',
-          },
-          params: {
-            fields: bundle.inputData?.['fields'],
-            fieldset: bundle.inputData?.['fieldset'],
-          },
-          body: {},
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'listTemplates',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['ListTemplatesResponseSample'],
-    },
-  },
-  modifyPaymentAccount: {
-    key: 'modifyPaymentAccount',
-    noun: 'Settings',
-    display: {
-      label: 'Modify Payment Account',
-      description: 'Modifies the specified payment account.',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'payment_account_id',
-          label: 'The Referred Payment Account Id.',
-          type: 'integer',
-          required: true,
-        },
-        ...ModifyPaymentAccountRequest.fields(),
-      ],
-      outputFields: [...ModifyPaymentAccountResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_accounts/{payment_account_id}'
-          ),
-          method: 'PUT',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {
-            ...ModifyPaymentAccountRequest.mapping(bundle),
-          },
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'modifyPaymentAccount',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['ModifyPaymentAccountResponseSample'],
-    },
-  },
-  modifyPaymentMethod: {
-    key: 'modifyPaymentMethod',
-    noun: 'Settings',
-    display: {
-      label: 'Modify Payment Method',
-      description: 'Modifies the specified payment method.',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'payment_method_id',
-          label: 'The Referred Payment Method Id.',
-          type: 'integer',
-          required: true,
-        },
-        ...ModifyPaymentMethodRequest.fields(),
-      ],
-      outputFields: [...ModifyPaymentMethodResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/payment_methods/{payment_method_id}'
-          ),
-          method: 'PUT',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {
-            ...ModifyPaymentMethodRequest.mapping(bundle),
-          },
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'modifyPaymentMethod',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['ModifyPaymentMethodResponseSample'],
-    },
-  },
-  modifyVatType: {
-    key: 'modifyVatType',
-    noun: 'Settings',
-    display: {
-      label: 'Modify Vat Type',
-      description: 'Modifies the specified vat type.',
-      hidden: false,
-    },
-    operation: {
-      inputFields: [
-        {
-          key: 'company_id',
-          dynamic: 'listUserCompaniesTrigger.id.name',
-          label: 'The ID of the company.',
-          type: 'integer',
-          required: true,
-        },
-        {
-          key: 'vat_type_id',
-          label: 'The Referred Vat Type Id.',
-          type: 'integer',
-          required: true,
-        },
-        ...ModifyVatTypeRequest.fields(),
-      ],
-      outputFields: [...ModifyVatTypeResponse.fields('', false)],
-      perform: async (z, bundle) => {
-        const options = {
-          url: utils.replacePathParameters(
-            'https://api-v2.fattureincloud.it/c/{company_id}/settings/vat_types/{vat_type_id}'
-          ),
-          method: 'PUT',
-          removeMissingValuesFrom: { params: true, body: true },
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          params: {},
-          body: {
-            ...ModifyVatTypeRequest.mapping(bundle),
-          },
-        };
-        return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
-          response.throwForStatus();
-          const results = utils.responseOptionsMiddleware(
-            z,
-            bundle,
-            'modifyVatType',
-            response.json
-          );
-          return results;
-        });
-      },
-      sample: samples['ModifyVatTypeResponseSample'],
-    },
-  },
-};
+}

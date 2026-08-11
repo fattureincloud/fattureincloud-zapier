@@ -1,34 +1,34 @@
-const UserApi = require('./apis/UserApi');
+const UserApi = require("./apis/UserApi");
 
 const testAuth = async (z, bundle) => {
-  const userInfo = await UserApi.getUserInfo.operation.perform(z, bundle);
+  const userInfo = await UserApi.getUserInfo.operation.perform(z, bundle)
   return userInfo.data;
 };
 const scopes = [
-  'situation:r',
-  'entity.clients:a',
-  'entity.suppliers:a',
-  'products:a',
-  'issued_documents.quotes:a',
-  'issued_documents.proformas:a',
-  'issued_documents.invoices:a',
-  'issued_documents.receipts:a',
-  'issued_documents.delivery_notes:a',
-  'issued_documents.credit_notes:a',
-  'issued_documents.orders:a',
-  'issued_documents.work_reports:a',
-  'issued_documents.supplier_orders:a',
-  'issued_documents.self_invoices:a',
-  'received_documents:a',
-  'receipts:a',
-  'calendar:a',
-  'archive:a',
-  'taxes:a',
-  'stock:a',
-  'emails:r',
-  'cashbook:a',
-  'settings:a',
-];
+    "situation:r",
+    "entity.clients:a",
+    "entity.suppliers:a",
+    "products:a",
+    "issued_documents.quotes:a",
+    "issued_documents.proformas:a",
+    "issued_documents.invoices:a",
+    "issued_documents.receipts:a",
+    "issued_documents.delivery_notes:a",
+    "issued_documents.credit_notes:a",
+    "issued_documents.orders:a",
+    "issued_documents.work_reports:a",
+    "issued_documents.supplier_orders:a",
+    "issued_documents.self_invoices:a",
+    "received_documents:a",
+    "receipts:a",
+    "calendar:a",
+    "archive:a",
+    "taxes:a",
+    "stock:a",
+    "emails:r",
+    "cashbook:a",
+    "settings:a",
+]
 
 module.exports = {
   type: 'oauth2',
