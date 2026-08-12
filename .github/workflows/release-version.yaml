@@ -7,7 +7,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.FATTUREINCLOUD_BOT_TOKEN }}
 
@@ -19,9 +19,9 @@ jobs:
 
       - id: setup-node
         name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
 
       - id: setup-libraries
         name: Install libraries
