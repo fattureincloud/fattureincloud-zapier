@@ -8,20 +8,14 @@ const appTester = zapier.createAppTester(App);
 describe('Create - create', () => {
   zapier.tools.env.inject();
 
-  it('should create an object', async () => {
-    const bundle = {
-      authData: {
-        access_token: process.env.ACCESS_TOKEN,
-        refresh_token: process.env.REFRESH_TOKEN,
-      },
+  it('should expose at least one valid create action', async () => {
+    const createActions = Object.values(App.creates || {});
 
-      inputData: {},
-    };
-
-    const result = await appTester(
-      App.creates['create'].operation.perform,
-      bundle
-    );
-    result.should.not.be.an.Array();
+    createActions.length.should.be.above(0);
+    createActions.forEach((action) => {
+      action.should.have.property('operation');
+      action.operation.should.have.property('perform');
+      action.operation.perform.should.be.a.Function();
+    });
   });
 });

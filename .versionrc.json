@@ -1,14 +1,14 @@
 {
-    "bumpFiles": [
-        {
-            "filename": "./sdk-version.yaml",
-            "updater": "./scripts/sdk-version-updater.js"
-        }
-    ],
-    "packageFiles": [
-        {
-            "filename": "./sdk-version.yaml",
-            "updater": "./scripts/sdk-version-updater.js"
-        }
-    ]
+  "bumpFiles": [
+    {
+      "filename": "./version.yaml",
+      "updater": "./scripts/sdk-version-updater.js"
+    }
+  ],
+  "packageFiles": [
+    {
+      "filename": "./version.yaml",
+      "updater": "./scripts/sdk-version-updater.js"
+    }
+  ]
 }

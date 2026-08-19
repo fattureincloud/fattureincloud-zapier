@@ -2,26 +2,26 @@ name: Zapier Integration Validation
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-    - id: checkout
-      name: Checkout repo
-      uses: actions/checkout@v4
-    
-    - id: setup-node
-      name: Setup Node.js
-      uses: actions/setup-node@v4
-      
-    - id: setup-libraries
-      name: Install libraries
-      run: |
-        yarn global add zapier-platform-cli
-        yarn
-    
-    - id: zapier-validate
-      name: Zapier validate
-      run: zapier validate
+      - id: checkout
+        name: Checkout repo
+        uses: actions/checkout@v7
+
+      - id: setup-node
+        name: Setup Node.js
+        uses: actions/setup-node@v7
+
+      - id: setup-libraries
+        name: Install libraries
+        run: |
+          yarn global add zapier-platform-cli
+          yarn
+
+      - id: zapier-validate
+        name: Zapier validate
+        run: zapier-platform validate
