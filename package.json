@@ -12,7 +12,7 @@
     "format:check": "prettier . --check"
   },
   "engines": {
-    "node": ">=v16",
+    "node": ">=v22",
     "npm": ">=5.6.0"
   },
   "dependencies": {
